@@ -1,0 +1,1127 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="MQTT协议, SCUT JAVA Spring SpringMVC mybatis Springboot 锦泉 arthurjinquan jinquan 超分辨率 计算机视觉 深度学习">
+    <meta name="baidu-site-verification" content="fmlEuI34ir">
+    <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
+    <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
+    <meta name="description" content="MQTTMQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（Publish/Subscribe）模式的轻量级通讯协议，该协议构建于TCP/IP协议上。
+MQTT协议">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>MQTT协议 | 锦泉^-^</title>
+    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+    <script>
+        (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">锦泉^-^</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-comments"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">锦泉^-^</div>
+        <div class="logo-desc">
+            
+            华南理工大学 | 软件工程 | 计算机视觉
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-comments"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/85.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        MQTT协议
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/物联网/" target="_blank">
+                            <span class="chip bg-color">物联网</span>
+                        </a>
+                        
+                        <a href="/tags/mqtt/" target="_blank">
+                            <span class="chip bg-color">mqtt</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/Web/" class="post-category" target="_blank">
+                            Web
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-12-24
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    锦泉
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    17 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h2><p>MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（Publish/Subscribe）模式的轻量级通讯协议，该协议构建于TCP/IP协议上。</p>
+<p>MQTT协议运行于TCP之上，属于应用层协议，因此只要是支持TCP/IP协议栈的地方，都可以使用MQTT。</p>
+<p>MQTT最大的优点在于可以以极少的代码和有限的带宽，为远程设备提供实时可靠的消息服务。做为一种低开销、低带宽占用的即时通讯协议，MQTT在物联网、小型设备、移动应用等方面有广泛的应用。在物联网开发中，MQTT不是唯一的选择，与MQTT互相竞争的协议有XMPP和CoAP协议等。</p>
+<p>MQTT协议的中心是MQTT服务器或代理 (broker)：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-broker.png" alt></p>
+<p>每条MQTT命令消息的消息头都包含一个固定的报头，有些消息会携带一个可变报文头和一个负荷。消息格式如下：</p>
+<blockquote>
+<p>1.Fixed header 固定报头，所有报文都包含</p>
+<p>2.Variable header 可变报头，部分报文包含</p>
+<p>3.Payload 有效载荷，部分报文包含</p>
+</blockquote>
+<p>参考整理：<a href="https://blog.csdn.net/weixin_44060108/article/details/103629375" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44060108/article/details/103629375</a> | <a href="https://blog.csdn.net/anxianfeng55555/article/details/80908795" target="_blank" rel="noopener">https://blog.csdn.net/anxianfeng55555/article/details/80908795</a></p>
+<h2 id="固定报文头（Fixed-Header）"><a href="#固定报文头（Fixed-Header）" class="headerlink" title="固定报文头（Fixed Header）"></a>固定报文头（Fixed Header）</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%9B%BA%E5%AE%9A%E6%8A%A5%E5%A4%B4.png" alt></p>
+<p>MQTT固定报文头最少有两个字节:</p>
+<ol>
+<li>第一字节前4bit表示报文类型（Message Type），后4bit是QoS级别等报文类型的标志位。</li>
+<li>第二字节开始是剩余长度字段，该长度是后面的可变报文头加消息负载的总长度，该字段最多允许四个字节。</li>
+</ol>
+<h3 id="报文类型Message-Type"><a href="#报文类型Message-Type" class="headerlink" title="报文类型Message Type:"></a>报文类型Message Type:</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-message%20type.png" alt><br>比如建立连接的前四位报文为0001,则转换成十进制=1,刚好对应上表中的CONNECT,也就是客户端请求连接服务端的意思。</p>
+<h3 id="报文标志"><a href="#报文标志" class="headerlink" title="报文标志"></a>报文标志</h3><p>继续上面那个图,紧跟着Message Type为0001的CONNECT后面的后四位报文标志为0000,表示缺省（Reserved）,一般这四位用于标示发送重复数（DUP） （1字节） 、服务质量 （QoS） （2字节）、保留标志（RETAIN）（1字节）<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E6%8A%A5%E6%96%87%E6%A0%87%E5%BF%97.png" alt></p>
+<p>DUP：发布消息的副本。用来在保证消息的可靠传输，如果设置为 1，则在下面的变长中增加MessageId，并且需要回复确认，以保证消息传输完成，但不能用于检测消息重复发送。</p>
+<p>QoS看下一模块。</p>
+<p>RETAIN：发布保留标识，表示服务器要保留这次推送的信息，如果有新的订阅者出现，就把这消息推送给它，如果设有那么推送至当前订阅者后释放。</p>
+<p>举个例子，当发送一条(消息安全等级)QoS=2的消息时,固定报头的第一个字节为:<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-fixedheader.png" alt></p>
+<p>这里可以看到,前四位0011转换成10进制就是3也就是对应报文类型的3 PUBLISH也就是发布消息类型的报文<br>后四位0100,这里就不能转十进制了 ,可以直接对应报文标志图的四个(3210)比特位,这里很明显0100对应的是QoS2,<br>同理如果后四位是0010,那么对应就表示是一条QoS1的消息。</p>
+<h3 id="MQTT-中的-QoS-等级"><a href="#MQTT-中的-QoS-等级" class="headerlink" title="MQTT 中的 QoS 等级"></a>MQTT 中的 QoS 等级</h3><p>作为最初用来在网络带宽窄、信号不稳定的环境下传输数据的协议，MQTT 设计了一套保证消息稳定传输的机制，包括消息应答、存储和重传。在这套机制下，提供了三种不同层次 QoS：</p>
+<ol>
+<li>QoS0，At most once，<strong>至多一次</strong>。Sender 发送的一条消息，Receiver 最多能收到一次，也就是说 Sender 尽力向 Receiver 发送消息，如果发送失败，也就算了</li>
+<li>QoS1，At least once，<strong>至少一次</strong>。Sender 发送的一条消息，Receiver 至少能收到一次，也就是说 Sender 向 Receiver 发送消息，如果发送失败，会继续重试，直到 Receiver 收到消息为止，但是因为重传的原因，Receiver 有可能会收到重复的消息</li>
+<li>QoS2，Exactly once，<strong>确保只有一次</strong>。Sender 发送的一条消息，Receiver 确保能收到而且只收到一次，也就是说 Sender 尽力向 Receiver 发送消息，如果发送失败，会继续重试，直到 Receiver 收到消息为止，同时保证 Receiver 不会因为消息重传而收到重复的消息</li>
+</ol>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-Qos.png" alt></p>
+<p>要注意的是，QoS 是 Sender 和 Receiver 之间达成的协议，不是 Publisher 和 Subscriber 之间达成的协议。也就是说 Publisher 发布一条 QoS1 的消息，只能保证 Broker 能至少收到一次这个消息；至于对应的 Subscriber 能否至少收到一次这个消息，还要取决于 Subscriber 在 Subscribe 的时候和 Broker 协商的 QoS 等级。</p>
+<h3 id="剩余报文长度"><a href="#剩余报文长度" class="headerlink" title="剩余报文长度"></a>剩余报文长度</h3><p>表示本次报文的剩余长度（字节位数）<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%89%A9%E4%BD%99%E6%8A%A5%E6%96%87%E9%95%BF%E5%BA%A6.png" alt></p>
+<p>比如这个红色框的报文转换成十进制是29,则表示还有29个字节是本次报文的,绿色框则就是剩余的报文了,刚好是29个,不信你数数</p>
+<p>剩余长度字段单个字节最大值为二进制0b0111 1111，16进制0x7F。也就是说，单个字节可以描述的最大长度是127字节。为什么不是256字节呢？因为MQTT协议规定，单个字节第八位（最高位）若为1，则表示后续还有字节存在，第八位起“延续位”的作用。</p>
+<p>例如，数字64，编码为一个字节，十进制表示为64，十六进制表示为0×40。数字321（65+2*128）编码为两个字节，重要性最低的放在前面，第一个字节为65+128=193（0xC1），第二个字节是2（0x02），表示2×128。</p>
+<p>由于MQTT协议最多只允许使用四个字节表示剩余长度（如下图），并且最后一字节最大值只能是0x7F不能是0xFF，所以能发送的最大消息长度是256MB，而不是512MB。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%89%A9%E4%BD%99%E9%95%BF%E5%BA%A6.png" alt></p>
+<h2 id="可变报文头（Variable-Header）"><a href="#可变报文头（Variable-Header）" class="headerlink" title="可变报文头（Variable Header）"></a>可变报文头（Variable Header）</h2><p>可变报文头主要包含协议名、协议版本、连接标志（Connect Flags）、心跳间隔时间（Keep Alive timer）、连接返回码（Connect Return Code）、主题名（Topic Name）等。</p>
+<p>根据MQTT文档说明，把所有相关的信息列出来。如下：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%8F%AF%E5%8F%98%E6%8A%A5%E5%A4%B4.png" alt></p>
+<p><strong>绿色的为用到的。红色表示没有用到的。</strong></p>
+<h3 id="协议名"><a href="#协议名" class="headerlink" title="协议名"></a>协议名</h3><p>协议名是表示协议名 MQTT 的UTF-8编码的字符串。MQTT规范的后续版本不会改变这个字符串的偏移和长度。如果协议名不正确，服务端需要断开客户端的连接。</p>
+<p>协议名格式如下：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%8D%8F%E8%AE%AE%E5%90%8D.png" alt><br>CONNECT中的协议名</p>
+<h3 id="协议级别"><a href="#协议级别" class="headerlink" title="协议级别"></a>协议级别</h3><p>协议级别通俗来讲就是协议的版本。</p>
+<p>客户端用8位的无符号值表示协议的修订版本。对于3.1.1版协议，协议级别字段的值是4(0x04)。如果发现不支持的协议级别，服务端必须给发送一个返回码为0x01（不支持的协议级别）的CONNACK报文响应CONNECT报文，然后断开客户端的连接。</p>
+<p>MQTT3.1.1的协议级别格式如下：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-protocolLevel.png" alt></p>
+<h3 id="连接标志"><a href="#连接标志" class="headerlink" title="连接标志"></a>连接标志</h3><p>连接标志字节包含一些用于指定MQTT连接行为的参数。它还指出payload字段是否存在。</p>
+<p>连接标志的结构：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-connectflag.png" alt></p>
+<blockquote>
+<p>1.有效负载（playload）字段的存在与否并不是reserved字段来指定，而是will flag、user Name等字段。<br>比如：如果will flag为1，则负载中需要包含will topic、will message等字段。如果需要用户名密码，则负载中需要包含这些信息。</p>
+<p>2.服务端必须验证CONNECT控制报文的保留标志位（第0位reserved）是否为0，如果不为0必须断开客户端连接</p>
+</blockquote>
+<p>所有连接标志的意义：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-connection-flag-mean.jpg" alt></p>
+<h3 id="Keep-alive"><a href="#Keep-alive" class="headerlink" title="Keep alive"></a>Keep alive</h3><p>其格式如下：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-keep-alive.jpg" alt></p>
+<p>MSB表示最大有效位，LSB表示最小有效位。这里没有什么特殊含义，这里只是表示两个字节来描述Keep alive。至于官方文档中说明Keep Alive允许的最大值是18小时12分15秒，这是从2^16/3600=18.2044得出的。</p>
+<p>Keep Alive说明：</p>
+<ol>
+<li><p>客户端负责保证控制报文发送的时间间隔不超过保持连接的值。如果没有任何其它的控制报文可以发送，客户端必须发送一个PINGREQ报文。不管保持连接的值是多少，客户端任何时候都可以发送PINGREQ报文，并且使用PINGRESP报文判断网络和服务端的活动状态。</p>
+</li>
+<li><p>如果保持连接的值非零，并且服务端在一点五倍的保持连接时间内没有收到客户端的控制报文，它必须断开客户端的网络连接，认为网络连接已断开。</p>
+</li>
+<li><p>客户端发送了PINGREQ报文之后，如果在合理的时间内仍没有收到PINGRESP报文，它应该关闭到服务端的网络连接。</p>
+</li>
+<li><p>保持连接的值为零表示关闭保持连接功能。这意味着客户端不断开连接。</p>
+</li>
+</ol>
+<blockquote>
+<p>不管保持连接的值是多少，任何时候，只要服务端认为客户端是不活跃或无响应的，可以断开客户端的连接。</p>
+</blockquote>
+<p>至此，CONNECT报文的所有内容已经学习，最后用官方文档的CONNECT结构图来总结：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-connection.png" alt></p>
+<h2 id="有效负荷（Payload）"><a href="#有效负荷（Payload）" class="headerlink" title="有效负荷（Payload）"></a>有效负荷（Payload）</h2><p>Payload直译为负荷，可能让人摸不着头脑，实际上可以理解为<strong>消息主体（body）</strong>。</p>
+<p>当MQTT发送的消息类型是CONNECT（连接）、PUBLISH（发布）、SUBSCRIBE（订阅）、SUBACK（订阅确认）、UNSUBSCRIBE（取消订阅）时，则会带有负荷。</p>
+<h2 id="MQTT其他特点"><a href="#MQTT其他特点" class="headerlink" title="MQTT其他特点"></a>MQTT其他特点</h2><h3 id="异步发布-订阅实现"><a href="#异步发布-订阅实现" class="headerlink" title="异步发布/订阅实现"></a>异步发布/订阅实现</h3><p>发布/订阅模式解耦了发布消息的客户（发布者）与订阅消息的客户（订阅者）之间的关系，这意味着发布者和订阅者之间并不需要直接建立联系。 </p>
+<p>这个模式有以下好处：</p>
+<ol>
+<li>发布者与订阅者只需要知道同一个消息代理即可；</li>
+<li>发布者和订阅者不需要直接交互；</li>
+<li>发布者和订阅者不需要同时在线。</li>
+</ol>
+<p>由于采用了发布/订阅实现，MQTT可以双向通信。也就是说MQTT支持服务端反向控制设备，设备可以订阅某个主题，然后发布者对该主题发布消息，设备收到消息后即可进行一系列操作。</p>
+<h3 id="二进制格式实现"><a href="#二进制格式实现" class="headerlink" title="二进制格式实现"></a>二进制格式实现</h3><p>MQTT基于二进制实现而不是字符串，比如HTTP和XMPP都是基于字符串实现。由于HTTP和XMPP拥有冗长的协议头部，而MQTT固定报文头仅有两字节，所以相比其他协议，发送一条消息最省流量。</p>
+<h3 id="MQTT的安全"><a href="#MQTT的安全" class="headerlink" title="MQTT的安全"></a>MQTT的安全</h3><p>由于MQTT运行于TCP层之上并以明文方式传输，这就相当于HTTP的明文传输。作为传输协议，MQTT仅关注消息传输，提供合适的安全功能是开发者的责任。安全功能可以从三个层次来考虑——应用层、传输层、网络层。</p>
+<ol>
+<li>应用层：在应用层上，MQTT提供了客户标识（Client Identifier）以及用户名和密码，可以在应用层验证设备。</li>
+<li>传输层：类似于HTTPS，MQTT基于TCP连接，也可以加上一层TLS，传输层使用TLS加密是确保安全的一个好手段，可以防止中间人攻击。客户端证书不但可以作为设备的身份凭证，还可以用来验证设备。</li>
+<li>网络层：如果有条件的话，可以通过拉专线或者使用VPN来连接设备与MQTT代理，以提高网络传输的安全性。</li>
+</ol>
+<h2 id="选择用户数据格式"><a href="#选择用户数据格式" class="headerlink" title="选择用户数据格式"></a>选择用户数据格式</h2><p>MQTT协议只实现了传送消息的格式，并没有限制用户协议需要按照一定的风格，因此在MQTT协议之上，我们需要定义一套自己的通信协议。比如说，发布者向设备发布一条打开消息，设备可以回复一个消息并携带返回码，这样的消息格式是使用二进制、字符串还是JSON格式呢？</p>
+<h3 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h3><p>JSON中文全称是JavaScript对象标记语言，在这门语言中，一切都是对象。因此，任何支持的类型都可以通过JSON来表示，例如字符串、数字、对象、数组等。其语法规则是：</p>
+<ol>
+<li>对象表示为键值对；</li>
+<li>数据由逗号分隔；</li>
+<li>花括号保存对象；</li>
+<li>方括号保存数组。</li>
+</ol>
+<p>JSON层次结构简洁清晰，易于阅读和编写，同时也易于机器解析和生成，有效提升网络传输效率。</p>
+<p><strong>MQTT+JSON是目前最优方案</strong>。协议简洁清晰、易于阅读、解析和生成等，也考虑了服务器端开发者和设备端开发者的开发成本。</p>
+<h2 id="MQTT与其他协议"><a href="#MQTT与其他协议" class="headerlink" title="MQTT与其他协议"></a>MQTT与其他协议</h2><p>目前各大平台都开始支持MQTT协议，MQTT相比其他协议有什么优势呢？物联网设备能不能用其他的协议呢？下面是MQTT与其他部分协议的比较，给大家作为参考。</p>
+<h3 id="MQTT与TCP-Socket"><a href="#MQTT与TCP-Socket" class="headerlink" title="MQTT与TCP Socket"></a>MQTT与TCP Socket</h3><p>虽然MQTT运行于TCP层之上，看起来这两者之间根本没有比较性，但笔者觉得还是有必要叙述一番，因为大多数从事硬件或嵌入式开发的工程师，都是直接在TCP层上通信的。从事嵌入式开发工作的人都应该知道LwIP，LwIP是一套用于嵌入式系统的开放源代码TCP/IP协议栈，LwIP在保证嵌入式产品拥有完整的TCP/IP功能的同时，又能保证协议栈对处理器资源的有限消耗，其运行一般仅需要几十KB的RAM和40KB左右的ROM。</p>
+<p>也就是说，只要是嵌入式产品使用了LwIP，就支持TCP/IP协议栈，进而可以使用MQTT协议。</p>
+<p>由于TCP协议有粘包和分包问题，所以传输数据时需要自定义协议，如果传输的数据报超过MSS（最大报文段长度），一定要给协议定义一个消息长度字段，确保接收端能通过缓冲完整收取消息。一个简单的协议定义：消息头部+消息长度+消息正文。</p>
+<p>当然，使用MQTT协议则不需要考虑这个问题，这些MQTT都已经处理好了，MQTT最长可以一次性发送256MB数据，不用考虑粘包分包的问题。</p>
+<p>总之，TCP和MQTT本身并不矛盾，只不过基于Socket开发需要处理更多的事情，而且大多数嵌入式开发模块本身也只会提供Socket接口供厂家自定义协议。</p>
+<h3 id="MQTT与HTTP"><a href="#MQTT与HTTP" class="headerlink" title="MQTT与HTTP"></a>MQTT与HTTP</h3><p>HTTP最初的目的是提供一种发布和接收HTML页面的方法，主要用于Web。HTTP是典型的C/S通讯模式：请求从客户端发出，服务端只能被动接收，一条连接只能发送一次请求，获取响应后就断开连接。该协议最早是为了适用Web浏览器的上网浏览场景而设计的，目前在PC、手机、Pad等终端上都应用广泛。由于这样的通信特点，HTTP技术在物联网设备中很难实现设备的反向控制，不过非要实现也不是不行，下面看一下Web端的例子。</p>
+<p>目前，在微博等SNS网站上有海量用户公开发布的内容，当发布者发布消息，数据传到服务器更新时，就需要给关注者尽可能的实时更新内容。Web网站基于HTTP协议，使用HTTP协议探测服务器上是否有内容更新，就必须频繁地让客户端请求服务器进行确认。在浏览器中要实现这种效果，可以使用Comet技术，Comet是基于HTTP长连接的“服务器推”技术，主要有两种实现模型：基于AJAX的长轮询（long-polling）方式和基于Iframe及htmlfile的流（streaming）方式。这两种技术模型在这里不详细展开，有兴趣的读者可以查阅相关资料。</p>
+<p>如果要实现设备的反向控制，可能就要用到前面提到的Comet技术。由于需要不断的请求服务器，会导致通信开销非常大，加上HTTP冗长的报文头，在节省流量上实在没有优势。</p>
+<p>当然，如果只是单纯地让设备定时上报数据而不做控制，也是可以使用HTTP协议的。</p>
+<h3 id="MQTT与XMPP"><a href="#MQTT与XMPP" class="headerlink" title="MQTT与XMPP"></a>MQTT与XMPP</h3><p>最有可能与MQTT竞争的是XMPP协议。XMPP（可扩展通讯与表示协议）是一项用于实时通讯的开放技术，它使用可扩展标记语言（XML）作为交换信息的基本格式。其优点是协议成熟、强大、可扩展性强。目前主要应用于许多聊天系统中，在消息推送领域，MQTT和XMPP互相竞争。下面列举MQTT与XMPP各自的特性：</p>
+<ol>
+<li>XMPP协议<strong>基于繁重的XML</strong>，<strong>报文体积大且交互繁琐</strong>；而MQTT协议固定报头只有两个字节，报文体积小、编解码容易；</li>
+<li>XMPP基于JID的<strong>点对点</strong>消息传输；MQTT协议基于主题(Topic)发布\订阅模式，消息路由更为灵活；</li>
+<li>XMPP协议采用XML承载报文，二进制必须进行Base64编码或其他方式处理；MQTT协议未定义报文内容格式，可以承载JSON、二进制等不同类型报文，开发者可以针对性的定义报文格式；</li>
+<li>MQTT协议支持消息收发确认和QoS保证，有更好的消息可靠性保证；而XMPP主协议并未定义类似机制；</li>
+<li>在嵌入式设备开发中大多使用的是C语言开发，<strong>C语言解析XML是非常困难</strong>的。MQTT基于二进制实现且未定义报文内容格式，可以很好的兼顾嵌入式C语言开发者；而XMPP基于XML，开发者需要配合协议格式，不能灵活开发。 </li>
+</ol>
+<p>综上所述，在嵌入式设备中，由于需要一个灵巧简洁，对设备开发者和服务端开发者都友好的协议，MQTT比XMPP更具有优势。</p>
+<h3 id="MQTT与CoAP"><a href="#MQTT与CoAP" class="headerlink" title="MQTT与CoAP"></a>MQTT与CoAP</h3><p>CoAP也是一个能与MQTT竞争的协议。其模仿HTTP的REST模型，服务端以URI方式创建资源，客户端可以通过GET、PUT、POST、DELETE方式访问这些资源，并且协议风格也和HTTP极为相似。</p>
+<p>不过，如果使用CoAP可能会让物联网后台的情况变得复杂，比如MQTT可以实现一个最简单的IoT架构：Device + MQTT服务器 + APP，手机端或Web端可以直接从MQTT服务器订阅想要的主题。而CoAP可能需要这样的架构：CoAP + Web + DataBase + App，使用CoAP必须经过DataBase才能转给第三方。</p>
+<p>至于CoAP和MQTT孰优孰劣，这里不作定论。不过目前来说，CoAP资料还是略少。而且，MQTT除了可以应用于物联网领域，在手机消息推送、在线聊天等领域都可以有所作为。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>经过以上的比较，我们可以得出如下结论：</p>
+<p>MQTT基于异步发布/订阅的实现解耦了消息发布者和订阅者，<strong>基于二进制的实现节省了存储空间及流量</strong>，同时MQTT拥有更好的消息处理机制，可以替代TCP Socket一部分应用场景。</p>
+<p>相对于HTTP和XMPP，MQTT可以选择用户数据格式，解析复杂度低，同时MQTT也可用于手机推送等领域。手机作为与人连接的入口，正好建立了人与物的连接，可谓一箭双雕。当然，其他协议也可以作为一个辅助的存在，HTTP可以为只需定时上传数据的设备服务，CoAP则更适用于非常受限的移动通信网络。</p>
+
+            </div>
+            <hr />
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《MQTT协议》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/24/web/mqtt/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                锦泉
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'arthurjinquan.github.io',
+        owner: 'arthurjinquan',
+        admin: "arthurjinquan",
+        id: '2020/12/24/web/mqtt/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/12/25/project/jenkins/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/88.jpg" class="responsive-img" alt="Jenkins持续集成工具">
+                        
+                        <span class="card-title">Jenkins持续集成工具</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            最近接触了jenkins这个东西，所以花点时间了解了下。它可以在代码上传仓库（如github,gitlab）后，在jenkins（一个网站界面）中通过获取代码仓库中最新代码，进行自动化部署，而省去手动打包、上传服务器、部署这一系列步骤，非常方便。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/项目/" class="post-category" target="_blank">
+                                    项目
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/工具/" target="_blank">
+                        <span class="chip bg-color">工具</span>
+                    </a>
+                    
+                    <a href="/tags/持续集成/" target="_blank">
+                        <span class="chip bg-color">持续集成</span>
+                    </a>
+                    
+                    <a href="/tags/测试/" target="_blank">
+                        <span class="chip bg-color">测试</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/12/23/web/nginx/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/68.jpg" class="responsive-img" alt="Nginx">
+                        
+                        <span class="card-title">Nginx</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Nginx介绍Nginx 同 Apache 一样都是一种 Web 服务器。基于 REST 架构风格，以统一资源描述符（Uniform Resources Identifier）URI 或者统一资源定位符（Uniform Resources 
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Web/" class="post-category" target="_blank">
+                                    Web
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web服务器/" target="_blank">
+                        <span class="chip bg-color">web服务器</span>
+                    </a>
+                    
+                    <a href="/tags/代理/" target="_blank">
+                        <span class="chip bg-color">代理</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 锦泉^-^<br />'
+            + '作者: 锦泉<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () { bodyElement.removeChild(newdiv); }, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<!-- 代码语言 -->
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+<!-- 代码块复制 -->
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+<!-- 代码块收缩 -->
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script> 
+<!-- 代码块折行 -->
+<style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2019-2021 JinQuan. 版权所有
+
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">120.9k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/arthurjinquan" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:793787018@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=793787018&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的qq" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+    $(document).ready(function () {
+
+        var int = setInterval(fixCount, 50);
+        var pvcountOffset = 1741;
+        var uvcountOffset = 788;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int);
+            }
+        }
+    });
+</script>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2019, 11, 11, 00, 00, 00); //北京时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <script type="text/javascript"> var OriginTitile = document.title, st; document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Σ(っ °Д °;)っ喔哟，崩溃啦！", clearTimeout(st)) : (document.title = "φ(゜▽゜*)♪咦，又好了！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) })
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    
+
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+	
+	
+	<!-- 背景雪花飘落特效 -->
+	
+		
+	<!-- 背景静止彩带  -->
+	
+    
+	<!-- 背景动态彩带 -->
+	
+            <script type="text/javascript">
+            var windowWidth = $(window).width();
+            if (windowWidth > 992) {
+                document.write('<script type="text/javascript" src="/libs/background/ribbon-dynamic.js"><\/script>');
+            }
+            </script>
+        	
+        
+
+	
+	<!-- 背景樱花飘落特效 -->
+	
+            <script type="text/javascript">
+            //只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+            }
+            </script>
+        
+    
+	
+	<script src="/js/cursor.js"></script>
+
+</body>
+
+</html>

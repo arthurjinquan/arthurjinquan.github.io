@@ -1,0 +1,1248 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="分布式事务, SCUT JAVA Spring SpringMVC mybatis Springboot 锦泉 arthurjinquan jinquan 超分辨率 计算机视觉 深度学习">
+    <meta name="baidu-site-verification" content="fmlEuI34ir">
+    <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
+    <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
+    <meta name="description" content="基础概念CAP理论
+
+一致性（Consistency） ：在分布式系统中所有的数据备份，在同一时刻都保持一致状态，如无法保证状态一致，直接返回错误；
+可用性（Availability）：在集群中一部分节点故障，也能保证客户端访问系统并得到正">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>分布式事务 | 锦泉^-^</title>
+    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+    </style>
+
+    <script src="/libs/jquery/jquery-2.2.0.min.js"></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?46e79e71af0709a5b9106bf20cecc493";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    
+        <script>
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        </script>
+    
+
+    <script>
+        (function(){
+        var src = "https://jspassport.ssl.qhimg.com/11.0.1.js?d182b3f28525f2db83acfaaf6e696dba";
+        document.write('<script src="' + src + '" id="sozz"><\/script>');
+        })();
+    </script>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+<body>
+
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">锦泉^-^</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/tags" class="waves-effect waves-light">
+            
+            <i class="fa fa-tags"></i>
+            
+            <span>标签</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories" class="waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives" class="waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about" class="waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends" class="waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/contact" class="waves-effect waves-light">
+            
+            <i class="fa fa-comments"></i>
+            
+            <span>留言板</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">锦泉^-^</div>
+        <div class="logo-desc">
+            
+            华南理工大学 | 软件工程 | 计算机视觉
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/tags" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-tags"></i>
+                
+                标签
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        <li>
+            <a href="/contact" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-comments"></i>
+                
+                留言板
+            </a>
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        分布式事务
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                        <a href="/tags/事务/" target="_blank">
+                            <span class="chip bg-color">事务</span>
+                        </a>
+                        
+                        <a href="/tags/分布式事务/" target="_blank">
+                            <span class="chip bg-color">分布式事务</span>
+                        </a>
+                        
+                        <a href="/tags/springcloud/" target="_blank">
+                            <span class="chip bg-color">springcloud</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/数据库/" class="post-category" target="_blank">
+                            数据库
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-02-03
+                </div>
+
+                <div class="post-author info-break-policy">
+                    <i class="fa fa-user-o fa-fw"></i>作者:&nbsp;&nbsp;
+                    
+                    锦泉
+                    
+                </div>
+
+                
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    15 分
+                </div>
+                
+                
+
+                
+                <div id="busuanzi_container_page_pv" class="info-break-policy">
+                    <i class="fa fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                    <span id="busuanzi_value_page_pv"></span>
+                </div>
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p><strong>CAP理论</strong></p>
+<ol>
+<li>一致性（Consistency） ：在分布式系统中所有的数据备份，<strong>在同一时刻都保持一致状态</strong>，如无法保证状态一致，直接返回错误；</li>
+<li>可用性（Availability）：在集群中一部分节点故障，也能保证客户端访问系统并得到正确响应，<strong>允许一定时间内数据状态不一致</strong>；</li>
+<li>分区容错性（Partition tolerance）：分布式系统在遇到任何网络分区故障时，仍然能保证对外提供满足一致性和可用性的服务，除非整个网络环境都发生故障；</li>
+</ol>
+<p><strong>本地事务四大特性（ACID）</strong></p>
+<ol>
+<li>原子性（atomicity）：一个事务中的所有操作，不可分割，要么全部成功，要么全部失败；</li>
+<li>一致性（consistency）：一个事务执行前与执行后数据的<strong>完整性</strong>必须保持一致，与cap的一致性是两个概念，详情请看：<a href="http://arthurjq.com/2020/12/25/consistency/">http://arthurjq.com/2020/12/25/consistency/</a></li>
+<li>隔离性（isolation）：一个事务的执行，不能被其他事务干扰，多并发时事务之间要相互隔离，细节请看：<a href="http://arthurjq.com/2020/12/25/acid-isolation/">http://arthurjq.com/2020/12/25/acid-isolation/</a></li>
+<li>持久性（durability）：一个事务一旦被提交，它对数据库中数据的改变是永久性的。</li>
+</ol>
+<p><strong>BASE理论</strong></p>
+<p>基本可用（Basically Available）：分布式系统在出现故障时，保证核心可用，允许损失部分可用性。（响应时间上的损失、功能上的损失）<br>软状态（Soft State）：系统中的数据允许存在中间状态，中间状态不影响系统的整体可用性。（如：支付中、处理中）<br>最终一致性（Eventually Consistent）：系统中的数据不可一直处于软状态，必须在有时间期限，在期限过后应当保证数据的一致性。（<em>支付中</em> 变为 <em>支付成功</em>）</p>
+<ul>
+<li>相比于本地事务的ADIC强一致性模型，BASE理论提出<strong>通过牺牲一定的强一致性来获得可用性</strong>；</li>
+<li>不同业务单元和业务组件对数据一致性的要求不一样，因此分布式系统中BASE理论和ACID特性会结合使用。</li>
+</ul>
+<p><strong>幂等性</strong></p>
+<ol>
+<li>幂等（Idempotent）是一个数学与计算机学中的概念：<code>f(n) = 1^n</code> // 无论n等于多少，f（n）永远值等于1；</li>
+<li>在程序中，使用相同参数执行同一个方法，每一次执行结果都是相同的，即具有<code>幂等性</code>；</li>
+<li>以订单状态处理为例的幂等性设计（举个栗子），不论执行多少次orderProcess（）方法，都只会扣减一次库存，并且返回true。</li>
+</ol>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/** 订单处理 */</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">orderProcess</span><span class="token punctuation">(</span>OrderEntity orderEntity<span class="token punctuation">)</span><span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">//查询原订单信息</span>
+ OrderEntity oldOrderEntity <span class="token operator">=</span> <span class="token function">getOrderInfo</span><span class="token punctuation">(</span>orderEntity<span class="token punctuation">)</span>
+  <span class="token comment" spellcheck="true">//判断订单状态，如订单状态为 ok 则直接返回 true</span>
+ <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"ok"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>oldOrderEntity<span class="token punctuation">.</span><span class="token function">getOrderState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token comment" spellcheck="true">//更新订单状态</span>
+ <span class="token keyword">boolean</span> upBoolean <span class="token operator">=</span> <span class="token function">updateOrderInfo</span><span class="token punctuation">(</span>orderEntity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>upBoolean<span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"ok"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>orderEntity<span class="token punctuation">.</span><span class="token function">getOrderState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+   <span class="token comment" spellcheck="true">//扣减库存</span>
+   <span class="token keyword">boolean</span> reduceBoolean <span class="token operator">=</span> <span class="token function">reduceInventories</span><span class="token punctuation">(</span>orderEntity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>reduceBoolean<span class="token punctuation">)</span><span class="token punctuation">{</span>
+     <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+ <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="事务的演进过程"><a href="#事务的演进过程" class="headerlink" title="事务的演进过程"></a>事务的演进过程</h2><h3 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h3><p>对于一些小型项目，使用单体架构可以快速的开发，并且很容易控制我们的业务逻辑和事务处理。通过本地事务的ACID特性，保证我们数据的一致性。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-1.png" alt></p>
+<h3 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h3><p>实际项目中，我们可能会遇到一种情况就是，并发量不大，但常年累积下来数据量很大，这时候我们考虑到了<strong>分库策略</strong>。由于垮库情况下本地事务已经无法保证多库之间的数据一致性，<strong>这时我们就需要考虑分布式事务了</strong>。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-2.png" alt></p>
+<h3 id="分布式架构（服务拆分）"><a href="#分布式架构（服务拆分）" class="headerlink" title="分布式架构（服务拆分）"></a>分布式架构（服务拆分）</h3><p>也有可能所使用的数据库性能比较好，但我们的单应用的性能无法满足业务需求，这时候我们可以选择对服务进行拆分的策略。此时虽然还是使用同一数据库，但我们多个服务之间互相调用来完成原有单体架构下的业务逻辑，这种情况下原有的本地事务也无法保证数据的一致性，这时我们也需要考虑分布式事务。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-3.png" alt></p>
+<h3 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h3><p>服务的拆分可以提高应用性能，让应用更专注于处理自己所负责的事情。数据库的拆分，一定程度上提升IO性能、数据库连接数、单机硬件资源的瓶颈。这时，服务间互相调用，每个服务都存在一个自己特定的业务数据库，所以我们需要考虑分布式事务。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-4.png" alt></p>
+<h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><h2 id="XA规范（协议）"><a href="#XA规范（协议）" class="headerlink" title="XA规范（协议）"></a>XA规范（协议）</h2><p> X/Open组织（现在的Open Group）定义了一套DTP（Distributed Transaction Processing）分布式事务处理模型，主要包含以下四部分：</p>
+<ol>
+<li>AP（应用程序）</li>
+<li>TM（事务管理器）：交易中间件</li>
+<li>RM（资源管理器）：数据库</li>
+<li>CRM（通信资源管理器）：消息中间件</li>
+</ol>
+<p><strong>XA规范</strong>则是DTP模型定义TM和RM之间通讯的接口规范。XA接口函数由数据库厂商提供。TM用它来通知数据库事务的开始、结束、提交、回滚。基于XA规范衍生出下面的二阶段提交（2PC）、三阶段提交（3PC）。</p>
+<blockquote>
+<p>XA规范包括两套函数，以<code>xa_</code>开头的及以<code>ax_</code>开头的。<br>以下的函数使事务管理器可以对资源管理器进行的操作：</p>
+<ul>
+<li>xa_open,xa_close：建立和关闭与资源管理器的连接。</li>
+<li>xa_start,xa_end：开始和结束一个本地事务。</li>
+<li>xa_prepare,xa_commit,xa_rollback：预提交、提交、回滚一个本地事务。</li>
+<li>xa_recover：回滚一个已进行预提交的事务。</li>
+<li>ax_开头的函数使资源管理器可以动态地在事务管理器中进行注册，并可以对XID（TRANSACTION IDS）进行操作。</li>
+<li>ax_reg,ax_unreg；允许一个资源管理器在一个TMS（TRANSACTION MANAGER SERVER）中 动态注册 或 撤消注册 。</li>
+</ul>
+</blockquote>
+<p>XA的一些问题：</p>
+<ol>
+<li><p>性能（阻塞、响应时间增加（一阶段不提交，且锁粒度更大）、死锁（收到 XA commit 或 XA rollback 前必须阻塞等待））；</p>
+</li>
+<li><p>XA 在整个事务处理过程结束前，涉及数据都被锁定，读写都按隔离级别的定义约束起来；</p>
+</li>
+<li><p>依赖于独立的J2EE中间件，<code>Weblogic</code>、<code>Jboss</code>，后期轻量级的<code>Atomikos</code>、<code>Narayana</code>、<code>Bitronix</code>；</p>
+</li>
+<li><p>不是所有资源（RM，数据库）都支持XA协议；</p>
+<p>Seata 事务框架中的XA事务模式：</p>
+</li>
+</ol>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-11.png" alt></p>
+<p>如图所示，XA 模式其实就是 Seata 底层利用了 XA 接口，在一阶段二阶段时自动处理。如一阶段时，XA 的 RM 通过代理用户数据源，创建 XAConnection，进行开启 XA 事务(XA start)和 XA-prepare（此时 XA 的任何操作都会被持久化，即便宕机也能恢复），在二阶段时，TC 通知 RM 进行 XA 分支的 Commit/Rollback 操作。</p>
+<h2 id="JTA（Java-Transaction-API）"><a href="#JTA（Java-Transaction-API）" class="headerlink" title="JTA（Java Transaction API）"></a>JTA（Java Transaction API）</h2><p>即Java的事务API，基于XA实现，也就是RM需要支持XA，所以也有JTA（XA）的说法，JTA仅定义了接口。主要包括<code>javax.sql.XADataResource</code>、<code>javax.sql.XAConnection</code>、<code>javax.sql.XAException</code>、<code>javax.transaction.xa.XAResource</code>、<code>javax.transaction.Xid</code>。<br>JTA的实现有几种形式：</p>
+<ol>
+<li>J2EE容器提供的JTA实现（Weblogic、JBoss ）；</li>
+<li>JOTM（Java Open Transaction Manager）、Atomikos，可独立于J2EE容器的环境下实现JTA；</li>
+</ol>
+<h2 id="二阶段提交（2PC）"><a href="#二阶段提交（2PC）" class="headerlink" title="二阶段提交（2PC）"></a>二阶段提交（2PC）</h2><p>2PC就是分布式事务中<strong>将事务分为两步进行提交</strong>。基于数据库的XA协议完成事务本质上就是二阶段提交（XA、JTA/JTS）。</p>
+<ul>
+<li>协调者（Coordinater）：事务管理器（TM）</li>
+<li>参与者（participants）：资源管理器（RM）</li>
+</ul>
+<ol>
+<li><p><strong>准备阶段：</strong><br>协调者向参与者发送prepare信息，以询问参与者是否能够提交事务；<br>参与者在收到prepare信息后，进行本地事务的<strong>预处理</strong>，<strong>但不提交</strong>。并根据处理结果返回，失败<code>not commit</code> or 成功<code>ready</code> ；</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-6.jpg" alt></p>
+</li>
+<li><p><strong>提交阶段：</strong><br>如协调者收到参与者的失败消息，则向每个参与者发送<code>rollback</code>消息进行回滚；<br>所有参与者都返回<code>ready</code>，则向每个参与者发送提交<code>commit</code>消息，通知参与者进行事务提交；</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-7.jpg" alt></p>
+</li>
+</ol>
+<p>整理于：<a href="https://zhuanlan.zhihu.com/p/315164700" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/315164700</a></p>
+<p>二阶段提交的一些问题：</p>
+<ol>
+<li><strong>同步阻塞</strong>，事务执行过程中所有参与者都是阻塞型的，第三方参与者访问参与者占有的资源时会被阻塞；</li>
+<li><strong>单点故障</strong>，协调者一旦发生故障，参与者会被阻塞。尤其在提交阶段，所有参与者都处于锁定资源状态中，无法完成事务操作；（可以选择新的协调者，但无法解决参与者被阻塞的问题）；</li>
+<li><strong>数据不一致</strong>，提交阶段协调者向参与者发送<code>commit</code>信息，发生局部网络故障，会导致存在参与者未收到<code>commit</code>信息无法提交事务情况，导致出现数据不一致现象；</li>
+</ol>
+<h2 id="三阶段提交（3PC）"><a href="#三阶段提交（3PC）" class="headerlink" title="三阶段提交（3PC）"></a>三阶段提交（3PC）</h2><p>相比于2PC，<strong>3PC把2PC的准备阶段再次进行拆分</strong>，并且3PC<strong>引入了参与者超时机制</strong>。</p>
+<ol>
+<li><p><strong>canCommit：</strong>协调者询问参与者，是否具备执行事务的条件，参与者进行自身事务必要条件的检查；</p>
+</li>
+<li><p><strong>preCommit：</strong>协调者通知参与者进行事务的预提交；</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-8.jpg" alt></p>
+</li>
+<li><p><strong>doCommit：</strong>协调者根据<code>preCommit</code>阶段参与者的反馈结果通知参与者是否进行事务提交或是进行事务回滚；</p>
+</li>
+</ol>
+<p>虽然 3PC 用超时机制，解决了协调者故障后参与者的阻塞问题，但与此同时却多了一次网络通信，性能上反而变得更差，也不太推荐。</p>
+<h2 id="事务补偿方案TCC"><a href="#事务补偿方案TCC" class="headerlink" title="事务补偿方案TCC"></a>事务补偿方案TCC</h2><p>TCC的核心思想就是校验、资源锁定、补偿，对每个操作（Try）都提供确认（Confirm）和取消（cancel）的操作，这样根据操作的结果，来确认是进行Confirm还是Cancel。<br>可以看出XA的两阶段提交是基于<strong>资源层面</strong>的，而TCC也是一种两阶段提交，但它是基于<strong>应用层面</strong>的。</p>
+<ol>
+<li><p><strong>Try</strong>：主要负责对业务进行数据检查和资源预留，例如：对资金进行<code>冻结</code>；对状态更改为<code>处理中</code>；</p>
+</li>
+<li><p><strong>Confirm</strong>：确认执行业务的操作，例如：进行实际<code>资金扣除</code>；更改状态为<code>最终结果</code>；</p>
+</li>
+<li><p><strong>Cancel</strong>：取消执行业务的操作，例如：<code>解冻资金</code>；更改状态为<code>未处理</code>；</p>
+<p>Seata 事务框架中的TCC事务：</p>
+</li>
+</ol>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-10.png" alt></p>
+<p>TCC存在的一些问题：</p>
+<ol>
+<li>业务操作的是不同服务的Try来进行资源预留，每个Try都是独立完成本地事务，因此不会对资源一直加锁。</li>
+<li>业务服务需要提供try、confirm、cancel<strong>三种方法</strong>来支持，<strong>业务侵入性强</strong>，如不适用三方框架要做到对各阶段状态的感知，比较麻烦，而且这种模式并不能很好地复用，会导致并发量激增。</li>
+<li>常用TCC框架：<code>tcc-transaction</code>、<code>ByteTCC</code>、<code>spring-cloud-rest-tcc</code>、<code>Himly</code></li>
+<li><strong>Confirm/Cancel要做幂等性设计</strong>。</li>
+</ol>
+<p>常见的微服务系统大部分接口调用是同步的，这时候使用TCC来保证一致性是比较合适的。</p>
+<h2 id="Saga（补偿）"><a href="#Saga（补偿）" class="headerlink" title="Saga（补偿）"></a>Saga（补偿）</h2><p>Saga的核心是补偿，与TCC不同的是<strong>Saga不需要Try</strong>，而是直接进行<code>confirm</code>、<code>cancel</code>操作。</p>
+<ol>
+<li>Confirm：依次按顺序依次执行资源操作，各个资源直接处理本地事务，如无问题，二阶段什么都不用做；</li>
+<li>Cancel：异常情况下<strong>需要调用的补偿事务</strong>（逆操作）来保证数据的一致性。</li>
+</ol>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-9.png" alt></p>
+<p>可以看出，Saga和TCC有些类似，都是补偿型事务</p>
+<p>适用场景：</p>
+<ol>
+<li>业务流程长、业务流程多</li>
+<li>参与者包含其它公司或遗留系统服务，无法提供 TCC 模式要求的三个接口</li>
+</ol>
+<p><strong>优势：</strong></p>
+<ol>
+<li>一阶段提交本地事务，无锁，高性能；</li>
+<li>事件驱动模式，参与者可异步执行，高吞吐；</li>
+<li>应用成本低，补偿服务易于实现；</li>
+</ol>
+<p><strong>劣势：</strong>无法保证隔离性（脏写）</p>
+<blockquote>
+<p>脏写：先前的写入尚未提交，后面的写入又覆盖了这个尚未提交的值</p>
+</blockquote>
+<h2 id="可靠消息最终一致性（RocketMQ）"><a href="#可靠消息最终一致性（RocketMQ）" class="headerlink" title="可靠消息最终一致性（RocketMQ）"></a>可靠消息最终一致性（RocketMQ）</h2><p>有一些情况，服务间调用时异步的，服务A将消息发送到MQ，服务B进行消息的消费。这时我们就需要用到<code>可靠消息最终一致性</code>来解决分布式事务问题。首先字面理解</p>
+<ul>
+<li><strong>可靠消息：</strong>即这个消息一定是可靠的，并且最终一定需要被消费的。</li>
+<li><strong>最终一致性：</strong>过程中数据存在一定时间内的不一致，但超过限定时间后，需要最终会保持一致。</li>
+</ul>
+<p>确保以上两点情况下，通过消息中间件（RocketMQ）来完成分布式事务处理，因为RocketMQ支持事务消息，可以方便的让我们进行分布式事务控制。</p>
+<p>因此首先需要了解一下，RocketMQ的事务消息的原理。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-5.png" alt></p>
+<blockquote>
+<p><strong>half message：</strong>半消息，此时消息不能被consumer所发现和消费，需producer进行二次消息确认。</p>
+</blockquote>
+<ol>
+<li><code>producer</code>发送<code>half message</code>给<code>MQ Server</code>；</li>
+<li><code>producer</code>根据<code>MQ Server</code>应答结果判断<code>half message</code>是否发送成功；</li>
+<li><code>producer</code>处理本地事务；</li>
+<li><code>producer</code>发送最终确认消息<code>commit / rollback</code>；<br><code>commit</code>：<code>consumer</code>对消息可见并进行消费；<br><code>rollback</code>：<code>discard</code>抛弃消息，<code>consumer</code>无法进行消息消费；</li>
+<li>如遇异常情况下<code>step4</code>最终确认消息未达到<code>MQ Server</code>，<code>MQ Server</code>会定期查询当前处于半消息状态下的消息，主动进行消息回查来询问<code>producer</code>该消息的最终状态；</li>
+<li><code>producer</code>检查本地事务执行的最终结果；</li>
+<li><code>producer</code>根据检查到的结果，再次提交确认消息，<code>MQ Server</code>仍然按照<code>step4</code>进行后续操作。</li>
+</ol>
+<p><strong>事务消息发送对应步骤1、2、3、4，事务消息回查对应步骤5、6、7。</strong></p>
+<p>由以上步骤可以看出通过事务性消息的两步操作，避免了消息直接投递所产生一些问题。最终投递到MQ Server的消息，是真实可靠且必须被消费的。</p>
+<h2 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a>Seata</h2><p>阿里开源的Seata 是一款分布式事务解决方案，提供了 AT、TCC、SAGA 和 XA 事务模式。</p>
+<p>Seata架构的亮点主要有几个:</p>
+<ol>
+<li>应用层基于SQL解析实现了自动补偿，从而最大程度的降低业务侵入性；</li>
+<li>将分布式事务中TC（事务协调者）独立部署，负责事务的注册、回滚（支持多种注册中心形式以及本地文件形式）；</li>
+<li>通过全局锁实现了写隔离与读隔离。</li>
+</ol>
+<p>Seata的介绍、安装和使用在另一篇文章中。</p>
+<p>在实际业务开发中，考虑设计一套好分布式事务框架，需要根据具体业务情况结合上述一些理论，进行权衡取舍。<br>需要考虑的特性：</p>
+<blockquote>
+<ul>
+<li>实现复杂度：事务模式与当前业务结合，实施成本是否过高；</li>
+<li>业务侵入性：基于注解、XML、补偿逻辑；</li>
+<li>TC/TM部署：独立部署、与应用部署；</li>
+<li>性能：回滚概率、回滚所付出的代价、响应时间、吞吐量；</li>
+<li>高可用：数据库、注册中心、配置中心</li>
+<li>持久化：文件、数据库；</li>
+<li>同步/异步：分布式事务执行过程中是否阻塞，还是非阻塞；</li>
+</ul>
+</blockquote>
+<p>具体的介绍和实践在：<a href="http://arthurjq.com/2021/02/04/seata/">http://arthurjq.com/2021/02/04/seata/</a></p>
+<h2 id="总结-AT、TCC、Saga、XA-模式分析"><a href="#总结-AT、TCC、Saga、XA-模式分析" class="headerlink" title="总结 AT、TCC、Saga、XA 模式分析"></a>总结 AT、TCC、Saga、XA 模式分析</h2><table>
+<thead>
+<tr>
+<th>分布式事务模式</th>
+<th>介绍</th>
+<th>技术栈</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AT 模式</strong></td>
+<td>无侵入的分布式事务解决方案，适用于不希望对业务进行改造的场景，几乎0学习成本（sql都由框架托管统一执行，会存在<strong>脏写</strong>问题）</td>
+<td>seata、shardingsphere</td>
+</tr>
+<tr>
+<td><strong>TCC 模式</strong></td>
+<td>高性能分布式事务解决方案，适用于核心系统等对性能有很高要求的场景（第一阶段会产生行锁，事务执行太久会<strong>锁行很久</strong>）</td>
+<td>seata、service-comb</td>
+</tr>
+<tr>
+<td><strong>Saga 模式</strong></td>
+<td>长事务解决方案，适用于业务流程长且需要保证事务最终一致性的业务系统（第一阶段就操作DB，会存在<strong>脏读</strong>问题）</td>
+<td>seata、shardingsphere、service-comb</td>
+</tr>
+<tr>
+<td><strong>XA模式</strong></td>
+<td>分布式强一致性的解决方案，但<strong>性能低</strong>而使用较少。</td>
+<td>seata、shardingsphere</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Saga和TCC模式区别不大，TCC就是多了个锁行的步骤（避免了脏读，但事务执行太久会导致锁行很久，不适用于长事务）</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-14.png" alt></p>
+<p>注：</p>
+<ol>
+<li>shardingsphere的<strong>Saga 模式</strong> 引擎使用的是service-comb（较comb实现了解析sql自动回滚）</li>
+<li>shardingsphere的<strong>AT模式</strong>引擎是用的Seata引擎</li>
+<li>shardingsphere是从Sharding-JDBC进化而来，分库分表使用很火</li>
+</ol>
+<p>（当当开源）shardingsphere开源地址：<a href="https://github.com/apache/shardingsphere" target="_blank" rel="noopener">https://github.com/apache/shardingsphere</a></p>
+<p>（阿里2019年开源）seata开源地址：<a href="https://github.com/seata/seata" target="_blank" rel="noopener">https://github.com/seata/seata</a></p>
+<p>（华为2017年开源）service-comb开源地址：<a href="https://github.com/apache/servicecomb-pack" target="_blank" rel="noopener">https://github.com/apache/servicecomb-pack</a></p>
+
+            </div>
+            <hr />
+
+            
+
+            <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="qzone" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<script src="/libs/share/js/social-share.min.js"></script>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        <p class="reprint-tip">
+            <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;
+            <span>转载规则</span>
+        </p>
+        
+            <div class="center-align">
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                    <img alt=""
+                         style="border-width:0"
+                         src="https://i.creativecommons.org/l/by/4.0/88x31.png"/>
+                </a>
+            </div>
+            <br/>
+            <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
+                  property="dct:title" rel="dct:type">
+                    《分布式事务》
+                </span> 由
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/02/03/database/jta/" property="cc:attributionName"
+               rel="cc:attributionURL">
+                锦泉
+            </a> 采用
+            <a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh">
+                知识共享署名 4.0 国际许可协议
+            </a>进行许可。
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+        </div>
+    </div>
+
+    
+    <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '',
+        clientSecret: '',
+        repo: 'arthurjinquan.github.io',
+        owner: 'arthurjinquan',
+        admin: "arthurjinquan",
+        id: '2021/02/03/database/jta/',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/02/03/database/mysql-optimization/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/67.jpg" class="responsive-img" alt="MySQL数据库优化方法">
+                        
+                        <span class="card-title">MySQL数据库优化方法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            总结数据库优化的经典方法，包括读写分离、垂直拆分、水平拆分、分库分表和索引以及一些细节。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                                    数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/mysql/" target="_blank">
+                        <span class="chip bg-color">mysql</span>
+                    </a>
+                    
+                    <a href="/tags/数据库优化/" target="_blank">
+                        <span class="chip bg-color">数据库优化</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/02/02/java/reflection/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg" class="responsive-img" alt="Java 反射机制">
+                        
+                        <span class="card-title">Java 反射机制</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            反射（Reflection） 是 Java 程序开发语言的特征之一，它允许运行中的 Java 程序对自身进行检查，或者说“自审”，并能直接操作程序的内部属性和方法。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category" target="_blank">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 锦泉^-^<br />'
+            + '作者: 锦泉<br />'
+            + '链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () { bodyElement.removeChild(newdiv); }, 200);
+    });
+</script>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h1, h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+<!-- 代码语言 -->
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+<!-- 代码块复制 -->
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+<script type="text/javascript" src="/libs/codeBlock/clipboard.min.js"></script>
+<!-- 代码块收缩 -->
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script> 
+<!-- 代码块折行 -->
+<style type="text/css">code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }</style>
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            &copy; 2019-2021 JinQuan. 版权所有
+
+            
+            &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+            <span class="white-color">120.9k</span>
+            
+
+            <br>
+            <span id="sitetime"></span>
+
+            
+            
+            <br>
+            
+            <span id="busuanzi_container_site_pv" style='display:none'>
+                <i class="fa fa-heart-o"></i>
+                本站总访问量 <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv" style='display:none'>
+                人次,&nbsp;访客数 <span id="busuanzi_value_site_uv" class="white-color"></span> 人.
+            </span>
+            
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/arthurjinquan" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:793787018@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+    <a href="http://wpa.qq.com/msgrd?v=3&uin=793787018&site=qq&menu=yes" class="tooltipped" target="_blank" data-tooltip="访问我的qq" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+<!-- 不蒜子计数初始值纠正 -->
+<script>
+    $(document).ready(function () {
+
+        var int = setInterval(fixCount, 50);
+        var pvcountOffset = 1741;
+        var uvcountOffset = 788;
+
+        function fixCount() {
+            if (document.getElementById("busuanzi_container_site_pv").style.display != "none") {
+                $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + pvcountOffset);
+                clearInterval(int);
+            }
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + uvcountOffset); // 加上初始数据 
+                clearInterval(int);
+            }
+        }
+    });
+</script>
+
+<script language=javascript>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+        /* Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+        year - 作为date对象的年份，为4位年份值
+        month - 0-11之间的整数，做为date对象的月份
+        day - 1-31之间的整数，做为date对象的天数
+        hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+        minutes - 0-59之间的整数，做为date对象的分钟数
+        seconds - 0-59之间的整数，做为date对象的秒数
+        microseconds - 0-999之间的整数，做为date对象的毫秒数 */
+        var t1 = Date.UTC(2019, 11, 11, 00, 00, 00); //北京时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
+        document.getElementById("sitetime").innerHTML = "本站已运行 " + diffYears + " 年 " + diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+    }/*因为建站时间还没有一年，就将之注释掉了。需要的可以取消*/
+    siteTime();
+</script>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <script type="text/javascript"> var OriginTitile = document.title, st; document.addEventListener("visibilitychange", function () { document.hidden ? (document.title = "Σ(っ °Д °;)っ喔哟，崩溃啦！", clearTimeout(st)) : (document.title = "φ(゜▽゜*)♪咦，又好了！", st = setTimeout(function () { document.title = OriginTitile }, 3e3)) })
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    
+
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+	
+	
+	<!-- 背景雪花飘落特效 -->
+	
+		
+	<!-- 背景静止彩带  -->
+	
+    
+	<!-- 背景动态彩带 -->
+	
+            <script type="text/javascript">
+            var windowWidth = $(window).width();
+            if (windowWidth > 992) {
+                document.write('<script type="text/javascript" src="/libs/background/ribbon-dynamic.js"><\/script>');
+            }
+            </script>
+        	
+        
+
+	
+	<!-- 背景樱花飘落特效 -->
+	
+            <script type="text/javascript">
+            //只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+            }
+            </script>
+        
+    
+	
+	<script src="/js/cursor.js"></script>
+
+</body>
+
+</html>
