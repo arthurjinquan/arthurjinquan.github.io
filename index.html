@@ -429,7 +429,28 @@ $(function () {
     
     
     <div class="col s12" >
-        <div class="post-card" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/112.jpg')">
+        <div class="post-card" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/58.jpg')">
+            <div class="post-body">
+                <div class="post-categories">
+                    
+                    <a href="/categories/数据库/" class="category" target="_blank">数据库</a>
+                    
+                </div>
+                <a href="/2020/12/30/database/mysql-explain/" target="_blank">
+                    <h3 class="post-title">Mysql的explain</h3>
+                </a>
+                <p class="post-description">本文记录mysql中explain的字段解释和细节。</p>
+                <a href="/2020/12/30/database/mysql-explain/" target="_blank"
+                        class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)">
+                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="col s12 m6" data-aos="zoom-in-up">
+        <div class="post-card" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/108.jpg')">
             <div class="post-body">
                 <div class="post-categories">
                     
@@ -441,7 +462,7 @@ $(function () {
                 </a>
                 <p class="post-description">线上的系统中，使用的是Spring+Mybatis+Mysql搭建的框架，因为出bug了，涉及Mysql的一些重要参数的配置学习，以及Spring事务管理机制的学习，通过观察服务器日志和整理网上的资料，记录整理一下事务学习的心得。</p>
                 <a href="/2020/12/31/java/spring-transaction/" target="_blank"
-                        class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #FF5E3A 0%, #FF2A68 100%)">
+                        class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)">
                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                 </a>
             </div>
@@ -450,7 +471,7 @@ $(function () {
     
     
     <div class="col s12 m6" data-aos="zoom-in-up">
-        <div class="post-card" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg')">
+        <div class="post-card" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/77.jpg')">
             <div class="post-body">
                 <div class="post-categories">
                     
@@ -462,27 +483,6 @@ $(function () {
                 </a>
                 <p class="post-description">做im项目用了Netty，学习中对底层源码的记录。本文主要是Pipeline的inbound事件和addLast方法。</p>
                 <a href="/2021/01/21/project/netty-pipeline/" target="_blank"
-                        class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #EF4DB6 0%, #C643FC 100%)">
-                    <i class="icon fa fa-eye fa-fw"></i>阅读更多
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    
-    <div class="col s12 m6" data-aos="zoom-in-up">
-        <div class="post-card" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/76.jpg')">
-            <div class="post-body">
-                <div class="post-categories">
-                    
-                    <a href="/categories/Web/" class="category" target="_blank">Web</a>
-                    
-                </div>
-                <a href="/2020/12/28/web/cdn/" target="_blank">
-                    <h3 class="post-title">CDN（Content Delivery Network）</h3>
-                </a>
-                <p class="post-description">淘宝的图片访问，有98%的流量都走了CDN缓存。只有2%会回源到源站，节省了大量的服务器资源。但是，如果在用户访问高峰期，图片内容大批量发生变化，大量用户的访问就会穿透cdn，对源站造成巨大的压力。</p>
-                <a href="/2020/12/28/web/cdn/" target="_blank"
                         class="read-more btn waves-effect waves-light" style="background: linear-gradient(to right, #1AD6FD 0%, #1D62F0 100%)">
                     <i class="icon fa fa-eye fa-fw"></i>阅读更多
                 </a>
@@ -509,11 +509,176 @@ $(function () {
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2021/02/23/java/refreshscope/" target="_blank">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/26.jpg" class="responsive-img" alt="RefreshScope注解和Spring bean scope">
+                            
+                            <span class="card-title">RefreshScope注解和Spring bean scope</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                            用过Spring Cloud的朋友都知道在使用动态配置刷新的我们要配置一个@RefreshScope 在类上才可以实现对象属性的的动态更新。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-23
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                    Java
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/springcloud/" target="_blank">
+                            <span class="chip bg-color">springcloud</span>
+                        </a>
+                        
+                        <a href="/tags/spring/" target="_blank">
+                            <span class="chip bg-color">spring</span>
+                        </a>
+                        
+                        <a href="/tags/annotation/" target="_blank">
+                            <span class="chip bg-color">annotation</span>
+                        </a>
+                        
+                        <a href="/tags/bean/" target="_blank">
+                            <span class="chip bg-color">bean</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/02/23/java/dogetbean/" target="_blank">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg" class="responsive-img" alt="doGetBean方法">
+                            
+                            <span class="card-title">doGetBean方法</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                            bean的加载过程步骤。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-23
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                    Java
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/java/" target="_blank">
+                            <span class="chip bg-color">java</span>
+                        </a>
+                        
+                        <a href="/tags/spring/" target="_blank">
+                            <span class="chip bg-color">spring</span>
+                        </a>
+                        
+                        <a href="/tags/bean/" target="_blank">
+                            <span class="chip bg-color">bean</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/02/22/classloader/" target="_blank">
+                        <div class="card-image">
+                            
+                            
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/70.jpg" class="responsive-img" alt="Java类加载器classloader">
+                            
+                            <span class="card-title">Java类加载器classloader</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                            转载至阿里巴巴淘系技术：https://www.zhihu.com/question/46719811/answer/1739289578
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-22
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                    Java
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/classloader/" target="_blank">
+                            <span class="chip bg-color">classloader</span>
+                        </a>
+                        
+                        <a href="/tags/jvm/" target="_blank">
+                            <span class="chip bg-color">jvm</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2021/02/19/database/mysql-lock/" target="_blank">
                         <div class="card-image">
                             
                             
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/110.jpg" class="responsive-img" alt="mysql的锁">
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/106.jpg" class="responsive-img" alt="mysql的锁">
                             
                             <span class="card-title">mysql的锁</span>
                         </div>
@@ -564,7 +729,7 @@ $(function () {
                         <div class="card-image">
                             
                             
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/23.jpg" class="responsive-img" alt="OLTP vs OLAP">
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/19.jpg" class="responsive-img" alt="OLTP vs OLAP">
                             
                             <span class="card-title">OLTP vs OLAP</span>
                         </div>
@@ -611,7 +776,7 @@ $(function () {
                         <div class="card-image">
                             
                             
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/51.jpg" class="responsive-img" alt="Seata">
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/47.jpg" class="responsive-img" alt="Seata">
                             
                             <span class="card-title">Seata</span>
                         </div>
@@ -666,7 +831,7 @@ $(function () {
                         <div class="card-image">
                             
                             
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/62.jpg" class="responsive-img" alt="MySQL数据库优化方法">
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/66.jpg" class="responsive-img" alt="MySQL数据库优化方法">
                             
                             <span class="card-title">MySQL数据库优化方法</span>
                         </div>
@@ -717,7 +882,7 @@ $(function () {
                         <div class="card-image">
                             
                             
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg" class="responsive-img" alt="分布式事务">
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg" class="responsive-img" alt="分布式事务">
                             
                             <span class="card-title">分布式事务</span>
                         </div>
@@ -772,7 +937,7 @@ $(function () {
                         <div class="card-image">
                             
                             
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg" class="responsive-img" alt="Java 反射机制">
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/116.jpg" class="responsive-img" alt="Java 反射机制">
                             
                             <span class="card-title">Java 反射机制</span>
                         </div>
@@ -819,7 +984,7 @@ $(function () {
                         <div class="card-image">
                             
                             
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/87.jpg" class="responsive-img" alt="结构型模式">
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/83.jpg" class="responsive-img" alt="结构型模式">
                             
                             <span class="card-title">结构型模式</span>
                         </div>
@@ -870,7 +1035,7 @@ $(function () {
                         <div class="card-image">
                             
                             
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/37.jpg" class="responsive-img" alt="Autowired注入的细节和Resource的功能对比">
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/41.jpg" class="responsive-img" alt="Autowired注入的细节和Resource的功能对比">
                             
                             <span class="card-title">Autowired注入的细节和Resource的功能对比</span>
                         </div>
@@ -921,7 +1086,7 @@ $(function () {
                         <div class="card-image">
                             
                             
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/78.jpg" class="responsive-img" alt="Spring Cloud的gateway网关配置">
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/82.jpg" class="responsive-img" alt="Spring Cloud的gateway网关配置">
                             
                             <span class="card-title">Spring Cloud的gateway网关配置</span>
                         </div>
@@ -966,159 +1131,6 @@ $(function () {
                 </div>
             </div>
             
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/01/21/project/netty-pipeline/" target="_blank">
-                        <div class="card-image">
-                            
-                            
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="Netty的Pipeline之源码分析">
-                            
-                            <span class="card-title">Netty的Pipeline之源码分析</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                            做im项目用了Netty，学习中对底层源码的记录。本文主要是Pipeline的inbound事件和addLast方法。
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-21
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/项目/" class="post-category" target="_blank">
-                                    项目
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/netty/" target="_blank">
-                            <span class="chip bg-color">netty</span>
-                        </a>
-                        
-                        <a href="/tags/网络通信框架/" target="_blank">
-                            <span class="chip bg-color">网络通信框架</span>
-                        </a>
-                        
-                        <a href="/tags/pipeline/" target="_blank">
-                            <span class="chip bg-color">pipeline</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/01/19/java/keep-learning/" target="_blank">
-                        <div class="card-image">
-                            
-                            
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="2021年的学习目标">
-                            
-                            <span class="card-title">2021年的学习目标</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                            看大牛的程序员的几个阶段有感而发，记录一下我的2021年的学习目标。
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/java/" target="_blank">
-                            <span class="chip bg-color">java</span>
-                        </a>
-                        
-                        <a href="/tags/学习计划/" target="_blank">
-                            <span class="chip bg-color">学习计划</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/01/19/database/redis/" target="_blank">
-                        <div class="card-image">
-                            
-                            
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/114.jpg" class="responsive-img" alt="Redis基础">
-                            
-                            <span class="card-title">Redis基础</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                            一些redis基础知识。
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-19
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/数据库/" class="post-category" target="_blank">
-                                    数据库
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/redis/" target="_blank">
-                            <span class="chip bg-color">redis</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 
@@ -1156,7 +1168,7 @@ $(function () {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">122.5k</span>
+            <span class="white-color">126.6k</span>
             
 
             <br>

@@ -1,3 +1,6 @@
+http://arthurjq.com/2021/02/23/java/refreshscope/
+http://arthurjq.com/2021/02/23/java/dogetbean/
+http://arthurjq.com/2021/02/22/classloader/
 http://arthurjq.com/2021/02/19/database/mysql-lock/
 http://arthurjq.com/2021/02/05/database/oltp-olap/
 http://arthurjq.com/2021/02/04/project/seata/
