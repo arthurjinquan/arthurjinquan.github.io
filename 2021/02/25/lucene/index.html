@@ -253,7 +253,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/118.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -419,7 +419,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    10 分
                 </div>
                 
                 
@@ -541,15 +541,18 @@
 <ol>
 <li>在termA开始遍历，得到第一个元素docId=1</li>
 <li>Set currentDocId=1</li>
-<li>在termB中 search(currentDocId) = 1 (返回大于等于currentDocId的一个doc，这一步搜索时就会进行SkipList数据跳过),<ol>
+<li>在termB中 search（currentDocId） = 1 （返回大于等于currentDocId的一个doc，这一步搜索时就会进行SkipList数据跳过）,<ol>
 <li>因为currentDocId ==search结果1，继续</li>
-<li>如果currentDocId 和search返回的不相等，则执行2，然后继续</li>
+<li>如果currentDocId 和search返回的不相等，则执行2，然后继续（执行2是什么意思。。。）</li>
 </ol>
 </li>
 <li>到termC后搜索结果依然符合，返回结果</li>
 <li>Set currentDocId = termC.nextItem = 2</li>
 <li>然后继续步骤3 依次循环。直到某个倒排链到末尾。</li>
 </ol>
+<blockquote>
+<p>这里有点看不明白，留个坑</p>
+</blockquote>
 <p>整个合并步骤我可以发现，如果某个链很短，会大幅减少比对次数，并且由于SkipList结构的存在，在某个倒排中定位某个docid的速度会比较快不需要一个个遍历（该例子所需的时间比完整遍历三个posting list要快得多，但是前提是每个list需要使用SkipList独有的Advance操作）。可以很快的返回最终的结果。从倒排的定位，查询，合并整个流程组成了lucene的查询过程，和传统数据库的索引相比，lucene合并过程中的优化减少了读取数据的IO，倒排合并的灵活性也解决了传统索引较难支持多条件查询的问题。</p>
 
             </div>
@@ -658,7 +661,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg" class="responsive-img" alt="Lucene 查询原理">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/118.jpg" class="responsive-img" alt="Lucene 查询原理">
                         
                         <span class="card-title">Lucene 查询原理</span>
                     </div>
@@ -712,7 +715,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/38.jpg" class="responsive-img" alt="Elasticsearch 集群架构学习">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/35.jpg" class="responsive-img" alt="Elasticsearch 集群架构学习">
                         
                         <span class="card-title">Elasticsearch 集群架构学习</span>
                     </div>
@@ -925,7 +928,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">141.1k</span>
+            <span class="white-color">141.2k</span>
             
 
             <br>
