@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/69.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/67.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -423,14 +423,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    9 分
                 </div>
                 
                 
@@ -507,10 +507,122 @@
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p><strong>其实绝大部分Java开发人员都不需要掌握k8s+istio等</strong></p>
 <p>大厂的经验不等于小厂也适用，发展规模和阶段不一样，更重要是能力差异，大部分企业选择最合适的技术能够迅速落地，才是最重要的，毕竟资源、能力、精力都有限。</p>
 <p>市面上大部分的项目依然还是中小型的，Spring boot/cloud技术栈就已经足矣，杀鸡焉用牛刀？部署k8s、istio的人，都不算上是主流的Java研发人员，和Java研发人员也没真正的关系，他们求职的职位也往往是k8s运维工程师、容器开发工程师等偏运维的岗位。</p>
-<h2 id="docker搭建"><a href="#docker搭建" class="headerlink" title="docker搭建"></a>docker搭建</h2><p>​    1、拉取docker默认私库镜像 </p>
+<h2 id="docker私库搭建"><a href="#docker私库搭建" class="headerlink" title="docker私库搭建"></a>docker私库搭建</h2><p>1.拉取docker默认私库镜像 </p>
 <pre class="line-numbers language-shell"><code class="language-shell">docker pull registry<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>​    2、修改docker配置，开启远程端口2375，用于上传下载</p>
+<p>2.修改docker配置 docker.service ，开启远程端口2376，用于上传下载</p>
 <pre class="line-numbers language-shell"><code class="language-shell">vi /usr/lib/systemd/system/docker.service <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>修改docker.service中的ExecStart</p>
+<pre class="line-numbers language-text"><code class="language-text">[Service]
+Type=notify
+# the default is not to use systemd for cgroups because the delegate issues still
+# exists and systemd currently does not support the cgroup feature set required
+# for containers run by docker
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H fd:// --containerd=/run/containerd/containerd.sock --bip=172.20.49.1/24 --mtu=1450
+ExecReload=/bin/kill -s HUP $MAINPID
+TimeoutSec=0
+RestartSec=2
+Restart=always<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>验证2376端口</p>
+<pre class="line-numbers language-shell"><code class="language-shell">netstat -nap|grep 2376<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-3.jpg" alt></p>
+<blockquote>
+<p>netstat命令是一个监控TCP/IP网络的非常有用的工具，它可以显示路由表、实际的网络连接以及每一个网络接口设备的状态信息。</p>
+<ol>
+<li>-n或–numeric：直接使用ip地址，而不通过域名服务器； </li>
+<li>-a或–all：显示所有连线中的Socket； </li>
+<li>-p或–programs：显示正在使用Socket的程序识别码和程序名称； </li>
+</ol>
+</blockquote>
+<p>3.开启私库http上传下载</p>
+<p>在 /etc/docker/  下，新建daemon.json，内容如下</p>
+<pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"registry-mirrors"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"https://th3lgj42.mirror.aliyuncs.com"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"insecure-registries"</span><span class="token operator">:</span><span class="token punctuation">[</span><span class="token string">"10.0.1.104:5000"</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>4.启动私库镜像，暴露5000端口，用于推送</p>
+<pre class="line-numbers language-shell"><code class="language-shell">docker run --name wisefly-docker-registry -idt -p 5000:5000 registry<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>5.重启docker服务</p>
+<pre class="line-numbers language-shell"><code class="language-shell">systemctl daemon-reload;service docker restart<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="maven-docker-配置"><a href="#maven-docker-配置" class="headerlink" title="maven docker 配置"></a>maven docker 配置</h2><p>1、在需要上传到docker的pom文件中做如下配置</p>
+<pre class="line-numbers language-xml"><code class="language-xml">  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.maven.plugins<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>maven-surefire-report-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.12.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+      <span class="token comment" spellcheck="true">&lt;!--新增的docker maven插件--></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.spotify<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>docker-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>${docker-maven-plugin.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token comment" spellcheck="true">&lt;!--docker镜像相关的配置信息--></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>configuration</span><span class="token punctuation">></span></span>
+          <span class="token comment" spellcheck="true">&lt;!--镜像名，要带上私有服务器IP和端口--></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>imageName</span><span class="token punctuation">></span></span>${docker-registryUrl}/${project.artifactId}:${project.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>imageName</span><span class="token punctuation">></span></span>
+          <span class="token comment" spellcheck="true">&lt;!--TAG,这里用工程版本号--></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>imageTags</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>imageTag</span><span class="token punctuation">></span></span>${project.version}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>imageTag</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>imageTag</span><span class="token punctuation">></span></span>latest<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>imageTag</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>imageTags</span><span class="token punctuation">></span></span>
+          <span class="token comment" spellcheck="true">&lt;!--镜像的FROM，使用java官方镜像--></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>baseImage</span><span class="token punctuation">></span></span>${docker-baseImage}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>baseImage</span><span class="token punctuation">></span></span>
+          <span class="token comment" spellcheck="true">&lt;!--该镜像的容器启动后，直接运行spring boot工程--></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entryPoint</span><span class="token punctuation">></span></span>["java", "-jar", "/${project.build.finalName}.jar"]<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entryPoint</span><span class="token punctuation">></span></span>
+          <span class="token comment" spellcheck="true">&lt;!--构建镜像的配置信息--></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resources</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resource</span><span class="token punctuation">></span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>targetPath</span><span class="token punctuation">></span></span>/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>targetPath</span><span class="token punctuation">></span></span>
+              <span class="token comment" spellcheck="true">&lt;!--指定复制jar包的根目录--></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>directory</span><span class="token punctuation">></span></span>${project.build.directory}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>directory</span><span class="token punctuation">></span></span>
+              <span class="token comment" spellcheck="true">&lt;!--指定复制的文件--></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>include</span><span class="token punctuation">></span></span>${project.build.finalName}.jar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>include</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resource</span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resources</span><span class="token punctuation">></span></span>
+          <span class="token comment" spellcheck="true">&lt;!--指定推送的仓库--></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>registryUrl</span><span class="token punctuation">></span></span>${docker-registryUrl}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>registryUrl</span><span class="token punctuation">></span></span>
+          <span class="token comment" spellcheck="true">&lt;!-- 开启远程API --></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dockerHost</span><span class="token punctuation">></span></span>${docker-dockerHost}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dockerHost</span><span class="token punctuation">></span></span>
+          <span class="token comment" spellcheck="true">&lt;!-- 是否有push功能 --></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pushImage</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pushImage</span><span class="token punctuation">></span></span>
+          <span class="token comment" spellcheck="true">&lt;!--push后是否覆盖存在的标签镜像--></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>forceTags</span><span class="token punctuation">></span></span>true<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>forceTags</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>configuration</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>2、顶级pom文件中定义公共参数，方便统一修改docker maven版本，仓库地址，远程API等</p>
+<pre class="line-numbers language-xml"><code class="language-xml">        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>docker-maven-plugin.version</span><span class="token punctuation">></span></span>1.2.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>docker-maven-plugin.version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>docker-registryUrl</span><span class="token punctuation">></span></span>10.0.1.104:5000<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>docker-registryUrl</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>docker-dockerHost</span><span class="token punctuation">></span></span>http://10.0.1.104:2376<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>docker-dockerHost</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>docker-baseImage</span><span class="token punctuation">></span></span>java:8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>docker-baseImage</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>maven-compiler-plugin.version</span><span class="token punctuation">></span></span>3.8.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>maven-compiler-plugin.version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build-helper-maven-plugin.vrsion</span><span class="token punctuation">></span></span>3.2.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build-helper-maven-plugin.vrsion</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="maven推送docker镜像"><a href="#maven推送docker镜像" class="headerlink" title="maven推送docker镜像"></a>maven推送docker镜像</h2><p>1、选择需要推送的项目</p>
+<p>2、执行</p>
+<pre class="line-numbers language-shell"><code class="language-shell">mvn clean package -DskipTests docker:build<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="验证镜像是否上传成功"><a href="#验证镜像是否上传成功" class="headerlink" title="验证镜像是否上传成功"></a>验证镜像是否上传成功</h2><p>执行 docker images 指令，查看镜像</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-4.jpg" alt></p>
+<h2 id="启动镜像，生成容器"><a href="#启动镜像，生成容器" class="headerlink" title="启动镜像，生成容器"></a>启动镜像，生成容器</h2><p>1、启动脚本文件上传，找到工程中的docker-compose文件夹，找到需要启动镜像的文件（文件名中会有项目名）。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-5.jpg" alt></p>
+<p>2、上传到服务器，目前104测试服务器都放在/home/wisefly/compose</p>
+<p>3、执行docker-compose指定运行文件</p>
+<pre class="line-numbers language-shell"><code class="language-shell">docker-compose -f business-file-compose.yaml up -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p> 4、验证镜像是否启动成功</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-6.jpg" alt></p>
+<p>执行3步骤的指令返回done表示执行成功，通过 <strong>docker ps</strong> 也能查看容器是否启动成功</p>
+<h2 id="docker常用指令"><a href="#docker常用指令" class="headerlink" title="docker常用指令"></a>docker常用指令</h2><pre class="line-numbers language-bash"><code class="language-bash">        docker images 查看镜像
+
+        docker rmi 镜像名或者ID 删除镜像
+
+        docker <span class="token function">ps</span> 查看运气容器
+
+        docker <span class="token function">ps</span> -a 查看所有容器（包含启动失败或者停止的）
+
+        docker <span class="token function">kill</span> 镜像ID 关闭容器
+
+        docker <span class="token function">rm</span> 镜像名或者ID 删除容器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="docker-compose启动所有镜像"><a href="#docker-compose启动所有镜像" class="headerlink" title="docker-compose启动所有镜像"></a>docker-compose启动所有镜像</h3><p>执行 <code>docker-compose -f docker-compose.yaml up -d</code> 启动文件配置所有的镜像，生成容器，用于初始化时启动所有容器。更新单个容器用上面说到的方法。</p>
 
             </div>
             <hr />
@@ -617,7 +729,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/58.jpg" class="responsive-img" alt="实现一个返回数组的接口">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/60.jpg" class="responsive-img" alt="实现一个返回数组的接口">
                         
                         <span class="card-title">实现一个返回数组的接口</span>
                     </div>
@@ -670,7 +782,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/117.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface">
                         
                         <span class="card-title">SpringCloud使用Feign暴露Interface</span>
                     </div>
@@ -883,7 +995,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">141.2k</span>
+            <span class="white-color">143.7k</span>
             
 
             <br>
