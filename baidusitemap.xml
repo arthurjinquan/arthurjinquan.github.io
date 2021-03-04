@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arthurjq.com/2021/03/04/database/sql-standard/</loc>
+    <lastmod>2021-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/04/k8s-exp/</loc>
+    <lastmod>2021-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/01/11/project/docker-k8s/</loc>
+    <lastmod>2021-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2020/12/30/database/mysql-explain/</loc>
+    <lastmod>2021-03-04</lastmod>
+  </url>
+  <url>
     <loc>https://arthurjq.com/2021/03/03/database/timestamp/</loc>
-    <lastmod>2021-03-03</lastmod>
+    <lastmod>2021-03-04</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/03/02/java/transaction-no-effect/</loc>
@@ -10,10 +26,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2021/01/15/project/kubernetes-kubectl/</loc>
-    <lastmod>2021-03-03</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/01/11/project/docker-k8s/</loc>
     <lastmod>2021-03-03</lastmod>
   </url>
   <url>
@@ -59,10 +71,6 @@
   <url>
     <loc>https://arthurjq.com/2020/12/19/project/debug/</loc>
     <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2020/12/30/database/mysql-explain/</loc>
-    <lastmod>2021-02-24</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2020/12/31/java/spring-transaction/</loc>

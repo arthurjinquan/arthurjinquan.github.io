@@ -2,9 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://arthurjq.com/2021/03/04/database/sql-standard/</loc>
+    
+    <lastmod>2021-03-04T15:26:20.506Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/04/k8s-exp/</loc>
+    
+    <lastmod>2021-03-04T11:28:11.907Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/01/11/project/docker-k8s/</loc>
+    
+    <lastmod>2021-03-04T11:06:56.275Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2020/12/30/database/mysql-explain/</loc>
+    
+    <lastmod>2021-03-04T06:31:53.493Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://arthurjq.com/2021/03/03/database/timestamp/</loc>
     
-    <lastmod>2021-03-03T13:57:39.754Z</lastmod>
+    <lastmod>2021-03-04T05:09:49.743Z</lastmod>
     
   </url>
   
@@ -19,13 +47,6 @@
     <loc>https://arthurjq.com/2021/01/15/project/kubernetes-kubectl/</loc>
     
     <lastmod>2021-03-03T09:00:41.064Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/01/11/project/docker-k8s/</loc>
-    
-    <lastmod>2021-03-03T08:45:42.636Z</lastmod>
     
   </url>
   
@@ -103,13 +124,6 @@
     <loc>https://arthurjq.com/2020/12/19/project/debug/</loc>
     
     <lastmod>2021-02-25T14:56:39.051Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2020/12/30/database/mysql-explain/</loc>
-    
-    <lastmod>2021-02-24T17:25:27.962Z</lastmod>
     
   </url>
   

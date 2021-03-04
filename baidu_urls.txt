@@ -1,3 +1,5 @@
+https://arthurjq.com/2021/03/04/k8s-exp/
+https://arthurjq.com/2021/03/04/database/sql-standard/
 https://arthurjq.com/2021/03/03/database/timestamp/
 https://arthurjq.com/2021/03/02/java/transaction-no-effect/
 https://arthurjq.com/2021/02/25/database/lucene/

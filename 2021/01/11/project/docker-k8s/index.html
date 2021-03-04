@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Docker和K8S简介和安装, SCUT JAVA Spring SpringMVC mybatis Springboot 锦泉 arthurjinquan jinquan 超分辨率 计算机视觉 深度学习">
+    <meta name="keywords" content="Docker和K8S简介和安装部署, SCUT JAVA Spring SpringMVC mybatis Springboot 锦泉 arthurjinquan jinquan 超分辨率 计算机视觉 深度学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
@@ -19,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Docker和K8S简介和安装 | 锦泉^-^</title>
+    <title>Docker和K8S简介和安装部署 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -256,13 +256,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/67.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/34.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Docker和K8S简介和安装
+                        Docker和K8S简介和安装部署
                     </div>
                 </div>
             </div>
@@ -373,20 +373,20 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/运维开发/" target="_blank">
-                            <span class="chip bg-color">运维开发</span>
-                        </a>
-                        
-                        <a href="/tags/容器/" target="_blank">
-                            <span class="chip bg-color">容器</span>
-                        </a>
-                        
                         <a href="/tags/kubernetes/" target="_blank">
                             <span class="chip bg-color">kubernetes</span>
                         </a>
                         
                         <a href="/tags/docker/" target="_blank">
                             <span class="chip bg-color">docker</span>
+                        </a>
+                        
+                        <a href="/tags/运维开发/" target="_blank">
+                            <span class="chip bg-color">运维开发</span>
+                        </a>
+                        
+                        <a href="/tags/容器/" target="_blank">
+                            <span class="chip bg-color">容器</span>
                         </a>
                         
                     </div>
@@ -423,14 +423,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    2.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    11 分
                 </div>
                 
                 
@@ -623,6 +623,180 @@ Restart=always<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 
         docker <span class="token function">rm</span> 镜像名或者ID 删除容器<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="docker-compose启动所有镜像"><a href="#docker-compose启动所有镜像" class="headerlink" title="docker-compose启动所有镜像"></a>docker-compose启动所有镜像</h3><p>执行 <code>docker-compose -f docker-compose.yaml up -d</code> 启动文件配置所有的镜像，生成容器，用于初始化时启动所有容器。更新单个容器用上面说到的方法。</p>
+<h2 id="k8安装部署（单机部署）"><a href="#k8安装部署（单机部署）" class="headerlink" title="k8安装部署（单机部署）"></a>k8安装部署（单机部署）</h2><p>以下内容为单机模式：</p>
+<h3 id="k8s系统准备"><a href="#k8s系统准备" class="headerlink" title="k8s系统准备"></a>k8s系统准备</h3><p>环境准备</p>
+<p>部署集群没有特殊说明均使用root用户执行命令</p>
+<p>硬件信息</p>
+<p>k8s-master 内存16GB 硬盘20GB k8s 控制节点 + Node节点</p>
+<p>软件信息</p>
+<p>CentOS Linux release </p>
+<p>Kubernetes</p>
+<p>Docker </p>
+<h3 id="修改主机名"><a href="#修改主机名" class="headerlink" title="修改主机名"></a>修改主机名</h3><pre class="line-numbers language-shell"><code class="language-shell">hostnamectl set-hostname k8s-master<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h3><p>（仅用于测试，生产请不要使用）</p>
+<pre class="line-numbers language-shell"><code class="language-shell">systemctl disable --now firewalld<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="禁用swap"><a href="#禁用swap" class="headerlink" title="禁用swap"></a>禁用swap</h3><pre class="line-numbers language-shell"><code class="language-shell">swapoff -a
+sed -i 's/.*swap.*/#&/' /etc/fstab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="关闭-SELinux"><a href="#关闭-SELinux" class="headerlink" title="关闭 SELinux"></a>关闭 SELinux</h3><pre class="line-numbers language-shell"><code class="language-shell">setenforce 0
+sed -i 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="设置系统时区、同步时间"><a href="#设置系统时区、同步时间" class="headerlink" title="设置系统时区、同步时间"></a>设置系统时区、同步时间</h3><pre class="line-numbers language-shell"><code class="language-shell">timedatectl set-timezone Asia/Shanghai
+systemctl enable --now chronyd
+# 将当前的 UTC 时间写入硬件时钟
+timedatectl set-local-rtc 0
+# 重启依赖于系统时间的服务
+systemctl restart rsyslog && systemctl restart crond<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="部署docker"><a href="#部署docker" class="headerlink" title="部署docker"></a>部署docker</h3><p>添加docker yum源</p>
+<pre class="line-numbers language-shell"><code class="language-shell"># 安装必要依赖
+yum install -y yum-utils device-mapper-persistent-data lvm2
+# 添加aliyun docker-ce yum源
+yum -y install yum-utils
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+# 重建yum缓存
+yum makecache fast
+安装指定版本docker
+yum install -y docker-ce-19.03.12-3.el7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>确保网络模块开机自动加载</p>
+<pre class="line-numbers language-shell"><code class="language-shell">lsmod | grep overlay
+lsmod | grep br_netfilter<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>若上面命令无返回值输出或提示文件不存在，需执行以下命令：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">cat > /etc/modules-load.d/docker.conf <<EOF
+overlay
+br_netfilter
+EOF
+modprobe overlay
+modprobe br_netfilter<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使桥接流量对iptables可见</p>
+<pre class="line-numbers language-shell"><code class="language-shell">cat > /etc/sysctl.d/k8s.conf <<EOF
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sysctl --system<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>验证是否生效，均返回 1 即正确</p>
+<pre class="line-numbers language-shell"><code class="language-shell">sysctl -n net.bridge.bridge-nf-call-iptables
+sysctl -n net.bridge.bridge-nf-call-ip6tables<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="配置docker"><a href="#配置docker" class="headerlink" title="配置docker"></a>配置docker</h3><pre class="line-numbers language-shell"><code class="language-shell">mkdir /etc/docker
+#修改cgroup驱动为systemd[k8s官方推荐]、限制容器日志量、修改存储类型，最后的docker家目录可修改
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2",
+  "storage-opts": [
+    "overlay2.override_kernel_check=true"
+  ],
+  "registry-mirrors": ["https://7uuu3esz.mirror.aliyuncs.com"],
+  "data-root": "/data/docker"
+}
+EOF
+#添加开机自启，立即启动
+systemctl enable --now docker
+systemctl daemon-reload
+systemctl restart docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="部署kubernetes"><a href="#部署kubernetes" class="headerlink" title="部署kubernetes"></a>部署kubernetes</h3><p>添加kubernetes源</p>
+<pre class="line-numbers language-shell"><code class="language-shell">cat > /etc/yum.repos.d/kubernetes.repo <<EOF
+[kubernetes]
+name=Kubernetes
+baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+#重建yum缓存，输入y添加证书认证
+yum makecache fast<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>查看安装版本</p>
+<pre class="line-numbers language-shell"><code class="language-shell">yum list |grep kubelet
+yum list |grep  kubeadm
+yum list |grep  kubectl<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>安装kubeadm、kubelet、kubectl，<strong>此处根据自己当前安装的版本进行版本替换</strong></p>
+<pre class="line-numbers language-shell"><code class="language-shell">yum install -y kubelet-1.19.0-0 --disableexcludes=kubernetes
+yum install -y kubeadm-1.19.0-0 --disableexcludes=kubernetes
+yum install -y kubectl-1.19.0-0 --disableexcludes=kubernetes
+systemctl enable --now kubelet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>配置自动补全命令</p>
+<pre class="line-numbers language-shell"><code class="language-shell">#安装bash自动补全插件
+yum install bash-completion -y
+#设置kubectl与kubeadm命令补全，下次login生效
+kubectl completion bash >/etc/bash_completion.d/kubectl
+kubeadm completion bash > /etc/bash_completion.d/kubeadm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>预拉取kubernetes镜像，<strong>此处根据自己当前安装的版本进行版本替换</strong></p>
+<pre class="line-numbers language-shell"><code class="language-shell">kubeadm config images list --kubernetes-version v1.19.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>新建脚本get-k8s-images.sh，内容如下：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">#!/bin/bash
+# Script For Quick Pull K8S Docker Images
+
+KUBE_VERSION=v1.19.0
+PAUSE_VERSION=3.2
+CORE_DNS_VERSION=1.7.0
+ETCD_VERSION=3.4.9-1
+
+# pull kubernetes images from hub.docker.com
+docker pull kubesphere/kube-proxy-amd64:$KUBE_VERSION
+docker pull kubesphere/kube-controller-manager-amd64:$KUBE_VERSION
+docker pull kubesphere/kube-apiserver-amd64:$KUBE_VERSION
+docker pull kubesphere/kube-scheduler-amd64:$KUBE_VERSION
+# pull aliyuncs mirror docker images
+docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/pause:$PAUSE_VERSION
+docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/coredns:$CORE_DNS_VERSION
+docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/etcd:$ETCD_VERSION
+docker pull quay.io/coreos/flannel:v0.12.0-arm64
+docker pull quay.io/coreos/flannel:v0.12.0-amd64
+
+# retag to k8s.gcr.io prefix
+docker tag kubesphere/kube-proxy-amd64:$KUBE_VERSION  k8s.gcr.io/kube-proxy:$KUBE_VERSION
+docker tag kubesphere/kube-controller-manager-amd64:$KUBE_VERSION k8s.gcr.io/kube-controller-manager:$KUBE_VERSION
+docker tag kubesphere/kube-apiserver-amd64:$KUBE_VERSION k8s.gcr.io/kube-apiserver:$KUBE_VERSION
+docker tag kubesphere/kube-scheduler-amd64:$KUBE_VERSION k8s.gcr.io/kube-scheduler:$KUBE_VERSION
+docker tag registry.cn-hangzhou.aliyuncs.com/google_containers/pause:$PAUSE_VERSION k8s.gcr.io/pause:$PAUSE_VERSION
+docker tag registry.cn-hangzhou.aliyuncs.com/google_containers/coredns:$CORE_DNS_VERSION k8s.gcr.io/coredns:$CORE_DNS_VERSION
+docker tag registry.cn-hangzhou.aliyuncs.com/google_containers/etcd:$ETCD_VERSION k8s.gcr.io/etcd:$ETCD_VERSION
+
+# untag origin tag, the images won't be delete.
+docker rmi kubesphere/kube-proxy-amd64:$KUBE_VERSION
+docker rmi kubesphere/kube-controller-manager-amd64:$KUBE_VERSION
+docker rmi kubesphere/kube-apiserver-amd64:$KUBE_VERSION
+docker rmi kubesphere/kube-scheduler-amd64:$KUBE_VERSION
+docker rmi registry.cn-hangzhou.aliyuncs.com/google_containers/pause:$PAUSE_VERSION
+docker rmi registry.cn-hangzhou.aliyuncs.com/google_containers/coredns:$CORE_DNS_VERSION
+docker rmi registry.cn-hangzhou.aliyuncs.com/google_containers/etcd:$ETCD_VERSION<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>脚本添加可执行权限，执行脚本拉取镜像：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">chmod +x get-k8s-images.sh
+./get-k8s-images.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="初始化kube-master"><a href="#初始化kube-master" class="headerlink" title="初始化kube-master"></a>初始化kube-master</h3><p>修改kubelet配置默认cgroup driver</p>
+<pre class="line-numbers language-shell"><code class="language-shell">mkdir -p /var/lib/kubelet/
+cat > /var/lib/kubelet/config.yaml <<EOF
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+cgroupDriver: systemd
+EOF
+systemctl restart kubelet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>测试环境是否正常（WARNING是正常的），此处选用国内阿里镜像源</p>
+<pre class="line-numbers language-shell"><code class="language-shell">kubeadm init --image-repository registry.aliyuncs.com/google_containers --ignore-preflight-errors=Swap<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>初始化master 10.244.0.0/16是flannel固定使用的IP段，设置取决于网络组件要求，<strong>此处根据自己当前安装的版本进行版本替换</strong></p>
+<pre class="line-numbers language-shell"><code class="language-shell">kubeadm init --image-repository registry.aliyuncs.com/google_containers --pod-network-cidr=10.244.0.0/16<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>配置master认证</p>
+<pre class="line-numbers language-shell"><code class="language-shell">echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> /etc/profile
+source /etc/profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>安装网络组件flannel</p>
+<pre class="line-numbers language-shell"><code class="language-shell"># 注意这里下载kubectl apply -f kube-flannel.yaml需要科学上网
+wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>查看kube-master节点状态</p>
+<pre class="line-numbers language-shell"><code class="language-shell">kubectl get nodes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果长时间达不到 ready 可以查看所有pod 状态</p>
+<pre class="line-numbers language-shell"><code class="language-shell">kubectl get pods --all-namespaces<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果有pod有异常，可以查看描述以解决异常</p>
+<pre class="line-numbers language-shell"><code class="language-shell">kubectl describe pod pod-id -n kube-system<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>还可以观察POD的内的启动日志</p>
+<pre class="line-numbers language-shell"><code class="language-shell">kubectl logs pod-id -n kube-system<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Kubernetes 将Pod调度到Master节点（单机运行K8S）去除 master 的污点</p>
+<p>出于安全考虑，默认配置下Kubernetes不会将Pod调度到Master节点。如果希望将k8s-master也当作Node使用，可以执行如下命令：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">kubectl taint node k8s-master node-role.kubernetes.io/master-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中k8s-master是主机节点hostname如果要恢复Master Only状态，执行如下命令：</p>
+<pre class="line-numbers language-shell"><code class="language-shell">kubectl taint node k8s-master node-role.kubernetes.io/master=""<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -657,7 +831,7 @@ Restart=always<span aria-hidden="true" class="line-numbers-rows"><span></span><s
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Docker和K8S简介和安装》
+                    《Docker和K8S简介和安装部署》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/11/project/docker-k8s/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -729,7 +903,7 @@ Restart=always<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/60.jpg" class="responsive-img" alt="实现一个返回数组的接口">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/61.jpg" class="responsive-img" alt="实现一个返回数组的接口">
                         
                         <span class="card-title">实现一个返回数组的接口</span>
                     </div>
@@ -782,7 +956,7 @@ Restart=always<span aria-hidden="true" class="line-numbers-rows"><span></span><s
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface">
                         
                         <span class="card-title">SpringCloud使用Feign暴露Interface</span>
                     </div>
@@ -995,7 +1169,7 @@ Restart=always<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">143.7k</span>
+            <span class="white-color">147.6k</span>
             
 
             <br>

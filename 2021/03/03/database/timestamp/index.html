@@ -278,7 +278,7 @@ datetime
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/79.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/78.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -437,14 +437,14 @@ datetime
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    224
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
                 
@@ -486,9 +486,134 @@ datetime
 </tr>
 </tbody></table>
 <p>以前的一些项目，所有表字段里都会有个update_time字段，设置为根据时间戳更新</p>
+<p>以下timestamp介绍转载：<a href="https://www.cnblogs.com/csl0910/p/4956815.html" target="_blank" rel="noopener">https://www.cnblogs.com/csl0910/p/4956815.html</a></p>
+<h2 id="TIMESTAMP的变体（用法）"><a href="#TIMESTAMP的变体（用法）" class="headerlink" title="TIMESTAMP的变体（用法）"></a>TIMESTAMP的变体（用法）</h2><p>TIMESTAMP时间戳在创建的时候可以有多重不同的特性，如：</p>
+<p>1.在<strong>创建新记录和修改现有记录</strong>的时候都对这个数据列刷新：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">TIMESTAMP</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>2.在创建新记录的时候把这个字段设置为当前时间，但<strong>以后修改时，不再刷新它</strong>：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">TIMESTAMP</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>3.在创建新记录的时候<strong>把这个字段设置为0</strong>，以后修改时刷新它：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">TIMESTAMP</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>4.在创建新记录的时候<strong>把这个字段设置为给定值</strong>，以后修改时刷新它：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">TIMESTAMP</span> <span class="token keyword">DEFAULT</span> <span class="token string">'yyyy-mm-dd hh:mm:ss'</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>MySQL目前不支持列的Default 为函数的形式,如达到你某列的默认值为当前更新日期与时间的功能,你可以使用TIMESTAMP列类型</strong></p>
+<h2 id="timestamp列类型"><a href="#timestamp列类型" class="headerlink" title="timestamp列类型"></a>timestamp列类型</h2><p>TIMESTAMP值可以从<strong>1970</strong>的某时的开始一直到<strong>2037</strong>年，精度为一秒，其值作为数字显示。<br>TIMESTAMP值显示尺寸的格式如下表所示：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token operator">+</span><span class="token comment" spellcheck="true">---------------+----------------+</span>
+<span class="token operator">|</span> 列类型　　　　<span class="token operator">|</span> 显示格式　　　 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span> <span class="token operator">|</span> YYYYMMDDHHMMSS <span class="token operator">|</span>　
+<span class="token operator">|</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">|</span> YYMMDDHHMMSS　 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">|</span> YYMMDDHHMM　　 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span>　<span class="token operator">|</span> YYYYMMDD　　　 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>　<span class="token operator">|</span> YYMMDD　　　　 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>　<span class="token operator">|</span> YYMM　　　　　 <span class="token operator">|</span>
+<span class="token operator">|</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>　<span class="token operator">|</span> YY　　　　　　 <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">---------------+----------------+</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>“完整”TIMESTAMP格式是14位，但TIMESTAMP列也可以用更短的显示尺寸，创造最常见的显示尺寸是6、8、12、和14。</p>
+<p>你可以在创建表时指定一个任意的显示尺寸，但是定义列长为0或比14大均会被强制定义为列长14。<br><strong>列长在从1～13范围的奇数值尺寸均被强制为下一个更大的偶数</strong>：</p>
+<pre class="line-numbers language-sql"><code class="language-sql">定义字段长度　　 强制字段长度
+<span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>　<span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span>
+<span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>　<span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span>
+<span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>　<span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>　<span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>所有的TIMESTAMP列都有同样的存储大小，使用被指定的时期时间值的完整精度（14位）存储合法的值不考虑显示尺寸。不合法的日期，将会被强制为0存储</p>
+<h3 id="含意"><a href="#含意" class="headerlink" title="含意"></a>含意</h3><ol>
+<li><p>虽然你建表时定义了列TIMESTAMP（8），但在你进行数据插入与更新时TIMESTAMP列<strong>实际上保存了14位的数据</strong>（包括年月日时分秒），只不过在你进行查询时MySQL返回给你的是8位的年月日数据。如果你使用ALTER TABLE拓宽一个狭窄的TIMESTAMP列，以前被“隐蔽”的信息将被显示。</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> test <span class="token punctuation">(</span><span class="token string">'id'</span> <span class="token keyword">INT</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> UNSIGNED <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span> <span class="token string">'date1'</span>
+<span class="token keyword">TIMESTAMP</span> <span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> test <span class="token keyword">SET</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> test<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> date1　　　　　<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+</span>
+<span class="token operator">|</span>　<span class="token number">1</span> <span class="token operator">|</span> <span class="token number">20021114</span>　　　 <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> test CHANGE <span class="token string">'date1'</span> <span class="token string">'date1'</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> test<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> date1　　　　　<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+</span>
+<span class="token operator">|</span>　<span class="token number">1</span> <span class="token operator">|</span> <span class="token number">20021114093723</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>你可以使用TIMESTAMP列类型自动地用当前的日期和时间标记INSERT或UPDATE的操作。</p>
+</li>
+<li><p>同样，<strong>缩小一个TIMESTAMP列不会导致信息失去</strong>，除了感觉上值在显示时，较少的信息被显示出。</p>
+</li>
+<li><p>尽管TIMESTAMP值被存储为完整精度，直接操作存储值的唯一函数是<code>UNIX_TIMESTAMP()</code>；由于MySQL返回 TIMESTAMP列的列值是进过格式化后的检索的值，这意味着你可能不能使用某些函数来操作TIMESTAMP列（例如<code>HOUR()或 SECOND()</code>），除非TIMESTAMP值的相关部分被包含在格式化的值中。<br>例如，一个TIMESTAMP列只有被定义为TIMESTAMP（10）以上时，TIMESTAMP列的HH部分才会被显示，因此在更短的TIMESTAMP值上使用<code>HOUR()</code>会产生一个不可预知的结果。</p>
+</li>
+<li><p>不合法TIMESTAMP值被变换到适当类型的“零”值（00000000000000）。（DATETIME,DATE亦然）</p>
+</li>
+</ol>
+<h2 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h2><p>如果你有多个TIMESTAMP列，只有第一个自动更新。自动更新第一个TIMESTAMP列在下列任何条件下发生：</p>
+<ol>
+<li>列值没有明确地在一个INSERT或LOAD DATA INFILE语句中指定。</li>
+<li>列值没有明确地在一个UPDATE语句中指定且另外一些的列改变值。（注意一个UPDATE设置一个列为它已经有的值，这将不引起TIMESTAMP列被更新，因为如果你设置一个列为它当前的值，MySQL为了效率而忽略更改）</li>
+<li>你明确地设定TIMESTAMP列为NULL</li>
+<li>除第一个以外的TIMESTAMP列也可以设置到当前的日期和时间，只要将列设为NULL，或NOW（）。</li>
+</ol>
+<p>建两个timestamp字段后执行insert操作：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> test <span class="token punctuation">(</span> 
+<span class="token string">'id'</span> <span class="token keyword">INT</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span> UNSIGNED <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
+<span class="token string">'date1'</span> <span class="token keyword">TIMESTAMP</span> <span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token string">'date2'</span> <span class="token keyword">TIMESTAMP</span> <span class="token punctuation">(</span><span class="token number">14</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> test <span class="token punctuation">(</span>id<span class="token punctuation">,</span> date1<span class="token punctuation">,</span> date2<span class="token punctuation">)</span> <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token boolean">NULL</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> test <span class="token keyword">SET</span> id<span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+----------------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> date1　　　　　<span class="token operator">|</span> date2　　　　　<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+----------------+</span>
+<span class="token operator">|</span>　<span class="token number">1</span> <span class="token operator">|</span> <span class="token number">20021114093723</span> <span class="token operator">|</span> <span class="token number">20021114093723</span> <span class="token operator">|</span>
+<span class="token operator">|</span>　<span class="token number">2</span> <span class="token operator">|</span> <span class="token number">20021114093724</span> <span class="token operator">|</span> <span class="token number">00000000000000</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+----------------+</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第一条指令因设date1、date2为NULL,所以date1、date2值均为当前时间第二条指令因没有设date1、date2列值，第一 个TIMESTAMP列date1为更新为当前时间，而二个TIMESTAMP列date2因日期不合法而变为“00000000000000”</p>
+<p>然后进行update操作：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">UPDATE</span> test <span class="token keyword">SET</span> id<span class="token operator">=</span> <span class="token number">3</span> <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+----------------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> date1　　　　　<span class="token operator">|</span> date2　　　　　<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+----------------+</span>
+<span class="token operator">|</span>　<span class="token number">3</span> <span class="token operator">|</span> <span class="token number">20021114094009</span> <span class="token operator">|</span> <span class="token number">20021114093723</span> <span class="token operator">|</span>
+<span class="token operator">|</span>　<span class="token number">2</span> <span class="token operator">|</span> <span class="token number">20021114093724</span> <span class="token operator">|</span> <span class="token number">00000000000000</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+----------------+</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这条指令没有明确地设定date2的列值，所以第一个TIMESTAMP列date1将被更新为当前时间</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">UPDATE</span> test <span class="token keyword">SET</span> id<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>date1<span class="token operator">=</span>date1<span class="token punctuation">,</span>date2<span class="token operator">=</span><span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span> 
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+----------------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> date1　　　　　<span class="token operator">|</span> date2　　　　　<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+----------------+</span>
+<span class="token operator">|</span>　<span class="token number">1</span> <span class="token operator">|</span> <span class="token number">20021114094009</span> <span class="token operator">|</span> <span class="token number">20021114094320</span> <span class="token operator">|</span>
+<span class="token operator">|</span>　<span class="token number">2</span> <span class="token operator">|</span> <span class="token number">20021114093724</span> <span class="token operator">|</span> <span class="token number">00000000000000</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+----------------+----------------+</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这条指令因设定date1=date1，所以在更新数据时date1列值并不会发生改变而因设定date2=NOW（），所以在更新数据时date2列值会被更新为当前时间此指令等效为：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">UPDATE</span> test <span class="token keyword">SET</span> id<span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>date1<span class="token operator">=</span>date1<span class="token punctuation">,</span>date2<span class="token operator">=</span><span class="token boolean">NULL</span> <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>因MySQL返回的 TIMESTAMP 列为数字显示形式，你可以用<code>DATE_FROMAT()</code>函数来格式化 TIMESTAMP 列，如下所示：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> id<span class="token punctuation">,</span>DATE_FORMAT<span class="token punctuation">(</span>date1<span class="token punctuation">,</span><span class="token string">'%Y-%m-%d %H:%i:%s'</span><span class="token punctuation">)</span> <span class="token keyword">As</span> date1<span class="token punctuation">,</span>
+DATE_FORMAT<span class="token punctuation">(</span>date2<span class="token punctuation">,</span><span class="token string">'%Y-%m-%d %H:%i:%s'</span><span class="token punctuation">)</span> <span class="token keyword">As</span> date2 <span class="token keyword">FROM</span> test<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+---------------------+---------------------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> date1　　　　　　　 <span class="token operator">|</span> date2　　　　　　　 <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+---------------------+---------------------+</span>
+<span class="token operator">|</span>　<span class="token number">1</span> <span class="token operator">|</span> <span class="token number">2002</span><span class="token operator">-</span><span class="token number">11</span><span class="token operator">-</span><span class="token number">14</span> <span class="token number">09</span>:<span class="token number">40</span>:<span class="token number">09</span> <span class="token operator">|</span> <span class="token number">2002</span><span class="token operator">-</span><span class="token number">11</span><span class="token operator">-</span><span class="token number">14</span> <span class="token number">09</span>:<span class="token number">43</span>:<span class="token number">20</span> <span class="token operator">|</span>
+<span class="token operator">|</span>　<span class="token number">2</span> <span class="token operator">|</span> <span class="token number">2002</span><span class="token operator">-</span><span class="token number">11</span><span class="token operator">-</span><span class="token number">14</span> <span class="token number">09</span>:<span class="token number">37</span>:<span class="token number">24</span> <span class="token operator">|</span> <span class="token number">0000</span><span class="token operator">-</span><span class="token number">00</span><span class="token operator">-</span><span class="token number">00</span> <span class="token number">00</span>:<span class="token number">00</span>:<span class="token number">00</span> <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+---------------------+---------------------+</span>
+<span class="token keyword">SELECT</span> id<span class="token punctuation">,</span>DATE_FORMAT<span class="token punctuation">(</span>date1<span class="token punctuation">,</span><span class="token string">'%Y-%m-%d'</span><span class="token punctuation">)</span> <span class="token keyword">As</span> date1<span class="token punctuation">,</span>
+DATE_FORMAT<span class="token punctuation">(</span>date2<span class="token punctuation">,</span><span class="token string">'%Y-%m-%d'</span><span class="token punctuation">)</span> <span class="token keyword">As</span> date2 <span class="token keyword">FROM</span> test<span class="token punctuation">;</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+-------------+-------------+</span>
+<span class="token operator">|</span> id <span class="token operator">|</span> date1　　　 <span class="token operator">|</span> date2　　　 <span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+-------------+-------------+</span>
+<span class="token operator">|</span>　<span class="token number">1</span> <span class="token operator">|</span> <span class="token number">2002</span><span class="token operator">-</span><span class="token number">11</span><span class="token operator">-</span><span class="token number">14</span>　<span class="token operator">|</span> <span class="token number">2002</span><span class="token operator">-</span><span class="token number">11</span><span class="token operator">-</span><span class="token number">14</span>　<span class="token operator">|</span>
+<span class="token operator">|</span>　<span class="token number">2</span> <span class="token operator">|</span> <span class="token number">2002</span><span class="token operator">-</span><span class="token number">11</span><span class="token operator">-</span><span class="token number">14</span>　<span class="token operator">|</span> <span class="token number">0000</span><span class="token operator">-</span><span class="token number">00</span><span class="token operator">-</span><span class="token number">00</span>　<span class="token operator">|</span>
+<span class="token operator">+</span><span class="token comment" spellcheck="true">----+-------------+-------------+</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在某种程度上，你可以把一种日期类型的值赋给一个不同的日期类型的对象。</p>
+<p>然而，而尤其注意的是：值有可能发生一些改变或信息的损失：</p>
+<ol>
+<li>如果你将一个DATE值赋给一个DATETIME或TIMESTAMP对象，结果值的时间部分被设置为’00:00:00’，因为DATE值中不包含有时间信息。　</li>
+<li>如果你将一个DATETIME或TIMESTAMP值赋给一个DATE对象，结果值的时间部分被删除，因为DATE类型不存储时间信息。</li>
+<li>尽管DATETIME, DATE和TIMESTAMP值全都可以用同样的格式集来指定，但所有类型不都有同样的值范围。</li>
+</ol>
+<p>例如，<strong>TIMESTAMP值不能比1970早，也不能比2037晚，这意味着，一个日期例如’1968-01-01’，当作为一个 DATETIME或DATE值时它是合法的，但它不是一个正确TIMESTAMP值！并且如果将这样的一个对象赋值给TIMESTAMP列，它将被变换为 0</strong>。  </p>
 <h2 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h2><ol>
-<li><strong>允许作为字符串指定值的宽松格式能被欺骗。</strong>例如，因为“:”分隔符的使用，值’10:11:12’可能看起来像时间值，但是如果在一个日期中使用，上下文将作为年份被解释成’2010-11-12’。值’10:45:15’将被变换到’0000-00-00’，因为’45’不是一个合法的月份。</li>
-<li><strong>以2位数字指定的年值是模糊的，因为世纪是未知的。</strong>MySQL使用下列规则解释2位年值：在00-69范围的年值被变换到2000-2069。 在范围70-99的年值被变换到1970-1999。</li>
+<li><p><strong>允许作为字符串指定值的宽松格式能被欺骗。</strong>例如，因为“:”分隔符的使用，值’10:11:12’可能看起来像时间值，但是如果在一个日期中使用，上下文将作为年份被解释成’2010-11-12’。值’10:45:15’将被变换到’0000-00-00’，因为’45’不是一个合法的月份。</p>
+</li>
+<li><p><strong>以2位数字指定的年值是模糊的，因为世纪是未知的。</strong>MySQL使用下列规则解释2位年值：在00-69范围的年值被变换到2000-2069。 在范围70-99的年值被变换到1970-1999。</p>
+</li>
 </ol>
 
             </div>
@@ -588,30 +713,29 @@ datetime
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/03/database/timestamp/">
+                <a href="/2021/03/04/database/sql-standard/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/79.jpg" class="responsive-img" alt="timestamp时间格式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/107.jpg" class="responsive-img" alt="sql注意要点和规范">
                         
-                        <span class="card-title">timestamp时间格式</span>
+                        <span class="card-title">sql注意要点和规范</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            timestamp
+                            sql注意要点和规范总结，算是一个小汇总吧。
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-03
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-04
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -624,12 +748,15 @@ datetime
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mysql/" target="_blank">
-                        <span class="chip bg-color">mysql</span>
+                    <a href="/tags/sql/" target="_blank">
+                        <span class="chip bg-color">sql</span>
+                    </a>
+                    
+                    <a href="/tags/index/" target="_blank">
+                        <span class="chip bg-color">index</span>
                     </a>
                     
                     <a href="/tags/数据库优化/" target="_blank">
@@ -651,7 +778,7 @@ datetime
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/92.jpg" class="responsive-img" alt="事务不生效">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/93.jpg" class="responsive-img" alt="事务不生效">
                         
                         <span class="card-title">事务不生效</span>
                     </div>
@@ -860,7 +987,7 @@ datetime
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">143.7k</span>
+            <span class="white-color">147.6k</span>
             
 
             <br>
