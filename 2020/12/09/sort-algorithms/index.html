@@ -399,7 +399,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-16
+                    2020-12-09
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -833,7 +833,7 @@
                   property="dct:title" rel="dct:type">
                     《十大经典排序算法整理汇总（附代码）》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/02/16/sort-algorithms/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/09/sort-algorithms/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -874,7 +874,7 @@
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2020/02/16/sort-algorithms/',
+        id: '2020/12/09/sort-algorithms/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -899,24 +899,24 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/12/09/java/list/">
+                <a href="/2020/12/11/java/arrays/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/28.jpg" class="responsive-img" alt="List">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/32.jpg" class="responsive-img" alt="Arrays">
                         
-                        <span class="card-title">List</span>
+                        <span class="card-title">Arrays</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文记录了ArrayList的toArray方法用法，和CopyOnWriteArrayList。
+                            本文介绍Arrays的方法。
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-09
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-11
                         </span>
                         <span class="publish-author">
                             
@@ -937,8 +937,8 @@
                         <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/arraylist/" target="_blank">
-                        <span class="chip bg-color">arraylist</span>
+                    <a href="/tags/arrays/" target="_blank">
+                        <span class="chip bg-color">arrays</span>
                     </a>
                     
                 </div>
@@ -949,50 +949,49 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/16/sort-algorithms/">
+                <a href="/2020/12/09/java/string/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/69.jpg" class="responsive-img" alt="十大经典排序算法整理汇总（附代码）">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/11.jpg" class="responsive-img" alt="String">
                         
-                        <span class="card-title">十大经典排序算法整理汇总（附代码）</span>
+                        <span class="card-title">String</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文整理并总结了十大经典的排序算法（冒泡排序、选择排序、插入排序、快速排序、归并排序、希尔排序、计数排序、基数排序、桶排序、堆排序）的时间复杂度、空间复杂度等性质。
+                            本文记录了String的方法和正则表达式的基本说明。都是在刷题时遇到不懂的记录下来的。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-16
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/编程算法/" class="post-category" target="_blank">
-                                    编程算法
+                            <a href="/categories/Java/" class="post-category" target="_blank">
+                                    Java
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
+                    <a href="/tags/string/" target="_blank">
+                        <span class="chip bg-color">string</span>
                     </a>
                     
                 </div>
@@ -1220,7 +1219,7 @@
     $(document).ready(function () {
 
         var int = setInterval(fixCount, 50);
-        var pvcountOffset = 900;
+        var pvcountOffset = 0;
         var uvcountOffset = 0;
 
         function fixCount() {
@@ -1259,7 +1258,7 @@
         minutes - 0-59之间的整数，做为date对象的分钟数
         seconds - 0-59之间的整数，做为date对象的秒数
         microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-        var t1 = Date.UTC(2019, 11, 11, 00, 00, 00); //北京时间
+        var t1 = Date.UTC(2020, 12, 08, 00, 00, 00); //北京时间
         var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
         var diff = t2 - t1;
         var diffYears = Math.floor(diff / years);

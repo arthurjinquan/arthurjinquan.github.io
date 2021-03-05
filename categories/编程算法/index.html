@@ -293,20 +293,20 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
                 
                 
                 
-                <a href="/categories/项目/" title="项目: 20">
+                <a href="/categories/编程算法/" title="编程算法: 2">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #F9EBEA;">项目
-                        <span class="tag-length">20</span>
+                             chip-active "
+                            style="background-color: #F9EBEA;">编程算法
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/编程算法/" title="编程算法: 2">
+                <a href="/categories/项目/" title="项目: 20">
                     <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F5EEF8;">编程算法
-                        <span class="tag-length">2</span>
+                             chip-default "
+                            style="background-color: #F5EEF8;">项目
+                        <span class="tag-length">20</span>
                     </span>
                 </a>
                 
@@ -400,7 +400,7 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/02/16/sort-algorithms/">
+                    <a href="/2020/12/09/sort-algorithms/">
                         <div class="card-image tag-image">
                             
                             
@@ -417,7 +417,7 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-16
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-09
                             </span>
                             <span class="publish-author">
                                 
@@ -514,7 +514,7 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
     $(document).ready(function () {
 
         var int = setInterval(fixCount, 50);
-        var pvcountOffset = 900;
+        var pvcountOffset = 0;
         var uvcountOffset = 0;
 
         function fixCount() {
@@ -553,7 +553,7 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
         minutes - 0-59之间的整数，做为date对象的分钟数
         seconds - 0-59之间的整数，做为date对象的秒数
         microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-        var t1 = Date.UTC(2019, 11, 11, 00, 00, 00); //北京时间
+        var t1 = Date.UTC(2020, 12, 08, 00, 00, 00); //北京时间
         var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
         var diff = t2 - t1;
         var diffYears = Math.floor(diff / years);

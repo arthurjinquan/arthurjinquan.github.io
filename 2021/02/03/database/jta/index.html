@@ -377,12 +377,12 @@
                             <span class="chip bg-color">事务</span>
                         </a>
                         
-                        <a href="/tags/分布式事务/" target="_blank">
-                            <span class="chip bg-color">分布式事务</span>
-                        </a>
-                        
                         <a href="/tags/springcloud/" target="_blank">
                             <span class="chip bg-color">springcloud</span>
+                        </a>
+                        
+                        <a href="/tags/分布式事务/" target="_blank">
+                            <span class="chip bg-color">分布式事务</span>
                         </a>
                         
                     </div>
@@ -1112,7 +1112,7 @@
     $(document).ready(function () {
 
         var int = setInterval(fixCount, 50);
-        var pvcountOffset = 900;
+        var pvcountOffset = 0;
         var uvcountOffset = 0;
 
         function fixCount() {
@@ -1151,7 +1151,7 @@
         minutes - 0-59之间的整数，做为date对象的分钟数
         seconds - 0-59之间的整数，做为date对象的秒数
         microseconds - 0-999之间的整数，做为date对象的毫秒数 */
-        var t1 = Date.UTC(2019, 11, 11, 00, 00, 00); //北京时间
+        var t1 = Date.UTC(2020, 12, 08, 00, 00, 00); //北京时间
         var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
         var diff = t2 - t1;
         var diffYears = Math.floor(diff / years);

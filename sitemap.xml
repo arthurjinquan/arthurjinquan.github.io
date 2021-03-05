@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://arthurjq.com/2020/12/09/sort-algorithms/</loc>
+    
+    <lastmod>2021-03-05T14:50:48.829Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://arthurjq.com/2020/12/29/project/im/</loc>
     
     <lastmod>2021-03-05T14:28:02.176Z</lastmod>
@@ -222,13 +229,6 @@
     <loc>https://arthurjq.com/2021/02/19/database/mysql-lock/</loc>
     
     <lastmod>2021-02-19T16:23:48.062Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2020/02/16/sort-algorithms/</loc>
-    
-    <lastmod>2021-02-08T04:25:26.336Z</lastmod>
     
   </url>
   

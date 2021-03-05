@@ -64,6 +64,6 @@ https://arthurjq.com/2020/12/12/jz59-60/
 https://arthurjq.com/2020/12/11/java/lambda/
 https://arthurjq.com/2020/12/11/database/mybatis/
 https://arthurjq.com/2020/12/11/java/arrays/
+https://arthurjq.com/2020/12/09/sort-algorithms/
 https://arthurjq.com/2020/12/09/java/string/
 https://arthurjq.com/2020/12/09/java/list/
-https://arthurjq.com/2020/02/16/sort-algorithms/
