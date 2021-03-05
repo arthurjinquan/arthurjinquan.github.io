@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arthurjq.com/2021/02/22/java/classloader/</loc>
+    <lastmod>2021-03-05</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/01/05/project/nullpointerexception/</loc>
+    <lastmod>2021-03-05</lastmod>
+  </url>
+  <url>
     <loc>https://arthurjq.com/2020/12/09/sort-algorithms/</loc>
     <lastmod>2021-03-05</lastmod>
   </url>
@@ -14,10 +22,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2020/12/11/database/mybatis/</loc>
-    <lastmod>2021-03-05</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/05/nullpointerexception/</loc>
     <lastmod>2021-03-05</lastmod>
   </url>
   <url>
@@ -41,7 +45,7 @@
     <lastmod>2021-03-04</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2021/03/01/redis-cache/</loc>
+    <loc>https://arthurjq.com/2021/03/01/database/redis-cache/</loc>
     <lastmod>2021-03-03</lastmod>
   </url>
   <url>
@@ -98,10 +102,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2020/12/31/java/spring-transaction/</loc>
-    <lastmod>2021-02-24</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/02/22/java/classloader/</loc>
     <lastmod>2021-02-24</lastmod>
   </url>
   <url>

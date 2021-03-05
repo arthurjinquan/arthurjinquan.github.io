@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>空指针异常NullPointerException</title>
-      <link href="2021/03/05/nullpointerexception/"/>
-      <url>2021/03/05/nullpointerexception/</url>
-      
-        <content type="html"><![CDATA[<h2 id="直接从Map里拿字段信息"><a href="#直接从Map里拿字段信息" class="headerlink" title="直接从Map里拿字段信息"></a>直接从Map里拿字段信息</h2><p>用Mybatis从数据库中查询到Map&lt;String,Object&gt;结果集后，直接调用get方法。</p><p>栗子：</p><pre class="line-numbers language-java"><code class="language-java">Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> entityMap <span class="token operator">=</span> xxxMapper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>String name <span class="token operator">=</span> entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>或String name <span class="token operator">=</span> <span class="token punctuation">(</span>String<span class="token punctuation">)</span><span class="token punctuation">(</span>entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>容易犯错的问题：如果entityMap中key为name的value为null。则该语句会爆空指针异常。</p><p>正确例子：</p><pre class="line-numbers language-java"><code class="language-java">String name <span class="token operator">=</span> entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token operator">==</span>null <span class="token operator">?</span> null <span class="token operator">:</span> entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>所有从Map中获取的对象都必须进行空值判断，否则会出现在特定的数据下，突然时不时的给你爆个空指针异常。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 项目 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-            <tag> bug </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>k8s部署栗子</title>
       <link href="2021/03/04/k8s-exp/"/>
       <url>2021/03/04/k8s-exp/</url>
@@ -132,9 +105,9 @@
       
         <tags>
             
-            <tag> 事务 </tag>
-            
             <tag> annotation </tag>
+            
+            <tag> 事务 </tag>
             
         </tags>
       
@@ -144,8 +117,8 @@
     
     <entry>
       <title>Redis的cache</title>
-      <link href="2021/03/01/redis-cache/"/>
-      <url>2021/03/01/redis-cache/</url>
+      <link href="2021/03/01/database/redis-cache/"/>
+      <url>2021/03/01/database/redis-cache/</url>
       
         <content type="html"><![CDATA[<h2 id="思考步骤"><a href="#思考步骤" class="headerlink" title="思考步骤"></a>思考步骤</h2><ol><li><p>评估是否真的需要缓存</p><p>1.1 使用场景？有返回时间要求吗？</p><p>1.2 是否频繁？落到数据库压力大吗？</p><p>1.3 计算难度有多大？</p></li><li><p>真的需要缓存了</p><p>2.1 数据粒度？<br>2.2 数据类型？<br>2.3 数据大小？<br>2.4 数据有效时长？<br>2.5 加载进缓存的时机？<br>2.6 删除缓存的时机？<br>2.7 更新缓存的时机？</p></li><li><p>根据多个缓存对缓存进行操作</p><p>3.1 缓存值可信吗？</p><p>3.2 为什么要根据缓存值对缓存操作？想要的是过程值还是结果值？</p><p>3.3 考虑过拿第一个缓存成功，拿第二个缓存成功，但是第一个缓存在第二个缓存操作的时候失效的情况和后果吗？</p><p>3.4 缓存联动管理是否困难？</p></li></ol><h2 id="简易操作缓存方案"><a href="#简易操作缓存方案" class="headerlink" title="简易操作缓存方案"></a>简易操作缓存方案</h2><ol><li>使用饿汉模式进行管理。只有在要读的时候，才进行缓存加载，其他操作删除相关缓存。</li><li>缓存时间设置不宜过长，5分钟内为宜（因为现在业务没什么对数据库压力特别大、计算又很复杂的时候）</li><li>不同Key的缓存失效时间尽量随机</li><li>考虑缓存穿透问题</li><li>不要使用redis事务</li><li>先进行数据库操作，再操作缓存</li><li>数据粒度要很大时，借助定时任务定期刷新内存</li><li>缓存中找不到时，应该去查找数据库中是否存在，记得用一定策略保证击穿问题得到解决</li><li>用service屏蔽缓存的直接操作，避免造成缓存管理困难（因为service的操作一定可以反映到数据库上，直接操作缓存不一定能落到数据库）</li></ol><p>ps: 数据一致性可以借助<strong>数据库</strong>事务进行实现，保证最坏结果是一次最近更新的值</p><h2 id="补充规范"><a href="#补充规范" class="headerlink" title="补充规范"></a>补充规范</h2><p>1：key定义的规范，这个是用的时候比较容易出错的，重名，和系统关键字冲突，长度等，都需要给出规范来<br>2：value上，应该控制数据的长度，比如防止一些大数据类型，redis本来是提速的，不要因为数据长度影响了自身性能，另外就是合理的使用数据类型，节省存储提升性能，比如能整型的就不要字符串型<br>3：提前评估生命周期，必须保证每个变量都有过期时间；需要对数据进行手动清理，打散过期时间，防止雪崩<br>4：尽可能只使用set和get，避免使用其他命令，特别是flushXXX<br>5：尽量不要使用事务，事务逻辑尽量通过对应的框架实现，包括分布式事务seata<br>6：做好防穿透，击穿，雪崩的常规逻辑处理，比如增加有效数据校验，防止数据库压力过大，增加互斥锁，降低并发，打乱过期时间等。</p><h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>原本是用RedisTemplate实现</p><p>建议每个函数还可以重载一个默认值的函数，不然每个函数都要写入太多的参数，一般除了KEY值外，其他的值，都可以根据规范来给一个默认的</p><p>还有封装的话最好用原生提供的jedis：</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-cache-1.png" alt></p><p>就是从redis读取对应的key的值，使用100次耗费的时长，单位毫秒</p><h3 id="第一版"><a href="#第一版" class="headerlink" title="第一版"></a>第一版</h3><p>属于只读缓存方案，1.就是删改直接删缓存，2.增加直接加入数据库。3.查时到缓存取，没有再从数据库中加载，再放到缓存</p><p>回复：数据库那块不属于缓存工具类的职责，不用写</p><h2 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h2>]]></content>
       
@@ -217,9 +190,9 @@
             
             <tag> elasticsearch </tag>
             
-            <tag> 分布式系统 </tag>
-            
             <tag> lucene </tag>
+            
+            <tag> 分布式系统 </tag>
             
         </tags>
       
@@ -332,6 +305,8 @@
       
       
         <tags>
+            
+            <tag> java </tag>
             
             <tag> classloader </tag>
             
@@ -468,9 +443,9 @@
       
         <tags>
             
-            <tag> 事务 </tag>
-            
             <tag> springcloud </tag>
+            
+            <tag> 事务 </tag>
             
             <tag> 分布式事务 </tag>
             
@@ -945,9 +920,9 @@
       
         <tags>
             
-            <tag> bug </tag>
-            
             <tag> sql </tag>
+            
+            <tag> bug </tag>
             
         </tags>
       
@@ -1023,6 +998,33 @@
         <tags>
             
             <tag> 流程图 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>空指针异常NullPointerException</title>
+      <link href="2021/01/05/project/nullpointerexception/"/>
+      <url>2021/01/05/project/nullpointerexception/</url>
+      
+        <content type="html"><![CDATA[<h2 id="直接从Map里拿字段信息"><a href="#直接从Map里拿字段信息" class="headerlink" title="直接从Map里拿字段信息"></a>直接从Map里拿字段信息</h2><p>用Mybatis从数据库中查询到Map&lt;String,Object&gt;结果集后，直接调用get方法。</p><p>栗子：</p><pre class="line-numbers language-java"><code class="language-java">Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> entityMap <span class="token operator">=</span> xxxMapper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>String name <span class="token operator">=</span> entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>或String name <span class="token operator">=</span> <span class="token punctuation">(</span>String<span class="token punctuation">)</span><span class="token punctuation">(</span>entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>容易犯错的问题：如果entityMap中key为name的value为null。则该语句会爆空指针异常。</p><p>正确例子：</p><pre class="line-numbers language-java"><code class="language-java">String name <span class="token operator">=</span> entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token operator">==</span>null <span class="token operator">?</span> null <span class="token operator">:</span> entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>所有从Map中获取的对象都必须进行空值判断，否则会出现在特定的数据下，突然时不时的给你爆个空指针异常。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> bug </tag>
             
         </tags>
       

@@ -1,9 +1,8 @@
-https://arthurjq.com/2021/03/05/nullpointerexception/
 https://arthurjq.com/2021/03/04/k8s-exp/
 https://arthurjq.com/2021/03/04/database/sql-standard/
 https://arthurjq.com/2021/03/03/database/timestamp/
 https://arthurjq.com/2021/03/02/java/transaction-no-effect/
-https://arthurjq.com/2021/03/01/redis-cache/
+https://arthurjq.com/2021/03/01/database/redis-cache/
 https://arthurjq.com/2021/02/25/database/lucene/
 https://arthurjq.com/2021/02/25/database/es/
 https://arthurjq.com/2021/02/24/project/zookeeper/
@@ -35,6 +34,7 @@ https://arthurjq.com/2021/01/06/project/sqlsyntaxerrorexception/
 https://arthurjq.com/2021/01/06/java/spring-transaction-programmatic-transaction/
 https://arthurjq.com/2021/01/06/java/spring-transaction-propagation/
 https://arthurjq.com/2021/01/05/project/ssd-pic/
+https://arthurjq.com/2021/01/05/project/nullpointerexception/
 https://arthurjq.com/2020/12/31/java/spring-transaction/
 https://arthurjq.com/2020/12/30/database/mysql-explain/
 https://arthurjq.com/2020/12/30/database/mysql-join/
