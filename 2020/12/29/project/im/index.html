@@ -255,7 +255,7 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/95.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -418,7 +418,7 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    68
+                    430
                 </div>
                 
 
@@ -445,7 +445,25 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
 <h2 id="使用的框架"><a href="#使用的框架" class="headerlink" title="使用的框架"></a>使用的框架</h2><p>轻量级、高性能的WebSocket框架：</p>
 <p><a href="https://github.com/YeautyYE/netty-websocket-spring-boot-starter" target="_blank" rel="noopener">https://github.com/YeautyYE/netty-websocket-spring-boot-starter</a></p>
 <p>在spring-boot中使用Netty来开发WebSocket服务器，并像spring-websocket的注解开发一样简单，很贴心，还有中文markdown。</p>
-<h2 id="未完"><a href="#未完" class="headerlink" title="未完"></a>未完</h2>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><ol>
+<li>Netty WebSocket通信协议</li>
+<li>nacos服务发现、服务治理、配置中心</li>
+<li>gateway网关、服务负载均衡、服务路由</li>
+<li>Kafka消息订阅发布、分布式消息队列 + Kafka-manager分布式队列监控</li>
+<li>Redis缓存 + Mysql持久化</li>
+<li>ElasticSearch 搜索引擎、日志存储、非关系型数据存储</li>
+<li>Logstash数据收集、转化、传输、加载 + DataX分布式ETL</li>
+<li>Kibana操作日志、系统日志、链路日志分析、基于ES的数据分析</li>
+</ol>
+<h2 id="通讯流程"><a href="#通讯流程" class="headerlink" title="通讯流程"></a>通讯流程</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/IM-flow.jpg" alt></p>
+<p>1：客户端携带授权token向服务集群发起connect请求，请求会被⽹关转发到具体的某⼀个WebSocket节点中去。</p>
+<p>2：WebSocket服务针对connect进⾏鉴权，并且将该连接会话缓存在服务内。返回连接成功。</p>
+<p>3：客户端定时像服务端发送WebSocket心跳ping请求。服务端返回ping报文。</p>
+<p>4：客户端需要发送消息时，通过WebSocket发送报文。对应的WebSocket服务端接收到报文信息后，直接发布到消息队列的主题中。</p>
+<p>5：所有的WebSocket服务均监听消息队列主题，收到主题消息后，根据busiCode类型、toUserId、groupId等寻找到对应的⽤户id。再通过⽤户id获取到该服务节点中的会话，通过该会话进⾏消息推送。</p>
+<p>6：另外⼀组队列监听程序，负责持久化消息。</p>
+<h2 id="其他支撑接口"><a href="#其他支撑接口" class="headerlink" title="其他支撑接口"></a>其他支撑接口</h2><p>提供Rest服务提供客户端获取历史数据</p>
+
             </div>
             <hr />
 
@@ -551,7 +569,7 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/99.jpg" class="responsive-img" alt="in和exists的区别">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/98.jpg" class="responsive-img" alt="in和exists的区别">
                         
                         <span class="card-title">in和exists的区别</span>
                     </div>
@@ -600,7 +618,7 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/9.jpg" class="responsive-img" alt="Spring Bean 的生命周期">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/10.jpg" class="responsive-img" alt="Spring Bean 的生命周期">
                         
                         <span class="card-title">Spring Bean 的生命周期</span>
                     </div>
@@ -813,7 +831,7 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">147.6k</span>
+            <span class="white-color">150.4k</span>
             
 
             <br>

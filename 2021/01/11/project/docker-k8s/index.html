@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/34.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/35.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -659,14 +659,14 @@ yum install -y docker-ce-19.03.12-3.el7<span aria-hidden="true" class="line-numb
 <pre class="line-numbers language-shell"><code class="language-shell">lsmod | grep overlay
 lsmod | grep br_netfilter<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>若上面命令无返回值输出或提示文件不存在，需执行以下命令：</p>
-<pre class="line-numbers language-shell"><code class="language-shell">cat > /etc/modules-load.d/docker.conf <<EOF
+<pre class="line-numbers language-text"><code class="language-text">cat > /etc/modules-load.d/docker.conf <<EOF
 overlay
 br_netfilter
 EOF
 modprobe overlay
 modprobe br_netfilter<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使桥接流量对iptables可见</p>
-<pre class="line-numbers language-shell"><code class="language-shell">cat > /etc/sysctl.d/k8s.conf <<EOF
+<pre class="line-numbers language-text"><code class="language-text">cat > /etc/sysctl.d/k8s.conf <<EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
@@ -674,7 +674,7 @@ sysctl --system<span aria-hidden="true" class="line-numbers-rows"><span></span><
 <p>验证是否生效，均返回 1 即正确</p>
 <pre class="line-numbers language-shell"><code class="language-shell">sysctl -n net.bridge.bridge-nf-call-iptables
 sysctl -n net.bridge.bridge-nf-call-ip6tables<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="配置docker"><a href="#配置docker" class="headerlink" title="配置docker"></a>配置docker</h3><pre class="line-numbers language-shell"><code class="language-shell">mkdir /etc/docker
+<h3 id="配置docker"><a href="#配置docker" class="headerlink" title="配置docker"></a>配置docker</h3><pre class="line-numbers language-text"><code class="language-text">mkdir /etc/docker
 #修改cgroup驱动为systemd[k8s官方推荐]、限制容器日志量、修改存储类型，最后的docker家目录可修改
 cat > /etc/docker/daemon.json <<EOF
 {
@@ -696,7 +696,7 @@ systemctl enable --now docker
 systemctl daemon-reload
 systemctl restart docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="部署kubernetes"><a href="#部署kubernetes" class="headerlink" title="部署kubernetes"></a>部署kubernetes</h3><p>添加kubernetes源</p>
-<pre class="line-numbers language-shell"><code class="language-shell">cat > /etc/yum.repos.d/kubernetes.repo <<EOF
+<pre class="line-numbers language-text"><code class="language-text">cat > /etc/yum.repos.d/kubernetes.repo <<EOF
 [kubernetes]
 name=Kubernetes
 baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
@@ -766,7 +766,7 @@ docker rmi registry.cn-hangzhou.aliyuncs.com/google_containers/etcd:$ETCD_VERSIO
 <pre class="line-numbers language-shell"><code class="language-shell">chmod +x get-k8s-images.sh
 ./get-k8s-images.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="初始化kube-master"><a href="#初始化kube-master" class="headerlink" title="初始化kube-master"></a>初始化kube-master</h3><p>修改kubelet配置默认cgroup driver</p>
-<pre class="line-numbers language-shell"><code class="language-shell">mkdir -p /var/lib/kubelet/
+<pre class="line-numbers language-text"><code class="language-text">mkdir -p /var/lib/kubelet/
 cat > /var/lib/kubelet/config.yaml <<EOF
 apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
@@ -775,7 +775,7 @@ EOF
 systemctl restart kubelet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>测试环境是否正常（WARNING是正常的），此处选用国内阿里镜像源</p>
 <pre class="line-numbers language-shell"><code class="language-shell">kubeadm init --image-repository registry.aliyuncs.com/google_containers --ignore-preflight-errors=Swap<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>初始化master 10.244.0.0/16是flannel固定使用的IP段，设置取决于网络组件要求，<strong>此处根据自己当前安装的版本进行版本替换</strong></p>
+<p>初始化master 10.244.0.0/16是flannel固定使用的IP段，设置取决于网络组件要求</p>
 <pre class="line-numbers language-shell"><code class="language-shell">kubeadm init --image-repository registry.aliyuncs.com/google_containers --pod-network-cidr=10.244.0.0/16<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>配置master认证</p>
 <pre class="line-numbers language-shell"><code class="language-shell">echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> /etc/profile
@@ -903,7 +903,7 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/61.jpg" class="responsive-img" alt="实现一个返回数组的接口">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/62.jpg" class="responsive-img" alt="实现一个返回数组的接口">
                         
                         <span class="card-title">实现一个返回数组的接口</span>
                     </div>
@@ -956,7 +956,7 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface">
                         
                         <span class="card-title">SpringCloud使用Feign暴露Interface</span>
                     </div>
@@ -990,12 +990,12 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
                         <span class="chip bg-color">springcloud</span>
                     </a>
                     
-                    <a href="/tags/interface/" target="_blank">
-                        <span class="chip bg-color">interface</span>
-                    </a>
-                    
                     <a href="/tags/feign/" target="_blank">
                         <span class="chip bg-color">feign</span>
+                    </a>
+                    
+                    <a href="/tags/interface/" target="_blank">
+                        <span class="chip bg-color">interface</span>
                     </a>
                     
                 </div>
@@ -1169,7 +1169,7 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">147.6k</span>
+            <span class="white-color">150.4k</span>
             
 
             <br>

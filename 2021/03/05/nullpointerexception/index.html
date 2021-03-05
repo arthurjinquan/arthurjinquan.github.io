@@ -4,13 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Mybatis, SCUT JAVA Spring SpringMVC mybatis Springboot 锦泉 arthurjinquan jinquan 超分辨率 计算机视觉 深度学习">
+    <meta name="keywords" content="空指针异常NullPointerException, SCUT JAVA Spring SpringMVC mybatis Springboot 锦泉 arthurjinquan jinquan 超分辨率 计算机视觉 深度学习">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="Mybatis的执行器 executor-type1.SIMPLE ： 默认执行器， sql 直接执行无额外操作。
-2.REUSE ： 可重用执行器，重用对象是 statement （缓存，即会重用预处理语句）。
-3.BATCH ： 重用预">
+    <meta name="description" content="直接从Map里拿字段信息用Mybatis从数据库中查询到Map&amp;lt;String,Object&amp;gt;结果集后，直接调用get方法。
+栗子：
+Map&amp;lt;String,Object&gt; entityMap = xxxMapper.get(">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Mybatis | 锦泉^-^</title>
+    <title>空指针异常NullPointerException | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -255,13 +255,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/50.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/72.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Mybatis
+                        空指针异常NullPointerException
                     </div>
                 </div>
             </div>
@@ -376,8 +376,8 @@
                             <span class="chip bg-color">java</span>
                         </a>
                         
-                        <a href="/tags/mybatis/" target="_blank">
-                            <span class="chip bg-color">mybatis</span>
+                        <a href="/tags/bug/" target="_blank">
+                            <span class="chip bg-color">bug</span>
                         </a>
                         
                     </div>
@@ -388,8 +388,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/Java/" class="post-category" target="_blank">
-                            Java
+                        <a href="/categories/项目/" class="post-category" target="_blank">
+                            项目
                         </a>
                         
                     </div>
@@ -400,7 +400,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-12-11
+                    2021-03-05
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -414,7 +414,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    90
+                    145
                 </div>
                 
 
@@ -437,9 +437,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Mybatis的执行器-executor-type"><a href="#Mybatis的执行器-executor-type" class="headerlink" title="Mybatis的执行器 executor-type"></a>Mybatis的执行器 executor-type</h2><p>1.SIMPLE ： 默认执行器， sql 直接执行无额外操作。</p>
-<p>2.REUSE ： 可重用执行器，重用对象是 statement （缓存，即会重用预处理语句）。</p>
-<p>3.BATCH ： 重用预处理语句，并执行批量更新。 insert 、 update 、 delete 方法返回值一直是 -2147482646，不能作为sql执行成功的判断依据。</p>
+                <h2 id="直接从Map里拿字段信息"><a href="#直接从Map里拿字段信息" class="headerlink" title="直接从Map里拿字段信息"></a>直接从Map里拿字段信息</h2><p>用Mybatis从数据库中查询到Map&lt;String,Object&gt;结果集后，直接调用get方法。</p>
+<p>栗子：</p>
+<pre class="line-numbers language-java"><code class="language-java">Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span>Object<span class="token operator">></span> entityMap <span class="token operator">=</span> xxxMapper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+String name <span class="token operator">=</span> entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+或
+
+String name <span class="token operator">=</span> <span class="token punctuation">(</span>String<span class="token punctuation">)</span><span class="token punctuation">(</span>entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>容易犯错的问题：如果entityMap中key为name的value为null。则该语句会爆空指针异常。</p>
+<p>正确例子：</p>
+<pre class="line-numbers language-java"><code class="language-java">String name <span class="token operator">=</span> entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token operator">==</span>null <span class="token operator">?</span> null <span class="token operator">:</span> entityMap<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>所有从Map中获取的对象都必须进行空值判断，否则会出现在特定的数据下，突然时不时的给你爆个空指针异常。</p>
 
             </div>
             <hr />
@@ -474,9 +484,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Mybatis》
+                    《空指针异常NullPointerException》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/11/database/mybatis-executer-type/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/05/nullpointerexception/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -517,7 +527,7 @@
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2020/12/11/database/mybatis-executer-type/',
+        id: '2021/03/05/nullpointerexception/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -538,41 +548,43 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/12/11/java/lambda/">
+                <a href="/2021/03/05/nullpointerexception/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/59.jpg" class="responsive-img" alt="Lambda表达式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/72.jpg" class="responsive-img" alt="空指针异常NullPointerException">
                         
-                        <span class="card-title">Lambda表达式</span>
+                        <span class="card-title">空指针异常NullPointerException</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Lambda 中 variables must be final
+                            记录踩过的坑。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/项目/" class="post-category" target="_blank">
+                                    项目
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -580,8 +592,8 @@
                         <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/lambda/" target="_blank">
-                        <span class="chip bg-color">lambda</span>
+                    <a href="/tags/bug/" target="_blank">
+                        <span class="chip bg-color">bug</span>
                     </a>
                     
                 </div>
@@ -595,31 +607,31 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/11/java/arrays/">
+                <a href="/2021/03/04/k8s-exp/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/31.jpg" class="responsive-img" alt="Arrays">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/11.jpg" class="responsive-img" alt="k8s部署栗子">
                         
-                        <span class="card-title">Arrays</span>
+                        <span class="card-title">k8s部署栗子</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            本文介绍Arrays的方法。
+                            用kubernetes部署发布项目。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-12-11
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/项目/" class="post-category" target="_blank">
+                                    项目
                                 </a>
                             
                             
@@ -629,12 +641,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/kubernetes/" target="_blank">
+                        <span class="chip bg-color">kubernetes</span>
                     </a>
                     
-                    <a href="/tags/arrays/" target="_blank">
-                        <span class="chip bg-color">arrays</span>
+                    <a href="/tags/docker/" target="_blank">
+                        <span class="chip bg-color">docker</span>
+                    </a>
+                    
+                    <a href="/tags/运维开发/" target="_blank">
+                        <span class="chip bg-color">运维开发</span>
                     </a>
                     
                 </div>
@@ -808,7 +824,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">147.6k</span>
+            <span class="white-color">150.4k</span>
             
 
             <br>

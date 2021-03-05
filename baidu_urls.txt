@@ -1,7 +1,9 @@
+https://arthurjq.com/2021/03/05/nullpointerexception/
 https://arthurjq.com/2021/03/04/k8s-exp/
 https://arthurjq.com/2021/03/04/database/sql-standard/
 https://arthurjq.com/2021/03/03/database/timestamp/
 https://arthurjq.com/2021/03/02/java/transaction-no-effect/
+https://arthurjq.com/2021/03/01/redis-cache/
 https://arthurjq.com/2021/02/25/database/lucene/
 https://arthurjq.com/2021/02/25/database/es/
 https://arthurjq.com/2021/02/24/project/zookeeper/
@@ -60,7 +62,7 @@ https://arthurjq.com/2020/12/16/database/database-validationquery/
 https://arthurjq.com/2020/12/15/database/sql-injection-attack/
 https://arthurjq.com/2020/12/12/jz59-60/
 https://arthurjq.com/2020/12/11/java/lambda/
-https://arthurjq.com/2020/12/11/database/mybatis-executer-type/
+https://arthurjq.com/2020/12/11/database/mybatis/
 https://arthurjq.com/2020/12/11/java/arrays/
 https://arthurjq.com/2020/12/09/java/string/
 https://arthurjq.com/2020/12/09/java/list/
