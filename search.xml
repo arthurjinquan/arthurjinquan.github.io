@@ -217,9 +217,9 @@
             
             <tag> elasticsearch </tag>
             
-            <tag> 分布式系统 </tag>
-            
             <tag> lucene </tag>
+            
+            <tag> 分布式系统 </tag>
             
         </tags>
       
@@ -277,9 +277,9 @@
             
             <tag> spring </tag>
             
-            <tag> annotation </tag>
-            
             <tag> bean </tag>
+            
+            <tag> annotation </tag>
             
         </tags>
       
@@ -893,9 +893,9 @@
             
             <tag> springcloud </tag>
             
-            <tag> interface </tag>
-            
             <tag> feign </tag>
+            
+            <tag> interface </tag>
             
         </tags>
       
@@ -1076,9 +1076,9 @@
       
         <tags>
             
-            <tag> 事务 </tag>
-            
             <tag> mybatis </tag>
+            
+            <tag> 事务 </tag>
             
             <tag> mysql </tag>
             
