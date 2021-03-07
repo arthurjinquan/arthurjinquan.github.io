@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/116.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -373,16 +373,16 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/springcloud/" target="_blank">
-                            <span class="chip bg-color">springcloud</span>
-                        </a>
-                        
                         <a href="/tags/事务/" target="_blank">
                             <span class="chip bg-color">事务</span>
                         </a>
                         
                         <a href="/tags/分布式事务/" target="_blank">
                             <span class="chip bg-color">分布式事务</span>
+                        </a>
+                        
+                        <a href="/tags/springcloud/" target="_blank">
+                            <span class="chip bg-color">springcloud</span>
                         </a>
                         
                     </div>
@@ -456,7 +456,7 @@
 <li>持久性（durability）：一个事务一旦被提交，它对数据库中数据的改变是永久性的。</li>
 </ol>
 <p><strong>BASE理论</strong></p>
-<p>基本可用（Basically Available）：分布式系统在出现故障时，保证核心可用，允许损失部分可用性。（响应时间上的损失、功能上的损失）<br>软状态（Soft State）：系统中的数据允许存在中间状态，中间状态不影响系统的整体可用性。（如：支付中、处理中）<br>最终一致性（Eventually Consistent）：系统中的数据不可一直处于软状态，必须在有时间期限，在期限过后应当保证数据的一致性。（<em>支付中</em> 变为 <em>支付成功</em>）</p>
+<p>基本可用（Basically Available）：分布式系统在出现故障时，保证核心可用，允许损失部分可用性。（响应时间上的损失、功能上的损失）<br>软状态（Soft State）：系统中的数据允许存在中间状态，中间状态不影响系统的整体可用性。（如：支付中、处理中）<br>最终一致性（Eventually Consistent）：系统中的数据不可一直处于软状态，必须在有时间期限，在期限过后应当保证数据的一致性。（支付中 =&gt; 支付成功）</p>
 <ul>
 <li>相比于本地事务的ADIC强一致性模型，BASE理论提出<strong>通过牺牲一定的强一致性来获得可用性</strong>；</li>
 <li>不同业务单元和业务组件对数据一致性的要求不一样，因此分布式系统中BASE理论和ACID特性会结合使用。</li>
@@ -529,8 +529,8 @@
 </li>
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-11.png" alt></p>
-<p>如图所示，XA 模式其实就是 Seata 底层利用了 XA 接口，在一阶段二阶段时自动处理。如一阶段时，XA 的 RM 通过代理用户数据源，创建 XAConnection，进行开启 XA 事务(XA start)和 XA-prepare（此时 XA 的任何操作都会被持久化，即便宕机也能恢复），在二阶段时，TC 通知 RM 进行 XA 分支的 Commit/Rollback 操作。</p>
-<h2 id="JTA（Java-Transaction-API）"><a href="#JTA（Java-Transaction-API）" class="headerlink" title="JTA（Java Transaction API）"></a>JTA（Java Transaction API）</h2><p>即Java的事务API，基于XA实现，也就是RM需要支持XA，所以也有JTA（XA）的说法，JTA仅定义了接口。主要包括<code>javax.sql.XADataResource</code>、<code>javax.sql.XAConnection</code>、<code>javax.sql.XAException</code>、<code>javax.transaction.xa.XAResource</code>、<code>javax.transaction.Xid</code>。<br>JTA的实现有几种形式：</p>
+<p>如图所示，XA 模式其实就是 Seata 底层利用了 XA 接口，在一阶段二阶段时自动处理。如一阶段时，XA 的 RM 通过代理用户数据源，创建 XAConnection，进行开启 XA 事务（XA start）和 XA-prepare（此时 XA 的任何操作都会被持久化，即便宕机也能恢复），在二阶段时，TC 通知 RM 进行 XA 分支的 Commit/Rollback 操作。</p>
+<h2 id="JTA（Java-Transaction-API）"><a href="#JTA（Java-Transaction-API）" class="headerlink" title="JTA（Java Transaction API）"></a>JTA（Java Transaction API）</h2><p>即<strong>Java的事务API</strong>，<strong>基于XA实现</strong>，也就是RM需要支持XA，所以也有JTA（XA）的说法，JTA仅定义了接口。主要包括<code>javax.sql.XADataResource</code>、<code>javax.sql.XAConnection</code>、<code>javax.sql.XAException</code>、<code>javax.transaction.xa.XAResource</code>、<code>javax.transaction.Xid</code>。<br>JTA的实现有几种形式：</p>
 <ol>
 <li>J2EE容器提供的JTA实现（Weblogic、JBoss ）；</li>
 <li>JOTM（Java Open Transaction Manager）、Atomikos，可独立于J2EE容器的环境下实现JTA；</li>
@@ -800,7 +800,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/63.jpg" class="responsive-img" alt="MySQL数据库优化方法">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/68.jpg" class="responsive-img" alt="MySQL数据库优化方法">
                         
                         <span class="card-title">MySQL数据库优化方法</span>
                     </div>
@@ -853,7 +853,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg" class="responsive-img" alt="Java 反射机制">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/114.jpg" class="responsive-img" alt="Java 反射机制">
                         
                         <span class="card-title">Java 反射机制</span>
                     </div>
@@ -1058,7 +1058,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">150.4k</span>
+            <span class="white-color">152.5k</span>
             
 
             <br>

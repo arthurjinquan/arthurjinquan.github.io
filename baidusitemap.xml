@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arthurjq.com/2021/03/06/helm-ingress/</loc>
+    <lastmod>2021-03-06</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/02/03/database/jta/</loc>
+    <lastmod>2021-03-05</lastmod>
+  </url>
+  <url>
     <loc>https://arthurjq.com/2021/02/22/java/classloader/</loc>
     <lastmod>2021-03-05</lastmod>
   </url>
@@ -238,10 +246,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2021/01/19/database/redis/</loc>
-    <lastmod>2021-02-07</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/02/03/database/jta/</loc>
     <lastmod>2021-02-07</lastmod>
   </url>
   <url>
