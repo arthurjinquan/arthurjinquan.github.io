@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/102.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/104.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -417,7 +417,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.1k
+                    4k
                 </div>
                 
 
@@ -478,11 +478,10 @@
 <p><a href="https://www.elastic.co/cn/products/beats/filebeat" target="_blank" rel="noopener">https://www.elastic.co/cn/products/beats/filebeat</a><br><a href="https://www.elastic.co/guide/en/beats/filebeat/5.6/index.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/beats/filebeat/5.6/index.html</a></p>
 <h2 id="ELK架构图"><a href="#ELK架构图" class="headerlink" title="ELK架构图"></a>ELK架构图</h2><h3 id="架构图一"><a href="#架构图一" class="headerlink" title="架构图一"></a>架构图一</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-1.png" alt></p>
 <p>这是最简单的一种ELK架构方式。优点是搭建简单，易于上手。缺点是<strong>Logstash耗资源较大</strong>，运行占用CPU和内存高。另外<strong>没有消息队列缓存，存在数据丢失隐患</strong>。</p>
-<p>此架构由Logstash分布于各个节点上搜集相关日志、数据，并经过分析、过滤后发送给远端服务器上的Elasticsearch进行存储。Elasticsearch将数据以分片的形式压缩存储并提供多种API供用户查询，操作。用户亦可以更直观的通过配置Kibana Web方便的对日志查询，并根据数据生成报表。</p>
 <h3 id="架构图二"><a href="#架构图二" class="headerlink" title="架构图二"></a>架构图二</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-2.png" alt></p>
 <p>此种架构引入了消息队列机制，位于各个节点上的Logstash Agent先将数据/日志传递给Kafka（或者Redis），并将队列中消息或数据间接传递给Logstash，Logstash过滤、分析后将数据传递给Elasticsearch存储。最后由Kibana将日志和数据呈现给用户。<strong>因为引入了Kafka（或者Redis）,所以即使远端Logstash server因故障停止运行，数据将会先被存储下来</strong>，从而避免数据丢失。</p>
 <h3 id="架构图三"><a href="#架构图三" class="headerlink" title="架构图三"></a>架构图三</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-3.png" alt></p>
-<p>此种架构将收集端logstash替换为beats，更灵活，消耗资源更少，扩展性更强。同时可配置Logstash 和Elasticsearch 集群用于支持大集群系统的运维日志数据监控和查询。</p>
+<p>此种架构<strong>将收集端logstash替换为beats</strong>，更灵活，消耗资源更少，扩展性更强。同时可配置Logstash 和Elasticsearch 集群用于支持大集群系统的运维日志数据监控和查询。</p>
 <h2 id="Filebeat工作原理"><a href="#Filebeat工作原理" class="headerlink" title="Filebeat工作原理"></a>Filebeat工作原理</h2><p>Filebeat由两个主要组件组成：prospectors 和 harvesters。这两个组件协同工作将文件变动发送到指定的输出中。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-4.png" alt></p>
 <p><strong>Harvester（收割机）：</strong>负责<strong>读取单个文件内容</strong>。每个文件会启动一个Harvester，每个Harvester会逐行读取各个文件，并将文件内容发送到制定输出中。</p>
@@ -512,7 +511,7 @@
 <p>mutate：对字段进行转换。例如对字段进行删除、替换、修改、重命名等。</p>
 <p>drop：丢弃一部分events不进行处理。</p>
 <p>clone：拷贝 event，这个过程中也可以添加或移除字段。</p>
-<p>geoip：添加地理信息(为前台kibana图形化展示使用)</p>
+<p>geoip：添加地理信息（为前台kibana图形化展示使用）</p>
 <p><strong>Outputs：outputs是logstash处理管道的最末端组件。</strong>一个event可以在处理过程中经过多重输出，但是一旦所有的outputs都执行结束，这个event也就完成生命周期。</p>
 <p>一些常见的outputs为：</p>
 <p>elasticsearch：可以高效的保存数据，并且能够方便和简单的进行查询。</p>
@@ -527,7 +526,7 @@
 <p>服务器：10.0.1.104，10.0.1.117，10.0.1.127</p>
 <p>jdk ：/home/rndii/projects/es/elasticsearch-7.8.1/jdk</p>
 <p>jdk-version:14.0.1（需要java-jdk，前置条件）</p>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>现阶段基本为默认配置，注意新建index时的分片与备份</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>现阶段基本为默认配置，<strong>注意新建index时的分片与备份</strong></p>
 <pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 找到配置文件中的cluster.name，打开该配置并设置集群名称</span>
 <span class="token key atrule">cluster.name</span><span class="token punctuation">:</span> wisefly<span class="token punctuation">-</span>test<span class="token punctuation">-</span>es
 <span class="token comment" spellcheck="true"># 找到配置文件中的node.name，打开该配置并设置节点名称</span>
@@ -550,7 +549,7 @@
 <h3 id="安装ik分词器"><a href="#安装ik分词器" class="headerlink" title="安装ik分词器"></a>安装ik分词器</h3><p><a href="https://github.com/medcl/elasticsearch-analysis-ik" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik</a><br><a href="https://github.com/medcl/elasticsearch-analysis-ik/releases" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik/releases</a></p>
 <p>在以上路径中找到对应版本的ik分词器，解压到 /home/rndii/projects/es/elasticsearch-7.8.1/plugins/ik/下</p>
 <h4 id="IK分词器动态扩容"><a href="#IK分词器动态扩容" class="headerlink" title="IK分词器动态扩容"></a>IK分词器动态扩容</h4><p>修改 /home/rndii/projects/es/elasticsearch-7.8.1/plugins/ik/config/IKAnalyzer.cfg.xml  文件</p>
-<p>把自己需要的词加到字典中，再在下边提娜佳自己的拓展词典和停用词词典：</p>
+<p>把自己需要的词加到字典中，再在下边添加自己的拓展词典和停用词词典：</p>
 <pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
 <span class="token doctype">&lt;!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd"></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">></span></span>
@@ -577,16 +576,13 @@
 <p>2.解压后进入config目录</p>
 <p>3.编辑kibana.yml</p>
 <pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#外网访问</span>
-
 <span class="token key atrule">server.host</span><span class="token punctuation">:</span> <span class="token string">"0.0.0.0"</span>
 
 <span class="token comment" spellcheck="true">#配置es集群地址</span>
-
 <span class="token key atrule">elasticsearch.hosts</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"http://10.0.1.104:9200"</span><span class="token punctuation">,</span> <span class="token string">"http://10.0.1.117:9200"</span><span class="token punctuation">,</span> <span class="token string">"http://10.0.1.127:9200"</span><span class="token punctuation">]</span>
 
 <span class="token comment" spellcheck="true">#7.x后自带中文包，使用中文包</span>
-
-<span class="token key atrule">i18n.locale</span><span class="token punctuation">:</span> <span class="token string">"zh-CN"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token key atrule">i18n.locale</span><span class="token punctuation">:</span> <span class="token string">"zh-CN"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>4.进入bin，后台启动nohup </p>
 <pre class="line-numbers language-shell"><code class="language-shell">./kibana > runlog.log 2> & 1&<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
@@ -598,7 +594,7 @@
 <p>公司内网，外边进不去</p>
 </blockquote>
 <p><strong>6.索引模板</strong></p>
-<p>由于每天生成索引日志，并且日志索引分片为1，副本分片也为1，logstash在向es中添加数据时会自动创建索引，所以我们可以在es中创建索引模板，规范以logstash开头的索引名的数据类型，索引等生成规则。而不是默认生成！！！！</p>
+<p>由于每天生成索引日志，并且<strong>日志索引分片为1，副本分片也为1</strong>，logstash在向es中添加数据时会自动创建索引，所以我们可以在es中创建索引模板，规范以logstash开头的索引名的数据类型，索引等生成规则。而不是默认生成！！！！</p>
 <p><strong>下列为索引生成规则及请求参数：</strong></p>
 <p>1）template指定的”searchlog-*”表示该template将应用于searchlog-开头的索引的创建，并与order参数一起决定哪个模板生效（同名称规则的order更大的模板生效）；</p>
 <p>2）setting节点下refresh_interval参数表示数据自动刷新的频率（默认1s），由于日志文件实时性要求并不是特别高，因此这里可以酌情降低频率以提高索引的写入性能；</p>
@@ -950,7 +946,7 @@ output <span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/108.jpg" class="responsive-img" alt="Skywalking初涉猎">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/110.jpg" class="responsive-img" alt="Skywalking初涉猎">
                         
                         <span class="card-title">Skywalking初涉猎</span>
                     </div>
@@ -1007,7 +1003,7 @@ output <span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="Zipkin的安装和配置">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="Zipkin的安装和配置">
                         
                         <span class="card-title">Zipkin的安装和配置</span>
                     </div>
@@ -1220,7 +1216,7 @@ output <span class="token punctuation">{</span>
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">152.5k</span>
+            <span class="white-color">158.2k</span>
             
 
             <br>

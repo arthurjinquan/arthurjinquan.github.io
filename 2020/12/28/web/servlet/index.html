@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/82.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/80.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -448,30 +448,30 @@
 <li>你销毁时要做什么</li>
 <li>你接受到请求时要做什么</li>
 </ol>
-<p>这是Java给的一种规范！就像阿西莫夫的机器人三大定律、行尸走肉里Rick的那三个问题一样，规范！</p>
+<p>这是Java给的一种<strong>规范</strong>！就像阿西莫夫的机器人三大定律、行尸走肉里Rick的那三个问题一样，规范！</p>
 <p>servlet是一个规范，那实现了servlet的类，就能处理请求了吗？</p>
 <p>答案是，不能。</p>
 <p>你可以随便谷歌一个servlet的hello world教程，里面都会让你写一个servlet，相信我，你从来不会在servlet中写什么监听8080端口的代码，<strong>servlet不会直接和客户端打交道</strong>！</p>
 <p>那请求怎么来到servlet呢？答案是servlet容器，比如我们最常用的tomcat，同样，你可以随便谷歌一个servlet的hello world教程，里面肯定会让你把servlet部署到一个容器中，不然你的servlet压根不会起作用。</p>
 <p><strong>tomcat才是与客户端直接打交道的家伙</strong>，他监听了端口，请求过来后，根据url等信息，确定要将请求交给哪个servlet去处理，然后调用那个servlet的service方法，service方法返回一个response对象，tomcat再把这个response返回给客户端。</p>
-<h2 id="socket-和-servlet"><a href="#socket-和-servlet" class="headerlink" title="socket 和 servlet"></a>socket 和 servlet</h2><p>socket是一个tcp连接协议的java实现，有了这个就能建立tcp连接收发任何基于tcp层消息。而servlet是在http容器（比如tomcat）在建立tcp连接并接收到并解析完http消息后，将http消息的内容封装成servlet request交给你实现的servlet处理的，也就是说你想处理一个tomcat接收来的http消息，你按它要求实现了一个servlet，并加上映射，tomcat就能把它接到的http消息内容送到你的处理器（你实现的servlet）去处理你的逻辑，期间的网络连接内容解析什么的它都帮你搞了。</p>
-<h2 id="SpringBoot中的Bean初始化方法-PostConstruct详解"><a href="#SpringBoot中的Bean初始化方法-PostConstruct详解" class="headerlink" title="SpringBoot中的Bean初始化方法@PostConstruct详解"></a>SpringBoot中的Bean初始化方法@PostConstruct详解</h2><blockquote>
-<p>从Java EE 5规范开始，Servlet中增加了两个影响Servlet生命周期的注解：@PostConstruct和@PreDestroy。这两个注解<strong>只会被服务器调用一次</strong>。这两个注解被用来修饰一个非静态的<code>void()</code>方法 。写法两种方式，说一下下面这种常用方式。</p>
+<h2 id="socket-和-servlet"><a href="#socket-和-servlet" class="headerlink" title="socket 和 servlet"></a>socket 和 servlet</h2><p>socket是一个<strong>tcp连接协议的java实现</strong>，有了这个就能建立tcp连接收发任何基于tcp层消息。而servlet是在http容器（比如tomcat）在建立tcp连接并接收到并解析完http消息后，<strong>将http消息的内容封装成servlet request</strong>交给你实现的servlet处理的，也就是说你想处理一个tomcat接收来的http消息，你按它要求实现了一个servlet，并加上映射，tomcat就能把它接到的http消息内容送到你的处理器（你实现的servlet）去处理你的逻辑，期间的网络连接内容解析什么的它都帮你搞了。</p>
+<h2 id="SpringBoot中的Bean初始化方法"><a href="#SpringBoot中的Bean初始化方法" class="headerlink" title="SpringBoot中的Bean初始化方法"></a>SpringBoot中的Bean初始化方法</h2><p><strong>@PostConstruct详解</strong></p>
+<blockquote>
+<p>从Java EE 5规范开始，Servlet中增加了两个影响Servlet生命周期的注解：@PostConstruct和@PreDestroy。这<strong>两个注解只会被服务器调用一次</strong>。这两个注解被用来修饰一个非静态的void（）方法 。写法两种方式，说一下下面这种常用方式。</p>
 </blockquote>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@PostConstruct</span>
 
 Public <span class="token keyword">void</span> <span class="token function">someMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其实就是初始化的顺序问题：</p>
-<p>执行顺序： 父类静态变量或静态语句块–&gt;子类静态变量或静态语句块-&gt;父类实例变量或初始化语句块–&gt;父类构造方法-&gt;子类实例变量或初始化语句块-&gt;子类构造方法–&gt; @Autowired -&gt; @PostConstruct….-&gt;destroy-&gt;@PreDestroy</p>
+<p>执行顺序： <strong>父类静态变量或静态语句块–&gt;子类静态变量或静态语句块-&gt;父类实例变量或初始化语句块–&gt;父类构造方法-&gt;子类实例变量或初始化语句块-&gt;子类构造方法–&gt; @Autowired -&gt; @PostConstruct….-&gt; destroy -&gt; @PreDestroy</strong></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/servlet-postconstruct.png" alt></p>
-<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><h4 id="1-spring项目加载数据字典"><a href="#1-spring项目加载数据字典" class="headerlink" title="1.spring项目加载数据字典"></a>1.spring项目加载数据字典</h4><p>@PostConstruct注解的方法在项目启动的时候执行这个方法，也可以理解为在spring容器启动的时候执行，可作为一些数据的常规化加载，比如数据字典之类的。</p>
-<h4 id="2-spring项目的定时任务"><a href="#2-spring项目的定时任务" class="headerlink" title="2.spring项目的定时任务"></a>2.spring项目的定时任务</h4><p>spring自带的@schedule，没有开关，项目启动总会启动一个线程；做项目的时候就使用Java的timer，这个设置开关即可自由的控制，关闭的时候，不会启动线程；</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><h4 id="1-spring项目加载数据字典"><a href="#1-spring项目加载数据字典" class="headerlink" title="1.spring项目加载数据字典"></a>1.spring项目加载数据字典</h4><p>@PostConstruct注解的方法在项目启动的时候执行这个方法，也可以理解为在spring容器启动的时候执行，可作为一些<strong>数据的常规化加载</strong>，比如<strong>数据字典</strong>之类的。</p>
+<h4 id="2-spring项目的定时任务"><a href="#2-spring项目的定时任务" class="headerlink" title="2.spring项目的定时任务"></a>2.spring项目的定时任务</h4><p>spring自带的<strong>@schedule</strong>，没有开关，项目启动总会启动一个线程；做项目的时候就使用Java的timer，这个<strong>设置开关即可自由的控制</strong>，关闭的时候，<strong>不会启动线程</strong>；</p>
 <p>Java的timer也需要找到一个启动类，可以放到main函数里面启动，这样的话，代码的耦合性太高了，而使用PostConstruct是很干净的。</p>
 <p>如以下代码：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
     <span class="token keyword">private</span> Scheduler scheduler<span class="token punctuation">;</span>
-
 
     <span class="token annotation punctuation">@PostConstruct</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -484,7 +484,7 @@ Public <span class="token keyword">void</span> <span class="token function">some
                 ScheduleUtils<span class="token punctuation">.</span><span class="token function">updateScheduleJob</span><span class="token punctuation">(</span>scheduler<span class="token punctuation">,</span> scheduleJob<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -591,7 +591,7 @@ Public <span class="token keyword">void</span> <span class="token function">some
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/71.jpg" class="responsive-img" alt="CDN（Content Delivery Network）">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/73.jpg" class="responsive-img" alt="CDN（Content Delivery Network）">
                         
                         <span class="card-title">CDN（Content Delivery Network）</span>
                     </div>
@@ -644,7 +644,7 @@ Public <span class="token keyword">void</span> <span class="token function">some
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/99.jpg" class="responsive-img" alt="索引失效的十大杂症">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/97.jpg" class="responsive-img" alt="索引失效的十大杂症">
                         
                         <span class="card-title">索引失效的十大杂症</span>
                     </div>
@@ -861,7 +861,7 @@ Public <span class="token keyword">void</span> <span class="token function">some
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">152.5k</span>
+            <span class="white-color">158.2k</span>
             
 
             <br>
