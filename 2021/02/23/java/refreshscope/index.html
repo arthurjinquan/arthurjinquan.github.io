@@ -256,7 +256,7 @@ Singleton：这也是Sprin">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/28.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -423,7 +423,7 @@ Singleton：这也是Sprin">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.6k
                 </div>
                 
 
@@ -451,9 +451,11 @@ Singleton：这也是Sprin">
 <ol>
 <li><strong>Singleton</strong>：这也是Spring默认的scope，表示Spring容器<strong>只创建一个bean的实例</strong>，Spring在创建第一次后会缓存起来，之后不再创建，就是设计模式中的<strong>单例模式</strong>。</li>
 <li><strong>Prototype</strong>：代表线程每次调用这个bean都新创建一个实例。</li>
-<li><strong>Request</strong>：表示每个request作用域内的请求只创建一个实例。</li>
-<li><strong>Session</strong>：表示每个session作用域内的请求只创建一个实例。</li>
-<li><strong>GlobalSession</strong>：这个只在porlet的web应用程序中才有意义，它映射到porlet的global范围的session，如果普通的web应用使用了这个scope，容器会把它作为普通的session作用域的scope创建。</li>
+<li><strong>Request</strong>：表示每个request作用域（HTTP请求）内的请求只创建一个实例。</li>
+<li><strong>Session</strong>：表示每个session内的请求只创建一个实例，session过期bean随之失效。</li>
+<li><strong>application</strong>：bean被定义为ServletContext的生命周期中复用一个单例对象。</li>
+<li><strong>websocket</strong>：bean被定义为在websocket的生命周期中复用一个单例对象。</li>
+<li>GlobalSession：全局作用域，这个只在porlet的web应用程序中才有意义，它映射到porlet的global范围的session，如果普通的web应用使用了这个scope，容器会把它作为普通的session作用域的scope创建。</li>
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/RefreshScope-1.jpg" alt></p>
 <h3 id="在创建bean的时候如何指定"><a href="#在创建bean的时候如何指定" class="headerlink" title="在创建bean的时候如何指定"></a>在创建bean的时候如何指定</h3><p><strong>xml方式</strong>：</p>
@@ -739,7 +741,7 @@ Singleton：这也是Sprin">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/2.jpg" class="responsive-img" alt="Zookeeper的原理和分布式锁">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg" class="responsive-img" alt="Zookeeper的原理和分布式锁">
                         
                         <span class="card-title">Zookeeper的原理和分布式锁</span>
                     </div>
@@ -796,7 +798,7 @@ Singleton：这也是Sprin">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/23.jpg" class="responsive-img" alt="doGetBean方法">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/22.jpg" class="responsive-img" alt="doGetBean方法">
                         
                         <span class="card-title">doGetBean方法</span>
                     </div>
@@ -1009,7 +1011,7 @@ Singleton：这也是Sprin">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">158.2k</span>
+            <span class="white-color">160.6k</span>
             
 
             <br>

@@ -9,7 +9,7 @@
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="AOP将程序中的交叉业务逻辑（比如安全，日志，事务等），封装成一个切面，然后注入到目标对象（具体业务逻辑）中去。AOP可以对某个对象或某些对象的功能进行增强，比如对象中的方法进行增强，可以在执行某个方法之前或之后额外做一些事情。
-">
+IOCIO">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/97.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,14 +409,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    98
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
                 
@@ -433,7 +433,90 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><p>将程序中的交叉业务逻辑（比如安全，日志，事务等），封装成一个切面，然后注入到目标对象（具体业务逻辑）中去。AOP可以对某个对象或某些对象的功能进行增强，比如对象中的方法进行增强，可以在执行某个方法之前或之后额外做一些事情。</p>
-
+<h2 id="IOC"><a href="#IOC" class="headerlink" title="IOC"></a>IOC</h2><h3 id="IOC容器"><a href="#IOC容器" class="headerlink" title="IOC容器"></a>IOC容器</h3><p>实际上就是个map（key，value），里面存各种对象（在xml里配置的bean节点、@Component、@Controller），在项目启动的时候会读取配置文件里面的bean节点，根据全限定类名使用反射创建对象放进map里、扫描到注解的类还是通过反射创建对象放到map。</p>
+<p> 在代码需要用到里面对象时，再通过DI注入（autowired、resource等，xml里bean节点内的ref属性，项目启动时会读取xml节点ref属性根据id注入，也会扫描这些注解根据类型或id注入，id就是对象名）。</p>
+<h3 id="控制反转"><a href="#控制反转" class="headerlink" title="控制反转"></a>控制反转</h3><p>当A运行到需要B时，IOC容器会主动创建一个B注入到对象A需要的地方。对象A获得依赖对象B的过程，由<strong>主动行为变为了被动行为</strong>。</p>
+<h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><p><strong>实现IOC的方法</strong>，IOC容器在运行期间，动态地将某种依赖关系注入到对象中。</p>
+<h2 id="BeanFactory和ApplicationContext"><a href="#BeanFactory和ApplicationContext" class="headerlink" title="BeanFactory和ApplicationContext"></a>BeanFactory和ApplicationContext</h2><p>ApplicationContext是BeanFactory的子接口，提供了更完整的功能：</p>
+<ol>
+<li>继承MessageSource，因此<strong>支持国际化</strong>，比如可以用MessageSource实现资源文件的读取（MessageSource接口中的getMessage方法）</li>
+<li>统一的资源文件访问方式</li>
+<li>提供在监听器中注册bean的事件（疑惑）</li>
+<li>同时加载多个配置文件</li>
+<li>载入多个（有继承关系）上下文，使得每一个上下文都专注于一个特定的层次，比如应用的web层</li>
+</ol>
+<p>不同点：</p>
+<ol>
+<li>BeanFactory延迟加载注入Bean，而ApplicationContext在容器启动时一次性创建所以的Bean，这样<strong>有利于检查所依赖属性是否注入</strong>，无需等待，不足是占用内存空间</li>
+<li>BeanFactory通常以编程方式被创建，ApplicationContext还能以声明的方式创建，如使用ContextLoader。</li>
+<li>他们都支持BeanPostProcessor、BeanFactoryPostProcessor的使用，区别：BeanFactory需要手动注册，而ApplicationContext则是自动注册</li>
+</ol>
+<blockquote>
+<p>BeanFactoryPostProcessor在容器实例化任何其它bean之前读取配置元数据，并可以根据需要进行修改。</p>
+<p>BeanPostProcessor是在spring容器加载了bean的定义文件并且实例化bean之后执行的。BeanPostProcessor的执行顺序是在BeanFactoryPostProcessor之后。</p>
+</blockquote>
+<h2 id="Spring-Bean生命周期"><a href="#Spring-Bean生命周期" class="headerlink" title="Spring Bean生命周期"></a>Spring Bean生命周期</h2><ol>
+<li>解析类得到BeanDefinition</li>
+<li>如果有多个构造方法，则推断构造方法</li>
+<li>实例化得到一个对象</li>
+<li>@Autowired注解属性填充</li>
+<li>回调Aware方法，比如BeanNameAware（获取当前bean在IOC容器中的名字），BeanFactoryAware</li>
+<li>调用BeanPostProcessor的初始化前的方法</li>
+<li>调用初始化方法</li>
+<li>调用BeanPostProcessor的初始化后的方法，在这里会进行AOP</li>
+<li>如果当创建的bean是单例的则放入单例池</li>
+<li>使用bean</li>
+<li>容器关闭时调用DisposableBean中destory方法</li>
+</ol>
+<h2 id="Spring-Bean作用域"><a href="#Spring-Bean作用域" class="headerlink" title="Spring Bean作用域"></a>Spring Bean作用域</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-1.jpg" alt></p>
+<h2 id="Spring框架中的设计模式"><a href="#Spring框架中的设计模式" class="headerlink" title="Spring框架中的设计模式"></a>Spring框架中的设计模式</h2><h3 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h3><p>由一个工厂类根据传入的参数，动态觉得应该创建哪一个产品类</p>
+<p>BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得Bean对象，但是否是在传入参数后创建还是传入参数前创建根据具体情况来定。</p>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>实现了FactoryBean接口的bean，spring会在使用getBean（）调用获得该bean时，会自动调用该bean的getObject（）方法，所以返回的不是factory这个bean，而是这个bean.getObject（）方法的返回值。</p>
+<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>保证一个类仅有一个实例，并提供一个访问它的全局访问点</p>
+<p>Spring提供了全局的访问点BeanFactory，但是没有从构造器级别时控制单例，这是因为spring管理的是任意的java对象。</p>
+<h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><p>Spring定义了一个适配接口，使每一种Controller有一种对应的适配器实现类（SpringMVC中HandlerAdapter），让适配器代替Controller执行相应的方法（Handler）。这样在扩展Controller时，只需要增加一个适配器类就完成了SpringMVC的扩展。</p>
+<h3 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h3><p>动态地给一个对象添加一些额外的职责。增加功能比生成子类更加灵活。</p>
+<p>Spring中用到的装饰器模式在类名上有两种表现：1、类名中含有wrapper；2、类名中含有Decorator</p>
+<h3 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h3><p>切面在应用运行的时候被织入。在织入切面时，AOP容器会为目标对象动态地创建一个代理对象。</p>
+<p>在一个方法上加了@Transactional（申明式事务）注解后，Spring会<strong>基于这个类生成一个代理对象</strong>，Autowired后getBean从AOP容器中取得代理对象，会将这个代理对象作为bean，当在使用这个代理对象的方法时，代理逻辑会先把事务的自动提交设置为false。</p>
+<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><p>Spring的事件驱动模型使用的是观察者模式，ApplicationContext事件机制是观察者模式的实现，通过ApplicationEvent类和ApplicationListener接口，可以实现ApplicationContext事件处理。</p>
+<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>Spring框架的资源访问Resource接口，该接口提供了更强的资源访问能力，Spring框架本身大量使用了Resource接口来访问底层资源。</p>
+<h2 id="Bean的自动装配"><a href="#Bean的自动装配" class="headerlink" title="Bean的自动装配"></a>Bean的自动装配</h2><h3 id="autowire属性五种装配方式"><a href="#autowire属性五种装配方式" class="headerlink" title="autowire属性五种装配方式"></a>autowire属性五种装配方式</h3><h4 id="no"><a href="#no" class="headerlink" title="no"></a>no</h4><p>缺省情况下，自动配置时通过“ref”属性手动设定。</p>
+<p>手动装配：以value或ref的方式明确指定属性值</p>
+<h4 id="byName"><a href="#byName" class="headerlink" title="byName"></a>byName</h4><p>根据bean的属性名称进行自动装配</p>
+<p>Customer的属性名称为person，Spring会将bean id为person的bean通过setter方法进行自动装配</p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>customer<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.xxx.xxx.Customer<span class="token punctuation">"</span></span> <span class="token attr-name">autowire</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>byName<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>person<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.xxx.xxx.Person<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="byType"><a href="#byType" class="headerlink" title="byType"></a>byType</h4><p>根据bean的类型进行自动装配</p>
+<p>Customer的属性person的类型为Person，Spring会将Person类型通过setter方法进行自动装配</p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>customer<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.xxx.xxx.Customer<span class="token punctuation">"</span></span> <span class="token attr-name">autowire</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>byType<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>person<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.xxx.xxx.Person<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h4><p>类似byType，不过是应用于构造器的参数。如果一个bean与构造器参数的类型相同，则进行自动装配，否则导致异常。</p>
+<p>Customer构造函数的参数person的类型为Person，Spring会将Person类型通过构造方法进行自动装配</p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>customer<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.xxx.xxx.Customer<span class="token punctuation">"</span></span> <span class="token attr-name">autowire</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>constructor<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>person<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.xxx.xxx.Person<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="autodetect"><a href="#autodetect" class="headerlink" title="autodetect"></a>autodetect</h4><p>如果有默认的构造器，则通过constructor方式进行自动装配，否则使用byType方式进行自动装配</p>
+<h4 id="Autowired自动装配bean"><a href="#Autowired自动装配bean" class="headerlink" title="@Autowired自动装配bean"></a>@Autowired自动装配bean</h4><p>可在<strong>字段，setter方法，构造函数</strong>上使用。</p>
+<h2 id="SpringMVC工作流程"><a href="#SpringMVC工作流程" class="headerlink" title="SpringMVC工作流程"></a>SpringMVC工作流程</h2><ol>
+<li>用户发送请求至前端控制器DispatcherServlet</li>
+<li>DispatcherServlet收到请求调用HandlerMapping处理器映射器。（Map&lt; url , handler &gt;，其中url可以是bean id、@RequestMapping、key）</li>
+<li>处理器映射器找到具体的处理器（可以根据xml配置、注解进行查找），生成处理器及处理器拦截器（如果有则生成）一并返回给DispatcherServlet</li>
+<li>DispatcherServlet调用HandlerAdapter处理器适配器（Controller接口定义整个类为一个Handler、@RequestMapping定义方法、Servlet三种方法都有各自的适配器，support方法遍历适配器，找到后执行handle调用真正的handler）</li>
+<li>HandlerAdapter经过适配调用具体的处理器（Controller，也叫后端控制器）</li>
+<li>Controller执行完成返回ModelAndView</li>
+<li>HandlerAdapter将ModelAndView返回给DispatcherServlet</li>
+<li>DispatcherServlet把ModelAndView传给ViewReslover视图解析器</li>
+<li>ViewReslover解析后返回具体View</li>
+<li>DispatcherServlet根据View进行渲染视图（将模型数据填充至视图中，比如JSP）</li>
+<li>DispatcherServlet响应用户</li>
+</ol>
+<h2 id="SpringBoot自动装配"><a href="#SpringBoot自动装配" class="headerlink" title="SpringBoot自动装配"></a>SpringBoot自动装配</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-2.jpg" alt></p>
+<h2 id="和"><a href="#和" class="headerlink" title="#{ }和${ }"></a>#{ }和${ }</h2><p>#{ }是预编译处理，是占位符，${ }是字符串替换，是拼接符</p>
+<ol>
+<li>Mybatis在处理#{ }时，会将sql中的#{ }替换为 ？号，调用PreparedStatement来赋值（会自动加单引号）；</li>
+<li>在处理${ }时，就是替换成变量值，调用Statement来赋值；</li>
+</ol>
+<h2 id="绝大多数需求为单条记录查询时可以选择哈希索引"><a href="#绝大多数需求为单条记录查询时可以选择哈希索引" class="headerlink" title="绝大多数需求为单条记录查询时可以选择哈希索引"></a>绝大多数需求为单条记录查询时可以选择哈希索引</h2><h2 id="定义有外键的数据列一定要建立索引"><a href="#定义有外键的数据列一定要建立索引" class="headerlink" title="定义有外键的数据列一定要建立索引"></a>定义有外键的数据列一定要建立索引</h2>
             </div>
             <hr />
 
@@ -540,7 +623,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/97.jpg" class="responsive-img" alt="Java进阶">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="Java进阶">
                         
                         <span class="card-title">Java进阶</span>
                     </div>
@@ -586,31 +669,33 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/09/daemon-thread/">
+                <a href="/2021/03/10/es-node/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/76.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/35.jpg" class="responsive-img" alt="es分布式一致性原理">
                         
-                        <span class="card-title">Java的守护线程</span>
+                        <span class="card-title">es分布式一致性原理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java中有两类线程：User Thread（用户线程）、Daemon Thread（守护线程）
+                            ## 
+待完成
+
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-09
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/数据库/" class="post-category" target="_blank">
+                                    数据库
                                 </a>
                             
                             
@@ -620,12 +705,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/elasticsearch/" target="_blank">
+                        <span class="chip bg-color">elasticsearch</span>
                     </a>
                     
-                    <a href="/tags/thread/" target="_blank">
-                        <span class="chip bg-color">thread</span>
+                    <a href="/tags/分布式系统/" target="_blank">
+                        <span class="chip bg-color">分布式系统</span>
                     </a>
                     
                 </div>
@@ -799,7 +884,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">158.2k</span>
+            <span class="white-color">160.6k</span>
             
 
             <br>

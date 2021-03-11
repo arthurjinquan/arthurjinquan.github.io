@@ -262,7 +262,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/107.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/108.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -421,14 +421,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
                 
@@ -453,11 +453,13 @@
 </ol>
 <p>操作范围：</p>
 <ol>
-<li><p>表锁 ：一次性对一张表整体加锁。如MyISAM存储引擎使用表锁，开销小、加锁快；无死锁；但锁的范围大，容易发生锁冲突、并发度低。</p>
-</li>
-<li><p>行锁：一次性对一条数据加锁。如InnoDB存储引擎使用行锁，开销大，加锁慢；容易出现死锁；锁的范围较小，不易发生锁冲突，并发度高（很小概率 发生高并发问题：脏读、幻读、不可重复度、丢失更新等问题）。</p>
-</li>
+<li>表锁 ：一次性对一张表整体加锁。如MyISAM存储引擎使用表锁，开销小、加锁快；无死锁；但锁的范围大，容易发生锁冲突、并发度低。</li>
+<li>行锁：一次性对一条数据加锁。如InnoDB存储引擎使用行锁，开销大，加锁慢；容易出现死锁；锁的范围较小，不易发生锁冲突，并发度高（很小概率 发生高并发问题：脏读、幻读、不可重复度、丢失更新等问题）。</li>
 </ol>
+<p>记录锁（Record Lock）：记录锁也是属于行锁的一种，锁的只是表中的某一条记录。精准条件命中，并且命中的条件字段是<strong>唯一索引</strong>。加了记录锁后数据可以避免数据在查询时被修改的重复读问题，也避免了在修改的事务未提交前被其他事务读取的脏读的问题。</p>
+<p>页锁：开销、并发度和加锁时间界于表锁和行锁之间，<strong>会出现死锁</strong></p>
+<p>间隙锁（Gap Lock）：属于行锁的一种，是在事务加锁后其锁住的是表记录的某一个区间，当表的相邻ID之间出现间隙则会形成一个区间，遵循左开右闭原则。只会出现在重复读的事务级别中。</p>
+<p>临建锁（Next-Key Lock）：行锁的一种，是Innodb的行锁默认算法，就是记录锁和间隙锁的结合，临建锁会把查询出来的记录锁住，同时也会把该范围内的所有间隙也锁住，再之它会把相邻的下一个区间也会锁住。触发条件：范围查询并命中，查询命中了索引。结合记录锁和间隙锁的特性，临建锁避免了再范围查询时出现脏读，重复读，幻读问题。加了临建锁后，再范围区间内数据不允许被修改和插入。</p>
 <h2 id="基本的指令"><a href="#基本的指令" class="headerlink" title="基本的指令"></a>基本的指令</h2><h3 id="增加锁和释放锁"><a href="#增加锁和释放锁" class="headerlink" title="增加锁和释放锁"></a>增加锁和释放锁</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">lock</span> <span class="token keyword">table</span> 表<span class="token number">1</span>  <span class="token keyword">read</span><span class="token operator">/</span><span class="token keyword">write</span>  <span class="token punctuation">,</span>表<span class="token number">2</span>  <span class="token keyword">read</span><span class="token operator">/</span><span class="token keyword">write</span>  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
 
 unlock <span class="token keyword">tables</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -691,7 +693,7 @@ name <span class="token keyword">varchar</span><span class="token punctuation">(
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/69.jpg" class="responsive-img" alt="Java类加载器classloader">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/68.jpg" class="responsive-img" alt="Java类加载器classloader">
                         
                         <span class="card-title">Java类加载器classloader</span>
                     </div>
@@ -748,7 +750,7 @@ name <span class="token keyword">varchar</span><span class="token punctuation">(
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/20.jpg" class="responsive-img" alt="OLTP vs OLAP">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/21.jpg" class="responsive-img" alt="OLTP vs OLAP">
                         
                         <span class="card-title">OLTP vs OLAP</span>
                     </div>
@@ -953,7 +955,7 @@ name <span class="token keyword">varchar</span><span class="token punctuation">(
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">158.2k</span>
+            <span class="white-color">160.6k</span>
             
 
             <br>

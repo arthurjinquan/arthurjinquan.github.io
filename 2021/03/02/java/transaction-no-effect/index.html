@@ -254,7 +254,7 @@ transactional注解不生效transactional注解什么时候不生效？">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/92.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/93.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -483,8 +483,9 @@ transactional注解不生效transactional注解什么时候不生效？">
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
 <li>数据库不支持事务</li>
 <li>注解放在了私有方法上</li>
-<li>类内部调用</li>
+<li>类内部调用，类里面使用this调用本类方法（this通常省略）</li>
 <li>未捕获异常</li>
+<li>没有被Spring管理（没加@Service等注解）</li>
 <li>多线程场景</li>
 </ol>
 <p>这些场景都会导致@Transactional失效</p>
@@ -601,7 +602,7 @@ transactional注解不生效transactional注解什么时候不生效？">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/79.jpg" class="responsive-img" alt="timestamp时间格式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/78.jpg" class="responsive-img" alt="timestamp时间格式">
                         
                         <span class="card-title">timestamp时间格式</span>
                     </div>
@@ -654,7 +655,7 @@ transactional注解不生效transactional注解什么时候不生效？">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/109.jpg" class="responsive-img" alt="Redis的cache">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/108.jpg" class="responsive-img" alt="Redis的cache">
                         
                         <span class="card-title">Redis的cache</span>
                     </div>
@@ -867,7 +868,7 @@ transactional注解不生效transactional注解什么时候不生效？">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">158.2k</span>
+            <span class="white-color">160.6k</span>
             
 
             <br>
