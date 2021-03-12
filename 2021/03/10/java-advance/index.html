@@ -254,7 +254,7 @@ IOCIO">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,14 +409,14 @@ IOCIO">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    3.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    13 分
                 </div>
                 
                 
@@ -516,7 +516,70 @@ IOCIO">
 <li>Mybatis在处理#{ }时，会将sql中的#{ }替换为 ？号，调用PreparedStatement来赋值（会自动加单引号）；</li>
 <li>在处理${ }时，就是替换成变量值，调用Statement来赋值；</li>
 </ol>
-<h2 id="绝大多数需求为单条记录查询时可以选择哈希索引"><a href="#绝大多数需求为单条记录查询时可以选择哈希索引" class="headerlink" title="绝大多数需求为单条记录查询时可以选择哈希索引"></a>绝大多数需求为单条记录查询时可以选择哈希索引</h2><h2 id="定义有外键的数据列一定要建立索引"><a href="#定义有外键的数据列一定要建立索引" class="headerlink" title="定义有外键的数据列一定要建立索引"></a>定义有外键的数据列一定要建立索引</h2>
+<h2 id="绝大多数需求为单条记录查询时可以选择哈希索引"><a href="#绝大多数需求为单条记录查询时可以选择哈希索引" class="headerlink" title="绝大多数需求为单条记录查询时可以选择哈希索引"></a>绝大多数需求为单条记录查询时可以选择哈希索引</h2><h2 id="定义有外键的数据列一定要建立索引"><a href="#定义有外键的数据列一定要建立索引" class="headerlink" title="定义有外键的数据列一定要建立索引"></a>定义有外键的数据列一定要建立索引</h2><h2 id="慢查询优化"><a href="#慢查询优化" class="headerlink" title="慢查询优化"></a>慢查询优化</h2><ol>
+<li>是否load了额外的数据</li>
+<li>是否走索引</li>
+<li>横向或纵向分表</li>
+</ol>
+<h2 id="ACID靠什么保证"><a href="#ACID靠什么保证" class="headerlink" title="ACID靠什么保证"></a>ACID靠什么保证</h2><ol>
+<li><p>A由<strong>undo log</strong>日志保证，它记录了<strong>需要回滚的日志信息</strong>，事务回滚时撤销已经执行成功的sql</p>
+</li>
+<li><p>C由其他三大特性保证，<strong>程序代码</strong>要保证业务上的一致性</p>
+</li>
+<li><p>I由<strong>MVCC</strong>来保证</p>
+</li>
+<li><p>D由<strong>内存 + redo log</strong>来保证，mysql修改数据同时在内存和redo log记录这次操作，宕机的时候可以从redo log恢复。redo log记录了<strong>数据修改的状态</strong></p>
+<blockquote>
+<p>InnoDB redo log写盘，InnoDB 事务进入prepare 状态。</p>
+<p>如果前面 prepare成功，binlog 写盘，再继续将事务日志持久化到binlog。如果持久化成功，那么InnoDB事务则进入commit状态（在 redo log里面写一个commit记录）</p>
+<p>所以说如果redo log中由commit，说明binlog持久化成功</p>
+</blockquote>
+<p>redo log的刷盘会在系统空闲时进行。（Mysql的主从同步（复制）通过binlog来同步）</p>
+</li>
+</ol>
+<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><p><strong>多版本并发控制</strong>（Multi-Version Concurrency Control）：读取数据时通过一种类似快照的方式将数据保存下来，这样读锁就和写锁不冲突了，不同的事务session会看到自己特定版本的数据，版本链</p>
+<p>MVCC只在 READ COMMITED 和REPEATABLE READ 下工作。因为READ UNCOMMITED 总是读取最新的数据行，而不是符合当前事务版本的数据行。而serializable则会对所有读取的行都加锁。</p>
+<p>聚簇索引记录中有两个必要的隐藏列：</p>
+<ol>
+<li><strong>trx_id</strong>：用来存储每次对某条聚簇索引记录进行修改的时候的事务id</li>
+<li><strong>roll_pointer</strong>：每次对聚簇索引修改的时候，都会把老版本写入undo日志中。这个roll_pointer就是存了个<strong>指针</strong>，指向<strong>索引记录的上一个版本</strong>的位置。（注意插入操作的undo日志没有这个属性，因为它没有老版本）</li>
+</ol>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-3.jpg" alt></p>
+<h2 id="mysql主从同步原理"><a href="#mysql主从同步原理" class="headerlink" title="mysql主从同步原理"></a>mysql主从同步原理</h2><p>主要由三个线程：master（binlog dump thread）、slave（I / O thread、SQL thread）</p>
+<ol>
+<li>主节点binlog，主从复制的基础是<strong>主库记录数据库的所有变更记录到binlog</strong>。binlog是数据库服务器启动的那一刻起，保存所有修改数据库结构或内容的一个文件。</li>
+<li>主节点log dump线程，当binlog有变动时，log dump线程读取其内容并发送给从节点。</li>
+<li>从节点I /O 线程接受binlog 内容，并将其写入到relay log 文件中。（relay log在从节点）</li>
+<li>从节点的SQL线程读取 relay log 文件内容对数据更新进行重放，最终保证主从数据库一致性。</li>
+</ol>
+<p>注：主从节点使用 <strong>binlog文件 + position</strong> 偏移量来定位主从同步的位置，从节点会保存其已接收到的偏移量，如果从节点发生宕机重启，则会自动从position的位置同步。</p>
+<p>mysql默认的复制方式是异步的，主库把日志发送给从库不关心从库是否已经处理。有一个问题就是假设主库挂了，从库处理失败，这时候从库升为主库，日志丢失了。</p>
+<p><strong>全同步复制</strong>：主库写入binlog后强制同步日志到从库，<strong>所有</strong>从库执行完才返回客户端。</p>
+<p><strong>半同步复制</strong>：从库写入日志成功后返回ACK确认给主库，主库<strong>收到至少一个</strong>从库的确认就认为完成。</p>
+<h2 id="负载均衡类型"><a href="#负载均衡类型" class="headerlink" title="负载均衡类型"></a>负载均衡类型</h2><p>DNS方式实现负载均衡</p>
+<p>硬件负载均衡：F5和A10</p>
+<p>软件负载均衡：</p>
+<ol>
+<li><strong>Nginx</strong>：七层负载均衡，支持HTTP、E-mail协议，同时也支持4层负载均衡（解析url，与客户端和服务端都要保持长连接，性能损耗）</li>
+<li><strong>HAproxy</strong>：支持七层规则，性能不错。OpenStack 默认使用</li>
+<li><strong>LVS</strong>：运行在内核态，性能最高，严格说工作在第三层（ip——&gt;Server）</li>
+</ol>
+<h2 id="分布式下Session共享方案"><a href="#分布式下Session共享方案" class="headerlink" title="分布式下Session共享方案"></a>分布式下Session共享方案</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-4.jpg" alt></p>
+<h2 id="分布式锁解决方案"><a href="#分布式锁解决方案" class="headerlink" title="分布式锁解决方案"></a>分布式锁解决方案</h2><p>需要这个锁独立于每一个服务之外，而不是在服务里面。</p>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>利用<strong>主键冲突</strong>控制一次只有一个线程能获取锁，非阻塞（要自己写阻塞代码）、不可重入（递归不支持，要自己实现AQS）、单点、不支持失效时间（要自己写定时器）</p>
+<p>比如在数据库中建张表，采用唯一约束，要获得锁就往数据库中插入同一个key的记录放到唯一键上面，如果放进去了就是拿到锁了。</p>
+<h3 id="Zookeeper分布式锁"><a href="#Zookeeper分布式锁" class="headerlink" title="Zookeeper分布式锁"></a>Zookeeper分布式锁</h3><p>zk通过Znode解决<strong>死锁</strong>问题，一旦客户端获取锁后突然挂掉，这个临时节点会自动删除，其他客户端自动获取锁。</p>
+<p>临时顺序节点解决<strong>惊群效应</strong>。</p>
+<h3 id="Redis分布式锁"><a href="#Redis分布式锁" class="headerlink" title="Redis分布式锁"></a>Redis分布式锁</h3><p>setNX命令，<strong>单线程处理网络请求</strong>，不需要考虑并发安全性。</p>
+<p>Redis是个第三方中间件，在集群中很方便地实现分布式锁，所有服务节点设置相同地key，返回0则获取锁失败，T1申请到key后T2肯定申请不到。</p>
+<h4 id="setNX问题"><a href="#setNX问题" class="headerlink" title="setNX问题"></a>setNX问题</h4><ol>
+<li>早期版本<strong>没有超时参数</strong>，需要单独设置，存在死锁问题（key不会超时）</li>
+<li>后期版本提供加锁和设置时间原子操作（set（NX,，timeout）），但是存在任务超时，锁自动释放，导致<strong>并发问题</strong>，加锁和释放锁不是同一线程问题（假如T1获得锁要执行15s，锁失效时间为10s，在这5s内T2获得了锁，T1执行完了要把锁释放掉，结果把T2的锁释放了，解决方法可以在value中存上线程的唯一标识或者uuid）</li>
+</ol>
+<p>删除锁：<strong>判断线程唯一标识再删除</strong></p>
+<p>可重入性及<strong>锁续期</strong>没有实现，通过redisson解决（类似AQS实现（count计数），看门狗监听机制（设置一个监听器监听任务，任务没有执行完就延长过期时间））</p>
+<p><strong>redlock</strong>：以上的机制都只操作单节点，即使Redis通过Sentinel保证高可用，如果这个master节点由于某些发生了主从切换，那么就会出现锁丢失的情况（主从节点间是异步通信，Redis同步设置可能数据丢失）。redlock从多个节点申请锁，当一半以上节点获取成功才算成功，redisson有相应的实现</p>
+
             </div>
             <hr />
 
@@ -623,7 +686,7 @@ IOCIO">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="Java进阶">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="Java进阶">
                         
                         <span class="card-title">Java进阶</span>
                     </div>
@@ -673,7 +736,7 @@ IOCIO">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/35.jpg" class="responsive-img" alt="es分布式一致性原理">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/37.jpg" class="responsive-img" alt="es分布式一致性原理">
                         
                         <span class="card-title">es分布式一致性原理</span>
                     </div>
@@ -884,7 +947,7 @@ IOCIO">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">160.6k</span>
+            <span class="white-color">166.2k</span>
             
 
             <br>

@@ -1,6 +1,6 @@
 https://arthurjq.com/2021/03/10/java-advance/
 https://arthurjq.com/2021/03/10/es-node/
-https://arthurjq.com/2021/03/09/daemon-thread/
+https://arthurjq.com/2021/03/09/java/daemon-thread/
 https://arthurjq.com/2021/03/08/java-basis/
 https://arthurjq.com/2021/03/06/project/helm-ingress/
 https://arthurjq.com/2021/03/04/project/k8s-exp/
@@ -51,7 +51,7 @@ https://arthurjq.com/2020/12/28/java/consistent-hashing/
 https://arthurjq.com/2020/12/28/web/cdn/
 https://arthurjq.com/2020/12/28/web/servlet/
 https://arthurjq.com/2020/12/26/database/index-missing/
-https://arthurjq.com/2020/12/25/database/acid-isolation/
+https://arthurjq.com/2020/12/25/database/isolation/
 https://arthurjq.com/2020/12/25/database/consistency/
 https://arthurjq.com/2020/12/25/project/jenkins/
 https://arthurjq.com/2020/12/24/web/mqtt/

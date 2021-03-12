@@ -255,7 +255,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -410,7 +410,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.7k
                 </div>
                 
 
@@ -478,7 +478,8 @@
 <p>如果数据库允许WHERE子句从旧快照中读取，则此语句也无法保证防止丢失更新</p>
 </blockquote>
 <p>在应用层，还有一些其他的解决办法，比如为并发写入创建多个冲突的版本，并使用应用代码或特殊数据结构解决或合并这些版本。或者直接以最后写入为准（这并没有解决丢失更新，而是允许丢失更新）。</p>
-<h2 id="幻读（写偏差）"><a href="#幻读（写偏差）" class="headerlink" title="幻读（写偏差）"></a>幻读（写偏差）</h2><p>幻读（Phantom Reads）就是读的时候发生了插入或删除，事务A根据相同条件第二次查询到事务B提交的新增数据，两次数据结果集不一致，好像出现了幻觉一样。</p>
+<h2 id="幻读（写偏差）"><a href="#幻读（写偏差）" class="headerlink" title="幻读（写偏差）"></a>幻读（写偏差）</h2><p>幻读（Phantom Reads）就是读的时候发生了插入或删除，事务A根据相同条件第二次查询到事务B提交的新增数据，两次数据结果集不一致，好像出现了幻觉一样。幻读发生在范围查询中。</p>
+<p>read commited级别下的事务在每次查询的开始都会生成一个独立的ReadView，所以才不可重复读，repeatable read级别在第一次读的时候生成一个ReadView，之后的读都复用之前的ReadView，所以可重复读，但ReadView只是针对查询操作，如果发生了插入或删除操作是会影响到查询操作，所以才出现了幻读。</p>
 <p>参考整理：<a href="https://zhuanlan.zhihu.com/p/69380112" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/69380112</a></p>
 
             </div>
@@ -516,7 +517,7 @@
                   property="dct:title" rel="dct:type">
                     《Isolation：隔离级别和脏读、脏写、不可重复读、更新丢失和幻读》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/25/database/acid-isolation/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/25/database/isolation/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -557,7 +558,7 @@
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2020/12/25/database/acid-isolation/',
+        id: '2020/12/25/database/isolation/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -586,7 +587,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="索引失效的十大杂症">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="索引失效的十大杂症">
                         
                         <span class="card-title">索引失效的十大杂症</span>
                     </div>
@@ -647,7 +648,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="一致性">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/98.jpg" class="responsive-img" alt="一致性">
                         
                         <span class="card-title">一致性</span>
                     </div>
@@ -852,7 +853,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">160.6k</span>
+            <span class="white-color">166.2k</span>
             
 
             <br>

@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -419,14 +419,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.3k
+                    2.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
                 
@@ -495,23 +495,38 @@
 <p>聚簇索引<strong>并不是一种单独的索引类型，而是一种数据存储方式</strong>。具体细节依赖于其实现方式。</p>
 <h2 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h2><p>InnoDB中，表数据文件本身就是按B+Tree组织的一个索引结构，聚簇索引就是按照每张表的主键构造一颗B+树，同时叶子节点中存放的就是整张表的行记录数据，也将聚集索引的叶子节点称为<strong>数据页</strong>。这个特性决定了<strong>索引组织表中数据也是索引的一部分</strong>；</p>
 <p>因为InnoDB的数据文件本身要按主键聚集，所以InnoDB要求表必须有主键（MyISAM可以没有），一般建表会用一个自增主键做聚簇索引，没有的话MySQL会默认创建，但是这个主键如果更改代价较高，故建表时要考虑自增ID不能频繁update这点。</p>
-<h2 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h2><p>InnoDB使用的是聚簇索引，MyISam使用的是非聚簇索引。</p>
-<p>MyISAM索引文件和数据文件是分离的，索引文件仅保存数据记录的地址。</p>
+<h2 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h2><p>InnoDB使用的是聚簇索引，MyISam使用的是<strong>非聚簇索引</strong>。MyISAM索引文件和数据文件是<strong>分离</strong>的，索引文件仅保存数据记录的地址。</p>
 <p>MyISAM引擎使用B+Tree作为索引结构，叶节点的data域存放的是<strong>数据记录的地址</strong>。</p>
 <p>在MyISAM中，主索引和辅助索引（Secondary key）在结构上没有任何区别，只是<strong>主索引要求key是唯一的，而辅助索引的key可以重复</strong>。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/InnoDB-MyISAM.PNG" alt></p>
-<p>MyISM使用的是非聚簇索引，非聚簇索引的两棵B+树看上去没什么不同，节点的结构完全一致只是存储的内容不同而已，主键索引B+树的节点存储了主键，辅助键索引B+树存储了辅助键。表数据存储在独立的地方，这两颗B+树的叶子节点都使用一个地址指向真正的表数据，对于表数据来说，这两个键没有任何差别。由于索引树是独立的，通过辅助键检索无需访问主键的索引树。</p>
-<h2 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h2><p>有下面三种理解：</p>
+<p>MyISAM使用的是非聚簇索引，非聚簇索引的两棵B+树看上去没什么不同，节点的结构完全一致只是存储的内容不同而已，主键索引B+树的节点存储了主键，辅助键索引B+树存储了辅助键。表数据存储在独立的地方，这两颗B+树的叶子节点都使用一个地址指向真正的表数据，对于表数据来说，这两个键没有任何差别。由于索引树是独立的，通过辅助键检索无需访问主键的索引树。</p>
+<h2 id="MyISAM和InnoDB的区别"><a href="#MyISAM和InnoDB的区别" class="headerlink" title="MyISAM和InnoDB的区别"></a>MyISAM和InnoDB的区别</h2><p>MyISAM：</p>
+<ol>
+<li>不支持事务，但是每次查询都是<strong>原子</strong>的</li>
+<li>支持表级锁</li>
+<li><strong>存储表的总行数</strong></li>
+<li>一个MyISAM表有三个文件：表结构文件，索引文件，数据文件</li>
+<li>采用非聚簇索引，索引文件的数据域存储指向数据文件的指针。辅索引与主索引基本一致，但是辅索引不保证唯一性</li>
+</ol>
+<p>InnoDB</p>
+<ol>
+<li>支持ACID事务，支持四种隔离级别</li>
+<li>支持行级锁及外键约束，因此可以<strong>支持写并发</strong></li>
+<li>不存储总行数，算行数要全表扫描</li>
+<li>一个InnoDB引擎存储在一个文件空间（共享表空间，表大小不受操作系统控制，一个表可能分布在多个文件里），也可能多个（设置为独立表空，表大小受操作系统文件大小限制，一般为2G）</li>
+<li>主键索引采用聚簇索引，辅索引的数据域存储主键的值；最好使用自增主键，防止插入数据时，为维持B+树结构，文件的大调整。</li>
+</ol>
+<h2 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h2><p>通过建立倒排索引，可以极大的提升检索效率，解决判断字段是否包含的问题，是目前搜索引擎使用的一种关键技术。可以通过ALTER TABLE table_name ADD FULLTEXT（column）；创建全文索引</p>
+<p>目前比较鸡肋，用es来实现会比较好</p>
+<h2 id="覆盖索引（using-index）"><a href="#覆盖索引（using-index）" class="headerlink" title="覆盖索引（using index）"></a>覆盖索引（using index）</h2><p>有下面两种理解：</p>
 <ol>
 <li><p>就是select的<strong>数据列只用从索引中就能够取得</strong>，<strong>不必从数据表中读取</strong>，换句话说查询列要被所使用的索引覆盖。</p>
-</li>
-<li><p>索引是高效找到行的一个方法，当能通过检索索引就可以读取想要的数据，那就不需要再到数据表中读取行了。如果一个索引包含了（或覆盖了）满足查询语句中字段与条件的数据就叫 做覆盖索引。</p>
 </li>
 <li><p>是非聚集组合索引的一种形式，它包括在查询里的Select、Join和Where子句用到的所有列（即建立索引的字段正好是覆盖查询语句[select子句]与查询条件[Where子句]中所涉及的字段，也即，索引包含了查询正在查找的所有数据）。</p>
 </li>
 </ol>
 <p>不是所有类型的索引都可以成为覆盖索引。覆盖索引必须要存储索引的列，而哈希索引、空间索引和全文索引等都不存储索引列的值，所以MySQL<strong>只能使用B-Tree索引做覆盖索引</strong>。</p>
-<p>当发起一个被索引覆盖的查询（也叫作索引覆盖查询）时，在EXPLAIN的Extra列可以看到“Using index”的信息：</p>
+<p>当发起一个被索引覆盖的查询时，在EXPLAIN的Extra列可以看到“Using index”的信息：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95.png" alt></p>
 <p>从执行结果上看，这个SQL语句只通过索引，就取到了所需要的数据，这个过程就叫做索引覆盖。</p>
 <p>只扫描索引而无需回表的优点：</p>
@@ -631,7 +646,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/26.jpg" class="responsive-img" alt="JDBC与Druid简单介绍及Druid与MyBatis连接数据库">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg" class="responsive-img" alt="JDBC与Druid简单介绍及Druid与MyBatis连接数据库">
                         
                         <span class="card-title">JDBC与Druid简单介绍及Druid与MyBatis连接数据库</span>
                     </div>
@@ -688,7 +703,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/49.jpg" class="responsive-img" alt="责任链模式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/47.jpg" class="responsive-img" alt="责任链模式">
                         
                         <span class="card-title">责任链模式</span>
                     </div>
@@ -897,7 +912,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">160.6k</span>
+            <span class="white-color">166.2k</span>
             
 
             <br>

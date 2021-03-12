@@ -255,7 +255,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/56.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/54.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -371,6 +371,10 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
                 <div class="col s7">
                     
                     <div class="article-tag">
+                        
+                        <a href="/tags/sql/" target="_blank">
+                            <span class="chip bg-color">sql</span>
+                        </a>
                         
                         <a href="/tags/mysql/" target="_blank">
                             <span class="chip bg-color">mysql</span>
@@ -503,7 +507,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 
 
 <blockquote>
-<p>id : 优先级，id值越大越优先；id值相同，从上往下 顺序执行<br>select_type ：查询类型<br>table ：表<br>type   ：索引类型<br>possible_keys ：预测用到的索引<br>key  ：实际使用的索引<br>key_len ：实际使用索引的长度<br>ref  :表之间的引用，指明当前表所 参照的 字段<br>rows ：通过索引查询到的数据量<br>Extra ： 额外的信息</p>
+<p>id : 优先级，id值越大越优先；id值相同，从上往下 顺序执行<br>select_type ：查询类型<br>table ：表<br>type   ：索引类型<br>possible_keys ：预测用到的索引<br>key  ：实际使用的索引<br>key_len ：实际使用索引的长度<br>ref  :表之间的引用，指明当前表所 参照的 字段<br>rows ：通过索引查询到的数据量                                                                                                     filtered：返回结果的行占需要读取的行（rows列的值）的百分比，就是百分比越高，说明需要查询到数据越精确，百分比越小，说明查询到的数据量大，而结果集很少<br>Extra ： 额外的信息</p>
 </blockquote>
 <p>下边对比较重要的字段进行说明：</p>
 <h3 id="select-type字段"><a href="#select-type字段" class="headerlink" title="select_type字段"></a>select_type字段</h3><ol>
@@ -515,20 +519,23 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 <li>union result :告知开发人员，那些表之间存在union查询</li>
 </ol>
 <p>在from子查询中， 如果有table1 union table2 ，则table1 就是derived,table2就是union，例如下边：</p>
-<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">explain</span>  <span class="token keyword">select</span>  cr<span class="token punctuation">.</span>cname  <span class="token keyword">from</span> <span class="token punctuation">(</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course <span class="token keyword">where</span> tid <span class="token operator">=</span> <span class="token number">1</span>  <span class="token keyword">union</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course <span class="token keyword">where</span> tid <span class="token operator">=</span> <span class="token number">2</span> <span class="token punctuation">)</span> cr <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">explain</span>  <span class="token keyword">select</span>  cr<span class="token punctuation">.</span>cname  
+<span class="token keyword">from</span> <span class="token punctuation">(</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course <span class="token keyword">where</span> tid <span class="token operator">=</span> <span class="token number">1</span>  
+      <span class="token keyword">union</span> 
+      <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> course <span class="token keyword">where</span> tid <span class="token operator">=</span> <span class="token number">2</span> <span class="token punctuation">)</span> cr <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="type字段"><a href="#type字段" class="headerlink" title="type字段"></a>type字段</h3><blockquote>
 <p>system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; all</p>
 <p>一般用不到上边这么多。</p>
 </blockquote>
 <p>常见的索引类型：<strong>system&gt;const&gt;eq_ref&gt;ref&gt;range&gt;index&gt;all</strong>   ，要对type进行优化的前提：有索引</p>
 <p>其中：system,const只是理想情况；实际能达到 ref&gt;range</p>
-<p><strong>system</strong>（忽略）: 只有一条数据的系统表 或 衍生表只有一条数据的主查询</p>
-<p><strong>const</strong>：仅仅能查到一条数据的SQL ,用于Primary key 或unique索引</p>
-<p><strong>eq_ref</strong>：唯一性索引：对于每个索引键的查询，返回匹配唯一行数据（<strong>有且只有1个</strong>，不能多 、不能0），常见于唯一索引 和主键索引</p>
-<p><strong>ref</strong>：非唯一性索引，对于每个索引键的查询，返回匹配的所有行（0，多）</p>
-<p><strong>range</strong>：检索指定范围的行 ,where后面是一个范围查询（<code>between   ,&gt; &lt; &gt;=</code>,     特殊:in有时候会失效 ，从而转为 无索引 all）</p>
-<p><strong>index</strong>：查询全部索引中数据，只需要扫描索引表</p>
-<p><strong>all</strong>：查询全部表中的数据</p>
+<p><strong>system</strong>（忽略）: <strong>只有一条数据的系统表</strong> 或 衍生表只有一条数据的主查询</p>
+<p><strong>const</strong>：仅仅能查到一条数据的SQL，通过索引一次命中 ,用于Primary key 或unique索引</p>
+<p><strong>eq_ref</strong>：<strong>唯一性索引</strong>：对于每个索引键的查询，返回<strong>匹配唯一行</strong>数据（<strong>有且只有1个</strong>，不能多 、不能0），常见于唯一索引 和 主键索引，有可能需要回表</p>
+<p><strong>ref</strong>：<strong>非唯一性索引</strong>，对于每个索引键的查询，返回匹配的所有行（0，多），有可能需要回表</p>
+<p><strong>range</strong>：检索<strong>指定范围</strong>的行 ,where后面是一个范围查询（<code>between   ,&gt; &lt; &gt;=</code>,     特殊:in有时候会失效 ，从而转为 无索引 all）</p>
+<p><strong>index</strong>：查询<strong>全部索引</strong>中数据，只遍历索引树</p>
+<p><strong>all</strong>：全表扫描</p>
 <blockquote>
 <p>system/const: 结果只有一条数据<br>eq_ref:结果多条；但是每条数据是唯一的 ；<br>ref：结果多条；但是每条数据是是0或多条 ；</p>
 </blockquote>
@@ -541,11 +548,10 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 <blockquote>
 <p>utf8:1个字符3个字节<br>gbk:1个字符2个字节<br>latin:1个字符1个字节</p>
 </blockquote>
-<h3 id="Extra字段"><a href="#Extra字段" class="headerlink" title="Extra字段"></a>Extra字段</h3><p><strong>using filesort</strong> ： 性能消耗大；需要“额外”的一次排序（查询）  。常见于 order by 语句中。</p>
+<h3 id="Extra字段"><a href="#Extra字段" class="headerlink" title="Extra字段"></a>Extra字段</h3><p><strong>using filesort</strong> ：没有走索引排序，性能消耗大；需要“额外”的一次排序（查询）  。常见于 order by 语句中。</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> test02 <span class="token keyword">where</span> <span class="token number">a1</span> <span class="token operator">=</span><span class="token string">''</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">a2</span> <span class="token punctuation">;</span> <span class="token comment" spellcheck="true">--using filesort</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
 <p>对于单索引， 如果排序和查找是同一个字段，则不会出现using filesort；如果排序和查找不是同一个字段，则会出现using filesort；</p>
-<p>避免： where哪些字段，就order by那些字段</p>
 </blockquote>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> test02 <span class="token keyword">add</span> <span class="token keyword">index</span> idx_a1_a2_a3 <span class="token punctuation">(</span><span class="token number">a1</span><span class="token punctuation">,</span><span class="token number">a2</span><span class="token punctuation">,</span><span class="token number">a3</span><span class="token punctuation">)</span> <span class="token punctuation">;</span>
 <span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token operator">*</span><span class="token keyword">from</span> test02 <span class="token keyword">where</span> <span class="token number">a1</span><span class="token operator">=</span><span class="token string">''</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">a3</span> <span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">--using filesort</span>
@@ -556,15 +562,15 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 <p>上边是复合索引的情况。</p>
 <p>小结： where和order by 按照复合索引的顺序使用，不要跨列或无序使用。</p>
 </blockquote>
-<p><strong>using temporary</strong>:性能损耗大 ，用到了临时表。一般出现在group by 语句中。</p>
+<p><strong>using temporary</strong>:性能损耗大 ，用到了<strong>临时表</strong>。一般出现在group by 语句中。</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token number">a1</span> <span class="token keyword">from</span> test02 <span class="token keyword">where</span> <span class="token number">a1</span> <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">,</span><span class="token string">'2'</span><span class="token punctuation">,</span><span class="token string">'3'</span><span class="token punctuation">)</span> <span class="token keyword">group</span> <span class="token keyword">by</span> <span class="token number">a1</span> <span class="token punctuation">;</span> <span class="token comment" spellcheck="true">--没有using temporary</span>
 <span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token number">a1</span> <span class="token keyword">from</span> test02 <span class="token keyword">where</span> <span class="token number">a1</span> <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">,</span><span class="token string">'2'</span><span class="token punctuation">,</span><span class="token string">'3'</span><span class="token punctuation">)</span> <span class="token keyword">group</span> <span class="token keyword">by</span> <span class="token number">a2</span> <span class="token punctuation">;</span> <span class="token comment" spellcheck="true">--using temporary</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>避免：查询那些列，就根据那些列 group by</p>
-<p><strong>using index</strong> :性能提升; <strong>索引覆盖</strong>（覆盖索引）。原因：不读取原文件，只从索引文件中获取数据 （不需要回表查询）</p>
+<p><strong>using index</strong> :性能提升; <strong>索引覆盖</strong>（覆盖索引）。原因：不读取原文件，<strong>只从索引文件中获取数据</strong> （不需要回表查询）</p>
 <p>例如：test02表中有一个复合索引（a1,a2）</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token number">a1</span><span class="token punctuation">,</span><span class="token number">a2</span> <span class="token keyword">from</span> test02 <span class="token keyword">where</span> <span class="token number">a1</span><span class="token operator">=</span><span class="token string">''</span> <span class="token operator">or</span> <span class="token number">a2</span><span class="token operator">=</span> <span class="token string">''</span> <span class="token punctuation">;</span> <span class="token comment" spellcheck="true">--using index</span>
 <span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token number">a1</span><span class="token punctuation">,</span><span class="token number">a3</span> <span class="token keyword">from</span> test02 <span class="token keyword">where</span> <span class="token number">a1</span><span class="token operator">=</span><span class="token string">''</span> <span class="token operator">or</span> <span class="token number">a3</span><span class="token operator">=</span> <span class="token string">''</span> <span class="token punctuation">;</span> <span class="token comment" spellcheck="true">--没有索引覆盖</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><strong>using where</strong> （需要回表查询）</p>
+<p><strong>using where</strong> （<strong>需要回表查询</strong>）</p>
 <p>假设age是索引列</p>
 <p>但查询语句<code>select age,name from ... where age =...</code>,此语句中必须回原表查Name，因此会显示using where</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token number">a1</span><span class="token punctuation">,</span><span class="token number">a3</span> <span class="token keyword">from</span> test02 <span class="token keyword">where</span> <span class="token number">a3</span> <span class="token operator">=</span> <span class="token string">''</span> <span class="token punctuation">;</span> <span class="token comment" spellcheck="true">--a3需要回原表查询</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -784,7 +790,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/110.jpg" class="responsive-img" alt="Spring事务的配置、参数详情及其原理介绍 （Transactional）">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/112.jpg" class="responsive-img" alt="Spring事务的配置、参数详情及其原理介绍 （Transactional）">
                         
                         <span class="card-title">Spring事务的配置、参数详情及其原理介绍 （Transactional）</span>
                     </div>
@@ -814,12 +820,12 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/事务/" target="_blank">
-                        <span class="chip bg-color">事务</span>
-                    </a>
-                    
                     <a href="/tags/mybatis/" target="_blank">
                         <span class="chip bg-color">mybatis</span>
+                    </a>
+                    
+                    <a href="/tags/事务/" target="_blank">
+                        <span class="chip bg-color">事务</span>
                     </a>
                     
                     <a href="/tags/mysql/" target="_blank">
@@ -841,7 +847,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/61.jpg" class="responsive-img" alt="MySQL 的Join及底层实现原理">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/59.jpg" class="responsive-img" alt="MySQL 的Join及底层实现原理">
                         
                         <span class="card-title">MySQL 的Join及底层实现原理</span>
                     </div>
@@ -1046,7 +1052,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">160.6k</span>
+            <span class="white-color">166.2k</span>
             
 
             <br>
