@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -419,14 +419,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.3k
+                    4.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    16 分
                 </div>
                 
                 
@@ -465,30 +465,15 @@
 <ol>
 <li>幂等（Idempotent）是一个数学与计算机学中的概念：<code>f(n) = 1^n</code> // 无论n等于多少，f（n）永远值等于1；</li>
 <li>在程序中，使用相同参数执行同一个方法，每一次执行结果都是相同的，即具有<code>幂等性</code>；</li>
-<li>以订单状态处理为例的幂等性设计（举个栗子），不论执行多少次orderProcess（）方法，都只会扣减一次库存，并且返回true。</li>
+<li>以订单状态处理为例的幂等性设计，不论执行多少次orderProcess（）方法，都只会扣减一次库存，并且返回true。</li>
 </ol>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/** 订单处理 */</span>
-<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">orderProcess</span><span class="token punctuation">(</span>OrderEntity orderEntity<span class="token punctuation">)</span><span class="token punctuation">{</span>
- <span class="token comment" spellcheck="true">//查询原订单信息</span>
- OrderEntity oldOrderEntity <span class="token operator">=</span> <span class="token function">getOrderInfo</span><span class="token punctuation">(</span>orderEntity<span class="token punctuation">)</span>
-  <span class="token comment" spellcheck="true">//判断订单状态，如订单状态为 ok 则直接返回 true</span>
- <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"ok"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>oldOrderEntity<span class="token punctuation">.</span><span class="token function">getOrderState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-     <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span>
- <span class="token comment" spellcheck="true">//更新订单状态</span>
- <span class="token keyword">boolean</span> upBoolean <span class="token operator">=</span> <span class="token function">updateOrderInfo</span><span class="token punctuation">(</span>orderEntity<span class="token punctuation">)</span><span class="token punctuation">;</span>
- <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>upBoolean<span class="token punctuation">)</span><span class="token punctuation">{</span>
-   <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span>
- <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"ok"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>orderEntity<span class="token punctuation">.</span><span class="token function">getOrderState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-   <span class="token comment" spellcheck="true">//扣减库存</span>
-   <span class="token keyword">boolean</span> reduceBoolean <span class="token operator">=</span> <span class="token function">reduceInventories</span><span class="token punctuation">(</span>orderEntity<span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>reduceBoolean<span class="token punctuation">)</span><span class="token punctuation">{</span>
-     <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-   <span class="token punctuation">}</span>
- <span class="token punctuation">}</span>
- <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>接口幂等性实现</strong></p>
+<ol>
+<li><strong>唯一id</strong>（建去重表）：每次操作都根据操作和内容生成唯一id，在执行之前先判断id是否存在，不存在才执行，并且保存到数据库或redis等</li>
+<li>服务端提供发送<strong>token</strong>的接口，业务调用接口前先获取token，然后调用业务接口请求时把token携带过去，服务器判断token是否存在redis，不存在说明第一次请求，执行完成后需要把redis中token删掉，token需要设置过期时间</li>
+<li><strong>版本控制</strong>：类似乐观锁，增加版本号，当版本号符合才更新数据</li>
+<li><strong>状态控制</strong>：例如订单有状态 已支付，未支付，支付中，支付失败，当处于未支付时才允许修改为支付中。</li>
+</ol>
 <h2 id="事务的演进过程"><a href="#事务的演进过程" class="headerlink" title="事务的演进过程"></a>事务的演进过程</h2><h3 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h3><p>对于一些小型项目，使用单体架构可以快速的开发，并且很容易控制我们的业务逻辑和事务处理。通过本地事务的ACID特性，保证我们数据的一致性。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-1.png" alt></p>
 <h3 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h3><p>实际项目中，我们可能会遇到一种情况就是，并发量不大，但常年累积下来数据量很大，这时候我们考虑到了<strong>分库策略</strong>。由于垮库情况下本地事务已经无法保证多库之间的数据一致性，<strong>这时我们就需要考虑分布式事务了</strong>。</p>
@@ -500,7 +485,7 @@
 <h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><h2 id="XA规范（协议）"><a href="#XA规范（协议）" class="headerlink" title="XA规范（协议）"></a>XA规范（协议）</h2><p> X/Open组织（现在的Open Group）定义了一套DTP（Distributed Transaction Processing）分布式事务处理模型，主要包含以下四部分：</p>
 <ol>
 <li>AP（应用程序）</li>
-<li>TM（事务管理器）：交易中间件</li>
+<li>TM（<strong>事务管理器</strong>）：交易中间件，根据事务所有的参与者的状态决定一起提交还是回滚</li>
 <li>RM（资源管理器）：数据库</li>
 <li>CRM（通信资源管理器）：消息中间件</li>
 </ol>
@@ -530,7 +515,7 @@
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-11.png" alt></p>
 <p>如图所示，XA 模式其实就是 Seata 底层利用了 XA 接口，在一阶段二阶段时自动处理。如一阶段时，XA 的 RM 通过代理用户数据源，创建 XAConnection，进行开启 XA 事务（XA start）和 XA-prepare（此时 XA 的任何操作都会被持久化，即便宕机也能恢复），在二阶段时，TC 通知 RM 进行 XA 分支的 Commit/Rollback 操作。</p>
-<h2 id="JTA（Java-Transaction-API）"><a href="#JTA（Java-Transaction-API）" class="headerlink" title="JTA（Java Transaction API）"></a>JTA（Java Transaction API）</h2><p>即<strong>Java的事务API</strong>，<strong>基于XA实现</strong>，也就是RM需要支持XA，所以也有JTA（XA）的说法，JTA仅定义了接口。主要包括<code>javax.sql.XADataResource</code>、<code>javax.sql.XAConnection</code>、<code>javax.sql.XAException</code>、<code>javax.transaction.xa.XAResource</code>、<code>javax.transaction.Xid</code>。<br>JTA的实现有几种形式：</p>
+<h2 id="JTA（Java-Transaction-API）"><a href="#JTA（Java-Transaction-API）" class="headerlink" title="JTA（Java Transaction API）"></a>JTA（Java Transaction API）</h2><p>即<strong>Java的事务API</strong>，<strong>基于XA实现</strong>，也就是<strong>RM需要支持XA</strong>，所以也有JTA（XA）的说法，JTA仅定义了接口。主要包括<code>javax.sql.XADataResource</code>、<code>javax.sql.XAConnection</code>、<code>javax.sql.XAException</code>、<code>javax.transaction.xa.XAResource</code>、<code>javax.transaction.Xid</code>。<br>JTA的实现有几种形式：</p>
 <ol>
 <li>J2EE容器提供的JTA实现（Weblogic、JBoss ）；</li>
 <li>JOTM（Java Open Transaction Manager）、Atomikos，可独立于J2EE容器的环境下实现JTA；</li>
@@ -551,13 +536,13 @@
 <p>整理于：<a href="https://zhuanlan.zhihu.com/p/315164700" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/315164700</a></p>
 <p>二阶段提交的一些问题：</p>
 <ol>
-<li><strong>同步阻塞</strong>，事务执行过程中所有参与者都是阻塞型的，第三方参与者访问参与者占有的资源时会被阻塞；</li>
-<li><strong>单点故障</strong>，协调者一旦发生故障，参与者会被阻塞。尤其在提交阶段，所有参与者都处于锁定资源状态中，无法完成事务操作；（可以选择新的协调者，但无法解决参与者被阻塞的问题）；</li>
-<li><strong>数据不一致</strong>，提交阶段协调者向参与者发送<code>commit</code>信息，发生局部网络故障，会导致存在参与者未收到<code>commit</code>信息无法提交事务情况，导致出现数据不一致现象；</li>
+<li><strong>单点故障</strong>，<strong>事务管理器</strong>一旦发生<strong>故障</strong>，参与者会被阻塞。尤其在提交阶段，所有参与者都处于锁定资源状态中，无法完成事务操作；（可以选择新的协调者，但无法解决参与者被阻塞的问题）；</li>
+<li><strong>同步阻塞</strong>，参与者和协调者资源都被锁住，提交和回滚后才能释放；</li>
+<li><strong>数据不一致</strong>，提交阶段协调者向参与者发送commit信息，<strong>发生局部网络故障</strong>，会导致存在参与者未收到commit信息无法提交事务情况，导致出现数据不一致现象；</li>
 </ol>
-<h2 id="三阶段提交（3PC）"><a href="#三阶段提交（3PC）" class="headerlink" title="三阶段提交（3PC）"></a>三阶段提交（3PC）</h2><p>相比于2PC，<strong>3PC把2PC的准备阶段再次进行拆分</strong>，并且3PC<strong>引入了参与者超时机制</strong>。</p>
+<h2 id="三阶段提交（3PC）"><a href="#三阶段提交（3PC）" class="headerlink" title="三阶段提交（3PC）"></a>三阶段提交（3PC）</h2><p>相比于2PC，<strong>3PC把2PC的准备阶段再次进行拆分</strong>，并且3PC<strong>引入了参与者超时机制</strong>。<strong>主要解决了2PC单点故障的问题</strong>，但性能问题和不一致问题仍然没有根本解决。</p>
 <ol>
-<li><p><strong>canCommit：</strong>协调者询问参与者，是否具备执行事务的条件，参与者进行自身事务必要条件的检查；</p>
+<li><p><strong>canCommit：</strong>协调者询问参与者，<strong>是否具备执行事务的条件</strong>，参与者进行自身事务必要条件的检查；</p>
 </li>
 <li><p><strong>preCommit：</strong>协调者通知参与者进行事务的预提交；</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-8.jpg" alt></p>
@@ -565,17 +550,16 @@
 <li><p><strong>doCommit：</strong>协调者根据<code>preCommit</code>阶段参与者的反馈结果通知参与者是否进行事务提交或是进行事务回滚；</p>
 </li>
 </ol>
-<p>虽然 3PC 用超时机制，解决了协调者故障后参与者的阻塞问题，但与此同时却多了一次网络通信，性能上反而变得更差，也不太推荐。</p>
-<h2 id="事务补偿方案TCC"><a href="#事务补偿方案TCC" class="headerlink" title="事务补偿方案TCC"></a>事务补偿方案TCC</h2><p>TCC的核心思想就是校验、资源锁定、补偿，对每个操作（Try）都提供确认（Confirm）和取消（cancel）的操作，这样根据操作的结果，来确认是进行Confirm还是Cancel。<br>可以看出XA的两阶段提交是基于<strong>资源层面</strong>的，而TCC也是一种两阶段提交，但它是基于<strong>应用层面</strong>的。</p>
+<p>虽然 3PC 用<strong>超时机制</strong>，解决了协调者故障后参与者的阻塞问题，但与此同时却多了一次网络通信，性能上反而变得更差，也不太推荐。</p>
+<h2 id="事务补偿方案TCC（业务层面）"><a href="#事务补偿方案TCC（业务层面）" class="headerlink" title="事务补偿方案TCC（业务层面）"></a>事务补偿方案TCC（业务层面）</h2><p>TCC的核心思想就是校验、资源锁定、补偿，对每个操作（Try）都提供确认（Confirm）和取消（cancel）的操作，这样根据操作的结果，来确认是进行Confirm还是Cancel。<br>可以看出XA的两阶段提交是基于<strong>数据库层面</strong>的，而TCC也是一种两阶段提交，但它是基于<strong>业务层面</strong>的。</p>
 <ol>
-<li><p><strong>Try</strong>：主要负责对业务进行数据检查和资源预留，例如：对资金进行<code>冻结</code>；对状态更改为<code>处理中</code>；</p>
-</li>
-<li><p><strong>Confirm</strong>：确认执行业务的操作，例如：进行实际<code>资金扣除</code>；更改状态为<code>最终结果</code>；</p>
-</li>
-<li><p><strong>Cancel</strong>：取消执行业务的操作，例如：<code>解冻资金</code>；更改状态为<code>未处理</code>；</p>
-<p>Seata 事务框架中的TCC事务：</p>
-</li>
+<li><strong>Try</strong>（检查资源）：主要负责对业务进行数据检查和资源预留，例如：对资金进行<code>冻结</code>；对状态更改为<code>处理中</code>；</li>
+<li><strong>Confirm</strong>：确认执行业务的操作，例如：进行实际<code>资金扣除</code>；更改状态为<code>最终结果</code>；</li>
+<li><strong>Cancel</strong>：取消执行业务的操作，<strong>反向操作</strong>，例如：<code>解冻资金</code>；更改状态为<code>未处理</code>；</li>
 </ol>
+<p>TCC对业务侵入性较强，改造难度大，<strong>每个操作都要try，confirm，cancel三个接口实现</strong>，confirm和cancel接口必须实现幂等性。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-13.jpg" alt></p>
+<p> Seata 事务框架中的TCC事务：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-10.png" alt></p>
 <p>TCC存在的一些问题：</p>
 <ol>
@@ -800,7 +784,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/62.jpg" class="responsive-img" alt="MySQL数据库优化方法">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/67.jpg" class="responsive-img" alt="MySQL数据库优化方法">
                         
                         <span class="card-title">MySQL数据库优化方法</span>
                     </div>
@@ -853,7 +837,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg" class="responsive-img" alt="Java 反射机制">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg" class="responsive-img" alt="Java 反射机制">
                         
                         <span class="card-title">Java 反射机制</span>
                     </div>
@@ -1058,7 +1042,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">166.2k</span>
+            <span class="white-color">172.7k</span>
             
 
             <br>

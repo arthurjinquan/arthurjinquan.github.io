@@ -254,7 +254,7 @@ Zookeeper主要用来解决分布式集群中应用">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -417,14 +417,14 @@ Zookeeper主要用来解决分布式集群中应用">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    3.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    12 分
                 </div>
                 
                 
@@ -460,19 +460,64 @@ Zookeeper主要用来解决分布式集群中应用">
 <h2 id="zookeeper应用场景"><a href="#zookeeper应用场景" class="headerlink" title="zookeeper应用场景"></a>zookeeper应用场景</h2><ol>
 <li><p><strong>数据发布与订阅</strong>：应用配置集中到节点上，应用启动时主动获取，并在节点上注册一个watcher，每次配置更新都会通知到应用。</p>
 </li>
-<li><p><strong>名空间服务</strong>：分布式命名服务，创建一个节点后，节点的路径就是全局唯一的，可以作为全局名称使用。</p>
+<li><p><strong>命名服务</strong>：分布式命名服务，创建一个节点后，<strong>节点的路径就是全局唯一</strong>的，这个路径可以作为全局名称使用。一些分布式服务框架（RPC，RMI）中的服务地址列表，通过使用命名服务，客户端应该能够根据特定的命中来获取资源的实体、服务地址和提供者信息等</p>
 </li>
 <li><p><strong>分布式通知/协调</strong>：不同的系统都监听同一个节点，一旦有了更新，另一个系统能够收到通知。</p>
 </li>
 <li><p><strong>分布式锁</strong>：Zookeeper能<strong>保证数据的强一致性</strong>，用户任何时候都可以相信集群中每个节点的数据都是相同的。一个用户创建一个节点作为锁，另一个用户检测该节点，如果存在，代表别的用户已经锁住，如果不存在，则可以创建一个节点，代表拥有一个锁。</p>
 </li>
-<li><p><strong>集群管理</strong>：每个加入集群的机器都创建一个节点，写入自己的状态。监控父节点的用户会受到通知，进行相应的处理。离开时删除节点，监控父节点的用户同样会收到通知。如图：</p>
+<li><p><strong>集群管理</strong>：包括集群监控和集群控制，就是监控集群机器状态，剔除集群和加入机器。zookeeper可以方便集群机器的管理，它可以实时监控znode节点的变化，一旦发现有机器挂了，该机器就会与zk断开连接，对应的临时目录节点会被删除，其他所有机器都收到通知。新机器加入类似，如图：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/zookeeper-1.jpg" alt></p>
 </li>
-<li><p><strong>配置管理</strong>：在分布式应用环境中很常见，例如同一个应用系统需要多台节点运行，但是它们运行的应用系统的某些配置项是相同的，如果要修改这些相同的配置项，那么就必须同时修改每台运行这个应用系统的 PC Server，这样非常麻烦而且容易出错。像这样的配置信息完全可以交给 Zookeeper 来管理，<strong>将配置信息保存在 Zookeeper 的某个目录节点</strong>中，然后将所有需要修改的应用机器监控配置信息的状态，一旦配置信息发生变化，每台应用机器就会收到 Zookeeper 的通知，然后从 Zookeeper 获取新的配置信息应用到系统中。如图：</p>
+<li><p><strong>配置管理</strong>：在分布式应用环境中很常见，例如同一个应用系统需要多台节点运行，但是它们运行的应用系统的某些配置项是相同的，如果要修改这些相同的配置项，那么就必须同时修改每台运行这个应用系统的.properties或者xml配置，这样非常麻烦而且容易出错。</p>
+<p>像这样的配置信息完全可以交给 Zookeeper 来管理，<strong>将配置信息保存在 Zookeeper 的某个目录节点</strong>中，然后将所有需要修改的应用机器监控配置信息的状态，一旦配置信息发生变化，利用watcher通知给各个客户端，从而修改配置。如图：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/zookeeper-2.jpg" alt></p>
 </li>
 </ol>
+<h2 id="ZK的数据模型和节点类型"><a href="#ZK的数据模型和节点类型" class="headerlink" title="ZK的数据模型和节点类型"></a>ZK的数据模型和节点类型</h2><p>zk采用事务日志及快照文件的方案来落盘数据，保障数据在不丢失的情况下能快速恢复。</p>
+<h3 id="Znode"><a href="#Znode" class="headerlink" title="Znode"></a>Znode</h3><p>Znode兼具<strong>文件和目录</strong>两种特点，可以做路径标识，也可以存储数据，并可以具有子Znode。具有增删改查等操作。</p>
+<p>Znode具有原子性操作，读操作一次性获取与节点相关的<strong>所有数据</strong>，写操作也将替换掉节点的<strong>所有数据</strong>。每一个节点都有自己的访问控制表，这个表规定了用户的权限。</p>
+<p>Znode存储数据大小有限制。每个Znode数据大小之多1M。</p>
+<p>Znode通过路径引用，如同Unix中的文件路径。路径必须是绝对的，唯一的。</p>
+<h3 id="Znode节点类型"><a href="#Znode节点类型" class="headerlink" title="Znode节点类型"></a>Znode节点类型</h3><ol>
+<li>持久节点：一旦创建，该数据节点会一直存储在zk服务器上，即使创建该节点的客户端与服务端的会话关闭了节点也不会删除</li>
+<li>临时节点：当创建该节点的客户端会话因超时或发生异常而关闭时，该节点也相应的在zk上被删除。</li>
+<li>有序节点：不是一种单纯种类的节点，而是在持久节点和临时节点的基础上，增加了一个节点有序的性质。</li>
+</ol>
+<h2 id="Zookeeper-watch机制"><a href="#Zookeeper-watch机制" class="headerlink" title="Zookeeper watch机制"></a>Zookeeper watch机制</h2><p>客户端，可以通过在Znode上设置watch，实现实时监听znode的变化</p>
+<p>watch事件是一个一次性的触发器，当被设置了watch的数据发生了变化的时候，则服务器将这个改变发送给设置了watch的客户端</p>
+<ol>
+<li>父节点的创建、修改、删除都会出发watcher事件</li>
+<li>子节点的创建，删除会触发watcher事件</li>
+</ol>
+<p>一次性：一旦被触发就会移除，再次使用需要重新注册，因为每次变动都需要通知所有客户端</p>
+<p>轻量：只通知发生了事件，不告知事件内容，减轻服务器和带宽压力</p>
+<h3 id="三个角色"><a href="#三个角色" class="headerlink" title="三个角色"></a>三个角色</h3><p>watcher机制包括三个角色：客户端线程、客户端的watch manager以及zookeeper服务器</p>
+<ol>
+<li>客户端向zookeeper服务器注册一个watcher监听</li>
+<li>把这个监听信息存储到客户端的WatchManager中</li>
+<li>当zookeeper中的节点发生变化时，会通知客户端，客户端会调用相应watcher对象中的回调方法。watch回调时串行同步的（FIFO）</li>
+</ol>
+<h2 id="ZAB协议"><a href="#ZAB协议" class="headerlink" title="ZAB协议"></a>ZAB协议</h2><p>ZAB协议是为Zookeeper专门设计的一种支持崩溃恢复的原子广播协议，实现分布式数据一致性。</p>
+<p>所有客户端的请求都写入到Leader进程中，然后，由Leader同步到其他节点Follower。</p>
+<p>ZAB协议包括两种基本模式：<strong>崩溃恢复和消息广播</strong>。</p>
+<h3 id="消息广播"><a href="#消息广播" class="headerlink" title="消息广播"></a>消息广播</h3><p>集群中所有事务请求都由Leader节点处理，Leader将客户端的事务请求转换为事务Proposal，并分发给集群中的所有Follower。</p>
+<p>完成广播后，Leader等Follower反馈，当有过半数的Follower反馈消息后，Leader将再次向Follower广播Commit信息，确认之前的Proposal提交。（有点像2PC）</p>
+<p>Leader节点的写入是一个两步操作，第一步是广播事务操作，第二步时广播提交操作，其中过半数指的是<strong>反馈节点数 &gt;= N/2 + 1</strong>，N是全部Follower节点数。</p>
+<h3 id="崩溃恢复"><a href="#崩溃恢复" class="headerlink" title="崩溃恢复"></a>崩溃恢复</h3><p>以下状态进入崩溃恢复：</p>
+<ol>
+<li>初始化集群，刚刚启动的时候</li>
+<li>Leader崩溃，故障宕机</li>
+<li>Leader失去了半数机器支持，与集群中超过一半的节点断连</li>
+</ol>
+<p>此时开启新一轮Leader选举，选举产生的Leader会与过半的Follower进行同步，<strong>强一致性</strong>（CP），当与过半机器同步完成后，推出恢复模式，进入消息广布模式</p>
+<p>整个Zookeeper集群的一致性保证都是在以上两个状态之间切换。</p>
+<h3 id="ZAB节点的三种状态"><a href="#ZAB节点的三种状态" class="headerlink" title="ZAB节点的三种状态"></a>ZAB节点的三种状态</h3><p><strong>following</strong>：服从leader的命令（从节点，负责读）</p>
+<p><strong>leading</strong>：负责协调事务（主节点）</p>
+<p><strong>election/looking</strong>：选举状态</p>
+<h3 id="Zxid"><a href="#Zxid" class="headerlink" title="Zxid"></a>Zxid</h3><p>ZAB协议的一个事务编号，<strong>一次事务意味着出现了一次选举</strong>，Zxid是一个64位的数字，其中低32位是一个简单的单调递增计数器，针对客户端每一个事务请求，计数器加1；而高32位则代表Leader周期年代编号。</p>
+<p>Leader周期（epoch），每当一个新的leader选举出来，会从这个leader服务器上取出本地日志中最大事务的Zxid并从中读取epoch值，然后加1作为新的周期ID。</p>
+<p><strong>高32位代表每代Leader的唯一性，低32位代表了每代Leader中事务的唯一性</strong>。</p>
 <h2 id="分布式锁的流程"><a href="#分布式锁的流程" class="headerlink" title="分布式锁的流程"></a>分布式锁的流程</h2><p>分布式锁的应用上面已经讲到了，具体流程如下：</p>
 <p>假如说有n个分布式的工作点，定义为a1,a2,a3,a4……</p>
 <p>当某个分布式点做一件事时，先去zk某个固定位置判断（例如：/aTask/sync目录下）是否存在一个特定节点（例如节点名：lock）:</p>
@@ -651,7 +696,7 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/40.jpg" class="responsive-img" alt="Elasticsearch 集群架构学习">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/35.jpg" class="responsive-img" alt="Elasticsearch 集群架构学习">
                         
                         <span class="card-title">Elasticsearch 集群架构学习</span>
                     </div>
@@ -708,7 +753,7 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/30.jpg" class="responsive-img" alt="RefreshScope注解和Spring bean scope">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/25.jpg" class="responsive-img" alt="RefreshScope注解和Spring bean scope">
                         
                         <span class="card-title">RefreshScope注解和Spring bean scope</span>
                     </div>
@@ -746,12 +791,12 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
                         <span class="chip bg-color">spring</span>
                     </a>
                     
-                    <a href="/tags/annotation/" target="_blank">
-                        <span class="chip bg-color">annotation</span>
-                    </a>
-                    
                     <a href="/tags/bean/" target="_blank">
                         <span class="chip bg-color">bean</span>
+                    </a>
+                    
+                    <a href="/tags/annotation/" target="_blank">
+                        <span class="chip bg-color">annotation</span>
                     </a>
                     
                 </div>
@@ -925,7 +970,7 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">166.2k</span>
+            <span class="white-color">172.7k</span>
             
 
             <br>

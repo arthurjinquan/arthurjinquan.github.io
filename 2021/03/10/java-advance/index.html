@@ -254,7 +254,7 @@ IOCIO">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/99.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,14 +409,14 @@ IOCIO">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.6k
+                    4.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    17 分
                 </div>
                 
                 
@@ -516,7 +516,11 @@ IOCIO">
 <li>Mybatis在处理#{ }时，会将sql中的#{ }替换为 ？号，调用PreparedStatement来赋值（会自动加单引号）；</li>
 <li>在处理${ }时，就是替换成变量值，调用Statement来赋值；</li>
 </ol>
-<h2 id="绝大多数需求为单条记录查询时可以选择哈希索引"><a href="#绝大多数需求为单条记录查询时可以选择哈希索引" class="headerlink" title="绝大多数需求为单条记录查询时可以选择哈希索引"></a>绝大多数需求为单条记录查询时可以选择哈希索引</h2><h2 id="定义有外键的数据列一定要建立索引"><a href="#定义有外键的数据列一定要建立索引" class="headerlink" title="定义有外键的数据列一定要建立索引"></a>定义有外键的数据列一定要建立索引</h2><h2 id="慢查询优化"><a href="#慢查询优化" class="headerlink" title="慢查询优化"></a>慢查询优化</h2><ol>
+<blockquote>
+<p><strong>绝大多数需求为单条记录查询时可以选择哈希索引</strong></p>
+<p><strong>定义有外键的数据列一定要建立索引</strong></p>
+</blockquote>
+<h2 id="慢查询优化"><a href="#慢查询优化" class="headerlink" title="慢查询优化"></a>慢查询优化</h2><ol>
 <li>是否load了额外的数据</li>
 <li>是否走索引</li>
 <li>横向或纵向分表</li>
@@ -579,6 +583,42 @@ IOCIO">
 <p>删除锁：<strong>判断线程唯一标识再删除</strong></p>
 <p>可重入性及<strong>锁续期</strong>没有实现，通过redisson解决（类似AQS实现（count计数），看门狗监听机制（设置一个监听器监听任务，任务没有执行完就延长过期时间））</p>
 <p><strong>redlock</strong>：以上的机制都只操作单节点，即使Redis通过Sentinel保证高可用，如果这个master节点由于某些发生了主从切换，那么就会出现锁丢失的情况（主从节点间是异步通信，Redis同步设置可能数据丢失）。redlock从多个节点申请锁，当一半以上节点获取成功才算成功，redisson有相应的实现</p>
+<h2 id="SpringCloud和Dubbo区别"><a href="#SpringCloud和Dubbo区别" class="headerlink" title="SpringCloud和Dubbo区别"></a>SpringCloud和Dubbo区别</h2><p>底层协议：springcloud基于http协议，dubbo基于tcp协议</p>
+<p>注册中心：springcloud使用eureka，dubbo推荐使用zookeeper</p>
+<p>模型定义：dubbo将一个接口定义为一个服务，springcloud将一个应用定义为一个服务</p>
+<p>springcloud是一个生态，而dubbo是springcloud生态中关于服务调用一种解决方案（服务治理）</p>
+<h2 id="Hystrix实现机制"><a href="#Hystrix实现机制" class="headerlink" title="Hystrix实现机制"></a>Hystrix实现机制</h2><p>分布式容错框架：熔断降级监控</p>
+<h3 id="资源隔离"><a href="#资源隔离" class="headerlink" title="资源隔离"></a>资源隔离</h3><ol>
+<li>线程隔离：Hystrix会给每个Command分配一个单独的线程池，这样在进行单个服务调用的时候，就可以在独立的线程池里面进行，而不会对其他线程池造成影响</li>
+<li>信号量隔离：客户端向依赖服务发起请求时，首先要获取一个信号量才能真正发起调用，由于信号量的数量有限，当并发量超过信号量个数时，后续的请求都会直接拒绝，进入fallback流程。信号量隔离主要是通过控制并发请求量，防止请求线程大面积阻塞，从而达到限流和防止雪崩的目的。</li>
+</ol>
+<h3 id="熔断和降级"><a href="#熔断和降级" class="headerlink" title="熔断和降级"></a>熔断和降级</h3><p>调用服务失败后快速失败</p>
+<p>熔断：为了防止异常不扩散，保证系统的稳定性</p>
+<p>降级：编写好调用失败的补救逻辑，然后对服务直接停止运行，这样这些接口就无法正常调用，但又不至于直接报错，只是服务水平下降</p>
+<ol>
+<li>通过HystrixCommand或者HystrixObservableCommand将所有的外部系统（依赖）包装起来，整个包装对象是单独运行在一个线程之中（这是典型的命令模式）。</li>
+<li>超时请求应该超过你定义的<strong>阈值</strong></li>
+<li><strong>为每个依赖关系维护一个小的线程池</strong>（或信号量）；如果它满了，那么依赖关系的请求将立即被拒绝，而不是排队等待。</li>
+<li>统计成功，失败（由客户端抛出的异常），超时和线程拒绝。</li>
+<li>打开<strong>断路器</strong>可以在一段时间内停止对特定服务的所有请求，如果服务的错误百分比通过阈值，手动或自动地关闭断路器。</li>
+<li><strong>当请求被拒绝、连接超时或者断路器打开，直接执行fallback</strong>。</li>
+<li>近乎实时监控指标和配置变化。</li>
+</ol>
+<h2 id="RabbitMQ如何保证消息发送接收？"><a href="#RabbitMQ如何保证消息发送接收？" class="headerlink" title="RabbitMQ如何保证消息发送接收？"></a>RabbitMQ如何保证消息发送接收？</h2><h3 id="发送方确认机制"><a href="#发送方确认机制" class="headerlink" title="发送方确认机制"></a>发送方确认机制</h3><p>信道需要设置为confirm模式，则所有在信道上发布的消息都会<strong>分配一个唯一 ID</strong>。</p>
+<p>一旦消息被投递到queue（可持久化的消息需要写入磁盘），信道会发送一个确认给生产者（包含消息唯一ID）。</p>
+<p>如果RabbitMQ 发生内部错误从而导致消息丢失，会发送一条nack（未确认）消息给生产者。</p>
+<p>所有被发送的消息都将被confirm（即 ack）或者被nack一次。但是<strong>没有对消息被confirm的快慢做任何保证</strong>，并且同一条消息不会即被confirm又被nack。</p>
+<p>发送方确认模式是<strong>异步</strong>的，生产者应用程序在等待确认的同时，可以继续发送消息。当确认消息到达生产者，生产者的回调方法会被触发。</p>
+<blockquote>
+<p>ConfirmCallback接口：只确认是否正确到达 Exchange 中，成功到达则回调，其中的confirm（ID）方法返回给生产者</p>
+<p>ReturnCallback接口：消息失败返回时回调</p>
+</blockquote>
+<h3 id="消费者的确认"><a href="#消费者的确认" class="headerlink" title="消费者的确认"></a>消费者的确认</h3><p>消费者在声明队列时，可以指定noAck参数，当noAck = false时，RabbitMQ会等待消费者显式发回ack信号后才从内存（或者硬盘，持久化消息）中移除（手动提交），否则，消息被消费后立即删除。</p>
+<p>如果noAck = false，消费者接受每一条消息后都必须确认，只有消费者确认了消息，RabbitMQ才能安全地把消息从队列中删除。</p>
+<p>RabbitMQ不会为未ack的消息设置超时时间，它判断此消息是否需要重新投递给消费者的唯一依据是消费该消息的消费者连接是否已经断开。这样设计的原因是RabbitMQ允许消费者消费一条消息的时间可以很长（也起到<strong>限流</strong>的作用），保证数据的最终一致性。<strong>因为如果消费者不返回ack的话，RabbitMQ也不知道消费者是否处理完了没有，擅自把消息发给其他消费者或者删除都会导致数据不一致</strong>。</p>
+<p>如果消费者返回ack之前断开了链接。RabbitMQ会重新发送给下一个订阅的消费者。（可能存在消息重复消费的隐患，需要业务方保持数据一致，幂等性）</p>
+<h2 id="RabbitMQ事务消息"><a href="#RabbitMQ事务消息" class="headerlink" title="RabbitMQ事务消息"></a>RabbitMQ事务消息</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-5.jpg" alt></p>
+<h2 id="RabbitMQ死信队列和延时队列"><a href="#RabbitMQ死信队列和延时队列" class="headerlink" title="RabbitMQ死信队列和延时队列"></a>RabbitMQ死信队列和延时队列</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-6.jpg" alt></p>
 
             </div>
             <hr />
@@ -677,30 +717,29 @@ IOCIO">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/10/java-advance/">
+                <a href="/2021/03/12/dubbo/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="Java进阶">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/80.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
                         
-                        <span class="card-title">Java进阶</span>
+                        <span class="card-title">Dubbo的整体架构设计及分层</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java进阶面试总结
+                            没用过，与springcloud比较一下。
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-10
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -713,7 +752,6 @@ IOCIO">
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -732,33 +770,31 @@ IOCIO">
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/10/es-node/">
+                <a href="/2021/03/09/java/daemon-thread/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/37.jpg" class="responsive-img" alt="es分布式一致性原理">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/78.jpg" class="responsive-img" alt="Java的守护线程">
                         
-                        <span class="card-title">es分布式一致性原理</span>
+                        <span class="card-title">Java的守护线程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ## 
-待完成
-
+                            Java中有两类线程：User Thread（用户线程）、Daemon Thread（守护线程）
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-10
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
-                                    数据库
+                            <a href="/categories/Java/" class="post-category" target="_blank">
+                                    Java
                                 </a>
                             
                             
@@ -768,12 +804,12 @@ IOCIO">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/elasticsearch/" target="_blank">
-                        <span class="chip bg-color">elasticsearch</span>
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/分布式系统/" target="_blank">
-                        <span class="chip bg-color">分布式系统</span>
+                    <a href="/tags/thread/" target="_blank">
+                        <span class="chip bg-color">thread</span>
                     </a>
                     
                 </div>
@@ -947,7 +983,7 @@ IOCIO">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">166.2k</span>
+            <span class="white-color">172.7k</span>
             
 
             <br>
