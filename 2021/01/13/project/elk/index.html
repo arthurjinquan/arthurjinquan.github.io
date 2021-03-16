@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="ELK, SCUT JAVA Spring SpringMVC mybatis Springboot 锦泉 arthurjinquan jinquan 超分辨率 计算机视觉 深度学习">
+    <meta name="keywords" content="ELK, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
@@ -167,7 +167,7 @@
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
             
-            华南理工大学 | 软件工程 | 计算机视觉
+            华南理工大学 | 软件工程
             
         </div>
     </div>
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/102.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/104.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -417,7 +417,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4k
+                    4.1k
                 </div>
                 
 
@@ -526,6 +526,10 @@
 <p>服务器：10.0.1.104，10.0.1.117，10.0.1.127</p>
 <p>jdk ：/home/rndii/projects/es/elasticsearch-7.8.1/jdk</p>
 <p>jdk-version:14.0.1（需要java-jdk，前置条件）</p>
+<blockquote>
+<p>ES不能用root用户启动，必须使用普通用户安装启动</p>
+<p>设置sudo权限：visudo（三台机器使用root用户执行visudo命令为普通用户添加权限）</p>
+</blockquote>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>现阶段基本为默认配置，<strong>注意新建index时的分片与备份</strong></p>
 <pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 找到配置文件中的cluster.name，打开该配置并设置集群名称</span>
 <span class="token key atrule">cluster.name</span><span class="token punctuation">:</span> wisefly<span class="token punctuation">-</span>test<span class="token punctuation">-</span>es
@@ -567,6 +571,9 @@
 <p>如果配置完重启es报错的话，重启Kibana</p>
 </blockquote>
 <h3 id="启动命令-d表示后台运行"><a href="#启动命令-d表示后台运行" class="headerlink" title="启动命令,-d表示后台运行"></a>启动命令,-d表示后台运行</h3><pre class="line-numbers language-bash"><code class="language-bash">bin/elasticsearch -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><h4 id="普通用户打开文件的最大数限制"><a href="#普通用户打开文件的最大数限制" class="headerlink" title="普通用户打开文件的最大数限制"></a>普通用户打开文件的最大数限制</h4><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-6.jpg" alt></p>
+<h4 id="普通用户启动线程数限制"><a href="#普通用户启动线程数限制" class="headerlink" title="普通用户启动线程数限制"></a>普通用户启动线程数限制</h4><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-7.jpg" alt></p>
+<h4 id="普通用户调大虚拟内存"><a href="#普通用户调大虚拟内存" class="headerlink" title="普通用户调大虚拟内存"></a>普通用户调大虚拟内存</h4><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-8.jpg" alt></p>
 <h3 id="查看es集群相关信息"><a href="#查看es集群相关信息" class="headerlink" title="查看es集群相关信息"></a>查看es集群相关信息</h3><p>查看集群健康状态<br><a href="http://10.0.1.104:9200/_cluster/health?pretty=true" target="_blank" rel="noopener">http://10.0.1.104:9200/_cluster/health?pretty=true</a></p>
 <p>查看集群状态<br><a href="http://10.0.1.104:9200/_cluster/stats?pretty" target="_blank" rel="noopener">http://10.0.1.104:9200/_cluster/stats?pretty</a></p>
 <p>查看节点总体情况<br><a href="http://10.0.1.104:9200/_nodes/process?pretty" target="_blank" rel="noopener">http://10.0.1.104:9200/_nodes/process?pretty</a></p>
@@ -839,7 +846,6 @@ output <span class="token punctuation">{</span>
 <span class="token punctuation">}</span>
 
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>还不清晰的可以参考：<a href="https://www.cnblogs.com/yuhuLin/p/7018858.html" target="_blank" rel="noopener">https://www.cnblogs.com/yuhuLin/p/7018858.html</a></p>
 
             </div>
             <hr />
@@ -946,7 +952,7 @@ output <span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/108.jpg" class="responsive-img" alt="Skywalking初涉猎">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/110.jpg" class="responsive-img" alt="Skywalking初涉猎">
                         
                         <span class="card-title">Skywalking初涉猎</span>
                     </div>
@@ -1003,7 +1009,7 @@ output <span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="Zipkin的安装和配置">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="Zipkin的安装和配置">
                         
                         <span class="card-title">Zipkin的安装和配置</span>
                     </div>
@@ -1216,7 +1222,7 @@ output <span class="token punctuation">{</span>
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">178.3k</span>
+            <span class="white-color">178.6k</span>
             
 
             <br>

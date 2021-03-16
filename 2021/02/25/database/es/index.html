@@ -4,14 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Elasticsearch 集群架构学习, SCUT JAVA Spring SpringMVC mybatis Springboot 锦泉 arthurjinquan jinquan 超分辨率 计算机视觉 深度学习">
+    <meta name="keywords" content="Elasticsearch 集群架构学习, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="Elasticsearch 集群架构Elasticsearch是一个非常著名的开源搜索和分析系统，目前被广泛应用于互联网多种领域中，尤其是以下三个领域特别突出。
+    <meta name="description" content="Elasticsearch 集群架构转载至阿里云：https://zhuanlan.zhihu.com/p/32990496
+Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elasticsearch中几个关键概念：
 
-搜索领域，相对于solr，真正的后起之秀，成为很多搜索系统的不二之选。
-Js">
+节">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -169,7 +169,7 @@ Js">
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
             
-            华南理工大学 | 软件工程 | 计算机视觉
+            华南理工大学 | 软件工程
             
         </div>
     </div>
@@ -256,7 +256,7 @@ Js">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/35.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/37.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -419,14 +419,14 @@ Js">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.7k
+                    5.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    19 分
                 </div>
                 
                 
@@ -442,25 +442,19 @@ Js">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Elasticsearch-集群架构"><a href="#Elasticsearch-集群架构" class="headerlink" title="Elasticsearch 集群架构"></a>Elasticsearch 集群架构</h2><p>Elasticsearch是一个非常著名的开源搜索和分析系统，目前被广泛应用于互联网多种领域中，尤其是以下三个领域特别突出。</p>
-<ol>
-<li>搜索领域，相对于solr，真正的后起之秀，成为很多搜索系统的不二之选。</li>
-<li>Json文档数据库，相对于MongoDB，读写性能更佳，而且支持更丰富的地理位置查询以及数字、文本的混合查询等。</li>
-<li>时序数据分析处理，目前是日志处理、监控数据的存储、分析和可视化方面做得非常好，可以说是该领域的引领者了。</li>
-</ol>
-<p><strong>转载至阿里云</strong>：<a href="https://zhuanlan.zhihu.com/p/32990496" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32990496</a></p>
+                <h2 id="Elasticsearch-集群架构"><a href="#Elasticsearch-集群架构" class="headerlink" title="Elasticsearch 集群架构"></a>Elasticsearch 集群架构</h2><p><strong>转载至阿里云</strong>：<a href="https://zhuanlan.zhihu.com/p/32990496" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32990496</a></p>
 <p>Elasticsearch的详细介绍可以到<a href="https://link.zhihu.com/?target=https%3A//www.elastic.co/products/elasticsearch" target="_blank" rel="noopener">官网</a>查看。我们先来看一下Elasticsearch中几个关键概念：</p>
 <ol>
-<li><strong>节点</strong>（Node）：物理概念，一个运行的Elasticearch实例，一般是一台机器上的一个进程。</li>
-<li><strong>索引</strong>（Index），逻辑概念，包括配置信息mapping和倒排正排数据文件，一个索引的数据文件可能会分布于一台机器，也有可能分布于多台机器。索引的另外一层意思是倒排索引文件。</li>
+<li><strong>节点</strong>（Node）：<strong>物理</strong>概念，一个运行的Elasticearch实例，一般是一台机器上的一个进程。</li>
+<li><strong>索引</strong>（Index），<strong>逻辑</strong>概念，包括<strong>配置信息mapping和倒排正排数据文件</strong>，一个索引的数据文件可能会分布于一台机器，也有可能分布于多台机器。索引的另外一层意思是倒排索引文件。</li>
 <li><strong>分片</strong>（Shard）：为了支持更大量的数据，索引一般会按某个维度分成多个部分，每个部分就是一个分片，分片被节点（Node）管理。一个节点一般会管理多个分片，这些分片可能是属于同一份索引，也有可能属于不同索引，但是为了可靠性和可用性，同一个索引的分片尽量会分布在不同节点上。分片有两种，主分片和副本分片。</li>
 <li><strong>副本</strong>（Replica）：同一个分片（Shard）的备份数据，一个分片可能会有0个或多个副本，这些副本中的数据保证强一致或最终一致。</li>
 </ol>
 <p>用图形表示出来可能是这样子的：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-1.png" alt></p>
 <ol>
-<li>Index 1：蓝色部分，有3个shard，分别是P1，P2，P3，位于3个不同的Node中，这里没有Replica。</li>
-<li>Index 2：绿色部分，有2个shard，分别是P1，P2，位于2个不同的Node中。并且每个shard有一个replica，分别是R1和R2。基于系统可用性的考虑，同一个shard的 primary 和 replica 不能位于同一个Node中。这里Shard1的P1和R1分别位于Node3和Node2中，如果某一刻Node2发生宕机，服务基本不会受影响，因为还有一个P1和R2都还是可用的。因为是主备架构，当主分片发生故障时，需要切换，这时候需要选举一个副本作为新主，这里除了会耗费一点点时间外，也会有丢失数据的风险。</li>
+<li>Index 1：蓝色部分，有3个shard，分别是P1，P2，P3，位于3个不同的Node中，这里<strong>没有Replica</strong>。</li>
+<li>Index 2：绿色部分，有2个shard，分别是P1，P2，位于2个不同的Node中。并且每个shard有一个replica，分别是R1和R2。<strong>基于系统可用性的考虑，同一个shard的 primary 和 replica 不能位于同一个Node中。</strong>这里Shard1的P1和R1分别位于Node3和Node2中，如果某一刻Node2发生宕机，服务基本不会受影响，因为还有一个P1和R2都还是可用的。因为是主备架构，当主分片发生故障时，需要切换，这时候需要选举一个副本作为新主，这里除了会耗费一点点时间外，也会有丢失数据的风险。</li>
 </ol>
 <h2 id="建Index流程"><a href="#建Index流程" class="headerlink" title="建Index流程"></a>建Index流程</h2><p>建索引（Index）的时候，一个Doc先是经过路由规则定位到主Shard，发送这个doc到主Shard上建索引，成功后再发送这个Doc到这个Shard的副本上建索引，等副本上建索引成功后才返回成功。</p>
 <p>在这种架构中，索引数据全部位于Shard中，主Shard和副本Shard各存储一份。当某个副本Shard或者主Shard丢失（比如机器宕机，网络中断等）时，需要将丢失的Shard在其他Node中恢复回来，这时候就需要从其他副本（Replica）全量拷贝这个Shard的所有数据到新Node上构造新Shard。这个拷贝过程需要一段时间，这段时间内只能由剩余主副本来承载流量，在恢复完成之前，整个系统会处于一个比较危险的状态，直到failover结束。</p>
@@ -742,7 +736,7 @@ Js">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/118.jpg" class="responsive-img" alt="Lucene 查询原理">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/116.jpg" class="responsive-img" alt="Lucene 查询原理">
                         
                         <span class="card-title">Lucene 查询原理</span>
                     </div>
@@ -795,7 +789,7 @@ Js">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/4.jpg" class="responsive-img" alt="Zookeeper的原理和分布式锁">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/2.jpg" class="responsive-img" alt="Zookeeper的原理和分布式锁">
                         
                         <span class="card-title">Zookeeper的原理和分布式锁</span>
                     </div>
@@ -1008,7 +1002,7 @@ Js">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">178.3k</span>
+            <span class="white-color">178.6k</span>
             
 
             <br>

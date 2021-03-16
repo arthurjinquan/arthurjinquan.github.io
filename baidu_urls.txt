@@ -1,3 +1,5 @@
+https://arthurjq.com/2021/03/16/java/jvm-tuning/
+https://arthurjq.com/2021/03/16/java/singleton/
 https://arthurjq.com/2021/03/15/hashmap/
 https://arthurjq.com/2021/03/14/java-collection/
 https://arthurjq.com/2021/03/13/kafka/

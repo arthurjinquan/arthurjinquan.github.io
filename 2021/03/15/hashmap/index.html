@@ -4,12 +4,12 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="HashMap, SCUT JAVA Spring SpringMVC mybatis Springboot 锦泉 arthurjinquan jinquan 超分辨率 计算机视觉 深度学习">
+    <meta name="keywords" content="HashMap, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="多线程扩容时出现死锁HashMap扩容源码（JDK1.7）void addEntry(int hash, K key, V value, int bucketIndex) {
-        if ((size &gt;= threshold) ">
+    <meta name="description" content="HashMap扩容源码（JDK1.7）void addEntry(int hash, K key, V value, int bucketIndex) {
+        if ((size &gt;= threshold) &amp;amp;&amp;amp;">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -167,7 +167,7 @@
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
             
-            华南理工大学 | 软件工程 | 计算机视觉
+            华南理工大学 | 软件工程
             
         </div>
     </div>
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -432,7 +432,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="多线程扩容时出现死锁"><a href="#多线程扩容时出现死锁" class="headerlink" title="多线程扩容时出现死锁"></a>多线程扩容时出现死锁</h2><h3 id="HashMap扩容源码（JDK1-7）"><a href="#HashMap扩容源码（JDK1-7）" class="headerlink" title="HashMap扩容源码（JDK1.7）"></a>HashMap扩容源码（JDK1.7）</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">addEntry</span><span class="token punctuation">(</span><span class="token keyword">int</span> hash<span class="token punctuation">,</span> K key<span class="token punctuation">,</span> V value<span class="token punctuation">,</span> <span class="token keyword">int</span> bucketIndex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <h2 id="HashMap扩容源码（JDK1-7）"><a href="#HashMap扩容源码（JDK1-7）" class="headerlink" title="HashMap扩容源码（JDK1.7）"></a>HashMap扩容源码（JDK1.7）</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">addEntry</span><span class="token punctuation">(</span><span class="token keyword">int</span> hash<span class="token punctuation">,</span> K key<span class="token punctuation">,</span> V value<span class="token punctuation">,</span> <span class="token keyword">int</span> bucketIndex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>size <span class="token operator">>=</span> threshold<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>null <span class="token operator">!=</span> table<span class="token punctuation">[</span>bucketIndex<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
             <span class="token comment" spellcheck="true">//当size超过临界阈值threshold，并且即将发生哈希冲突时进行扩容</span>
             <span class="token function">resize</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> table<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -489,7 +489,7 @@
             <span class="token punctuation">}</span>  
         <span class="token punctuation">}</span>  
     <span class="token punctuation">}</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="多线程出现循环链表的栗子"><a href="#多线程出现循环链表的栗子" class="headerlink" title="多线程出现循环链表的栗子"></a>多线程出现循环链表的栗子</h3><p>要扩容的旧的hashmap：</p>
+<h2 id="jdk1-7多线程出现循环链表的栗子"><a href="#jdk1-7多线程出现循环链表的栗子" class="headerlink" title="jdk1.7多线程出现循环链表的栗子"></a>jdk1.7多线程出现循环链表的栗子</h2><p>要扩容的旧的hashmap：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/hashmap-1.jpg" alt></p>
 <p>根据resize方法中的<code>Entry[] newTable = new Entry[newCapacity];</code>，多线程的情况下有多少线程就生成多少个新表，假设有线程A和线程B分别生成了newTableA和newTableB。</p>
 <p>又假设两个线程同时走到了transfer方法，线程A的参数为e1、next1，线程B的参数为e2、next2。</p>
@@ -711,30 +711,29 @@ e<span class="token punctuation">.</span>next <span class="token operator">=</sp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/15/hashmap/">
+                <a href="/2021/03/16/java/singleton/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/2.jpg" class="responsive-img" alt="HashMap">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg" class="responsive-img" alt="单例模式">
                         
-                        <span class="card-title">HashMap</span>
+                        <span class="card-title">单例模式</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            HashMap并发扩容出现死循环源码分析
+                            转载：https://www.cnblogs.com/happyone/p/11221157.html
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-15
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-16
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -747,12 +746,15 @@ e<span class="token punctuation">.</span>next <span class="token operator">=</sp
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/java/" target="_blank">
                         <span class="chip bg-color">java</span>
+                    </a>
+                    
+                    <a href="/tags/设计模式/" target="_blank">
+                        <span class="chip bg-color">设计模式</span>
                     </a>
                     
                 </div>
@@ -770,7 +772,7 @@ e<span class="token punctuation">.</span>next <span class="token operator">=</sp
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/40.jpg" class="responsive-img" alt="Java中的集合类">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/38.jpg" class="responsive-img" alt="Java中的集合类">
                         
                         <span class="card-title">Java中的集合类</span>
                     </div>
@@ -975,7 +977,7 @@ e<span class="token punctuation">.</span>next <span class="token operator">=</sp
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">178.3k</span>
+            <span class="white-color">178.6k</span>
             
 
             <br>

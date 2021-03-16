@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arthurjq.com/2021/03/16/java/jvm-tuning/</loc>
+    <lastmod>2021-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/01/13/project/elk/</loc>
+    <lastmod>2021-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/02/25/database/es/</loc>
+    <lastmod>2021-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
+    <lastmod>2021-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2020/12/09/java/list/</loc>
+    <lastmod>2021-03-16</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/16/java/singleton/</loc>
+    <lastmod>2021-03-16</lastmod>
+  </url>
+  <url>
     <loc>https://arthurjq.com/2021/03/15/hashmap/</loc>
-    <lastmod>2021-03-15</lastmod>
+    <lastmod>2021-03-16</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/03/14/java-collection/</loc>
     <lastmod>2021-03-15</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
-    <lastmod>2021-03-14</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
@@ -63,10 +83,6 @@
   <url>
     <loc>https://arthurjq.com/2021/02/23/java/refreshscope/</loc>
     <lastmod>2021-03-11</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/01/13/project/elk/</loc>
-    <lastmod>2021-03-10</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/03/09/java/daemon-thread/</loc>
@@ -134,10 +150,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2021/02/25/database/lucene/</loc>
-    <lastmod>2021-02-26</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/02/25/database/es/</loc>
     <lastmod>2021-02-26</lastmod>
   </url>
   <url>
@@ -210,10 +222,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2021/01/09/project/cloud-interface/</loc>
-    <lastmod>2021-02-08</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2020/12/09/java/list/</loc>
     <lastmod>2021-02-08</lastmod>
   </url>
   <url>

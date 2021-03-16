@@ -2,9 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://arthurjq.com/2021/03/16/java/jvm-tuning/</loc>
+    
+    <lastmod>2021-03-16T16:03:39.276Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/01/13/project/elk/</loc>
+    
+    <lastmod>2021-03-16T15:59:26.597Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/02/25/database/es/</loc>
+    
+    <lastmod>2021-03-16T12:49:41.090Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
+    
+    <lastmod>2021-03-16T09:37:28.457Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2020/12/09/java/list/</loc>
+    
+    <lastmod>2021-03-16T08:06:41.529Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/16/java/singleton/</loc>
+    
+    <lastmod>2021-03-16T05:56:20.142Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://arthurjq.com/2021/03/15/hashmap/</loc>
     
-    <lastmod>2021-03-15T14:13:13.550Z</lastmod>
+    <lastmod>2021-03-16T05:51:35.538Z</lastmod>
     
   </url>
   
@@ -12,13 +54,6 @@
     <loc>https://arthurjq.com/2021/03/14/java-collection/</loc>
     
     <lastmod>2021-03-15T09:23:42.008Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
-    
-    <lastmod>2021-03-14T13:37:56.750Z</lastmod>
     
   </url>
   
@@ -110,13 +145,6 @@
     <loc>https://arthurjq.com/2021/02/23/java/refreshscope/</loc>
     
     <lastmod>2021-03-11T06:30:18.644Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/01/13/project/elk/</loc>
-    
-    <lastmod>2021-03-10T14:31:23.524Z</lastmod>
     
   </url>
   
@@ -236,13 +264,6 @@
     <loc>https://arthurjq.com/2021/02/25/database/lucene/</loc>
     
     <lastmod>2021-02-26T07:27:47.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/02/25/database/es/</loc>
-    
-    <lastmod>2021-02-26T03:29:03.000Z</lastmod>
     
   </url>
   
@@ -383,13 +404,6 @@
     <loc>https://arthurjq.com/2021/01/09/project/cloud-interface/</loc>
     
     <lastmod>2021-02-08T03:09:33.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2020/12/09/java/list/</loc>
-    
-    <lastmod>2021-02-08T03:06:33.000Z</lastmod>
     
   </url>
   
