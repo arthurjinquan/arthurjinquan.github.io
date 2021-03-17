@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arthurjq.com/2021/03/17/quicksort/</loc>
+    <lastmod>2021-03-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2020/12/09/algorithm/sort-algorithms/</loc>
+    <lastmod>2021-03-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/17/jvm-gc/</loc>
+    <lastmod>2021-03-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/01/05/project/ssd-pic/</loc>
+    <lastmod>2021-03-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2020/12/31/java/spring-transaction/</loc>
+    <lastmod>2021-03-17</lastmod>
+  </url>
+  <url>
     <loc>https://arthurjq.com/2021/03/16/java/jvm-tuning/</loc>
     <lastmod>2021-03-16</lastmod>
   </url>
@@ -113,10 +133,6 @@
     <lastmod>2021-03-05</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2020/12/09/algorithm/sort-algorithms/</loc>
-    <lastmod>2021-03-05</lastmod>
-  </url>
-  <url>
     <loc>https://arthurjq.com/2021/01/19/project/ihis-bug/</loc>
     <lastmod>2021-03-05</lastmod>
   </url>
@@ -153,10 +169,6 @@
     <lastmod>2021-02-26</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2021/01/05/project/ssd-pic/</loc>
-    <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
     <loc>https://arthurjq.com/2021/01/22/project/cloud-gateway/</loc>
     <lastmod>2021-02-25</lastmod>
   </url>
@@ -175,10 +187,6 @@
   <url>
     <loc>https://arthurjq.com/2020/12/19/project/debug/</loc>
     <lastmod>2021-02-25</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2020/12/31/java/spring-transaction/</loc>
-    <lastmod>2021-02-24</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2020/12/28/web/cdn/</loc>
