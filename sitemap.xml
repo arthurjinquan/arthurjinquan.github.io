@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://arthurjq.com/2021/03/17/quicksort/</loc>
+    <loc>https://arthurjq.com/2021/03/17/java/jvm-gc/</loc>
     
-    <lastmod>2021-03-17T14:35:27.946Z</lastmod>
+    <lastmod>2021-03-17T16:13:59.533Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/17/algorithm/quicksort/</loc>
+    
+    <lastmod>2021-03-17T15:30:29.091Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
+    
+    <lastmod>2021-03-17T15:18:49.617Z</lastmod>
     
   </url>
   
@@ -12,13 +26,6 @@
     <loc>https://arthurjq.com/2020/12/09/algorithm/sort-algorithms/</loc>
     
     <lastmod>2021-03-17T14:32:32.589Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/17/jvm-gc/</loc>
-    
-    <lastmod>2021-03-17T12:29:34.916Z</lastmod>
     
   </url>
   
@@ -89,13 +96,6 @@
     <loc>https://arthurjq.com/2021/03/14/java-collection/</loc>
     
     <lastmod>2021-03-15T09:23:42.008Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
-    
-    <lastmod>2021-03-14T07:51:27.683Z</lastmod>
     
   </url>
   

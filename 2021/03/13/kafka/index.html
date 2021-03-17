@@ -255,7 +255,7 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -504,6 +504,7 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
 <p>topic或者patition数量发生变化coordinator是不知道的，此时<strong>leader consumer监控topic的变化</strong>，通知coordinator触发rebalance</p>
 <h3 id="rebalance问题"><a href="#rebalance问题" class="headerlink" title="rebalance问题"></a>rebalance问题</h3><p>如果C1消费者消息超时，触发rebalance，重新分配，该消息被其他消费者消费，此时C1消费完成提交offset导致错误</p>
 <p>解决：coordinator每次rebalance，会<strong>标记一个Generation</strong>给到consumer，每次rebalance该Generation会+1，consumer提交offset时，coordinator会比对Generation，不一致则拒绝</p>
+<h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><p>待补充</p>
 
             </div>
             <hr />
@@ -610,7 +611,7 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/38.jpg" class="responsive-img" alt="Java中的集合类">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/37.jpg" class="responsive-img" alt="Java中的集合类">
                         
                         <span class="card-title">Java中的集合类</span>
                     </div>
@@ -659,7 +660,7 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/78.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/77.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
                         
                         <span class="card-title">Dubbo的整体架构设计及分层</span>
                     </div>
@@ -864,7 +865,7 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">181.7k</span>
+            <span class="white-color">182k</span>
             
 
             <br>

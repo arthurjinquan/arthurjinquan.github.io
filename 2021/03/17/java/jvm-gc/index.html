@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/70.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/69.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -413,14 +413,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.8k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    10 分
                 </div>
                 
                 
@@ -437,7 +437,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="怎么判断那些对象应该回收"><a href="#怎么判断那些对象应该回收" class="headerlink" title="怎么判断那些对象应该回收"></a>怎么判断那些对象应该回收</h2><h3 id="引用计数算法"><a href="#引用计数算法" class="headerlink" title="引用计数算法"></a>引用计数算法</h3><p>在对象中添加一个引用计数器，每当一个地方引用它时，计数器就加一；当引用失效时，计数器值就减一；任何时刻计数器为零的对象就是不可能再被使用的。</p>
-<p>问题：不能解决循环依赖，对象1和对象2相互引用的话不会被回收，比如下面代码：</p>
+<p>问题：不能解决循环依赖，<strong>对象1和对象2相互引用的话不会被回收</strong>，比如下面代码：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ReferenceCountingGC</span> <span class="token punctuation">{</span>
 
   <span class="token keyword">public</span> Object instance<span class="token punctuation">;</span>
@@ -463,7 +463,7 @@
 <li>虚拟机栈（栈帧中的局部变量区，也叫做局部变量表）中引用的对象。</li>
 <li>方法区中的类静态属性引用的对象。</li>
 <li>方法区中常量引用的对象。</li>
-<li>本地方法栈中JNI(Native方法)引用的对象。</li>
+<li>本地方法栈中JNI（Native方法）引用的对象。</li>
 </ol>
 <blockquote>
 <p>被判定不可达对象，不是一定会被回收：经过第一次标记后的对象，根据 此对象是否有必要执行finalize（）方法 进行筛选，随后会由收集器对<code>F-Queue</code>中的对象进行第二次小规模的标记</p>
@@ -512,16 +512,85 @@
 <p><strong>G1不会产生内存碎片</strong></p>
 <p>G1收集器将整个Java堆划分为多个大小相等的独立区域（Region），虽然还保留有新生代和老年代的概念，但<strong>新生代和老年代不再是物理隔离</strong>的了，它们都是一部分Region（不需要连续）的集合。Region的大小是一致的，数值是在1M到32M字节之间的一个2的幂值数，JVM会尽量划分2048个左右、同等大小的Region。</p>
 <p><strong>G1收集器之所以能建立可预测的停顿时间模型，是因为它可以有计划地避免在整个Java堆中进行全区域的垃圾收集</strong>。</p>
-<ol>
+<h4 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h4><ol>
 <li><strong>初始标记（Initial Marking）</strong>：仅仅只是标记一下GC Roots能直接关联到的对象，并且修改TAMS（Next Top at Mark Start）的值，让下一阶段用户程序并发运行时，能在正确可用的Region中创建新对象，<strong>这阶段需要<code>停顿线程</code>，但耗时很短</strong>。</li>
 <li><strong>并发标记（Concurrent Marking）</strong>：是从GC Roots开始堆中对象进行可达性分析，找出存活的对象，<strong>这阶段耗时较长</strong>，但可与用户程序并发执行。</li>
 <li><strong>最终标记（Final Marking）</strong>：是为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分标记记录，虚拟机将这段时间对象变化记录在线程Remembered Set Logs里面，最终标记阶段需要把Remembered Set Logs的数据合并到Remembered Set中，<strong>这阶段需要<code>停顿线程</code>，但是可并行执行</strong>。</li>
 <li><strong>筛选回收（Live Data Counting and Evacuation）</strong>：首先对各个Region的回收价值和成本进行排序，根据用户所期望的GC停顿时间来制定回收计划。这个阶段也可以做到与用户程序一起并发执行，但是因为只回收一部分Region，时间是用户可控制的，而且停顿用户线程将大幅提高收集效率。</li>
 </ol>
-<p>Remembered Sets（也叫RSets）用来跟踪对象引用。</p>
-<p>在进行Minor GC的时候，我们可以不用扫描整个老年代，而是在卡表中寻找脏卡，并将脏卡中的对象加入到Minor GC的GC Roots里。当完成所有脏卡的扫描之后，Java虚拟机便会将所有脏卡的标识位清零。</p>
+<p>使用了Remembered Set来<strong>避免全堆扫描</strong>，G1中每个Region都有一个与之对应的RememberedSet ，在各个 Region 上记录自家的对象被外面对象引用的情况。当进行内存回收时，在GC根节点的枚举范围中加入RememberedSet 即可保证不对全堆扫描也不会有遗漏。</p>
+<h4 id="卡表"><a href="#卡表" class="headerlink" title="卡表"></a>卡表</h4><p>在进行Minor GC的时候，我们可以不用扫描整个老年代，而是在卡表中寻找脏卡，并将脏卡中的对象加入到Minor GC的GC Roots里。当完成所有脏卡的扫描之后，Java虚拟机便会将所有脏卡的标识位清零。</p>
 <p>想要保证每个可能有指向新生代对象引用的卡都被标记为脏卡，那么Java虚拟机需要截获每个引用型实例变量的写操作，并作出对应的写标识位操作。</p>
 <p><strong>卡表能用于减少老年代的全堆空间扫描，这能很大的提升GC效率</strong>。</p>
+<h3 id="CMS和G1的对比"><a href="#CMS和G1的对比" class="headerlink" title="CMS和G1的对比"></a>CMS和G1的对比</h3><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>CMS</strong></th>
+<th><strong>G1</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>JDK版本</strong></td>
+<td>1.6以上</td>
+<td>1.7以上</td>
+</tr>
+<tr>
+<td><strong>回收算法</strong></td>
+<td>标记——清除</td>
+<td>标记——整理</td>
+</tr>
+<tr>
+<td><strong>运行环境</strong></td>
+<td>针对70G以内的堆内存</td>
+<td>可针好几百G的大内存</td>
+</tr>
+<tr>
+<td><strong>回收区域</strong></td>
+<td>老年代</td>
+<td>新生代和老年代</td>
+</tr>
+<tr>
+<td><strong>内存布局</strong></td>
+<td>传统连续的新生代和老年代区域</td>
+<td>Region（将新生代和老年代切分成Region，默认一个Region 1 M,默认2048块）</td>
+</tr>
+<tr>
+<td><strong>浮动垃圾</strong></td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td><strong>内存碎片</strong></td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td><strong>全堆扫描</strong></td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td><strong>回收时间可控</strong></td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td><strong>对象进入老年代的年龄</strong></td>
+<td>6</td>
+<td>15</td>
+</tr>
+<tr>
+<td><strong>空间动态调整</strong></td>
+<td>否</td>
+<td>是（新生代5%-60%动态调整，一般不需求指定）</td>
+</tr>
+<tr>
+<td><strong>调优参数</strong></td>
+<td>多（近百个）</td>
+<td>少（十几个）</td>
+</tr>
+</tbody></table>
 
             </div>
             <hr />
@@ -558,7 +627,7 @@
                   property="dct:title" rel="dct:type">
                     《JVM垃圾回收机制》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/17/jvm-gc/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/17/java/jvm-gc/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -599,7 +668,7 @@
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/03/17/jvm-gc/',
+        id: '2021/03/17/java/jvm-gc/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -624,11 +693,11 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/17/quicksort/">
+                <a href="/2021/03/17/algorithm/quicksort/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/14.jpg" class="responsive-img" alt="快速排序单边循环">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/15.jpg" class="responsive-img" alt="快速排序单边循环">
                         
                         <span class="card-title">快速排序单边循环</span>
                     </div>
@@ -636,7 +705,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            刷leetcode 912时用快排直接堆溢出，只能用单边循环做。
+                            刷leetcode 912时用快排双边循环直接堆溢出，只能用单边循环做。
                         
                     </div>
                     <div class="publish-info">
@@ -681,7 +750,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/114.jpg" class="responsive-img" alt="JVM 调优">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/113.jpg" class="responsive-img" alt="JVM 调优">
                         
                         <span class="card-title">JVM 调优</span>
                     </div>
@@ -890,7 +959,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">181.7k</span>
+            <span class="white-color">182k</span>
             
 
             <br>

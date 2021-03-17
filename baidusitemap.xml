@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://arthurjq.com/2021/03/17/quicksort/</loc>
+    <loc>https://arthurjq.com/2021/03/17/java/jvm-gc/</loc>
+    <lastmod>2021-03-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/17/algorithm/quicksort/</loc>
+    <lastmod>2021-03-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
     <lastmod>2021-03-17</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2020/12/09/algorithm/sort-algorithms/</loc>
-    <lastmod>2021-03-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/17/jvm-gc/</loc>
     <lastmod>2021-03-17</lastmod>
   </url>
   <url>
@@ -51,10 +55,6 @@
   <url>
     <loc>https://arthurjq.com/2021/03/14/java-collection/</loc>
     <lastmod>2021-03-15</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
-    <lastmod>2021-03-14</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/01/19/database/redis/</loc>

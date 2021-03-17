@@ -1,5 +1,5 @@
-https://arthurjq.com/2021/03/17/quicksort/
-https://arthurjq.com/2021/03/17/jvm-gc/
+https://arthurjq.com/2021/03/17/algorithm/quicksort/
+https://arthurjq.com/2021/03/17/java/jvm-gc/
 https://arthurjq.com/2021/03/16/java/jvm-tuning/
 https://arthurjq.com/2021/03/16/java/singleton/
 https://arthurjq.com/2021/03/15/hashmap/
