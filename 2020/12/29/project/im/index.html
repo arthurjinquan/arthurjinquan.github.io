@@ -9,8 +9,8 @@
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="参考项目 https://github.com/crossoverJie/cim
-使用的框架轻量级、高性能的WebSocket框架：
-https://github.com/YeautyYE/netty-websocket-spring-bo">
+使用的Netty-WebSocket轻量级、高性能的WebSocket框架：
+https://github.com/YeautyYE/netty-websoc">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -372,8 +372,8 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/java/" target="_blank">
-                            <span class="chip bg-color">java</span>
+                        <a href="/tags/中间件/" target="_blank">
+                            <span class="chip bg-color">中间件</span>
                         </a>
                         
                         <a href="/tags/elasticsearch/" target="_blank">
@@ -422,7 +422,7 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    430
+                    429
                 </div>
                 
 
@@ -446,7 +446,7 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="参考项目"><a href="#参考项目" class="headerlink" title="参考项目"></a>参考项目</h2><p> <a href="https://github.com/crossoverJie/cim" target="_blank" rel="noopener">https://github.com/crossoverJie/cim</a></p>
-<h2 id="使用的框架"><a href="#使用的框架" class="headerlink" title="使用的框架"></a>使用的框架</h2><p>轻量级、高性能的WebSocket框架：</p>
+<h2 id="使用的Netty-WebSocket"><a href="#使用的Netty-WebSocket" class="headerlink" title="使用的Netty-WebSocket"></a>使用的Netty-WebSocket</h2><p>轻量级、高性能的WebSocket框架：</p>
 <p><a href="https://github.com/YeautyYE/netty-websocket-spring-boot-starter" target="_blank" rel="noopener">https://github.com/YeautyYE/netty-websocket-spring-boot-starter</a></p>
 <p>在spring-boot中使用Netty来开发WebSocket服务器，并像spring-websocket的注解开发一样简单，很贴心，还有中文markdown。</p>
 <h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><ol>
@@ -460,13 +460,15 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
 <li>Kibana操作日志、系统日志、链路日志分析、基于ES的数据分析</li>
 </ol>
 <h2 id="通讯流程"><a href="#通讯流程" class="headerlink" title="通讯流程"></a>通讯流程</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/IM-flow.jpg" alt></p>
-<p>1：客户端携带授权token向服务集群发起connect请求，请求会被⽹关转发到具体的某⼀个WebSocket节点中去。</p>
-<p>2：WebSocket服务针对connect进⾏鉴权，并且将该连接会话缓存在服务内。返回连接成功。</p>
-<p>3：客户端定时像服务端发送WebSocket心跳ping请求。服务端返回ping报文。</p>
-<p>4：客户端需要发送消息时，通过WebSocket发送报文。对应的WebSocket服务端接收到报文信息后，直接发布到消息队列的主题中。</p>
-<p>5：所有的WebSocket服务均监听消息队列主题，收到主题消息后，根据busiCode类型、toUserId、groupId等寻找到对应的⽤户id。再通过⽤户id获取到该服务节点中的会话，通过该会话进⾏消息推送。</p>
-<p>6：另外⼀组队列监听程序，负责持久化消息。</p>
-<h2 id="其他支撑接口"><a href="#其他支撑接口" class="headerlink" title="其他支撑接口"></a>其他支撑接口</h2><p>提供Rest服务提供客户端获取历史数据</p>
+<ol>
+<li>客户端<strong>携带授权token</strong>向服务集群发起connect请求，请求会被网关转发到具体的某⼀个WebSocket节点中去。</li>
+<li>WebSocket服务针对connect进⾏鉴权，并且将该连接会话缓存在服务内，返回连接成功。</li>
+<li>客户端定时像服务端发送WebSocket心跳ping请求，服务端返回ping报文。</li>
+<li>客户端需要发送消息时，通过WebSocket发送报文。对应的WebSocket服务端接收到报文信息后，<strong>直接发布到消息队列的主题中</strong>。</li>
+<li>所有的WebSocket服务均<strong>监听消息队列主题</strong>，收到主题消息后，根据busiCode类型、toUserId、groupId等寻找到对应的⽤户id。再通过⽤户id获取到该服务节点中的会话，通过该会话进⾏消息推送。</li>
+<li>另外⼀组队列监听程序，负责持久化消息。</li>
+</ol>
+<h2 id="其他支撑接口"><a href="#其他支撑接口" class="headerlink" title="其他支撑接口"></a>其他支撑接口</h2><p>Rest服务提供客户端查询历史数据，es的查询接口</p>
 
             </div>
             <hr />
@@ -622,9 +624,9 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/9.jpg" class="responsive-img" alt="Spring Bean 的生命周期">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/68.jpg" class="responsive-img" alt="Spring Bean生命周期源码">
                         
-                        <span class="card-title">Spring Bean 的生命周期</span>
+                        <span class="card-title">Spring Bean生命周期源码</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -835,7 +837,7 @@ https://github.com/YeautyYE/netty-websocket-spring-bo">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

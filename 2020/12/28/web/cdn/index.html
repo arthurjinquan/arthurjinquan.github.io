@@ -9,7 +9,7 @@
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="淘宝的图片访问，有98%的流量都走了CDN缓存。只有2%会回源到源站，节省了大量的服务器资源。但是，如果在用户访问高峰期，图片内容大批量发生变化，大量用户的访问就会穿透cdn，对源站造成巨大的压力。
-CDN工作原理和基础架构内容分发网络（C">
+转载至阿里巴巴淘系技术：https://">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -437,9 +437,10 @@ CDN工作原理和基础架构内容分发网络（C">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>淘宝的图片访问，有98%的流量都走了CDN缓存。只有2%会回源到源站，节省了大量的服务器资源。但是，如果在用户访问高峰期，图片内容大批量发生变化，大量用户的访问就会穿透cdn，对源站造成巨大的压力。</p>
+<p>转载至阿里巴巴淘系技术<br>：<a href="https://www.zhihu.com/question/36514327/answer/1604554133" target="_blank" rel="noopener">https://www.zhihu.com/question/36514327/answer/1604554133</a></p>
 <h2 id="CDN工作原理和基础架构"><a href="#CDN工作原理和基础架构" class="headerlink" title="CDN工作原理和基础架构"></a>CDN工作原理和基础架构</h2><p>内容分发网络（Content Delivery Network，简称CDN）是建立并覆盖在承载网之上，由分布在不同区域的边缘节点服务器群组成的分布式网络。</p>
 <p>CDN应用广泛，支持多种行业、多种场景内容加速，例如：图片小文件、大文件下载、视音频点播、直播流媒体、全站加速、安全加速。</p>
-<p>最简单的CDN网络由一个DNS服务器和几台缓存服务器组成：</p>
+<p>最简单的CDN网络由<strong>一个DNS服务器和几台缓存服务器</strong>组成：</p>
 <ol>
 <li>当用户点击网站页面上的内容URL，经过本地DNS系统解析，DNS系统会最终将域名的解析权交给CNAME指向的CDN专用DNS服务器。</li>
 <li>CDN的DNS服务器将CDN的全局负载均衡设备IP地址返回用户。</li>
@@ -450,7 +451,6 @@ CDN工作原理和基础架构内容分发网络（C">
 <li>用户向缓存服务器发起请求，缓存服务器响应用户请求，将用户所需内容传送到用户终端。如果这台缓存服务器上并没有用户想要的内容，而区域均衡设备依然将它分配给了用户，那么这台服务器就要向它的上一级缓存服务器请求内容，直至追溯到网站的源服务器将内容拉到本地。</li>
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-example2.jpg" alt></p>
-<p>转载于阿里巴巴淘系技术<br>：<a href="https://www.zhihu.com/question/36514327/answer/1604554133" target="_blank" rel="noopener">https://www.zhihu.com/question/36514327/answer/1604554133</a></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-example.jpg" alt></p>
 <p>借用阿里云官网的例子，来简单介绍CDN的工作原理。</p>
 <p>假设通过CDN加速的域名为<code>www.a.com</code>，接入CDN网络，开始使用加速服务后，当终端用户（北京）发起HTTP请求时，处理流程如下：</p>
@@ -458,7 +458,7 @@ CDN工作原理和基础架构内容分发网络（C">
 <li>当终端用户（北京）向<code>www.a.com</code>下的指定资源发起请求时，首先向LDNS（本地DNS）发起域名解析请求。</li>
 <li>LDNS检查缓存中是否有<code>www.a.com</code>的IP地址记录。如果有，则直接返回给终端用户；如果没有，则向授权DNS查询。</li>
 <li>当授权DNS解析<code>www.a.com</code>时，返回域名CNAME <code>www.a.tbcdn.com</code>对应IP地址。</li>
-<li>域名解析请求发送至阿里云DNS调度系统，并为请求分配最佳节点IP地址。</li>
+<li>域名解析请求发送至阿里云<strong>DNS调度系统</strong>，并为请求分配最佳节点IP地址。</li>
 <li>LDNS获取DNS返回的解析IP地址。</li>
 <li>用户获取解析IP地址。</li>
 <li>用户向获取的IP地址发起对该资源的访问请求。</li>
@@ -475,7 +475,7 @@ CDN工作原理和基础架构内容分发网络（C">
 <p>LDNS是Local DNS的简写，就是本地 DNS 服务器。<br>一般是由ISP提供，例如电信、联通和移动提供分配的本机的DNS，另外还有Google的8.8.8.8，以及114.114.114.114也属于公共的Local DNS</p>
 </blockquote>
 <blockquote>
-<p>用户发起http请求的处理流程中，网站授权DNS的处理流程：</p>
+<p>用户发起http请求的处理流程中，<strong>网站授权DNS</strong>的处理流程：</p>
 <p>a）本机向Local DNS请求域名<a href="http://www.a.com的解析" target="_blank" rel="noopener">http://www.a.com的解析</a></p>
 <p>b）Local DNS向根域.进行请求，根域.返回com.域的服务器和ip地址</p>
 <p>c）向com.域请求<a href="http://www.a.com的解析，com.域返回a.com.域的服务器和ip地址" target="_blank" rel="noopener">http://www.a.com的解析，com.域返回a.com.域的服务器和ip地址</a></p>
@@ -489,7 +489,7 @@ CDN工作原理和基础架构内容分发网络（C">
 <p>  负载均衡算法采用wrr</p>
 </li>
 <li><p><strong>Tengine做七层负载均衡</strong></p>
-<p>  阿里基于Nginx开发的高性能HTTP服务器</p>
+<p>  阿里基于<strong>Nginx</strong>开发的高性能HTTP服务器</p>
 <p>  主动健康检查</p>
 <p>  SPDY v3支持</p>
 </li>
@@ -721,7 +721,7 @@ CDN工作原理和基础架构内容分发网络（C">
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            结合Redis集群来讲一下一致性Hash的相关问题。
+                            结合Redis集群来学习一下一致性Hash的相关问题。
                         
                     </div>
                     <div class="publish-info">
@@ -770,9 +770,9 @@ CDN工作原理和基础架构内容分发网络（C">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/79.jpg" class="responsive-img" alt="Servlet的本质是什么，它是如何工作的">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/56.jpg" class="responsive-img" alt="Servlet生命周期和PostConstruct、PreDestroy">
                         
-                        <span class="card-title">Servlet的本质是什么，它是如何工作的</span>
+                        <span class="card-title">Servlet生命周期和PostConstruct、PreDestroy</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -979,7 +979,7 @@ CDN工作原理和基础架构内容分发网络（C">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

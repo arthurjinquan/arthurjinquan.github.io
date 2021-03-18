@@ -375,12 +375,12 @@
                             <span class="chip bg-color">mybatis</span>
                         </a>
                         
-                        <a href="/tags/mysql/" target="_blank">
-                            <span class="chip bg-color">mysql</span>
-                        </a>
-                        
                         <a href="/tags/sql/" target="_blank">
                             <span class="chip bg-color">sql</span>
+                        </a>
+                        
+                        <a href="/tags/mysql/" target="_blank">
+                            <span class="chip bg-color">mysql</span>
                         </a>
                         
                     </div>
@@ -440,17 +440,17 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>SQL注入是比较常见的网络攻击方式之一，它不是利用操作系统的BUG来实现攻击，而是针对程序员编写时的疏忽，通过SQL语句，实现无账号登录，甚至篡改数据库，本文参考网上资料整理。</p>
-<h2 id="如何防御SQL注入"><a href="#如何防御SQL注入" class="headerlink" title="如何防御SQL注入"></a>如何防御SQL注入</h2><p>「外部数据不可信任」的原则，纵观Web安全领域的各种攻击方式，大多数都是因为开发者违反了这个原则而导致的，所以自然能想到的，就是从变量的检测、过滤、验证下手，确保变量是开发者所预想的。</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>SQL注入是比较常见的网络攻击方式之一，它不是利用操作系统的BUG来实现攻击，而是针对程序员编写时的疏忽，通过SQL语句，实现<strong>无账号登录</strong>，甚至<strong>篡改数据库</strong>，本文参考网上资料整理。</p>
+<h2 id="如何防御SQL注入"><a href="#如何防御SQL注入" class="headerlink" title="如何防御SQL注入"></a>如何防御SQL注入</h2><p>「<strong>外部数据不可信任</strong>」的原则，纵观Web安全领域的各种攻击方式，大多数都是因为开发者违反了这个原则而导致的，所以自然能想到的，就是从变量的检测、过滤、验证下手，确保变量是开发者所预想的。</p>
 <ol>
-<li><p>检查变量数据类型和格式：只要是有固定格式的变量，在SQL语句执行前，应该严格按照固定格式去检查，确保变量是我们预想的格式，这样很大程度上可以避免SQL注入攻击。</p>
+<li><p><strong>检查变量数据类型和格式</strong>：只要是有固定格式的变量，在SQL语句执行前，应该严格按照固定格式去检查，确保变量是我们预想的格式，这样很大程度上可以避免SQL注入攻击。</p>
 </li>
-<li><p>过滤特殊符号：对于无法确定固定格式的变量，一定要进行特殊符号过滤或转义处理。</p>
+<li><p><strong>过滤特殊符号</strong>：对于无法确定固定格式的变量，一定要进行特殊符号过滤或转义处理。</p>
 </li>
-<li><p>绑定变量，使用预编译语句：MySQL的mysqli驱动提供了预编译语句的支持。实际上，绑定变量使用预编译语句是预防SQL注入的最佳方式，使用预编译的SQL语句语义不会发生改变，在SQL语句中，变量用问号?表示，黑客即使本事再大，也无法改变SQL语句的结构。</p>
+<li><p><strong>绑定变量，使用预编译语句</strong>：MySQL的mysqli驱动提供了预编译语句的支持。实际上，绑定变量使用预编译语句是预防SQL注入的最佳方式，使用预编译的SQL语句语义不会发生改变，在SQL语句中，变量用问号?表示，黑客即使本事再大，也无法改变SQL语句的结构。</p>
 </li>
 </ol>
-<h3 id="为什么预编译（PrepareStatement）可以防止sql注入"><a href="#为什么预编译（PrepareStatement）可以防止sql注入" class="headerlink" title="为什么预编译（PrepareStatement）可以防止sql注入"></a>为什么预编译（PrepareStatement）可以防止sql注入</h3><p>原理是采用了预编译的方法，先将SQL语句中可被客户端控制的参数集进行编译，生成对应的临时变量集，再使用对应的设置方法，为临时变量集里面的元素进行赋值，赋值函数setString()，会对传入的参数进行强制类型检查和安全检查，所以就避免了SQL注入的产生。下面具体分析。</p>
+<h3 id="为什么预编译（PrepareStatement）可以防止sql注入"><a href="#为什么预编译（PrepareStatement）可以防止sql注入" class="headerlink" title="为什么预编译（PrepareStatement）可以防止sql注入"></a>为什么预编译（PrepareStatement）可以防止sql注入</h3><p>原理是采用了预编译的方法，先将SQL语句中可被客户端控制的参数集进行编译，生成对应的临时变量集，再使用对应的设置方法，为临时变量集里面的元素进行赋值，赋值函数<code>setString()</code>，会对传入的参数进行强制类型检查和安全检查，所以就避免了SQL注入的产生。下面具体分析。</p>
 <p>Statement之所以会被sql注入是因为SQL语句结构发生了变化。比如：</p>
 <pre class="line-numbers language-sql"><code class="language-sql">SQL <span class="token operator">=</span> “<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users <span class="token keyword">WHERE</span> <span class="token punctuation">(</span>name <span class="token operator">=</span> ‘” <span class="token operator">+</span> userName <span class="token operator">+</span> “’<span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token punctuation">(</span>pw <span class="token operator">=</span> ‘”<span class="token operator">+</span> passWord <span class="token operator">+</span>”’<span class="token punctuation">)</span><span class="token punctuation">;</span>”
 
@@ -459,14 +459,14 @@ userName <span class="token operator">=</span> “<span class="token number">1</
 passWord <span class="token operator">=</span> “<span class="token number">1</span>’ <span class="token operator">OR</span> ‘<span class="token number">1</span>’<span class="token operator">=</span>’<span class="token number">1</span>”<span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">//将变成</span>
-SQL <span class="token operator">=</span> “<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users <span class="token keyword">WHERE</span> <span class="token punctuation">(</span>name <span class="token operator">=</span> ‘<span class="token number">1</span>’ <span class="token operator">OR</span> ‘<span class="token number">1</span>’<span class="token operator">=</span>’<span class="token number">1</span>’<span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token punctuation">(</span>pw <span class="token operator">=</span> ‘<span class="token number">1</span>’ <span class="token operator">OR</span> ‘<span class="token number">1</span>’<span class="token operator">=</span>’<span class="token number">1</span>’<span class="token punctuation">)</span><span class="token punctuation">;</span>”
+SQL <span class="token operator">=</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users <span class="token keyword">WHERE</span> <span class="token punctuation">(</span>name <span class="token operator">=</span> ‘<span class="token number">1</span>’ <span class="token operator">OR</span> ‘<span class="token number">1</span>’<span class="token operator">=</span>’<span class="token number">1</span>’<span class="token punctuation">)</span> <span class="token operator">and</span> <span class="token punctuation">(</span>pw <span class="token operator">=</span> ‘<span class="token number">1</span>’ <span class="token operator">OR</span> ‘<span class="token number">1</span>’<span class="token operator">=</span>’<span class="token number">1</span>’<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">//相当于</span>
-SQL <span class="token operator">=</span> “<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users<span class="token punctuation">;</span>”<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+SQL <span class="token operator">=</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>而Preparement样式为</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> users <span class="token keyword">WHERE</span> userName<span class="token operator">=</span>? <span class="token operator">and</span> passWord<span class="token operator">=</span>?<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>该SQL语句会在得到用户的输入之前先用数据库进行预编译，这样的话不管用户输入什么用户名和密码的判断始终都是并的逻辑关系，防止了SQL注入。</p>
-<p>简单总结，参数化能防注入的原因在于，语句是语句，参数是参数，参数的值并不是语句的一部分，数据库只按语句的语义跑。</p>
+<p>简单总结，参数化能防注入的原因在于，<strong>语句是语句，参数是参数</strong>，参数的值并不是语句的一部分，数据库只按语句的语义跑。</p>
 <h2 id="Mybatis-中的-和-使用方法的区别"><a href="#Mybatis-中的-和-使用方法的区别" class="headerlink" title="Mybatis 中的 $ 和 # 使用方法的区别"></a>Mybatis 中的 $ 和 # 使用方法的区别</h2><ol>
 <li><p><code>#{}</code>将传入的数据都当成一个字符串，会对自动传入的数据加一个双引号。如：<code>order by #{id}</code>，如果传入的值是111,那么解析成sql时的值为order by “111”, 如果传入的值是id，则解析成的sql为order by “id”。</p>
 </li>
@@ -851,7 +851,7 @@ SQL <span class="token operator">=</span> “<span class="token keyword">SELECT<
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

@@ -414,7 +414,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    2.6k
                 </div>
                 
 
@@ -455,10 +455,10 @@
 <p>然后就去源码rest里找啦，一步一步找到rest.java文件，例如：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/debug-2.jpg" alt></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/debug-3.jpg" alt></p>
-<p>如果找的过程中卡住了或者找不到的话就直接<strong>快捷键 ctrl + shift + r 全局搜索</strong>。</p>
+<p>如果找的过程中卡住了或者找不到的话就直接<strong>快捷键 ctrl + shift + f 全局搜索</strong>。</p>
 <p>找到@RequestMapping，发现value跟我们要找的url末尾部分完全一致，就是找对地方啦（有些目录要分两三段找，反正就是跟文件夹差不多）</p>
 <p>然后从rest-&gt;service-&gt;mapper的顺序过一过流程看看有没有什么错误，嗯，说实话一般都看不出来，这时候就要靠强大的log日志帮我们精确定位问题所在了。</p>
-<p>一般项目都会有日志导出的文件，用<code>tail -300f “日志文件”</code>找到最近300条日志信息，来看看它到底是哪里出了问题。出问题的日志如下：</p>
+<p>一般项目都会有日志导出的文件，用<code>tail -100f “日志文件”</code>找到最近100条日志信息，来看看它到底是哪里出了问题。出问题的日志如下：</p>
 <pre class="line-numbers language-log"><code class="language-log">Creating a new SqlSession
 Registering transaction synchronization for SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@f842db6]
 JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@7b15ae54] will be managed by Spring
@@ -471,7 +471,7 @@ JDBC Connection [com.mysql.cj.jdbc.ConnectionImpl@7b15ae54] will be managed by S
 Creating a new SqlSession
 SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@43c921b8] was not registered for synchronization because synchronization is not active
 [2020-12-31 10:54:54.500][DEBUG][http-nio-10081-exec-3][10.0.1.117][245bacd8987a4fa383a0ba6ecfb414ec][192.168.8.98][org.springframework.jdbc.datasource.DataSourceUtils..][] "Fetching JDBC Connection from DataSource"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>SqlSession was not registered for synchronization because synchronization is not active就是事务回滚的log日志，很显然，出问题的sql语句就是这段话前一个sql了。</p>
+<p>SqlSession was not registered for synchronization because synchronization is not active，很显然，出问题的sql语句就是这段话前一个sql了。</p>
 <p>竟然都找到出问题的sql语句了，就去数据库调试sql了，这个栗子为什么会无限回滚是<strong>因为一个实例对应多条数据</strong>，而读每个实例对应的数据时都只读一条，而且还是最老的数据，因为有定时过期灭菌检测，最老的数据不管怎么操作都是过期的，所以才出现无限回滚的情况。</p>
 <p>解决方法是我们去读取最新的数据。原本sql语句为：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token number">a</span><span class="token punctuation">.</span>id <span class="token keyword">as</span> <span class="token string">"id"</span><span class="token punctuation">,</span> <span class="token number">a</span><span class="token punctuation">.</span>define_id <span class="token keyword">as</span> <span class="token string">"defineId"</span><span class="token punctuation">,</span> <span class="token number">a</span><span class="token punctuation">.</span><span class="token keyword">status</span> <span class="token keyword">as</span> <span class="token string">"status"</span><span class="token punctuation">,</span> 
@@ -760,7 +760,7 @@ SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@43c921b8] was n
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            看了2次都没看的明白，自己整理了下资料。
+                            看了2次都没看的明白，自己整理了下资料，REST用URL定位资源，用HTTP描述操作
                         
                     </div>
                     <div class="publish-info">
@@ -809,7 +809,7 @@ SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@43c921b8] was n
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            java程序与数据建立连接，首先要从jdbc说起，然后直接上阿里认为宇宙最好的数据库连接池druid，然后再说上层程序对象与数据源映射关联关系的orm-mybatis。
+                            java程序与数据建立连接，从jdbc到阿里的数据库连接池druid，然后再说上层程序对象与数据源映射关联关系的orm-mybatis。
                         
                     </div>
                     <div class="publish-info">
@@ -1014,7 +1014,7 @@ SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@43c921b8] was n
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

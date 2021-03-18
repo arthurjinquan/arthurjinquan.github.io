@@ -373,20 +373,20 @@ CREATE TABLE `user` (
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/mysql/" target="_blank">
-                            <span class="chip bg-color">mysql</span>
+                        <a href="/tags/sql/" target="_blank">
+                            <span class="chip bg-color">sql</span>
                         </a>
                         
                         <a href="/tags/index/" target="_blank">
                             <span class="chip bg-color">index</span>
                         </a>
                         
-                        <a href="/tags/数据库优化/" target="_blank">
-                            <span class="chip bg-color">数据库优化</span>
+                        <a href="/tags/mysql/" target="_blank">
+                            <span class="chip bg-color">mysql</span>
                         </a>
                         
-                        <a href="/tags/sql/" target="_blank">
-                            <span class="chip bg-color">sql</span>
+                        <a href="/tags/数据库优化/" target="_blank">
+                            <span class="chip bg-color">数据库优化</span>
                         </a>
                         
                     </div>
@@ -423,7 +423,7 @@ CREATE TABLE `user` (
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    2k
                 </div>
                 
 
@@ -470,7 +470,7 @@ CREATE TABLE `user` (
 <li>对于or+没有索引的age这种情况，假设它走了userId的索引，但是走到age查询条件时，它还得<strong>全表扫描</strong>，也就是需要三步过程： 全表扫描+索引扫描+合并</li>
 <li>如果它一开始就走全表扫描，直接一遍扫描就完事。</li>
 <li>mysql是有优化器的，处于效率与成本，遇到or条件，索引可能失效，看起来也合情合理。</li>
-<li>用or导致or左侧的userid索引失效</li>
+<li><strong>用or导致or左侧的userid索引失效</strong></li>
 </ol>
 <p>注意: 如果or条件的列都加了索引，索引可能会走的。</p>
 <h2 id="二、如果字段类型是字符串，where时一定用引号括起来"><a href="#二、如果字段类型是字符串，where时一定用引号括起来" class="headerlink" title="二、如果字段类型是字符串，where时一定用引号括起来"></a>二、如果字段类型是字符串，where时一定用引号括起来</h2><p>假设demo表结构如下：</p>
@@ -513,11 +513,7 @@ CREATE TABLE `user` (
 <p>在联合索引中，查询条件满足<strong>最左匹配原则</strong>时，索引是正常生效的。请看demo：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-composite%20index.jpg" alt></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-compositeindex2.jpg" alt></p>
 <p>如果条件列不是联合索引中的第一个列，索引失效，如下：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-composite%20index3.jpg" alt></p>
-<h3 id="分析与结论-1"><a href="#分析与结论-1" class="headerlink" title="分析与结论"></a>分析与结论</h3><ol>
-<li>当我们创建一个联合索引的时候，如<code>(k1,k2,k3)</code>，相当于创建了（k1）、（k1,k2）和（k1,k2,k3）三个索引，这就是最左匹配原则。</li>
-<li>联合索引不满足最左前缀原则，索引一般会失效，但是这个还跟Mysql优化器有关的。</li>
-<li>复合索引，尽量使用<strong>全索引匹配</strong></li>
-</ol>
+<p>复合索引，尽量使用<strong>全索引匹配</strong></p>
 <h2 id="五、在索引列上使用mysql的内置函数，索引失效"><a href="#五、在索引列上使用mysql的内置函数，索引失效" class="headerlink" title="五、在索引列上使用mysql的内置函数，索引失效"></a>五、在索引列上使用mysql的内置函数，索引失效</h2><p>表结构：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span><span class="token keyword">user</span><span class="token punctuation">`</span> <span class="token punctuation">(</span>
   <span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
@@ -552,7 +548,7 @@ CREATE TABLE `user` (
 <p>！= 和 &lt; &gt;两者都是不等于的意思，查阅网上资料说是！=是以前sql标准，&lt;&gt;是现在使用的sql标准，推荐使用&lt;&gt;。</p>
 <p>复合索引不能使用不等于（!=  &lt;&gt;）或is null （is not null），否则自身以及右侧所有全部失效。复合索引中如果有&gt;，则自身和右侧索引全部失效。</p>
 </blockquote>
-<h2 id="八、索引字段上使用is-null，-is-not-null，可能导致索引失效"><a href="#八、索引字段上使用is-null，-is-not-null，可能导致索引失效" class="headerlink" title="八、索引字段上使用is null， is not null，可能导致索引失效"></a>八、索引字段上使用is null， is not null，可能导致索引失效</h2><p>表结构:</p>
+<h2 id="八、索引字段上使用is-null，is-not-null，可能导致索引失效"><a href="#八、索引字段上使用is-null，is-not-null，可能导致索引失效" class="headerlink" title="八、索引字段上使用is null，is not null，可能导致索引失效"></a>八、索引字段上使用is null，is not null，可能导致索引失效</h2><p>表结构:</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span><span class="token keyword">user</span><span class="token punctuation">`</span> <span class="token punctuation">(</span>
   <span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
   <span class="token punctuation">`</span>card<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token keyword">DEFAULT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
@@ -719,9 +715,9 @@ CREATE TABLE `user` (
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/79.jpg" class="responsive-img" alt="Servlet的本质是什么，它是如何工作的">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/56.jpg" class="responsive-img" alt="Servlet生命周期和PostConstruct、PreDestroy">
                         
-                        <span class="card-title">Servlet的本质是什么，它是如何工作的</span>
+                        <span class="card-title">Servlet生命周期和PostConstruct、PreDestroy</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -780,7 +776,7 @@ CREATE TABLE `user` (
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            事务有四种基本特性，叫ACID，它们分别是：Atomicity-原子性，Consistency-一致性，Isolation-隔离性，Durability-持久性，本文着重说明隔离性。
+                            事务有四种基本特性，叫ACID，本文着重说明隔离性。
                         
                     </div>
                     <div class="publish-info">
@@ -977,7 +973,7 @@ CREATE TABLE `user` (
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

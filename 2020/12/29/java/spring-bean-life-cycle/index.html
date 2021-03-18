@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Spring Bean 的生命周期, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="Spring Bean生命周期源码, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
@@ -22,7 +22,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Spring Bean 的生命周期 | 锦泉^-^</title>
+    <title>Spring Bean生命周期源码 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -259,13 +259,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/68.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Spring Bean 的生命周期
+                        Spring Bean生命周期源码
                     </div>
                 </div>
             </div>
@@ -451,7 +451,7 @@
 <li>不再使用的时候通过垃圾回收机制进行回收</li>
 </ol>
 <p>参考整理：<a href="https://juejin.cn/post/6844904065457979405" target="_blank" rel="noopener">https://juejin.cn/post/6844904065457979405</a></p>
-<p>但是对于Bean来说却不是这样。Bean的生命周期如下图所示</p>
+<p>但是对于Bean来说却不是这样。Bean的生命周期如下图所示：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/bean-life%20cycle.jpg" alt></p>
 <p>Bean 的生命周期概括起来就是 4 个阶段：</p>
 <ul>
@@ -560,7 +560,7 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>从 Spring 的源码我们可以直观的看到其执行过程，而我们记忆其过程便可以从这 4 个阶段出发，实例化、属性赋值、初始化、销毁。其中细节较多的便是初始化，涉及了 Aware、BeanPostProcessor、InitializingBean、init-method 的概念。这些都是 Spring 提供的扩展点，其具体作用将在下一节讲述。</p>
-<h2 id="扩展点的作用"><a href="#扩展点的作用" class="headerlink" title="扩展点的作用"></a>扩展点的作用</h2><h3 id="Aware-接口"><a href="#Aware-接口" class="headerlink" title="Aware 接口"></a>Aware 接口</h3><p>若 Spring 检测到 bean 实现了 Aware 接口，则会为其注入相应的依赖。所以通过让bean 实现 Aware 接口，则能在 bean 中获得相应的 Spring 容器资源。</p>
+<h2 id="扩展点的作用"><a href="#扩展点的作用" class="headerlink" title="扩展点的作用"></a>扩展点的作用</h2><h3 id="Aware-接口"><a href="#Aware-接口" class="headerlink" title="Aware 接口"></a>Aware 接口</h3><p>若 Spring 检测到 bean 实现了 Aware 接口，则会为其<strong>注入相应的依赖</strong>。所以通过让bean 实现 Aware 接口，则能在 bean 中获得相应的 Spring 容器资源。</p>
 <p>Spring 中提供的 Aware 接口有：</p>
 <ol>
 <li>BeanNameAware：注入当前 bean 对应 <strong>beanName</strong>；</li>
@@ -579,7 +579,7 @@
 
         <span class="token punctuation">}</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>bean <span class="token keyword">instanceof</span> <span class="token class-name">BeanFactoryAware</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token punctuation">(</span><span class="token punctuation">(</span>BeanFactoryAware<span class="token punctuation">)</span> bean<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setBeanFactory</span><span class="token punctuation">(</span>AbstractAutowireCapableBeanFactory<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">(</span><span class="token punctuation">(</span>BeanFactoryAware<span class="token punctuation">)</span>bean<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setBeanFactory</span><span class="token punctuation">(</span>AbstractAutowireCapableBeanFactory<span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -633,7 +633,7 @@
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>常用场景有：</p>
 <ol>
-<li><p><strong>对于标记接口的实现类，进行自定义处理</strong>。例如上一节中所说的ApplicationContextAwareProcessor，为其注入相应依赖；再举个例子，自定义对实现解密接口的类，将对其属性进行解密处理；</p>
+<li><p><strong>对于标记接口的实现类，进行自定义处理</strong>。例如上一节中所说的ApplicationContextAwareProcessor，为其注入相应依赖；再举个例子，自定义对实现解密接口的类，将对其属性进行<strong>解密处理</strong>；</p>
 </li>
 <li><p><strong>为当前对象提供代理实现</strong>。例如 Spring AOP 功能，生成对象的代理类，然后返回。</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// AbstractAutoProxyCreator.java</span>
@@ -713,7 +713,7 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Spring Bean 的生命周期》
+                    《Spring Bean生命周期源码》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/12/29/java/spring-bean-life-cycle/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -815,8 +815,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/中间件/" target="_blank">
+                        <span class="chip bg-color">中间件</span>
                     </a>
                     
                     <a href="/tags/elasticsearch/" target="_blank">
@@ -854,7 +854,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            结合Redis集群来讲一下一致性Hash的相关问题。
+                            结合Redis集群来学习一下一致性Hash的相关问题。
                         
                     </div>
                     <div class="publish-info">
@@ -1059,7 +1059,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

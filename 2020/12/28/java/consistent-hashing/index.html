@@ -441,23 +441,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Redis集群的使用"><a href="#Redis集群的使用" class="headerlink" title="Redis集群的使用"></a>Redis集群的使用</h2><p>我们在使用Redis的过程中，为了保证Redis的高可用，我们一般会对Redis做主从复制，组成Master-Master或者Master-Slave的形式，进行数据的读写分离，如下图所示：</p>
+                <h2 id="Redis集群的使用"><a href="#Redis集群的使用" class="headerlink" title="Redis集群的使用"></a>Redis集群的使用</h2><p>我们在使用Redis的过程中，为了保证Redis的高可用，我们一般会对Redis做<strong>主从复制</strong>，组成Master-Master或者Master-Slave的形式，进行数据的读写分离，如下图所示：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/consistenthash-master-slave.png" alt></p>
 <p>当缓存数据量超过一定的数量时，我们就要对Redis集群做分库分表的操作。</p>
 <p>转载：<a href="https://www.jianshu.com/p/528ce5cd7e8f" target="_blank" rel="noopener">https://www.jianshu.com/p/528ce5cd7e8f</a></p>
 <p>来个栗子，我们有一个电商平台，需要使用Redis存储商品的图片资源，存储的格式为键值对，key值为图片名称，Value为该图片所在的文件服务器的路径，我们需要根据文件名，查找到文件所在的文件服务器上的路径，我们的图片数量大概在3000w左右，按照我们的规则进行分库，规则就是随机分配的，我们以每台服务器存500w的数量，部署12台缓存服务器，并且进行主从复制，架构图如下图所示：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/consistenthash-redis.png" alt></p>
-<p>由于我们定义的规则是<strong>随机</strong>的，所以我们的数据有可能存储在任何一组Redis中，比如我们需要查询”product.png”的图片，由于规则的随机性，我们<strong>需要遍历所有Redis服务器，才能查询得到</strong>。这样的结果显然不是我们所需要的。所以我们会想到按某一个字段值进行Hash值、取模。所以我们就看看使用Hash的方式是怎么进行的。</p>
+<p>由于我们定义的规则是<strong>随机</strong>的，所以我们的数据有可能存储在任何一组Redis中，比如我们需要查询”product.png”的图片，由于规则的随机性，我们<strong>需要遍历所有Redis服务器，才能查询得到</strong>。</p>
 <h2 id="使用Hash的Redis集群"><a href="#使用Hash的Redis集群" class="headerlink" title="使用Hash的Redis集群"></a>使用Hash的Redis集群</h2><p>如果我们使用Hash的方式，每一张图片在进行分库的时候都可以定位到特定的服务器，示意图如图所示：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/consistenthash-redis2.png" alt></p>
 <p>从上图中，我们需要查询的是图product.png，由于我们有6台主服务器，所以计算的公式为：hash（product.png） % 6 = 5, 我们就可以定位到是5号主从，这们就省去了遍历所有服务器的时间，从而大大提升了性能。</p>
-<h3 id="使用Hash时遇到的问题"><a href="#使用Hash时遇到的问题" class="headerlink" title="使用Hash时遇到的问题"></a>使用Hash时遇到的问题</h3><p>在上述hash取模的过程中，我们虽然不需要对所有Redis服务器进行遍历而提升了性能。但是，使用Hash算法缓存时会出现一些问题，Redis服务器变动时，所有缓存的位置都会发生改变。</p>
-<p>比如，现在我们的Redis缓存服务器增加到了8台，我们计算的公式从hash（product.png） % 6 = 5变成了hash（product.png） % 8 = ? 结果肯定不是原来的5了。</p>
+<h3 id="使用Hash时遇到的问题"><a href="#使用Hash时遇到的问题" class="headerlink" title="使用Hash时遇到的问题"></a>使用Hash时遇到的问题</h3><p>在上述hash取模的过程中，我们虽然不需要对所有Redis服务器进行遍历而提升了性能。但是，使用Hash算法缓存时会出现一些问题，<strong>Redis服务器变动时，所有缓存的位置都会发生改变</strong>。</p>
+<p>比如，现在我们的Redis缓存服务器增加到了8台，我们计算的公式从 hash（product.png） % 6 = 5 变成了 hash（product.png） % 8 = ?  结果肯定不是原来的5了。</p>
 <p>再者，6台的服务器集群中，当某个主从群出现故障时，无法进行缓存，那我们需要把故障机器移除，所以取模数又会从6变成了5。我们计算的公式也会变化。</p>
 <p>由于上面hash算法是使用取模来进行缓存的，为了规避上述情况，Hash一致性算法就诞生了！！</p>
-<h2 id="一致性Hash算法原理"><a href="#一致性Hash算法原理" class="headerlink" title="一致性Hash算法原理"></a>一致性Hash算法原理</h2><p>一致性Hash算法也是使用取模的方法，不过，上述的取模方法是对服务器的数量进行取模，而一致性的Hash算法是对2的32方取模。即，一致性Hash算法将整个Hash空间组织成一个虚拟的圆环，Hash函数的值空间为0 ~ 2^32 - 1（一个32位无符号整型），整个哈希环如下：</p>
+<h2 id="一致性Hash算法原理"><a href="#一致性Hash算法原理" class="headerlink" title="一致性Hash算法原理"></a>一致性Hash算法原理</h2><p>一致性Hash算法也是使用取模的方法，不过，上述的取模方法是对服务器的数量进行取模，而一致性的Hash算法是<strong>对2的32方取模</strong>。即，一致性Hash算法将整个Hash空间组织成一个虚拟的圆环，Hash函数的值空间为0 ~ 2^32 - 1（一个32位无符号整型），整个哈希环如下：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/consistenthash-theory.png" alt></p>
-<p>整个圆环以顺时针方向组织，圆环正上方的点代表0，0点右侧的第一个点代表1，以此类推。<br>第二步，我们将各个服务器使用Hash进行一个哈希，具体可以选择服务器的IP或主机名作为关键字进行哈希，这样每台服务器就确定在了哈希环的一个位置上，比如我们有三台机器，使用IP地址哈希后在环空间的位置如图所示：</p>
+<p>整个圆环以顺时针方向组织，圆环正上方的点代表0，0点右侧的第一个点代表1，以此类推。</p>
+<p>第二步，我们将各个服务器使用Hash进行一个哈希，具体可以选择<strong>服务器的IP或主机名作为关键字进行哈希</strong>，这样每台服务器就确定在了哈希环的一个位置上，比如我们有三台机器，使用IP地址哈希后在环空间的位置如图所示：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/consistenthash-theory2.png" alt></p>
 <p>现在，我们使用以下算法定位数据访问到相应的服务器：<br>将数据Key使用相同的函数Hash计算出哈希值，并确定此数据在环上的位置，<strong>从此位置沿环顺时针查找，遇到的服务器就是其应该定位到的服务器</strong>。</p>
 <p>例如，现在有ObjectA，ObjectB，ObjectC三个数据对象，经过哈希计算后，在环空间上的位置如下：</p>
@@ -565,7 +566,7 @@
     <span class="token comment" spellcheck="true">// Hash函数接口</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> IHashService iHashService<span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 每个机器节点关联的虚拟节点数量</span>
-    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">int</span>          numberOfReplicas<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">int</span> numberOfReplicas<span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">// 环形虚拟节点</span>
     <span class="token keyword">private</span> <span class="token keyword">final</span> SortedMap<span class="token operator">&lt;</span>Long<span class="token punctuation">,</span> T<span class="token operator">></span> circle <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TreeMap</span><span class="token operator">&lt;</span>Long<span class="token punctuation">,</span> T<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -757,9 +758,9 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/9.jpg" class="responsive-img" alt="Spring Bean 的生命周期">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/68.jpg" class="responsive-img" alt="Spring Bean生命周期源码">
                         
-                        <span class="card-title">Spring Bean 的生命周期</span>
+                        <span class="card-title">Spring Bean生命周期源码</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -822,7 +823,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            淘宝的图片访问，有98%的流量都走了CDN缓存。只有2%会回源到源站，节省了大量的服务器资源。但是，如果在用户访问高峰期，图片内容大批量发生变化，大量用户的访问就会穿透cdn，对源站造成巨大的压力。
+                            淘宝的图片访问，有98%的流量都走了CDN缓存。
                         
                     </div>
                     <div class="publish-info">
@@ -1023,7 +1024,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

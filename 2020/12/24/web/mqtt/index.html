@@ -8,8 +8,8 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="MQTTMQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（Publish/Subscribe）模式的轻量级通讯协议，该协议构建于TCP/IP协议上。
-MQTT协议">
+    <meta name="description" content="MQTTMQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（Publish / Subscribe）模式的轻量级通讯协议，该协议构建于TCP/IP协议上。
+MQTT">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -436,9 +436,9 @@ MQTT协议">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h2><p>MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（Publish/Subscribe）模式的轻量级通讯协议，该协议构建于TCP/IP协议上。</p>
+                <h2 id="MQTT"><a href="#MQTT" class="headerlink" title="MQTT"></a>MQTT</h2><p>MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（Publish / Subscribe）模式的轻量级通讯协议，该协议构建于TCP/IP协议上。</p>
 <p>MQTT协议运行于TCP之上，属于应用层协议，因此只要是支持TCP/IP协议栈的地方，都可以使用MQTT。</p>
-<p>MQTT最大的优点在于可以以极少的代码和有限的带宽，为远程设备提供实时可靠的消息服务。做为一种低开销、低带宽占用的即时通讯协议，MQTT在物联网、小型设备、移动应用等方面有广泛的应用。在物联网开发中，MQTT不是唯一的选择，与MQTT互相竞争的协议有XMPP和CoAP协议等。</p>
+<p>MQTT最大的优点在于可以<strong>以极少的代码和有限的带宽，为远程设备提供实时可靠的消息服务</strong>。做为一种低开销、低带宽占用的即时通讯协议，MQTT在物联网、小型设备、移动应用等方面有广泛的应用。在物联网开发中，MQTT不是唯一的选择，与MQTT互相竞争的协议有XMPP和CoAP协议等。</p>
 <p>MQTT协议的中心是MQTT服务器或代理 （broker）：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-broker.png" alt></p>
 <p>每条MQTT命令消息的消息头都包含一个固定的报头，有些消息会携带一个可变报文头和一个负荷。消息格式如下：</p>
@@ -451,11 +451,11 @@ MQTT协议">
 <h2 id="固定报文头（Fixed-Header）"><a href="#固定报文头（Fixed-Header）" class="headerlink" title="固定报文头（Fixed Header）"></a>固定报文头（Fixed Header）</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%9B%BA%E5%AE%9A%E6%8A%A5%E5%A4%B4.png" alt></p>
 <p>MQTT固定报文头最少有两个字节:</p>
 <ol>
-<li>第一字节前4bit表示报文类型（Message Type），后4bit是QoS级别等报文类型的标志位。</li>
-<li>第二字节开始是剩余长度字段，该长度是后面的可变报文头加消息负载的总长度，该字段最多允许四个字节。</li>
+<li>第一字节前4bit表示<strong>报文类型</strong>（Message Type），后4bit是QoS级别等报文类型的标志位。</li>
+<li>第二字节开始是剩余长度字段，该长度是后面的<strong>可变报文头加消息负载的总长度</strong>，该字段最多允许四个字节。</li>
 </ol>
 <h3 id="报文类型Message-Type"><a href="#报文类型Message-Type" class="headerlink" title="报文类型Message Type:"></a>报文类型Message Type:</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-message%20type.png" alt><br>比如建立连接的前四位报文为0001,则转换成十进制=1,刚好对应上表中的CONNECT,也就是客户端请求连接服务端的意思。</p>
-<h3 id="报文标志"><a href="#报文标志" class="headerlink" title="报文标志"></a>报文标志</h3><p>继续上面那个图,紧跟着Message Type为0001的CONNECT后面的后四位报文标志为0000,表示缺省（Reserved）,一般这四位用于标示发送重复数（DUP） （1字节） 、服务质量 （QoS） （2字节）、保留标志（RETAIN）（1字节）<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E6%8A%A5%E6%96%87%E6%A0%87%E5%BF%97.png" alt></p>
+<h3 id="报文标志"><a href="#报文标志" class="headerlink" title="报文标志"></a>报文标志</h3><p>继续上面那个图,紧跟着Message Type为0001的 CONNECT 后面的后四位报文标志为0000,表示缺省（Reserved）,一般这四位用于标示发送重复数（DUP） （1字节） 、服务质量 （QoS） （2字节）、保留标志（RETAIN）（1字节）<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E6%8A%A5%E6%96%87%E6%A0%87%E5%BF%97.png" alt></p>
 <p>DUP：发布消息的副本。用来在保证消息的可靠传输，如果设置为 1，则在下面的变长中增加MessageId，并且需要回复确认，以保证消息传输完成，但不能用于检测消息重复发送。</p>
 <p>QoS看下一模块。</p>
 <p>RETAIN：发布保留标识，表示服务器要保留这次推送的信息，如果有新的订阅者出现，就把这消息推送给它，如果设有那么推送至当前订阅者后释放。</p>
@@ -465,10 +465,10 @@ MQTT协议">
 <ol>
 <li>QoS0，At most once，<strong>至多一次</strong>。Sender 发送的一条消息，Receiver 最多能收到一次，也就是说 Sender 尽力向 Receiver 发送消息，如果发送失败，也就算了</li>
 <li>QoS1，At least once，<strong>至少一次</strong>。Sender 发送的一条消息，Receiver 至少能收到一次，也就是说 Sender 向 Receiver 发送消息，如果发送失败，会继续重试，直到 Receiver 收到消息为止，但是因为重传的原因，Receiver 有可能会收到重复的消息</li>
-<li>QoS2，Exactly once，<strong>确保只有一次</strong>。Sender 发送的一条消息，Receiver 确保能收到而且只收到一次，也就是说 Sender 尽力向 Receiver 发送消息，如果发送失败，会继续重试，直到 Receiver 收到消息为止，同时保证 Receiver 不会因为消息重传而收到重复的消息</li>
+<li>QoS2，Exactly once，<strong>确保只有一次</strong>。Sender 发送的一条消息，Receiver 确保能收到而且只收到一次，也就是说 Sender 尽力向 Receiver 发送消息，如果发送失败，会继续重试，直到 Receiver 收到消息为止，同时<strong>保证 Receiver 不会因为消息重传而收到重复的消息</strong></li>
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-Qos.png" alt></p>
-<p>要注意的是，QoS 是 Sender 和 Receiver 之间达成的协议，不是 Publisher 和 Subscriber 之间达成的协议。也就是说 Publisher 发布一条 QoS1 的消息，只能保证 Broker 能至少收到一次这个消息；至于对应的 Subscriber 能否至少收到一次这个消息，还要取决于 Subscriber 在 Subscribe 的时候和 Broker 协商的 QoS 等级。</p>
+<p>要注意的是，<strong>QoS 是 Sender 和 Receiver 之间达成的协议</strong>，不是 Publisher 和 Subscriber 之间达成的协议。也就是说 <strong>Publisher 发布一条 QoS1 的消息，只能保证 Broker 能至少收到一次这个消息</strong>；至于对应的 Subscriber 能否至少收到一次这个消息，还要取决于 Subscriber 在 Subscribe 的时候和 Broker 协商的 QoS 等级。</p>
 <h3 id="剩余报文长度"><a href="#剩余报文长度" class="headerlink" title="剩余报文长度"></a>剩余报文长度</h3><p>表示本次报文的剩余长度（字节位数）<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%89%A9%E4%BD%99%E6%8A%A5%E6%96%87%E9%95%BF%E5%BA%A6.png" alt></p>
 <p>比如这个红色框的报文转换成十进制是29,则表示还有29个字节是本次报文的,绿色框则就是剩余的报文了,刚好是29个,不信你数数</p>
 <p>剩余长度字段单个字节最大值为二进制0b0111 1111，16进制0x7F。也就是说，单个字节可以描述的最大长度是127字节。为什么不是256字节呢？因为MQTT协议规定，单个字节第八位（最高位）若为1，则表示后续还有字节存在，第八位起“延续位”的作用。</p>
@@ -523,11 +523,11 @@ MQTT协议">
 <li>发布者和订阅者不需要同时在线。</li>
 </ol>
 <p>由于采用了发布/订阅实现，MQTT可以双向通信。也就是说MQTT支持服务端反向控制设备，设备可以订阅某个主题，然后发布者对该主题发布消息，设备收到消息后即可进行一系列操作。</p>
-<h3 id="二进制格式实现"><a href="#二进制格式实现" class="headerlink" title="二进制格式实现"></a>二进制格式实现</h3><p>MQTT基于二进制实现而不是字符串，比如HTTP和XMPP都是基于字符串实现。由于HTTP和XMPP拥有冗长的协议头部，而MQTT固定报文头仅有两字节，所以相比其他协议，发送一条消息最省流量。</p>
-<h3 id="MQTT的安全"><a href="#MQTT的安全" class="headerlink" title="MQTT的安全"></a>MQTT的安全</h3><p>由于MQTT运行于TCP层之上并以明文方式传输，这就相当于HTTP的明文传输。作为传输协议，MQTT仅关注消息传输，提供合适的安全功能是开发者的责任。安全功能可以从三个层次来考虑——应用层、传输层、网络层。</p>
+<h3 id="二进制格式实现"><a href="#二进制格式实现" class="headerlink" title="二进制格式实现"></a>二进制格式实现</h3><p>MQTT基于<strong>二进制</strong>实现而不是字符串，比如HTTP和XMPP都是基于字符串实现。由于HTTP和XMPP拥有冗长的协议头部，而MQTT固定报文头仅有两字节，所以相比其他协议，发送一条消息最省流量。</p>
+<h3 id="MQTT的安全"><a href="#MQTT的安全" class="headerlink" title="MQTT的安全"></a>MQTT的安全</h3><p>由于MQTT<strong>运行于TCP层之上并以明文方式传输</strong>，这就相当于HTTP的明文传输。作为传输协议，MQTT仅关注消息传输，提供合适的安全功能是开发者的责任。安全功能可以从三个层次来考虑——应用层、传输层、网络层。</p>
 <ol>
 <li>应用层：在应用层上，MQTT提供了客户标识（Client Identifier）以及用户名和密码，可以在应用层验证设备。</li>
-<li>传输层：类似于HTTPS，MQTT基于TCP连接，也可以加上一层TLS，传输层使用TLS加密是确保安全的一个好手段，可以防止中间人攻击。客户端证书不但可以作为设备的身份凭证，还可以用来验证设备。</li>
+<li>传输层：类似于HTTPS，MQTT基于TCP连接，也可以加上一层TLS，传输层使用<strong>TLS加密</strong>是确保安全的一个好手段，可以防止中间人攻击。客户端证书不但可以作为设备的身份凭证，还可以用来验证设备。</li>
 <li>网络层：如果有条件的话，可以通过拉专线或者使用VPN来连接设备与MQTT代理，以提高网络传输的安全性。</li>
 </ol>
 <h2 id="选择用户数据格式"><a href="#选择用户数据格式" class="headerlink" title="选择用户数据格式"></a>选择用户数据格式</h2><p>MQTT协议只实现了传送消息的格式，并没有限制用户协议需要按照一定的风格，因此在MQTT协议之上，我们需要定义一套自己的通信协议。比如说，发布者向设备发布一条打开消息，设备可以回复一个消息并携带返回码，这样的消息格式是使用二进制、字符串还是JSON格式呢？</p>
@@ -728,15 +728,15 @@ MQTT协议">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/71.jpg" class="responsive-img" alt="Nginx">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/12.jpg" class="responsive-img" alt="Nginx简单介绍">
                         
-                        <span class="card-title">Nginx</span>
+                        <span class="card-title">Nginx简单介绍</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Nginx介绍Nginx 同 Apache 一样都是一种 Web 服务器。基于 REST 架构风格，以统一资源描述符（Uniform Resources Identifier）URI 或者统一资源定位符（Uniform Resources 
+                            消毒供应室项目中部署用到了nginx，不过不是我部署的，学习一下。
                         
                     </div>
                     <div class="publish-info">
@@ -937,7 +937,7 @@ MQTT协议">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

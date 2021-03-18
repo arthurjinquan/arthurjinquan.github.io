@@ -414,14 +414,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    6 分
                 </div>
                 
                 
@@ -447,19 +447,19 @@
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/AMQP%E5%8D%8F%E8%AE%AE.jpg" alt></p>
 <p>功能层（Functional Layer）：定义了一系列的命令</p>
 <p>传输层（Transport Layer）：携带了从应用 → 服务端的方法，用于处理多路复用、分帧、编码、心跳、data-representation、错误处理</p>
-<p>这样分层之后，可以把传输层替换为其它传输协议，而不需要修改功能层。同样，也可以使用同样的传输层，基于此实现不同的上层协议。可能RabbitMQ也是因为类似的原因，能够比较容易的支持MQTT、STOMP等协议的吧。</p>
+<p>这样分层之后，可以<strong>把传输层替换为其它传输协议，而不需要修改功能层</strong>。同样，也可以使用同样的传输层，基于此实现不同的上层协议。可能RabbitMQ也是因为类似的原因，能够比较容易的支持MQTT、STOMP等协议的吧。</p>
 <p>转载整理：<a href="https://zhuanlan.zhihu.com/p/147675691" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/147675691</a> | <a href="https://blog.csdn.net/weixin_37641832/article/details/83270778" target="_blank" rel="noopener">https://blog.csdn.net/weixin_37641832/article/details/83270778</a></p>
 <blockquote>
-<p>Broker: 接收和分发消息的应用，RabbitMQ Server就是Message Broker。</p>
+<p>Broker: 接收和分发消息的应用，RabbitMQ Server就 是Message Broker。</p>
 <p>Virtual host: 出于多租户和安全因素设计的，把AMQP的基本组件划分到一个虚拟的分组中，类似于网络中的namespace概念。当多个不同的用户使用同一个RabbitMQ server提供的服务时，可以划分出多个vhost，每个用户在自己的vhost创建exchange／queue等。</p>
 <p>Connection: publisher／consumer和broker之间的TCP连接。断开连接的操作只会在client端进行，Broker不会断开连接，除非出现网络故障或broker服务出现问题。</p>
 <p>Channel: 如果每一次访问RabbitMQ都建立一个Connection，在消息量大的时候建立TCP Connection的开销将是巨大的，效率也较低。Channel是在connection内部建立的逻辑连接，如果应用程序支持多线程，通常每个thread创建单独的channel进行通讯，AMQP method包含了channel id帮助客户端和message broker识别channel，所以channel之间是完全隔离的。Channel作为轻量级的Connection极大减少了操作系统建立TCP connection的开销。</p>
 </blockquote>
 <h2 id="AMQ-Model"><a href="#AMQ-Model" class="headerlink" title="AMQ Model"></a>AMQ Model</h2><p>主要包含了三个主要的组件：</p>
 <ol>
-<li>Exchange: message到达broker的第一站，根据分发规则，匹配查询表中的routing key，分发消息到queue中去。常用的类型有：direct（point-to-point）, topic（publish-subscribe） and fanout（multicast）。</li>
-<li>Queue: 消息最终被送到这里等待consumer取走。一个message可以被同时拷贝到多个queue中。</li>
-<li>Binding: exchange和queue之间的虚拟连接，binding中可以包含routing key。Binding信息被保存到exchange中的查询表中，用于message的分发依据。</li>
+<li><strong>Exchange</strong>: message到达broker的第一站，根据分发规则，匹配查询表中的routing key，分发消息到queue中去。常用的类型有：direct（point-to-point）, topic（publish-subscribe） and fanout（multicast）。</li>
+<li><strong>Queue</strong>: 消息最终被送到这里等待consumer取走。一个message可以被同时拷贝到多个queue中。</li>
+<li><strong>Binding</strong>: exchange和queue之间的虚拟连接，binding中可以包含routing key。Binding信息被保存到exchange中的查询表中，用于message的分发依据。</li>
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/AMQ%20Model.png" alt></p>
 <p>生产者发送消息到broker server（RabbitMQ）。在Broker内部，用户创建Exchange／Queue，通过Binding规则将两者联系在一起。Exchange分发消息，根据类型／binding的不同分发策略有区别。消息最后来到Queue中，等待消费者取走。</p>
@@ -468,9 +468,9 @@
 </li>
 <li><p>发布者发布消息时可以给消息指定各种消息属性（Message Meta-data）。有些属性有可能会被消息代理（Brokers）使用，然而其他的属性则是完全不透明的，它们只能被接收消息的应用所使用。</p>
 </li>
-<li><p>从安全角度考虑，网络是不可靠的，又或是消费者在处理消息的过程中意外挂掉，这样没有处理成功的消息就会丢失。基于此原因，AMQP 模块包含了一个消息确认（Message Acknowledgements）机制：当一个消息从队列中投递给消费者后，不会立即从队列中删除，直到它收到来自消费者的确认回执（Acknowledgement）后，才完全从队列中删除。</p>
+<li><p>AMQP 模块包含了一个<strong>消息确认</strong>（Message Acknowledgements）机制：当一个消息从队列中投递给消费者后，不会立即从队列中删除，直到它收到来自消费者的确认回执（Acknowledgement）后，才完全从队列中删除。</p>
 </li>
-<li><p>在某些情况下，例如当一个消息无法被成功路由时（无法从交换机分发到队列），消息或许会被返回给发布者并被丢弃。或者，如果消息代理执行了延期操作，消息会被放入一个所谓的死信队列中。此时，消息发布者可以选择某些参数来处理这些特殊情况。</p>
+<li><p>在某些情况下，例如当一个消息无法被成功路由时（无法从交换机分发到队列），消息或许会被返回给发布者并被丢弃。或者，如果消息代理执行了延期操作，消息会被放入一个所谓的<strong>死信队列</strong>中。此时，消息发布者可以选择某些参数来处理这些特殊情况。</p>
 </li>
 </ol>
 <h2 id="Exchange模式"><a href="#Exchange模式" class="headerlink" title="Exchange模式"></a>Exchange模式</h2><h3 id="direct模式"><a href="#direct模式" class="headerlink" title="direct模式"></a>direct模式</h3><p>直连型交换机（direct exchange）是根据消息携带的路由键（routing key）将消息投递给对应绑定键的队列。直连交换机用来处理消息的单播路由（unicast routing）（尽管它也可以处理多播路由）。下边介绍它是如何工作的：</p>
@@ -479,7 +479,7 @@
 <p><strong>需要routingKey，不需要Exchange与Queue绑定，直接根据routingKey发送</strong></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/direct%E6%A8%A1%E5%BC%8F.png" alt></p>
 <blockquote>
-<p>直连交换机的队列通常是循环分发任务给多个消费者（我们称之为轮询）。比如说有3个消费者，4个任务。分别分发每个消费者一个任务后，第4个任务又分发给了第一个消费者。综上，我们很容易得出一个结论，在 AMQP 0-9-1 中，消息的负载均衡是发生在消费者（consumer）之间的，而不是队列（queue）之间。</p>
+<p>消息的负载均衡是发生在消费者之间（一般是轮询）的，而不是队列之间。</p>
 </blockquote>
 <h3 id="Fanout"><a href="#Fanout" class="headerlink" title="Fanout"></a>Fanout</h3><p>广播发送，<strong>不需要routingKey，需要Exchange与Queue绑定</strong></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/Fanout.png" alt></p>
@@ -490,7 +490,7 @@
 <p>2）routing key 为一个句点号 <code>.</code> 分隔的字符串（我们将被句点号 <code>.</code> 分隔开的每一段独立的字符串称为一个单词），如“stock.usd.nyse”、“nyse.vmw”、“quick.orange.rabbit”<br>binding key 与 routing key 一样也是句点号 <code>.</code> 分隔的字符串</p>
 <p><strong>需要routingKey，也需要绑定Queue，根据绑定的routingkey来发送</strong></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/topic%E6%A8%A1%E5%BC%8F.png" alt></p>
-<h3 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h3><p>headers 类型的 Exchange 不依赖于 routing key 与 binding key 的匹配规则来路由消息，而是根据发送的消息内容中的 headers 属性进行匹配。</p>
+<h3 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h3><p>headers 类型的 Exchange 不依赖于 routing key 与 binding key 的匹配规则来路由消息，而是<strong>根据发送的消息内容中的 headers 属性</strong>进行匹配。</p>
 <p>头交换机可以视为直连交换机的另一种表现形式。但直连交换机的路由键必须是一个字符串，而头属性值则没有这个约束，它们甚至可以是整数或者哈希值（字典）等。灵活性更强（但实际上我们很少用到头交换机）。工作流程：</p>
 <p>1）绑定一个队列到头交换机上时，会同时绑定多个用于匹配的头（header）。<br>2）传来的消息会携带header，以及会有一个 “x-match” 参数。当 “x-match” 设置为 “any” 时，消息头的任意一个值被匹配就可以满足条件，而当 “x-match” 设置为 “all” 的时候，就需要消息头的所有值都匹配成功。</p>
 <h3 id="Exchange小结"><a href="#Exchange小结" class="headerlink" title="Exchange小结"></a>Exchange小结</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B0%8F%E7%BB%93.png" alt></p>
@@ -670,7 +670,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            看了2次都没看的明白，自己整理了下资料。
+                            看了2次都没看的明白，自己整理了下资料，REST用URL定位资源，用HTTP描述操作
                         
                     </div>
                     <div class="publish-info">
@@ -867,7 +867,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

@@ -373,12 +373,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/mysql/" target="_blank">
-                            <span class="chip bg-color">mysql</span>
-                        </a>
-                        
                         <a href="/tags/index/" target="_blank">
                             <span class="chip bg-color">index</span>
+                        </a>
+                        
+                        <a href="/tags/mysql/" target="_blank">
+                            <span class="chip bg-color">mysql</span>
                         </a>
                         
                         <a href="/tags/数据库优化/" target="_blank">
@@ -426,7 +426,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    8 分
                 </div>
                 
                 
@@ -447,37 +447,48 @@
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">// 表建好后创建</span>
 <span class="token comment" spellcheck="true">// 格式：create  索引类型  索引名  on  表( 字段 ); 例如：</span>
 <span class="token keyword">create</span>  <span class="token keyword">index</span>  dept_index  <span class="token keyword">on</span>  table_name<span class="token punctuation">(</span>dept<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
 <span class="token comment" spellcheck="true">//改变表结构</span>
 <span class="token comment" spellcheck="true">// 格式：alter table 表名 索引类型  索引名（字段）; 例如：</span>
 <span class="token keyword">alter</span> <span class="token keyword">table</span> table_name <span class="token keyword">add</span> <span class="token keyword">index</span> dept_index<span class="token punctuation">(</span>dept<span class="token punctuation">)</span> <span class="token punctuation">;</span>
+
 <span class="token comment" spellcheck="true">//创建表的时候直接指定</span>
-<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> table_name<span class="token punctuation">(</span> ID <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> username <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token keyword">INDEX</span> <span class="token punctuation">[</span>indexName<span class="token punctuation">]</span> <span class="token punctuation">(</span>username<span class="token punctuation">(</span>index_length<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> table_name<span class="token punctuation">(</span> 
+    ID <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> 
+    username <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> 
+    <span class="token keyword">INDEX</span> <span class="token punctuation">[</span>indexName<span class="token punctuation">]</span> <span class="token punctuation">(</span>username<span class="token punctuation">(</span>index_length<span class="token punctuation">)</span><span class="token punctuation">)</span> 
+<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
 <span class="token comment" spellcheck="true">//删除索引</span>
-<span class="token keyword">DROP</span> <span class="token keyword">INDEX</span> <span class="token punctuation">[</span>indexName<span class="token punctuation">]</span> <span class="token keyword">ON</span> table_name<span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="创建表的时候创建索引"><a href="#创建表的时候创建索引" class="headerlink" title="创建表的时候创建索引"></a>创建表的时候创建索引</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span>  表名<span class="token punctuation">(</span> 属性名 数据类型<span class="token punctuation">[</span>完整性约束条件<span class="token punctuation">]</span><span class="token punctuation">,</span> 
-属性名 数据类型<span class="token punctuation">[</span>完整性约束条件<span class="token punctuation">]</span><span class="token punctuation">,</span> 
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
-属性名 数据类型  
-<span class="token punctuation">[</span> <span class="token keyword">UNIQUE</span> <span class="token operator">|</span> FULLTEXT <span class="token operator">|</span> SPATIAL <span class="token punctuation">]</span>  <span class="token keyword">INDEX</span> <span class="token operator">|</span> <span class="token keyword">KEY</span> 
-<span class="token punctuation">[</span> 索引名<span class="token punctuation">]</span>  <span class="token punctuation">(</span> 属性名<span class="token number">1</span>  <span class="token punctuation">[</span><span class="token punctuation">(</span>长度<span class="token punctuation">)</span><span class="token punctuation">]</span>  <span class="token punctuation">[</span> <span class="token keyword">ASC</span> <span class="token operator">|</span> <span class="token keyword">DESC</span><span class="token punctuation">]</span> <span class="token punctuation">)</span> 
-<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">DROP</span> <span class="token keyword">INDEX</span> <span class="token punctuation">[</span>indexName<span class="token punctuation">]</span> <span class="token keyword">ON</span> table_name<span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="创建表的时候创建索引"><a href="#创建表的时候创建索引" class="headerlink" title="创建表的时候创建索引"></a>创建表的时候创建索引</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span>  表名<span class="token punctuation">(</span> 
+    属性名 数据类型<span class="token punctuation">[</span>完整性约束条件<span class="token punctuation">]</span><span class="token punctuation">,</span> 
+    属性名 数据类型<span class="token punctuation">[</span>完整性约束条件<span class="token punctuation">]</span><span class="token punctuation">,</span> 
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> 
+    属性名 数据类型  
+    <span class="token punctuation">[</span> <span class="token keyword">UNIQUE</span> <span class="token operator">|</span> FULLTEXT <span class="token operator">|</span> SPATIAL <span class="token punctuation">]</span>  <span class="token keyword">INDEX</span> <span class="token operator">|</span> <span class="token keyword">KEY</span> 
+    <span class="token punctuation">[</span> 索引名<span class="token punctuation">]</span>  <span class="token punctuation">(</span> 属性名<span class="token number">1</span>  <span class="token punctuation">[</span><span class="token punctuation">(</span>长度<span class="token punctuation">)</span><span class="token punctuation">]</span>  <span class="token punctuation">[</span> <span class="token keyword">ASC</span> <span class="token operator">|</span> <span class="token keyword">DESC</span><span class="token punctuation">]</span> <span class="token punctuation">)</span> 
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其中：</p>
 <ol>
 <li>UNIQUE是可选参数，表示索引为唯一性索引；FULLTEXT是可选参数，表示索引为全文索引；SPATIAL也是可选参数，表示索引为空间索引；</li>
 <li>INDEX和KEY参数用来指定字段为索引的，两者选择其中之一就可以了，作用是一样的；</li>
-<li>“索引名”是可选参数，用来给创建的索引取的新名称；</li>
-<li>“属性名1”参数指定索引对应的字段的名称，该字段必须为前面定义好的字段；</li>
-<li>“长度”是可选参数，其指索引的长度，必须是字符串类型才可以使用；</li>
+<li>“索引名”是可选参数，用来<strong>给创建的索引取的新名称</strong>；</li>
+<li>“属性名1”参数指定<strong>索引对应的字段的名称</strong>，该字段必须为前面定义好的字段；</li>
+<li>“长度”是可选参数，其指索引的长度，<strong>必须是字符串类型才可以使用</strong>；</li>
 <li>“ASC”和”DESC”都是可选参数，”ASC”参数表示升序排列，”DESC”参数表示降序排列。</li>
 </ol>
 <h3 id="改变表结构创建索引"><a href="#改变表结构创建索引" class="headerlink" title="改变表结构创建索引"></a>改变表结构创建索引</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">ALTER</span>  <span class="token keyword">TABLE</span>  表名  <span class="token keyword">ADD</span>   <span class="token punctuation">[</span> <span class="token keyword">UNIQUE</span> <span class="token operator">|</span> FULLTEXT <span class="token operator">|</span> SPATIAL <span class="token punctuation">]</span>   <span class="token keyword">INDEX</span>  
 索引名（属性名  <span class="token punctuation">[</span> <span class="token punctuation">(</span>长度<span class="token punctuation">)</span> <span class="token punctuation">]</span>  <span class="token punctuation">[</span> <span class="token keyword">ASC</span> <span class="token operator">|</span> <span class="token keyword">DESC</span><span class="token punctuation">]</span>）<span class="token punctuation">;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>跟上边一样结构。</p>
-<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>MySQL数据库索引列的值必须唯一，但<em>允许有空值</em>。如果是组合索引，则列值的组合必须唯一。</p>
+<h2 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h2><p>MySQL数据库索引列的值必须唯一，但<strong>允许有空值</strong>。如果是组合索引，则列值的组合必须唯一。</p>
 <p>唯一索引保证数据记录的唯一性。</p>
 <p>语法的话把上边的 INDEX 改成 UNIQUE INDEX 就行。</p>
-<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>特殊的唯一索引，不允许有空值。一般是在建表的时候同时创建主键索引：</p>
-<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> mytable<span class="token punctuation">(</span> ID <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> username <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>ID<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h2><p>特殊的唯一索引，<strong>不允许有空值</strong>。一般是在建表的时候同时创建主键索引：</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> mytable<span class="token punctuation">(</span> 
+    ID <span class="token keyword">INT</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> 
+    username <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">(</span>ID<span class="token punctuation">)</span> 
+<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="主键与唯一索引的区别"><a href="#主键与唯一索引的区别" class="headerlink" title="主键与唯一索引的区别"></a>主键与唯一索引的区别</h3><ol>
 <li>主键<strong>不允许空值</strong>，唯一索引允许空值</li>
 <li>主键只允许一个，唯一索引允许多个</li>
@@ -489,17 +500,15 @@
 <h2 id="二级索引（辅助索引、非聚簇索引）"><a href="#二级索引（辅助索引、非聚簇索引）" class="headerlink" title="二级索引（辅助索引、非聚簇索引）"></a>二级索引（辅助索引、非聚簇索引）</h2><p>没错，二级索引=辅助索引=非聚簇索引。</p>
 <p>叶子节点中存储主键值，每次查找数据时，根据索引找到叶子节点中的主键值，根据主键值再到聚簇索引中得到完整的一行记录。InnoDB中主键所建立的是聚簇索引，而唯一索引、普通索引、前缀索引等都是二级索引。</p>
 <p>我们日常工作中，根据实际情况自行添加的索引都是辅助索引，辅助索引就是一个为了需找主键索引的二级索引（非聚簇索引），先找到主键索引再通过主键索引找数据。</p>
-<h2 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h2><p>MySQL数据库中innodb存储引擎，B+树索引可以分为聚簇索引（也称聚集索引，clustered index）和辅助索引（有时也称非聚簇索引或二级索引，secondary index，non-clustered index）。这两种索引内部都是B+树。</p>
-<p>聚簇索引具有唯一性，由于聚簇索引是将数据跟索引结构放到一块，因此一个表仅有一个聚簇索引。</p>
-<p>将数据存储与索引放到了一块，找到索引也就找到了数据。</p>
-<p>聚簇索引<strong>并不是一种单独的索引类型，而是一种数据存储方式</strong>。具体细节依赖于其实现方式。</p>
+<h2 id="聚簇索引"><a href="#聚簇索引" class="headerlink" title="聚簇索引"></a>聚簇索引</h2><p>MySQL数据库中innodb存储引擎，聚簇索引具有唯一性，由于聚簇索引是将数据跟索引结构放到一块，因此一个表仅有一个聚簇索引。将数据存储与索引放到了一块，找到索引也就找到了数据。</p>
+<p>聚簇索引<strong>并不是一种单独的索引类型，而是一种数据存储方式</strong>。</p>
 <h2 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h2><p>InnoDB中，表数据文件本身就是按B+Tree组织的一个索引结构，聚簇索引就是按照每张表的主键构造一颗B+树，同时叶子节点中存放的就是整张表的行记录数据，也将聚集索引的叶子节点称为<strong>数据页</strong>。这个特性决定了<strong>索引组织表中数据也是索引的一部分</strong>；</p>
-<p>因为InnoDB的数据文件本身要按主键聚集，所以InnoDB要求表必须有主键（MyISAM可以没有），一般建表会用一个自增主键做聚簇索引，没有的话MySQL会默认创建，但是这个主键如果更改代价较高，故建表时要考虑自增ID不能频繁update这点。</p>
+<p>因为<strong>InnoDB的数据文件本身要按主键聚集</strong>，所以<strong>InnoDB要求表必须有主键</strong>（MyISAM可以没有），一般建表会用一个自增主键做聚簇索引，没有的话MySQL会默认创建，但是这个主键如果更改代价较高，故建表时要考虑自增ID不能频繁update这点。</p>
 <h2 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h2><p>InnoDB使用的是聚簇索引，MyISam使用的是<strong>非聚簇索引</strong>。MyISAM索引文件和数据文件是<strong>分离</strong>的，索引文件仅保存数据记录的地址。</p>
 <p>MyISAM引擎使用B+Tree作为索引结构，叶节点的data域存放的是<strong>数据记录的地址</strong>。</p>
 <p>在MyISAM中，主索引和辅助索引（Secondary key）在结构上没有任何区别，只是<strong>主索引要求key是唯一的，而辅助索引的key可以重复</strong>。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/InnoDB-MyISAM.PNG" alt></p>
-<p>MyISAM使用的是非聚簇索引，非聚簇索引的两棵B+树看上去没什么不同，节点的结构完全一致只是存储的内容不同而已，主键索引B+树的节点存储了主键，辅助键索引B+树存储了辅助键。表数据存储在独立的地方，这两颗B+树的叶子节点都使用一个地址指向真正的表数据，对于表数据来说，这两个键没有任何差别。由于索引树是独立的，通过辅助键检索无需访问主键的索引树。</p>
+<p>MyISAM使用的是非聚簇索引，非聚簇索引的两棵B+树看上去没什么不同，节点的结构完全一致只是存储的内容不同而已，主键索引B+树的节点存储了主键，辅助键索引B+树存储了辅助键。<strong>表数据存储在独立的地方</strong>，这两颗B+树的叶子节点都使用一个地址指向真正的表数据，对于表数据来说，这两个键没有任何差别。<strong>由于索引树是独立的，通过辅助键检索无需访问主键的索引树</strong>。</p>
 <h2 id="MyISAM和InnoDB的区别"><a href="#MyISAM和InnoDB的区别" class="headerlink" title="MyISAM和InnoDB的区别"></a>MyISAM和InnoDB的区别</h2><p>MyISAM：</p>
 <ol>
 <li>不支持事务，但是每次查询都是<strong>原子</strong>的</li>
@@ -516,7 +525,7 @@
 <li>一个InnoDB引擎存储在一个文件空间（共享表空间，表大小不受操作系统控制，一个表可能分布在多个文件里），也可能多个（设置为独立表空，表大小受操作系统文件大小限制，一般为2G）</li>
 <li>主键索引采用聚簇索引，辅索引的数据域存储主键的值；最好使用自增主键，防止插入数据时，为维持B+树结构，文件的大调整。</li>
 </ol>
-<h2 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h2><p>通过建立倒排索引，可以极大的提升检索效率，解决判断字段是否包含的问题，是目前搜索引擎使用的一种关键技术。可以通过ALTER TABLE table_name ADD FULLTEXT（column）；创建全文索引</p>
+<h2 id="全文索引"><a href="#全文索引" class="headerlink" title="全文索引"></a>全文索引</h2><p>通过建立倒排索引，可以极大的提升检索效率，解决判断字段是否包含的问题，是目前搜索引擎使用的一种关键技术。可以通过<code>ALTER TABLE table_name ADD FULLTEXT（column）；</code>创建全文索引</p>
 <p>目前比较鸡肋，用es来实现会比较好</p>
 <h2 id="覆盖索引（using-index）"><a href="#覆盖索引（using-index）" class="headerlink" title="覆盖索引（using index）"></a>覆盖索引（using index）</h2><p>有下面两种理解：</p>
 <ol>
@@ -526,7 +535,7 @@
 </li>
 </ol>
 <p>不是所有类型的索引都可以成为覆盖索引。覆盖索引必须要存储索引的列，而哈希索引、空间索引和全文索引等都不存储索引列的值，所以MySQL<strong>只能使用B-Tree索引做覆盖索引</strong>。</p>
-<p>当发起一个被索引覆盖的查询时，在EXPLAIN的Extra列可以看到“Using index”的信息：</p>
+<p>当发起一个被索引覆盖的查询时，在EXPLAIN的Extra列可以看到“<strong>Using index</strong>”的信息：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95.png" alt></p>
 <p>从执行结果上看，这个SQL语句只通过索引，就取到了所需要的数据，这个过程就叫做索引覆盖。</p>
 <p>只扫描索引而无需回表的优点：</p>
@@ -654,7 +663,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            java程序与数据建立连接，首先要从jdbc说起，然后直接上阿里认为宇宙最好的数据库连接池druid，然后再说上层程序对象与数据源映射关联关系的orm-mybatis。
+                            java程序与数据建立连接，从jdbc到阿里的数据库连接池druid，然后再说上层程序对象与数据源映射关联关系的orm-mybatis。
                         
                     </div>
                     <div class="publish-info">
@@ -711,7 +720,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            之前在面试的时候被问到了，我当时刚学说不清楚，现在想起来总结一下设计模式。
+                            之前在面试的时候被问到了，我当时刚学说不清楚，现在想起来总结一下责任链模式。
                         
                     </div>
                     <div class="publish-info">
@@ -912,7 +921,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

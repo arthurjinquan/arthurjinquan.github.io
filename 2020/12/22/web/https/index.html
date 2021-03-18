@@ -448,7 +448,7 @@
             <div id="articleContent">
                 <h2 id="HTTP-VS-HTTPS"><a href="#HTTP-VS-HTTPS" class="headerlink" title="HTTP VS HTTPS"></a>HTTP VS HTTPS</h2><h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>特点：</p>
 <ol>
-<li>无状态：协议对客户端没有状态存储，对事物处理没有“记忆”能力，比如访问一个网站需要反复进行登录操作</li>
+<li><strong>无状态</strong>：协议对客户端没有状态存储，对事物处理没有“记忆”能力，比如访问一个网站需要反复进行登录操作</li>
 <li>无连接：HTTP/1.1之前，由于无状态特点，每次请求需要通过TCP三次握手四次挥手，和服务器重新建立连接。比如某个客户机在短时间多次请求同一个资源，服务器并不能区别是否已经响应过用户的请求，所以每次需要重新响应请求，需要耗费不必要的时间和流量。</li>
 <li>基于请求和响应：基本的特性，由客户端发起请求，服务端响应</li>
 <li>简单快速、灵活</li>
@@ -461,9 +461,9 @@
 <li>通过Cookie/Session技术</li>
 <li>HTTP/1.1持久连接（HTTP <strong>keep-alive</strong>）方法，只要任意一端没有明确提出断开连接，则保持TCP连接状态，在请求首部字段中的Connection: keep-alive即为表明使用了持久连接</li>
 </ol>
-<h4 id="中间人攻击原理"><a href="#中间人攻击原理" class="headerlink" title="中间人攻击原理"></a>中间人攻击原理</h4><h5 id="SSL劫持攻击："><a href="#SSL劫持攻击：" class="headerlink" title="SSL劫持攻击："></a>SSL劫持攻击：</h5><p>SSL劫持攻击即SSL证书欺骗攻击，攻击者为了获得HTTPS传输的明文数据，需要先将自己接入到客户端和目标网站之间；在传输过程中伪造服务器的证书，将服务器的公钥替换成自己的公钥，这样，中间人就可以得到明文传输带Key1、Key2和Pre-Master-Key，从而窃取客户端和服务端的通信数据；</p>
+<h4 id="中间人攻击原理"><a href="#中间人攻击原理" class="headerlink" title="中间人攻击原理"></a>中间人攻击原理</h4><h5 id="SSL劫持攻击："><a href="#SSL劫持攻击：" class="headerlink" title="SSL劫持攻击："></a>SSL劫持攻击：</h5><p>SSL劫持攻击即SSL证书欺骗攻击，攻击者为了获得HTTPS传输的明文数据，需要先将自己接入到客户端和目标网站之间；在传输过程中<strong>伪造服务器的证书</strong>，将服务器的公钥替换成自己的公钥，这样，中间人就可以得到明文传输带Key1、Key2和Pre-Master-Key，从而窃取客户端和服务端的通信数据；</p>
 <p>但是对于客户端来说，如果中间人伪造了证书，在校验证书过程中会提示证书错误，由用户选择继续操作还是返回，由于大多数用户的安全意识不强，会选择继续操作，此时，中间人就可以获取浏览器和服务器之间的通信数据</p>
-<h5 id="SSL剥离攻击："><a href="#SSL剥离攻击：" class="headerlink" title="SSL剥离攻击："></a>SSL剥离攻击：</h5><p>这种攻击方式也需要将攻击者设置为中间人，之后见HTTPS范文替换为HTTP返回给浏览器，而中间人和服务器之间仍然保持HTTPS服务器。由于HTTP是明文传输的，所以中间人可以获取客户端和服务器传输数据</p>
+<h5 id="SSL剥离攻击："><a href="#SSL剥离攻击：" class="headerlink" title="SSL剥离攻击："></a>SSL剥离攻击：</h5><p>这种攻击方式也需要将攻击者设置为中间人，之后见HTTPS范文替换为HTTP返回给浏览器，而中间人和服务器之间仍然保持HTTPS服务器。由于<strong>HTTP是明文传输</strong>的，所以中间人可以获取客户端和服务器传输数据</p>
 <p>HTTPS中间人攻击：<a href="https://www.jianshu.com/p/fab64714157a" target="_blank" rel="noopener">https://www.jianshu.com/p/fab64714157a</a></p>
 <h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><p>基于HTTP协议，通过SSL或TLS提供加密处理数据、验证对方身份以及数据完整性保护</p>
 <p>通过抓包可以看到数据<strong>不是明文传输</strong>，而且HTTPS有如下特点：</p>
@@ -478,7 +478,7 @@
 <p><strong>数字签名技术</strong>：数字签名建立在公钥加密体制基础上，是公钥加密技术的另一类应用。它把公钥加密技术和数字摘要结合起来，形成了实用的数字签名技术。</p>
 </blockquote>
 <h3 id="http和https的区别"><a href="#http和https的区别" class="headerlink" title="http和https的区别"></a>http和https的区别</h3><ol>
-<li>https要ca证书</li>
+<li>https要<strong>ca证书</strong></li>
 <li>https工作在443端口，而http默认工作在80端口</li>
 </ol>
 <h2 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a>对称加密算法</h2><p>对称加密算法的特点是加密密钥和解密密钥是<strong>同一把密钥</strong>K，且加解密速度快，典型的对称加密算法有DES、AES等</p>
@@ -489,9 +489,9 @@
 <h2 id="公钥交换过程"><a href="#公钥交换过程" class="headerlink" title="公钥交换过程"></a>公钥交换过程</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/%E5%85%AC%E9%92%A5%E4%BA%A4%E6%8D%A2%E8%BF%87%E7%A8%8B.jpg" alt></p>
 <p>简单来讲一下这个过程</p>
 <ol>
-<li>首先客户端建立一个连接</li>
+<li>首先客户端<strong>建立一个连接</strong></li>
 <li>服务器端将自己的公钥还有一个会话的ID发回给客户端，现在客户端得到了服务器端的公钥</li>
-<li>客户端把自己的公钥（客户端公钥）和会话ID做一个异或运算，得到一个结果，然后把结果用服务器端的公钥加密发给服务器端</li>
+<li>客户端把自己的公钥（客户端公钥）和会话ID做一个<strong>异或运算</strong>，得到一个结果，然后把结果用服务器端的公钥加密发给服务器端</li>
 <li>服务器端拿到那串东西后，用自己的私钥（服务器端私钥）解密得到那个结果，然后再和会话ID做异或运算，这样服务器端也得到了客户端的公钥</li>
 </ol>
 <h2 id="SSL简介"><a href="#SSL简介" class="headerlink" title="SSL简介"></a>SSL简介</h2><h3 id="SSL和TLS："><a href="#SSL和TLS：" class="headerlink" title="SSL和TLS："></a>SSL和TLS：</h3><p>SSL (Secure Sockets Layer）安全套接层。是由Netscape公司于1990年开发，用于保障Word Wide Web（WWW）通讯的安全。主要任务是提供私密性，信息完整性和身份认证。1994年改版为SSLv2,1995年改版为SSLv3.</p>
@@ -501,18 +501,18 @@
 <p>② 鉴别：可选的客户端认证，和强制的服务器端认证。</p>
 <p>③ 完整性：传送的消息包括消息完整性检查（使用MAC）。</p>
 <h3 id="SSL协议结构"><a href="#SSL协议结构" class="headerlink" title="SSL协议结构"></a>SSL协议结构</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssl%E5%8D%8F%E8%AE%AE%E7%BB%93%E6%9E%84.png" alt></p>
-<p>SSL的体系结构中包含两个协议子层，其中底层是SSL记录协议层（SSL Record Protocol Layer）；高层是SSL握手协议层（SSL HandShake Protocol Layer）。</p>
+<p>SSL的体系结构中包含两个协议子层，其中底层是<strong>SSL记录协议层</strong>（SSL Record Protocol Layer）；高层是<strong>SSL握手协议层</strong>（SSL HandShake Protocol Layer）。</p>
 <p>SSL协议主要分为两层：</p>
 <ol>
-<li><p>SSL记录协议层的作用是为高层协议提供基本的安全服务。SSL纪录协议针对HTTP协议进行了特别的设计，使得超文本的传输协议HTTP能够在SSL运行。纪录封装各种高层协议，具体实施压缩解压缩、加密解密、计算和校验MAC等与安全有关的操作。</p>
+<li><p>SSL记录协议层的作用是为高层协议提供基本的安全服务。SSL纪录协议针对HTTP协议进行了特别的设计，使得超文本的传输协议<strong>HTTP能够在SSL运行</strong>。纪录封装各种高层协议，具体实施压缩解压缩、加密解密、计算和校验MAC等与安全有关的操作。</p>
 </li>
-<li><p>SSL握手协议层包括SSL握手协议（SSL HandShake Protocol）、SSL密码参数修改协议（SSL Change Cipher Spec Protocol）和SSL告警协议（SSL Alert Protocol）。握手层的这些协议用于SSL管理信息的交换，允许应用协议传送数据之间相互验证，协商加密算法和生成密钥等。</p>
+<li><p>SSL握手协议层包括SSL握手协议（SSL HandShake Protocol）、SSL密码参数修改协议（SSL Change Cipher Spec Protocol）和SSL告警协议（SSL Alert Protocol）。握手层的这些协议用于<strong>SSL管理信息的交换</strong>，允许应用协议传送数据之间相互验证，协商加密算法和生成密钥等。</p>
 </li>
 </ol>
 <p>SSL握手协议的作用是协调客户和服务器的状态，使双方能够达到状态的同步。</p>
 <p>其中最重要的是记录协议和握手协议：</p>
 <ol>
-<li>SSL记录协议：它建立在可靠的传输（如TCP）之上，为高层协议提供数据封装、压缩、加密等基本功能。</li>
+<li>SSL记录协议：它建立在可靠的传输（如<strong>TCP</strong>）之上，为高层协议提供<strong>数据封装、压缩、加密</strong>等基本功能。</li>
 <li>SSL握手协议：它建立在SSL记录协议之上，用于在实际的数据传输开始之前，通讯双方进行身份认证、协商加密算法、交换加密密钥等。</li>
 </ol>
 <h3 id="SSL原理"><a href="#SSL原理" class="headerlink" title="SSL原理"></a>SSL原理</h3><h4 id="握手协议"><a href="#握手协议" class="headerlink" title="握手协议"></a>握手协议</h4><p>握手协议是客户机和服务器用SSL连接通信时使用的第一个子协议，握手协议包括客户机与服务器之间的一系列消息。SSL中最复杂的协议就是握手协议。该协议允许服务器和客户机相互验证，协商加密和MAC算法以及保密密钥，用来保护在SSL记录中发送的数据。握手协议是在应用程序的数据传输之前使用的。</p>
@@ -520,9 +520,9 @@
 <p>　　（1）保密性：使用握手协议定义的秘密密钥实现</p>
 <p>　　（2）完整性：握手协议定义了MAC，用于保证消息完整性</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssl%E8%AE%B0%E5%BD%95%E5%8D%8F%E8%AE%AE.png" alt></p>
-<h4 id="警报协议"><a href="#警报协议" class="headerlink" title="警报协议"></a>警报协议</h4><p>客户机和服务器发现错误时，向对方发送一个警报消息。如果是致命错误，则算法立即关闭SSL连接，双方还会先删除相关的会话号，秘密和密钥。每个警报消息共2个字节，第1个字节表示错误类型，如果是警报，则值为1，如果是致命错误，则值为2；第2个字节制定实际错误类型。</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>SSL中，使用握手协议<strong>协商加密和MAC算法以及保密密钥</strong> ，使用握手协议<strong>对交换的数据进行加密和签名</strong>，使用警报协议定义数据传输过程中，出现问题如何去解决。</p>
-<h2 id="SSH协议"><a href="#SSH协议" class="headerlink" title="SSH协议"></a>SSH协议</h2><p>SSH 为 Secure Shell 的缩写，由 IETF 的网络小组（Network Working Group）所制定；SSH 为建立在<strong>应用层</strong>基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。简单来说ssh是一种加密的用于远程登录的协议。</p>
+<h4 id="警报协议"><a href="#警报协议" class="headerlink" title="警报协议"></a>警报协议</h4><p>客户机和服务器发现错误时，向对方发送一个警报消息。如果是致命错误，则<strong>算法立即关闭SSL连接，双方还会先删除相关的会话号，秘密和密钥</strong>。每个警报消息共2个字节，第1个字节表示错误类型，如果是警报，则值为1，如果是致命错误，则值为2；第2个字节制定实际错误类型。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>SSL中，使用记录协议<strong>协商加密和MAC算法以及保密密钥</strong> ，使用握手协议<strong>对交换的数据进行加密和签名</strong>，使用警报协议定义数据传输过程中，出现问题如何去解决。</p>
+<h2 id="SSH协议"><a href="#SSH协议" class="headerlink" title="SSH协议"></a>SSH协议</h2><p>SSH 为 <strong>Secure Shell</strong> 的缩写，由 IETF 的网络小组（Network Working Group）所制定；SSH 为建立在<strong>应用层</strong>基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。简单来说ssh是一种加密的用于远程登录的协议。</p>
 <h2 id="基于口令的远程登录"><a href="#基于口令的远程登录" class="headerlink" title="基于口令的远程登录"></a>基于口令的远程登录</h2><p>利用ssh远程登录，一般有两种方式，一种是需要密码的，一种是不需要输入密码的</p>
 <h3 id="需要密码的ssh远程登录"><a href="#需要密码的ssh远程登录" class="headerlink" title="需要密码的ssh远程登录"></a>需要密码的ssh远程登录</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssh%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95.png" alt></p>
 <p>如上图所示，客户端想登录到服务器端怎么办呢</p>
@@ -646,15 +646,15 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/71.jpg" class="responsive-img" alt="Nginx">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/12.jpg" class="responsive-img" alt="Nginx简单介绍">
                         
-                        <span class="card-title">Nginx</span>
+                        <span class="card-title">Nginx简单介绍</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Nginx介绍Nginx 同 Apache 一样都是一种 Web 服务器。基于 REST 架构风格，以统一资源描述符（Uniform Resources Identifier）URI 或者统一资源定位符（Uniform Resources 
+                            消毒供应室项目中部署用到了nginx，不过不是我部署的，学习一下。
                         
                     </div>
                     <div class="publish-info">
@@ -908,7 +908,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

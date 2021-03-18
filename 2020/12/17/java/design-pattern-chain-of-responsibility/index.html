@@ -412,14 +412,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    2.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    7 分
                 </div>
                 
                 
@@ -435,32 +435,31 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在计算机软硬件中也有相关例子，如总线网中数据报传送，每台计算机根据目标地址是否同自己的地址相同来决定是否接收；<br>还有异常处理中，处理程序根据异常的类型决定自己是否处理该异常；还有 Struts2 的<em>拦截器</em>、JSP 和 Servlet 的 <em>Filter</em> 等，所有这些，都可以考虑使用责任链模式来实现。</p>
+                <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>在计算机软硬件中也有相关例子，如总线网中数据报传送，每台计算机根据目标地址是否同自己的地址相同来决定是否接收；<br>还有异常处理中，处理程序根据异常的类型决定自己是否处理该异常；还有 Struts2 的<em>拦截器</em>、JSP 和 Servlet 的 <em>Filter</em> 等，都可以考虑使用责任链模式来实现。</p>
 <p>转载参考：<a href="http://c.biancheng.net/view/1383.html" target="_blank" rel="noopener">http://c.biancheng.net/view/1383.html</a></p>
-<p>责任链（Chain of Responsibility）模式的定义：为了避免请求发送者与多个请求处理者耦合在一起，于是将所有请求的处理者通过前一对象记住其下一个对象的引用而连成一条链；<br>当有请求发生时，可将请求沿着这条链传递，直到有对象处理它为止。</p>
-<p>在责任链模式中，客户只需要将请求发送到责任链上即可，无须关心请求的处理细节和请求的传递过程，请求会自动进行传递。所以<strong>责任链将请求的发送者和请求的处理者解耦</strong>了。</p>
+<p>责任链（Chain of Responsibility）模式的定义：为了<strong>避免请求发送者与多个请求处理者耦合</strong>在一起，于是将所有请求的处理者通过前一对象记住其下一个对象的引用而连成一条链；当有请求发生时，可将请求沿着这条链传递，直到有对象处理它为止。</p>
 <p>责任链模式是一种对象行为型模式，其主要优点如下。</p>
 <ol>
-<li>降低了对象之间的耦合度。该模式使得一个对象无须知道到底是哪一个对象处理其请求以及链的结构，发送者和接收者也无须拥有对方的明确信息。</li>
-<li>增强了系统的可扩展性。可以根据需要增加新的请求处理类，满足开闭原则。</li>
-<li>增强了给对象指派职责的灵活性。当工作流程发生变化，可以动态地改变链内的成员或者调动它们的次序，也可动态地新增或者删除责任。</li>
-<li>责任链简化了对象之间的连接。每个对象只需保持一个指向其后继者的引用，不需保持其他所有处理者的引用，这避免了使用众多的 if 或者 if···else 语句。</li>
-<li>责任分担。每个类只需要处理自己该处理的工作，不该处理的传递给下一个对象完成，明确各类的责任范围，符合类的单一职责原则。</li>
+<li><strong>降低了对象之间的耦合度</strong>。该模式使得一个对象无须知道到底是哪一个对象处理其请求以及链的结构，发送者和接收者也无须拥有对方的明确信息。</li>
+<li>增强了系统的<strong>可扩展性</strong>。可以根据需要增加新的请求处理类，<strong>满足开闭原则</strong>（对扩展开放，对修改封闭）。</li>
+<li>增强了给对象指派职责的<strong>灵活性</strong>。当工作流程发生变化，可以动态地改变链内的成员或者调动它们的次序，也可动态地新增或者删除责任。</li>
+<li>责任链<strong>简化了对象之间的连接</strong>。每个对象只需保持一个指向其后继者的引用，不需保持其他所有处理者的引用，这避免了使用众多的 if 或者 if···else 语句。</li>
+<li><strong>责任分担</strong>。每个类只需要处理自己该处理的工作，不该处理的传递给下一个对象完成，明确各类的责任范围，符合类的<strong>单一职责原则</strong>。</li>
 </ol>
 <p>主要缺点如下。</p>
 <ol>
-<li>不能保证每个请求一定被处理。由于一个请求没有明确的接收者，所以不能保证它一定会被处理，该请求可能一直传到链的末端都得不到处理。</li>
+<li>不能保证每个请求<strong>一定被处理</strong>。由于一个请求没有明确的接收者，所以不能保证它一定会被处理，该请求可能一直传到链的末端都得不到处理。</li>
 <li>对比较长的职责链，请求的处理可能涉及多个处理对象，系统性能将受到一定影响。</li>
-<li>职责链建立的合理性要靠客户端来保证，增加了客户端的复杂性，可能会由于职责链的错误设置而导致系统出错，如可能会造成循环调用。</li>
+<li>职责链建立的合理性要<strong>靠客户端来保证</strong>，增加了客户端的复杂性，可能会由于职责链的错误设置而导致系统出错，如可能会造成循环调用。</li>
 </ol>
 <h2 id="模式的结构"><a href="#模式的结构" class="headerlink" title="模式的结构"></a>模式的结构</h2><p>通常情况下，可以通过数据链表来实现职责链模式的数据结构。</p>
 <p>职责链模式主要包含以下角色。</p>
 <ol>
-<li>抽象处理者（Handler）角色：定义一个处理请求的接口，包含抽象处理方法和一个后继连接。</li>
+<li>抽象处理者（Handler）角色：定义一个处理请求的<strong>接口</strong>，包含抽象处理方法和一个后继连接。</li>
 <li>具体处理者（Concrete Handler）角色：实现抽象处理者的处理方法，判断能否处理本次请求，如果可以处理请求则处理，否则将该请求转给它的后继者。</li>
-<li>客户类（Client）角色：创建处理链，并向链头的具体处理者对象提交请求，它不关心处理细节和请求的传递过程。</li>
+<li>客户类（Client）角色：<strong>创建处理链</strong>，并向链头的具体处理者对象提交请求，它不关心处理细节和请求的传递过程。</li>
 </ol>
-<p>责任链模式的本质是解耦请求与处理，让请求在处理链中能进行传递与被处理；理解责任链模式应当理解其模式，而不是其具体实现。责任链模式的独到之处是将其节点处理者组合成了链式结构，并允许节点自身决定是否进行请求处理或转发，相当于让请求流动起来。</p>
+<p>责任链模式的本质是解耦请求与处理，让请求在处理链中能进行传递与被处理；责任链模式的独到之处是<strong>将其节点处理者组合成了链式结构</strong>，并<strong>允许节点自身决定是否进行请求处理或转发</strong>，相当于让请求流动起来。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/chain-of-responsibility-framework.gif" alt></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/chain-of-responsibility.gif" alt></p>
 <h2 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> chainOfResponsibility<span class="token punctuation">;</span>
@@ -749,12 +748,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/mysql/" target="_blank">
-                        <span class="chip bg-color">mysql</span>
-                    </a>
-                    
                     <a href="/tags/index/" target="_blank">
                         <span class="chip bg-color">index</span>
+                    </a>
+                    
+                    <a href="/tags/mysql/" target="_blank">
+                        <span class="chip bg-color">mysql</span>
                     </a>
                     
                     <a href="/tags/数据库优化/" target="_blank">
@@ -989,7 +988,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

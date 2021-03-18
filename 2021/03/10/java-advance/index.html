@@ -409,7 +409,7 @@ IOCIO">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.8k
+                    4.9k
                 </div>
                 
 
@@ -460,7 +460,7 @@ IOCIO">
 <li>如果有多个构造方法，则推断构造方法</li>
 <li>实例化得到一个对象</li>
 <li>@Autowired注解属性填充</li>
-<li>回调Aware方法，比如BeanNameAware（获取当前bean在IOC容器中的名字），BeanFactoryAware</li>
+<li>回调Aware方法，比如BeanNameAware，BeanFactoryAware</li>
 <li>调用BeanPostProcessor的初始化前的方法</li>
 <li>调用初始化方法</li>
 <li>调用BeanPostProcessor的初始化后的方法，在这里会进行AOP</li>
@@ -468,6 +468,10 @@ IOCIO">
 <li>使用bean</li>
 <li>容器关闭时调用DisposableBean中destory方法</li>
 </ol>
+<p>首先是实例化、属性赋值、初始化、销毁这 4 个大阶段；</p>
+<p>再是初始化的具体操作，有 Aware 接口的依赖注入、BeanPostProcessor 在初始化前后的处理以及 InitializingBean 和 init-method 的初始化操作；</p>
+<p>销毁的具体操作，有注册相关销毁回调接口，最后通过DisposableBean 和 destory-method 进行销毁。</p>
+<p><a href="https://arthurjq.com/2020/12/29/java/spring-bean-life-cycle/">https://arthurjq.com/2020/12/29/java/spring-bean-life-cycle/</a></p>
 <h2 id="Spring-Bean作用域"><a href="#Spring-Bean作用域" class="headerlink" title="Spring Bean作用域"></a>Spring Bean作用域</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-1.jpg" alt></p>
 <h2 id="Spring框架中的设计模式"><a href="#Spring框架中的设计模式" class="headerlink" title="Spring框架中的设计模式"></a>Spring框架中的设计模式</h2><h3 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h3><p>由一个工厂类根据传入的参数，动态觉得应该创建哪一个产品类</p>
 <p>BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得Bean对象，但是否是在传入参数后创建还是传入参数前创建根据具体情况来定。</p>
@@ -983,7 +987,7 @@ IOCIO">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>

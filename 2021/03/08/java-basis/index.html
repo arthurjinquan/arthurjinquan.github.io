@@ -412,14 +412,14 @@ Java 不提供指">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5k
+                    5.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    18 分
                 </div>
                 
                 
@@ -637,6 +637,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 <li>threadFactory：为线程池提供创建新线程的<strong>线程工厂</strong></li>
 <li>rejectedExecutionHandler：线程池任务队列超过最大值之后的<strong>拒绝策略</strong></li>
 </ol>
+<h2 id="线程池的队列类型"><a href="#线程池的队列类型" class="headerlink" title="线程池的队列类型"></a>线程池的队列类型</h2><p>1、ArrayBlockingQueue<br>是一个基于数组结构的<strong>有界阻塞队列</strong>，此队列按 FIFO（先进先出）原则对元素进行排序。<br>2、LinkedBlockingQueue<br>一个基于链表结构的<strong>阻塞队列</strong>，此队列按FIFO （先进先出） 排序元素，吞吐量通常要高于ArrayBlockingQueue。静态工厂方法Executors.newFixedThreadPool（）使用了这个队列<br>3、SynchronousQueue<br>一个不存储元素的<strong>阻塞队列</strong>。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于LinkedBlockingQueue，静态工厂方法Executors.newCachedThreadPool（5）使用了这个队列。<br>4、PriorityBlockingQueue<br>一个具有优先级的<strong>无限阻塞队列</strong>。</p>
 <h2 id="线程池中为什么先入队列而不是先创建最大线程"><a href="#线程池中为什么先入队列而不是先创建最大线程" class="headerlink" title="线程池中为什么先入队列而不是先创建最大线程"></a>线程池中为什么先入队列而不是先创建最大线程</h2><p>在创建新线程时，<strong>要获取全局锁</strong>，这时其他都得阻塞，影响效率。</p>
 <h2 id="线程池中线程复用原理"><a href="#线程池中线程复用原理" class="headerlink" title="线程池中线程复用原理"></a>线程池中线程复用原理</h2><p>线程池将线程和任务进行解耦，摆脱了之前通过Thread创建线程时一个线程必须对应一个任务的限制。</p>
 <p>同一个线程可以从阻塞队列中不对获取新任务来执行，其核心原理在于线程池对Thread封装，并<strong>不是每次执行任务都调用Thread.start（）来创建新线程</strong>，而是让每个线程执行一个“循环任务”，不断检查是否有任务需要被执行，有就<strong>调用任务中的run方法</strong>。</p>
@@ -829,12 +830,12 @@ String s <span class="token operator">=</span> input<span class="token punctuati
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/kubernetes/" target="_blank">
-                        <span class="chip bg-color">kubernetes</span>
-                    </a>
-                    
                     <a href="/tags/运维开发/" target="_blank">
                         <span class="chip bg-color">运维开发</span>
+                    </a>
+                    
+                    <a href="/tags/kubernetes/" target="_blank">
+                        <span class="chip bg-color">kubernetes</span>
                     </a>
                     
                 </div>
@@ -1008,7 +1009,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">181.4k</span>
             
 
             <br>
