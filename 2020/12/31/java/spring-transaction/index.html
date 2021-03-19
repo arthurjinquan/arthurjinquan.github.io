@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/110.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/111.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -444,12 +444,12 @@
             <div id="articleContent">
                 <h2 id="Spring-事务管理"><a href="#Spring-事务管理" class="headerlink" title="Spring 事务管理"></a>Spring 事务管理</h2><p>Spring 事务管理分为<strong>编程式</strong>和<strong>声明式</strong>的两种方式。</p>
 <ol>
-<li>编程式事务指的是<strong>通过编码方式实现事务</strong>；声明式事务<strong>基于 AOP,将具体业务逻辑与事务处理解耦</strong>。</li>
-<li>声明式事务管理使业务代码逻辑不受污染, 因此在实际使用中声明式事务用的比较多。</li>
+<li>编程式事务指的是通过<strong>编码</strong>方式实现事务；声明式事务基于 AOP,将具体业务逻辑与事务处理解耦。</li>
+<li><strong>声明式事务管理使业务代码逻辑不受污染</strong>, 因此在实际使用中声明式事务用的比较多。</li>
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-1.png" alt></p>
 <p>参考整理于：<a href="https://blog.csdn.net/trigl/article/details/50968079" target="_blank" rel="noopener">https://blog.csdn.net/trigl/article/details/50968079</a> | <a href="https://www.cnblogs.com/jing99/p/11495252.html" target="_blank" rel="noopener">https://www.cnblogs.com/jing99/p/11495252.html</a> | <a href="https://www.it610.com/article/4944062.htm" target="_blank" rel="noopener">https://www.it610.com/article/4944062.htm</a></p>
-<h2 id="编程式事务"><a href="#编程式事务" class="headerlink" title="编程式事务"></a>编程式事务</h2><p>请跳转：<a href="http://arthurjq.com/2021/01/06/spring-transaction-programmatic-transaction/">http://arthurjq.com/2021/01/06/spring-transaction-programmatic-transaction/</a></p>
+<h2 id="编程式事务"><a href="#编程式事务" class="headerlink" title="编程式事务"></a>编程式事务</h2><p>请跳转：<a href="https://arthurjq.com/2021/01/06/java/spring-transaction-programmatic-transaction/">https://arthurjq.com/2021/01/06/java/spring-transaction-programmatic-transaction/</a></p>
 <blockquote>
 <p>本来我是放在这边的，但是这篇博文太大了就很卡，我就把这篇分成了三篇发了。</p>
 </blockquote>
@@ -457,7 +457,7 @@
 <li>一种是在配置文件（xml）中做相关的事务规则声明</li>
 <li>另一种是基于 @Transactional 注解的方式</li>
 </ol>
-<p>具体的声明书事务配置方式有五种，在另一篇文章的后边：<a href="http://arthurjq.com/2021/01/06/spring-transaction-propagation/">http://arthurjq.com/2021/01/06/spring-transaction-propagation/</a></p>
+<p>具体的声明书事务配置方式有五种，在另一篇文章的后边：<a href="https://arthurjq.com/2021/01/06/java/spring-transaction-propagation/">https://arthurjq.com/2021/01/06/java/spring-transaction-propagation/</a></p>
 <p>需要明确几点：</p>
 <ol>
 <li><p>默认配置下 Spring 只会回滚运行时、未检查异常（继承自 RuntimeException 的异常）或者 Error。</p>
@@ -466,7 +466,7 @@
 </li>
 <li><p>@Transactional 注解可以被应用于接口定义和接口方法、类定义和类的 public 方法上。然而仅仅 @Transactional 注解的出现不足以开启事务行为，它仅仅是一种元数据，能够被可以识别 @Transactional 注解和上述的配置适当的具有事务行为的beans所使用。其实是 <code>&lt;tx:annotation-driven/&gt;</code>元素的出现开启了事务行为。</p>
 </li>
-<li><p>注解不可以继承，建议在具体的类（或类的方法）上使用 @Transactional 注解，而不要使用在类所要实现的任何接口上。当然可以在接口上使用 @Transactional 注解，但是这将只有当你设置了基于接口的代理时它才生效。</p>
+<li><p><strong>注解不可以继承</strong>，建议在具体的类（或类的方法）上使用 @Transactional 注解，而不要使用在类所要实现的任何接口上。当然可以在接口上使用 @Transactional 注解，但是这将只有当你设置了基于接口的代理时它才生效。</p>
 </li>
 </ol>
 <blockquote>
@@ -478,7 +478,7 @@
 <p>事务的TransactionManager事务管理器总共有5种，与DataSource关联关系如图所示：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-3.png" alt></p>
 <h2 id="Spring事务属性配置（注解示例）"><a href="#Spring事务属性配置（注解示例）" class="headerlink" title="Spring事务属性配置（注解示例）"></a>Spring事务属性配置（注解示例）</h2><p>我们在使用Spring声明式事务时，有一个非常重要的概念就是事务属性。事务属性通常由事务的传播行为，事务的隔离级别，事务的超时值和事务只读标志组成。我们在进行事务划分时，需要进行事务定义，也就是配置事务的属性。 </p>
-<p>Spring在TransactionDefinition接口中定义这些属性,以供PlatfromTransactionManager使用。</p>
+<p>Spring在 TransactionDefinition 接口中定义这些属性,以供 PlatfromTransactionManager 使用。</p>
 <p><strong>PlatfromTransactionManager是spring事务管理的核心接口</strong></p>
 <pre class="line-numbers language-java"><code class="language-java">TransactionDefinition  
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">TransactionDefinition</span> <span class="token punctuation">{</span>  
@@ -491,9 +491,9 @@
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-9.png" alt></p>
 <p><strong>PlatfromTransactionManager是spring事务管理的核心接口</strong></p>
 <h3 id="事务的传播性"><a href="#事务的传播性" class="headerlink" title="事务的传播性"></a>事务的传播性</h3><p>getPropagationBehavior（）返回事务的传播行为，由是否有一个活动的事务来决定一个事务调用。 在TransactionDefinition接口中定义了七个事务传播行为。</p>
-<p>详细的话请跳转：<a href="http://arthurjq.com/2021/01/06/spring-transaction-propagation/">http://arthurjq.com/2021/01/06/spring-transaction-propagation/</a></p>
-<h3 id="事物的隔离级别"><a href="#事物的隔离级别" class="headerlink" title="事物的隔离级别"></a>事物的隔离级别</h3><p>这个之前总结过了，这里就放张图，可以跳转：<a href="http://arthurjq.com/2020/12/25/acid-isolation/">http://arthurjq.com/2020/12/25/acid-isolation/</a></p>
-<p>使用@Transactional的Isolation属性可以指定事务的隔离级别。但事务的隔离级别是由底层的数据库实现的，并不是由Spring来实现。</p>
+<p>详细的话请跳转：<a href="https://arthurjq.com/2021/01/06/java/spring-transaction-propagation/">https://arthurjq.com/2021/01/06/java/spring-transaction-propagation/</a></p>
+<h3 id="事物的隔离级别"><a href="#事物的隔离级别" class="headerlink" title="事物的隔离级别"></a>事物的隔离级别</h3><p>这个之前总结过了，这里就放张图，可以跳转：<a href="https://arthurjq.com/2020/12/25/database/isolation/">https://arthurjq.com/2020/12/25/database/isolation/</a></p>
+<p>使用@Transactional的Isolation属性可以指定事务的隔离级别。但事务的<strong>隔离级别是由底层的数据库实现</strong>的，并不是由Spring来实现。</p>
 <p>注意：在MySQL的众多存储引擎中，<strong>只有InnoDB支持事务</strong>，所以说的事务隔离级别指的是InnoDB下的事务隔离级别。隔离级别引发的读问题如下：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-7.png" alt></p>
 <h3 id="事务超时"><a href="#事务超时" class="headerlink" title="事务超时"></a>事务超时</h3><p>设置事务超时时间</p>
@@ -512,7 +512,7 @@
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setTimeoutInMillis</span><span class="token punctuation">(</span><span class="token keyword">long</span> millis<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
     <span class="token keyword">this</span><span class="token punctuation">.</span>deadline <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> millis<span class="token punctuation">)</span><span class="token punctuation">;</span>  
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>可以看到，其会设置一个deadline时间，用来判断事务超时时间的；</p>
+<p>可以看到，其会设置一个<strong>deadline</strong>时间，用来判断事务超时时间的；</p>
 <p>在JdbcTemplate中，执行sql之前，会调用其applyStatementSettings：其会调用DataSourceUtils.applyTimeout（stmt, getDataSource（）, getQueryTimeout（））;设置超时时间；</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">applyTimeout</span><span class="token punctuation">(</span>Statement stmt<span class="token punctuation">,</span> DataSource dataSource<span class="token punctuation">,</span> <span class="token keyword">int</span> timeout<span class="token punctuation">)</span> <span class="token keyword">throws</span> SQLException <span class="token punctuation">{</span>  
     Assert<span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span>stmt<span class="token punctuation">,</span> <span class="token string">"No Statement specified"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
@@ -573,12 +573,11 @@
 </li>
 </ol>
 <p>【 if the transaction is marked as read-only, Spring will set the Hibernate Session’s flush mode to FLUSH_NEVER, and will set the JDBC transaction to read-only】也就是说在Spring中设置只读事务是利用上面两种方式。</p>
-<h2 id="Transactional-事务实现机制"><a href="#Transactional-事务实现机制" class="headerlink" title="@Transactional 事务实现机制"></a>@Transactional 事务实现机制</h2><p>在应用系统调用声明了 @Transactional 的目标方法时，Spring Framework 默认使用 AOP 代理，<strong>在代码运行时生成一个代理对象</strong></p>
+<h2 id="Transactional-事务实现机制"><a href="#Transactional-事务实现机制" class="headerlink" title="Transactional 事务实现机制"></a>Transactional 事务实现机制</h2><p>在应用系统调用声明了 @Transactional 的目标方法时，Spring Framework 默认使用 AOP 代理，<strong>在代码运行时生成一个代理对象</strong></p>
 <p>根据 @Transactional 的属性配置信息，这个代理对象决定该声明 @Transactional 的目标方法是否由拦截器 TransactionInterceptor 来使用拦截</p>
 <p>在 TransactionInterceptor 拦截时，会在目标方法开始执行之前创建并加入事务，并执行目标方法的逻辑, 最后根据执行情况是否出现异常，利用抽象事务管理器 AbstractPlatformTransactionManager 操作数据源 DataSource 提交或回滚事务。</p>
 <p>Spring AOP 代理有 <strong>CglibAopProxy 和 JdkDynamicAopProxy</strong> 两种，以 CglibAopProxy 为例，对于 CglibAopProxy，需要调用其内部类的 DynamicAdvisedInterceptor 的 intercept 方法。对于 JdkDynamicAopProxy，需要调用其 invoke 方法。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-8.png" alt></p>
-<p>点击看全图。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-8.png" alt="点击看全图"></p>
 <p>正如上文提到的，事务管理的框架是由<strong>抽象事务管理器</strong> AbstractPlatformTransactionManager 来提供的，而具体的底层事务处理实现，由 PlatformTransactionManager 的具体实现类来实现，如事务管理器 DataSourceTransactionManager。不同的事务管理器管理不同的数据资源 DataSource，比如 DataSourceTransactionManager 管理 JDBC 的 Connection。</p>
 <p><strong>PlatfromTransactionManager是spring事务管理的核心接口</strong>（复读机）</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-9.png" alt></p>
@@ -825,7 +824,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/71.jpg" class="responsive-img" alt="空指针异常NullPointerException">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/72.jpg" class="responsive-img" alt="空指针异常NullPointerException">
                         
                         <span class="card-title">空指针异常NullPointerException</span>
                     </div>
@@ -878,7 +877,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/56.jpg" class="responsive-img" alt="Mysql的explain">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/55.jpg" class="responsive-img" alt="Mysql的explain">
                         
                         <span class="card-title">Mysql的explain</span>
                     </div>
@@ -1091,7 +1090,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">181.4k</span>
+            <span class="white-color">182k</span>
             
 
             <br>

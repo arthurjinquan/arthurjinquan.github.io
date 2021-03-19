@@ -255,7 +255,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/56.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/55.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -539,7 +539,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 <blockquote>
 <p>system/const: 结果只有一条数据<br>eq_ref:结果多条；但是每条数据是唯一的 ；<br>ref：结果多条；但是每条数据是是0或多条 ；</p>
 </blockquote>
-<h3 id="key-len字段"><a href="#key-len字段" class="headerlink" title="key_len字段"></a>key_len字段</h3><p>作用：用于判断复合索引是否被完全使用。</p>
+<h3 id="key-len字段"><a href="#key-len字段" class="headerlink" title="key_len字段"></a>key_len字段</h3><p>作用：用于<strong>判断复合索引是否被完全使用</strong>。</p>
 <ol>
 <li>如果索引字段<strong>可以为Null</strong>，则会多加1个字节用于标识。</li>
 <li>如果索引字段是<strong>可变长度</strong>的，会多加2个字节标识可变长度。</li>
@@ -548,7 +548,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 <blockquote>
 <p>utf8:1个字符3个字节<br>gbk:1个字符2个字节<br>latin:1个字符1个字节</p>
 </blockquote>
-<h3 id="Extra字段"><a href="#Extra字段" class="headerlink" title="Extra字段"></a>Extra字段</h3><p><strong>using filesort</strong> ：没有走索引排序，性能消耗大；需要“额外”的一次排序（查询）  。常见于 order by 语句中。</p>
+<h3 id="Extra字段"><a href="#Extra字段" class="headerlink" title="Extra字段"></a>Extra字段</h3><p><strong>using filesort</strong> ：<strong>没有走索引排序</strong>，性能消耗大；需要“额外”的一次排序（查询）  。常见于 <strong>order by</strong> 语句中。</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">explain</span> <span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> test02 <span class="token keyword">where</span> <span class="token number">a1</span> <span class="token operator">=</span><span class="token string">''</span> <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token number">a2</span> <span class="token punctuation">;</span> <span class="token comment" spellcheck="true">--using filesort</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
 <p>对于单索引， 如果排序和查找是同一个字段，则不会出现using filesort；如果排序和查找不是同一个字段，则会出现using filesort；</p>
@@ -790,7 +790,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/110.jpg" class="responsive-img" alt="Spring事务的配置、参数详情及其原理介绍 （Transactional）">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/111.jpg" class="responsive-img" alt="Spring事务的配置、参数详情及其原理介绍 （Transactional）">
                         
                         <span class="card-title">Spring事务的配置、参数详情及其原理介绍 （Transactional）</span>
                     </div>
@@ -847,7 +847,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/61.jpg" class="responsive-img" alt="MySQL 的Join及底层实现原理">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/60.jpg" class="responsive-img" alt="MySQL 的Join及底层实现原理">
                         
                         <span class="card-title">MySQL 的Join及底层实现原理</span>
                     </div>
@@ -1052,7 +1052,7 @@ select dinstinct  ...from  ...join ...on ...where ...group by ...having ...order
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">181.4k</span>
+            <span class="white-color">182k</span>
             
 
             <br>

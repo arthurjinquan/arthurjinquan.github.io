@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/40.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/39.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,14 +409,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    939
+                    952
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
                 
@@ -491,8 +491,7 @@
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
 <span class="token keyword">from</span> <span class="token keyword">table</span> <span class="token number">1</span>
 <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> <span class="token keyword">table</span> <span class="token number">2</span>
-<span class="token keyword">ON</span>
-<span class="token keyword">table</span> <span class="token number">1</span><span class="token punctuation">.</span>column_name<span class="token operator">=</span><span class="token keyword">table</span> <span class="token number">2</span><span class="token punctuation">.</span>column_name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">ON</span> <span class="token keyword">table</span> <span class="token number">1</span><span class="token punctuation">.</span>column_name<span class="token operator">=</span><span class="token keyword">table</span> <span class="token number">2</span><span class="token punctuation">.</span>column_name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注释：<strong>INNER JOIN与JOIN是相同</strong></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-inner%20join.png" alt></p>
 <p>INNER JOIN产生的结果集中，是1和2的交集。</p>
@@ -521,7 +520,7 @@
 </table>
 <br><br><br><br><br><br><br><br>
 
-<h2 id="LEFT-JOIN"><a href="#LEFT-JOIN" class="headerlink" title="LEFT JOIN"></a>LEFT JOIN</h2><p>LEFT JOIN返回<strong>左表的全部行和右表满足ON条件的行</strong>，如果左表的行在右表中没有匹配，那么这一行右表中对应数据用NULL代替。</p>
+<h2 id="LEFT-JOIN"><a href="#LEFT-JOIN" class="headerlink" title="LEFT JOIN"></a>LEFT JOIN</h2><p>LEFT JOIN返回<strong>左表的全部行和右表满足ON条件的行</strong>，<strong>如果左表的行在右表中没有匹配，那么这一行右表中对应数据用NULL代替</strong>。</p>
 <p>LEFT JOIN 语法</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
 <span class="token keyword">from</span> <span class="token keyword">table</span> <span class="token number">1</span>
@@ -564,8 +563,8 @@
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
 <h2 id="RIGHT-OUTER-JOIN"><a href="#RIGHT-OUTER-JOIN" class="headerlink" title="RIGHT [OUTER] JOIN"></a>RIGHT [OUTER] JOIN</h2><p>RIGHT OUTERJOIN 是后面的表为基础，与LEFT OUTER JOIN用法类似。这里不介绍了。</p>
-<h2 id="FULL-OUTER-JOIN"><a href="#FULL-OUTER-JOIN" class="headerlink" title="FULL OUTER JOIN"></a>FULL OUTER JOIN</h2><p>FULL JOIN 会从 左表 和 右表 那里返回所有的行。如果其中一个表的数据行在另一个表中没有匹配的行，那么对面的数据用NULL代替。</p>
-<p>FULL OUTER JOIN语法</p>
+<h2 id="FULL-OUTER-JOIN"><a href="#FULL-OUTER-JOIN" class="headerlink" title="FULL OUTER JOIN"></a>FULL OUTER JOIN</h2><p>FULL JOIN 会从 左表 和 右表 那里<strong>返回所有的行</strong>。如果其中一个表的数据行在另一个表中没有匹配的行，那么对面的数据用NULL代替。</p>
+<p>FULL OUTER JOIN 语法</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> column_name<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
 <span class="token keyword">from</span> <span class="token keyword">table</span> <span class="token number">1</span>
 <span class="token keyword">FULL</span> <span class="token keyword">OUTER</span> <span class="token keyword">JOIN</span> <span class="token keyword">table</span> <span class="token number">2</span>
@@ -624,15 +623,15 @@
 <h3 id="UNION"><a href="#UNION" class="headerlink" title="UNION"></a>UNION</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> TableA <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> TableB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>结果为：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-union.jpg" alt></p>
-<p><strong>UNION选取不同值</strong></p>
+<p><strong>UNION选取不同值</strong>，会合并相同的字段</p>
 <h3 id="UNION-ALL"><a href="#UNION-ALL" class="headerlink" title="UNION ALL"></a>UNION ALL</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> TableA <span class="token keyword">UNION</span> <span class="token keyword">ALL</span> <span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> TableB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>结果为：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-union%20all.jpg" alt></p>
-<p><strong>UNION ALL把所有记录全部列出来</strong></p>
+<p><strong>UNION ALL把所有记录全部列出来</strong>，重复的也会</p>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> TableA <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> TableB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>结果为：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-union2.jpg" alt></p>
-<p>由于 id 1 Pirate 与 id 2 Pirate 并不相同，不合并</p>
+<p><strong>由于 id 1 Pirate 与 id 2 Pirate 并不相同，不合并</strong></p>
 <h2 id="笛卡尔积（cross-join）"><a href="#笛卡尔积（cross-join）" class="headerlink" title="笛卡尔积（cross join）"></a>笛卡尔积（cross join）</h2><p>还需要注册的是我们还有一个是“交差集” cross join, 这种Join没有办法用文式图表示，因为其就是把表A和表B的数据进行一个N*M的组合，即笛卡尔积。表达式如下：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> TableA <span class="token keyword">CROSS</span> <span class="token keyword">JOIN</span> TableB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>这个笛卡尔乘积会产生 4 x 4 = 16 条记录，一般来说，我们很少用到这个语法。但是我们得小心，<strong>如果不是使用嵌套的select语句，一般系统都会产生笛卡尔乘积然再做过滤</strong>。这是对于性能来说是非常危险的，尤其是表很大的时候。</p>
@@ -745,7 +744,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/61.jpg" class="responsive-img" alt="MySQL 的Join及底层实现原理">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/60.jpg" class="responsive-img" alt="MySQL 的Join及底层实现原理">
                         
                         <span class="card-title">MySQL 的Join及底层实现原理</span>
                     </div>
@@ -794,7 +793,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/99.jpg" class="responsive-img" alt="in和exists的区别">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/98.jpg" class="responsive-img" alt="in和exists的区别">
                         
                         <span class="card-title">in和exists的区别</span>
                     </div>
@@ -999,7 +998,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">181.4k</span>
+            <span class="white-color">182k</span>
             
 
             <br>

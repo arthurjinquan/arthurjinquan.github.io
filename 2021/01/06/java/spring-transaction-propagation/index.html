@@ -256,7 +256,7 @@ PlatfromTransactionManager是spring事务管理的核心接口
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/41.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/40.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -443,17 +443,17 @@ PlatfromTransactionManager是spring事务管理的核心接口
 <ol>
 <li><p><strong>PROPAGATION_REQUIRED</strong> 表示业务方法需要在一个事务中处理，如果业务方法执行时已经在一个事务中，则加入该事务，否则重新开启一个事务。这也是默认的事务传播行为；</p>
 </li>
-<li><p><strong>PROPAGATION_SUPPORTS</strong> 该属性指定，如果业务方法在一个既有的事务中进行，则加入该事务；否则，业务方法将在一个没有事务的环境下进行；但是对于事务同步的事务管理器，PROPAGATION_SUPPORTS与不使用事务有少许不同。 </p>
+<li><p><strong>PROPAGATION_SUPPORTS</strong> 如果业务方法在一个既有的事务中进行，则加入该事务；否则，业务方法将在一个没有事务的环境下进行；</p>
 </li>
-<li><p><strong>PROPAGATION_MANDATORY</strong>（mandatory，强制的） 该属性指定业务方法只能在一个已经存在的事务中进行，业务方法不能发起自己的事务；如果业务方法没有在一个既有的事务中进行，容器将抛出异常； </p>
+<li><p><strong>PROPAGATION_MANDATORY</strong>（mandatory，强制的） 该属性指定业务方法<strong>只能在一个已经存在的事务中进行</strong>，业务方法不能发起自己的事务；如果业务方法没有在一个既有的事务中进行，容器将抛出<strong>异常</strong>； </p>
 </li>
 <li><p><strong>PROPAGATION_REQUIRES_NEW</strong> 表明业务方法需要在一个单独的事务中进行，如果业务方法进行时已经在一个事务中，则这个事务被挂起，并重新开启一个事务来执行这个业务方法，业务方法执行完毕后，原来的事务恢复进行；</p>
 </li>
-<li><p><strong>PROPAGATION_NOT_SUPPORTED</strong>  总是非事务地执行，并挂起任何存在的事务。 </p>
+<li><p><strong>PROPAGATION_NOT_SUPPORTED</strong>  总是非事务地执行，<strong>并挂起任何存在的事务</strong>。 </p>
 </li>
-<li><p><strong>PROPAGATION_NEVER</strong> 总是非事务地执行，如果存在一个活动事务，则抛出异常。</p>
+<li><p><strong>PROPAGATION_NEVER</strong> 总是非事务地执行，如果存在一个活动事务，则抛出<strong>异常</strong>。</p>
 </li>
-<li><p><strong>PROPAGATION_NESTED</strong> 该属性指定，如果业务方法在一个既有的事务中执行，则该业务方法将在一个嵌套的事务中进行；否则，按照TransactionDefinition.PROPAGATION_REQUIRED来对待。它使用一个单独的事务，这个事务可以有多个rollback点，内部事务的rollback对外部事务没有影响，但外部事务的rollback会导致内部事务的rollback。这个行为只对DataSourceTransactionManager有效。</p>
+<li><p><strong>PROPAGATION_NESTED</strong> 该属性指定，如果业务方法在一个既有的事务中执行，则该业务方法将在一个嵌套的事务中进行；否则，按照TransactionDefinition.PROPAGATION_REQUIRED来对待。它使用一个单独的事务，这个事务可以有多个rollback点，内部事务的rollback对外部事务没有影响，但外部事务的rollback会导致内部事务的rollback。<strong>这个行为只对DataSourceTransactionManager有效</strong></p>
 </li>
 </ol>
 <h3 id="1-1-PROPAGATION-REQUIRED"><a href="#1-1-PROPAGATION-REQUIRED" class="headerlink" title="1.1 PROPAGATION_REQUIRED"></a>1.1 PROPAGATION_REQUIRED</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//事务属性 PROPAGATION_REQUIRED</span>
@@ -469,7 +469,7 @@ methodB<span class="token punctuation">{</span>
     …… 
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>单独调用MethodB时，Spring保证在methodB方法中所有的调用都获得到一个相同的连接。在调用methodB时，没有一个存在的事务，所以获得一个新的连接，开启了一个新的事务。 </p>
-<p>调用MethodA时，环境中没有事务，所以开启一个新的事务. 当在MethodA中调用MethodB时，环境中已经有了一个事务，所以methodB就加入当前事务。 相当于把B方法直接移到A方法中，同时回滚或者同时提交。</p>
+<p>调用MethodA时，环境中没有事务，所以开启一个新的事务. 当在MethodA中调用MethodB时，环境中已经有了一个事务，所以<strong>methodB就加入当前事务</strong>。 相当于把B方法直接移到A方法中，同时回滚或者同时提交。</p>
 <h3 id="1-2-PROPAGATION-SUPPORTS"><a href="#1-2-PROPAGATION-SUPPORTS" class="headerlink" title="1.2 PROPAGATION_SUPPORTS"></a>1.2 PROPAGATION_SUPPORTS</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//事务属性 PROPAGATION_REQUIRED</span>
 <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation<span class="token operator">=</span>Propagation<span class="token punctuation">.</span>REQUIRED<span class="token punctuation">)</span>
 methodA<span class="token punctuation">{</span> 
@@ -542,7 +542,7 @@ methodB<span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">//释放资源 </span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在这里，我把ts1称为外层事务，ts2称为内层事务。从上面的代码可以看出，ts2与ts1是两个独立的事务，互不相干。Ts2是否成功并不依赖于ts1。如果methodA方法在调用methodB方法后的doSomeThingB方法失败了,而methodB方法所做的结果依然被提交。而除了methodB之外的其它代码导致的结果却被回滚了。 </p>
+<p>在这里，我把ts1称为外层事务，ts2称为内层事务。从上面的代码可以看出，<strong>ts2与ts1是两个独立的事务，互不相干</strong>。Ts2是否成功并不依赖于ts1。如果methodA方法在调用methodB方法后的doSomeThingB方法失败了,而methodB方法所做的结果依然被提交。而除了methodB之外的其它代码导致的结果却被回滚了。 </p>
 <p><strong>使用PROPAGATION_REQUIRES_NEW,需要使用JtaTransactionManager作为事务管理器</strong>。 </p>
 <p>注意：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation <span class="token operator">=</span> Propagation<span class="token punctuation">.</span>REQUIRED<span class="token punctuation">)</span>
@@ -566,7 +566,7 @@ methodB<span class="token punctuation">{</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>运行之后，发现数据并没有插入数据库。查看日志内容。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-4.jpg" alt></p>
-<p>从日志内容可以看出，其实两个方法都是处于同一个事务中，method1 方法并没有创建一个新的事务。根据 Spring 官方文档：</p>
+<p>从日志内容可以看出，其实两个方法都是<strong>处于同一个事务</strong>中，method1 方法并没有创建一个新的事务。根据 Spring 官方文档：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-5.png" alt></p>
 <blockquote>
 <p>In proxy mode (which is the default), only external method calls coming in through the proxy are intercepted. This means that self-invocation, in effect, a method within the target object calling another method of the target object, will not lead to an actual transaction at runtime even if the invoked method is marked with @Transactional.</p>
@@ -654,8 +654,9 @@ methodB<span class="token punctuation">{</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>单独调用methodB，则非事务的执行。 </p>
 <p>调用methodA则会抛出异常<code>throw new IllegalTransactionStateException(&quot;Transaction propagation &#39;never&#39; butexisting transaction found&quot;)</code>; </p>
-<h3 id="1-7-PROPAGATION-NESTED"><a href="#1-7-PROPAGATION-NESTED" class="headerlink" title="1.7 PROPAGATION_NESTED"></a>1.7 PROPAGATION_NESTED</h3><p>这是一个嵌套事务,使用JDBC 3.0驱动时,仅仅支持DataSourceTransactionManager作为事务管理器。需要JDBC 驱动的java.sql.Savepoint类。有一些JTA的事务管理器实现可能也提供了同样的功能。 </p>
-<p>使用PROPAGATION_NESTED，还需要把PlatformTransactionManager的nestedTransactionAllowed属性设为true; 而nestedTransactionAllowed属性值默认为false; </p>
+<h3 id="1-7-PROPAGATION-NESTED"><a href="#1-7-PROPAGATION-NESTED" class="headerlink" title="1.7 PROPAGATION_NESTED"></a>1.7 PROPAGATION_NESTED</h3><p><strong>内层事务依赖于外层事务</strong></p>
+<p>这是一个嵌套事务,使用JDBC 3.0驱动时,<strong>仅仅支持DataSourceTransactionManager作为事务管理器</strong>。需要JDBC 驱动的java.sql.Savepoint类。有一些JTA的事务管理器实现可能也提供了同样的功能。 </p>
+<p>使用PROPAGATION_NESTED，还需要把PlatformTransactionManager的 nestedTransactionAllowed 属性设为<strong>true</strong>; 而nestedTransactionAllowed属性值默认为false; </p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//事务属性 PROPAGATION_REQUIRED</span>
 <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation<span class="token operator">=</span>Propagation<span class="token punctuation">.</span>REQUIRED<span class="token punctuation">)</span>
 methodA<span class="token punctuation">{</span> 
@@ -694,7 +695,7 @@ methodB<span class="token punctuation">{</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当methodB方法调用之前，调用setSavepoint方法，保存当前的状态到savepoint。如果methodB方法调用失败，则恢复到之前保存的状态。但是需要注意的是，这时的事务并没有进行提交，如果后续的代码（doSomeThingB（）方法）调用失败，则回滚包括methodB方法的所有操作。 </p>
-<p>嵌套事务一个非常重要的概念就是内层事务依赖于外层事务。外层事务失败时，会回滚内层事务所做的动作。而内层事务操作失败并不会引起外层事务的回滚。</p>
+<p>嵌套事务一个非常重要的概念就是<strong>内层事务依赖于外层事务</strong>。外层事务失败时，会回滚内层事务所做的动作。而内层事务操作失败并不会引起外层事务的回滚。</p>
 <h3 id="PROPAGATION-NESTED与PROPAGATION-REQUIRES-NEW的区别"><a href="#PROPAGATION-NESTED与PROPAGATION-REQUIRES-NEW的区别" class="headerlink" title="PROPAGATION_NESTED与PROPAGATION_REQUIRES_NEW的区别:"></a>PROPAGATION_NESTED与PROPAGATION_REQUIRES_NEW的区别:</h3><ul>
 <li><p>相同点：都是一个嵌套事务，如果不存在一个活动的事务，都会开启一个新的事务。使用PROPAGATION_REQUIRES_NEW时，内层事务与外层事务就像两个独立的事务一样，一旦内层事务进行了提交后，外层事务不能对其进行回滚。两个事务互不影响。两个事务不是一个真正的嵌套事务。同时它需要JTA事务管理器的支持。 </p>
 </li>
@@ -1049,7 +1050,7 @@ methodB<span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/72.jpg" class="responsive-img" alt="编程式事务（programmatic transaction）">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/71.jpg" class="responsive-img" alt="编程式事务（programmatic transaction）">
                         
                         <span class="card-title">编程式事务（programmatic transaction）</span>
                     </div>
@@ -1098,7 +1099,7 @@ methodB<span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/54.jpg" class="responsive-img" alt="消毒供应室项目业务流程图">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/53.jpg" class="responsive-img" alt="消毒供应室项目业务流程图">
                         
                         <span class="card-title">消毒供应室项目业务流程图</span>
                     </div>
@@ -1303,7 +1304,7 @@ methodB<span class="token punctuation">{</span>
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">181.4k</span>
+            <span class="white-color">182k</span>
             
 
             <br>

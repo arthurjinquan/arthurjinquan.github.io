@@ -8,10 +8,10 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="Docker简介相信很多人都用过虚拟机。虚拟机，就是在你的操作系统里面，装一个软件，然后通过这个软件，再模拟一台甚至多台“子电脑”出来。
+    <meta name="description" content="Docker简介虚拟机，就是在你的操作系统里面，装一个软件，然后通过这个软件，再模拟一台甚至多台“子电脑”出来。
 
-虚拟机，类似于“子电脑”
-在“子电脑”里，你可以和正常电脑一样运行程序，例如开QQ。如果你愿意，你可">
+虚拟机，类似于子电脑
+在“子电脑”里，你可以和正常电脑一样运行程序，例如开QQ。如果你愿意，你可以变出好几个“子电脑”，里面">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/34.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/35.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -423,14 +423,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.7k
+                    2.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    10 分
                 </div>
                 
                 
@@ -446,33 +446,28 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h2><p>相信很多人都用过虚拟机。虚拟机，就是在你的操作系统里面，装一个软件，然后通过这个软件，再模拟一台甚至多台“子电脑”出来。</p>
+                <h2 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h2><p>虚拟机，就是在你的操作系统里面，装一个软件，然后通过这个软件，再模拟一台甚至多台“子电脑”出来。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-1.jpg" alt></p>
-<p>虚拟机，类似于“子电脑”</p>
+<p>虚拟机，类似于<strong>子电脑</strong></p>
 <p>在“子电脑”里，你可以和正常电脑一样运行程序，例如开QQ。如果你愿意，你可以变出好几个“子电脑”，里面都开上QQ。“子电脑”和“子电脑”之间，是<strong>相互隔离</strong>的，互不影响。</p>
 <p>虚拟机属于虚拟化技术。而Docker这样的容器技术，也是虚拟化技术，属于<strong>轻量级的虚拟化</strong>。</p>
 <p>虚拟机虽然可以隔离出很多“子电脑”，但占用空间更大，启动更慢，虚拟机软件可能还要花钱（例如VMWare）。</p>
-<p>而容器技术恰好没有这些缺点。它不需要虚拟出整个操作系统，只需要虚拟一个小规模的环境（类似“沙箱”）。</p>
-<p>它启动时间很快，几秒钟就能完成。而且，它对资源的利用率很高（一台主机可以同时运行几千个Docker容器）。此外，它占的空间很小，虚拟机一般要几GB到几十GB的空间，而容器只需要MB级甚至KB级。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-2.jpg" alt></p>
-<p>容器和虚拟机的对比</p>
-<p>正因为如此，容器技术受到了热烈的欢迎和追捧，发展迅速。</p>
-<p>我们具体来看看Docker。</p>
+<p>而容器技术恰好没有这些缺点。它不需要虚拟出整个操作系统，只需要虚拟一个小规模的环境（类似<strong>沙箱</strong>）。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-2.jpg" alt="容器和虚拟机的对比"></p>
 <p>大家需要注意，<strong>Docker本身并不是容器</strong>，它是创建容器的工具，是应用容器引擎。</p>
 <p>想要搞懂Docker，其实看它的两句口号就行。</p>
 <p>第一句，是“<strong>Build, Ship and Run</strong>”。</p>
 <p>也就是，“搭建、发送、运行”，三板斧。</p>
-<p>第二句口号就是：“<strong>Build once，Run anywhere**</strong>（搭建一次，到处能用）**”。</p>
+<p>第二句口号就是：“<strong>Build once，Run anywhere</strong>（搭建一次，到处能用）”。</p>
 <p>Docker技术的三大核心概念，分别是：</p>
 <ul>
 <li><strong>镜像（Image）</strong></li>
 <li><strong>容器（Container）</strong></li>
 <li><strong>仓库（Repository）</strong></li>
 </ul>
-<p>说白了，这个Docker镜像，是一个特殊的文件系统。它除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（例如环境变量）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
+<p>说白了，这个Docker镜像，是一个特殊的文件系统。它除了提供容器运行时所需的<strong>程序、库、资源、配置</strong>等文件外，还包含了一些为运行时准备的一些配置参数（例如环境变量）。镜像不包含任何动态数据，其内容在构建之后也不会被改变。</p>
 <p>负责对Docker镜像进行管理的，是<strong>Docker Registry服务</strong>（类似仓库管理员）。不是任何人建的任何镜像都是合法的。所以，Docker Registry服务对镜像的管理是非常严格的。</p>
 <p>最常使用的Registry公开服务，是官方的<strong>Docker Hub</strong>，这也是默认的Registry，并拥有大量的高质量的官方镜像。</p>
-<p>好了，说完了Docker，我们再把目光转向K8S。</p>
 <h2 id="K8S简介"><a href="#K8S简介" class="headerlink" title="K8S简介"></a>K8S简介</h2><p>就在Docker容器技术被炒得热火朝天之时，大家发现，如果想要将Docker应用于具体的业务实现，是存在困难的——编排、管理和调度等各个方面，都不容易。于是，人们迫切需要一套管理系统，对Docker及容器进行更高级更灵活的管理。</p>
 <p>就在这个时候，K8S出现了。</p>
 <p><strong>K8S，就是基于容器的集群管理平台，它的全称，是kubernetes。</strong></p>
@@ -486,9 +481,8 @@
 <li><strong>一群Node节点（计算节点）</strong></li>
 </ul>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/k8s-2.jpg" alt></p>
-<p>一看就明白：Master节点主要还是负责管理和控制。Node节点是工作负载节点，里面是具体的容器。</p>
-<p>深入来看这两种节点。</p>
-<p>首先是<strong>Master节点。</strong></p>
+<p>一看就明白：Master节点主要还是<strong>负责管理和控制</strong>。Node节点是工作负载节点，里面是具体的容器。</p>
+<p><strong>Master节点</strong></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/k8s-3.jpg" alt></p>
 <p>Master节点包括API Server、Scheduler、Controller manager、etcd。</p>
 <p>API Server是整个系统的对外接口，供客户端和其它组件调用，相当于“营业厅”。</p>
@@ -903,7 +897,7 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/61.jpg" class="responsive-img" alt="实现一个返回数组的接口">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/62.jpg" class="responsive-img" alt="实现一个返回数组的接口">
                         
                         <span class="card-title">实现一个返回数组的接口</span>
                     </div>
@@ -911,7 +905,7 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            想要实现一个返回数组的接口，但是ResponsePacket里没有这样的返回值支持，要自己写一个。
+                            想要一个返回数组的接口，包里没有那就自己写一个。
                         
                     </div>
                     <div class="publish-info">
@@ -956,15 +950,15 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface实现RPC">
                         
-                        <span class="card-title">SpringCloud使用Feign暴露Interface</span>
+                        <span class="card-title">SpringCloud使用Feign暴露Interface实现RPC</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            需求：现在需要将A项目（生产者，或者叫服务提供者）的web模块中的某些接口暴露出去，要求在api模块中定义。使得B项目（消费者，或者叫客户端）能远程调用A项目暴露的接口，跟着同事的文档学的，记录一下。
+                            需要将A项目的web模块中的某些接口暴露出去，使得B项目能远程调用A项目暴露的接口，跟着同事的文档学的，记录一下。
                         
                     </div>
                     <div class="publish-info">
@@ -1169,7 +1163,7 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">181.4k</span>
+            <span class="white-color">182k</span>
             
 
             <br>

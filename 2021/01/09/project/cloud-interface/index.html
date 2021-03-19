@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="SpringCloud使用Feign暴露Interface, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="SpringCloud使用Feign暴露Interface实现RPC, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
@@ -17,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>SpringCloud使用Feign暴露Interface | 锦泉^-^</title>
+    <title>SpringCloud使用Feign暴露Interface实现RPC | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -254,13 +254,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        SpringCloud使用Feign暴露Interface
+                        SpringCloud使用Feign暴露Interface实现RPC
                     </div>
                 </div>
             </div>
@@ -447,7 +447,6 @@
 <span class="token annotation punctuation">@RestController</span>
 <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/wcenter/dict/define"</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">WcenterDictDefineRest</span> <span class="token punctuation">{</span>
-
  <span class="token comment" spellcheck="true">/**
    * 获取树状字典
    **/</span>
@@ -465,8 +464,8 @@
     responseDto<span class="token punctuation">.</span><span class="token function">setRecords</span><span class="token punctuation">(</span>treeDict<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">return</span> ResponsePacket<span class="token punctuation">.</span><span class="token function">generatePacket</span><span class="token punctuation">(</span>responseDto<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>注意：上面那个类，必须加@RestController注解</strong>，否则后面调用api模块暴露的接口会出现问题。</p>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意：上面那个类，必须加@RestController注解</strong></p>
 <h2 id="暴露接口"><a href="#暴露接口" class="headerlink" title="暴露接口"></a>暴露接口</h2><p>首先要引入Feign的依赖，Feign依赖是必须引入的，其余依赖根据自己的接口需要引入其他依赖。如下：</p>
 <pre class="line-numbers language-xml"><code class="language-xml"><span class="token comment" spellcheck="true">&lt;!-- Feign Form Spring --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -511,7 +510,13 @@
     ResponsePacket<span class="token operator">&lt;</span>RecordsDTO<span class="token operator">></span> <span class="token function">loadTree</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"codes"</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> String<span class="token punctuation">[</span><span class="token punctuation">]</span> codes<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>注意：</strong></p>
-<p>\1. <strong>必须加@FeignClient声明</strong><br>\2. 其他 value属性的值是yml文件中<code>spring.application.name</code>的值，这里建议用yml语法动态获取，如上面代码中所示 （用name属性也行，value属性也行）<br>\3. 如果yml文件中配置了<code>server.servlet.context-path</code>，必须配上path属性。否则后面调用这个接口会出现404问题<br>\4. 关于方法的mapping注解，有人说Feign不支持 GetMapping，笔者测试过 是支持的。这应该与某些依赖的版本有关<br>\5. <strong>方法参数必须加@RequestParam注解</strong>（否则，后面调用该接口会报<code>too many bad parameter</code>错误），<strong>若是POST请求方式，需要根据情况加@RequestBody注解</strong></p>
+<ol>
+<li><strong>必须加@FeignClient声明</strong></li>
+<li>其他 value属性的值是yml文件中<code>spring.application.name</code>的值，这里建议用yml语法动态获取，如上面代码中所示 （用name属性也行，value属性也行）</li>
+<li>如果yml文件中配置了<code>server.servlet.context-path</code>，必须配上path属性。否则后面调用这个接口会出现404问题</li>
+<li>关于方法的mapping注解，有人说Feign不支持 GetMapping，笔者测试过 是支持的。这应该与某些依赖的版本有关</li>
+<li><strong>方法参数必须加@RequestParam注解</strong>（否则，后面调用该接口会报<code>too many bad parameter</code>错误），<strong>若是POST请求方式，需要根据情况加@RequestBody注解</strong></li>
+</ol>
 <h2 id="远程调用"><a href="#远程调用" class="headerlink" title="远程调用"></a>远程调用</h2><p>需要在B项目中引入A项目的api模块的依赖，例子如下：</p>
 <pre class="line-numbers language-xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>xxx.xxx<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
@@ -537,10 +542,8 @@
     classes <span class="token operator">=</span> 启动类<span class="token punctuation">.</span><span class="token keyword">class</span>
     <span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DictFeignTest</span> <span class="token punctuation">{</span>
-
   <span class="token annotation punctuation">@Autowired</span>
   DictFeign dictFeign<span class="token punctuation">;</span>
-
   <span class="token comment" spellcheck="true">/**
    * 测试 远程调用数据字典
    */</span>
@@ -549,7 +552,7 @@
     ResponsePacket<span class="token operator">&lt;</span>ResponseTreeEntityDto<span class="token operator">></span> tree <span class="token operator">=</span> dictFeign<span class="token punctuation">.</span><span class="token function">tree</span><span class="token punctuation">(</span>null<span class="token punctuation">,</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
     log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"The dict tree is: {}"</span><span class="token punctuation">,</span> tree<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这种暴露接口的测试，必须先启动生产者（服务提供者），再启动消费者（客户端）。</p>
 <p>我们先启动A项目，再启动B项目，运行上面的测试方法，测试成功。</p>
 <h2 id="服务降级处理（fallback）"><a href="#服务降级处理（fallback）" class="headerlink" title="服务降级处理（fallback）"></a>服务降级处理（fallback）</h2><p>远程调用失败降级处理，代码如下：</p>
@@ -611,7 +614,7 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《SpringCloud使用Feign暴露Interface》
+                    《SpringCloud使用Feign暴露Interface实现RPC》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/09/project/cloud-interface/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -683,7 +686,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/34.jpg" class="responsive-img" alt="Docker和K8S简介和安装部署">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/35.jpg" class="responsive-img" alt="Docker和K8S简介和安装部署">
                         
                         <span class="card-title">Docker和K8S简介和安装部署</span>
                     </div>
@@ -744,7 +747,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/106.jpg" class="responsive-img" alt="NSSM-the Non-Sucking Service Manager">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/107.jpg" class="responsive-img" alt="NSSM-the Non-Sucking Service Manager">
                         
                         <span class="card-title">NSSM-the Non-Sucking Service Manager</span>
                     </div>
@@ -953,7 +956,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">181.4k</span>
+            <span class="white-color">182k</span>
             
 
             <br>

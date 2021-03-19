@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/72.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/71.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -464,9 +464,9 @@
             <span class="token punctuation">}</span>  
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 执行execute方法进行事务管理</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>使用TransactionCallback（）可以返回一个值。如果使用TransactionCallbackWithoutResult则没有返回值。</p>
-<h3 id="使用PlatformTransactionManager"><a href="#使用PlatformTransactionManager" class="headerlink" title="使用PlatformTransactionManager"></a>使用PlatformTransactionManager</h3><p>Spring的事务处理中，通用的事务处理流程框架是由抽象事务管理器AbstractPlatformTransactionManager来提供的，而具体的底层事务处理实现，由PlatformTransactionManager的具体实现类来实现，如 DataSourceTransactionManager 、JtaTransactionManager和 HibernateTransactionManager等。</p>
+<h3 id="使用PlatformTransactionManager"><a href="#使用PlatformTransactionManager" class="headerlink" title="使用PlatformTransactionManager"></a>使用PlatformTransactionManager</h3><p>Spring的事务处理中，通用的事务处理流程框架是由抽象事务管理器 AbstractPlatformTransactionManager 来提供的，而具体的底层事务处理实现，由PlatformTransactionManager 的具体实现类来实现，如 DataSourceTransactionManager 、JtaTransactionManager和 HibernateTransactionManager等。</p>
 <h4 id="AbstractPlatformTransactionManager抽象事物处理器"><a href="#AbstractPlatformTransactionManager抽象事物处理器" class="headerlink" title="AbstractPlatformTransactionManager抽象事物处理器"></a>AbstractPlatformTransactionManager抽象事物处理器</h4><p>它<strong>实现了PlatformTransactionManager平台事务管理器接口</strong>，提供了一系列设计好的事务模板方法，如事务提交、回滚等，这些模板方法的具体实现由具体的事务处理器来提供。</p>
-<h4 id="DataSourceTransactionManager事务处理器的实现"><a href="#DataSourceTransactionManager事务处理器的实现" class="headerlink" title="DataSourceTransactionManager事务处理器的实现"></a>DataSourceTransactionManager事务处理器的实现</h4><p>针对JDBC连接提供的事务处理器实现，即数据源事务处理器<strong>把数据库Connection连接和当前线程进行绑定</strong>，通过直接调用数据库连接Connection的提交和回滚方法实现事务的提供和回滚处理。其部分源码如下：</p>
+<h4 id="DataSourceTransactionManager事务处理器的实现"><a href="#DataSourceTransactionManager事务处理器的实现" class="headerlink" title="DataSourceTransactionManager事务处理器的实现"></a>DataSourceTransactionManager事务处理器的实现</h4><p>针对<strong>JDBC</strong>连接提供的事务处理器实现，即数据源事务处理器<strong>把数据库Connection连接和当前线程进行绑定</strong>，通过直接调用数据库连接Connection的提交和回滚方法实现事务的提供和回滚处理。其部分源码如下：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DataSourceTransactionManager</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractPlatformTransactionManager</span>
         <span class="token keyword">implements</span> <span class="token class-name">ResourceTransactionManager</span><span class="token punctuation">,</span> InitializingBean <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//注入数据源</span>
@@ -664,7 +664,7 @@
         <span class="token comment" spellcheck="true">//清除事务对象的ConnectionHolder</span>
         txObject<span class="token punctuation">.</span><span class="token function">getConnectionHolder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">//数据源事务对象，内部类</span>
+    <span class="token comment" spellcheck="true">//数据源事务对象，内部类</span>
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">DataSourceTransactionObject</span> <span class="token keyword">extends</span> <span class="token class-name">JdbcTransactionObjectSupport</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">//是否有新的ConnectionHolder</span>
         <span class="token keyword">private</span> <span class="token keyword">boolean</span> newConnectionHolder<span class="token punctuation">;</span>
@@ -1098,7 +1098,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/13.jpg" class="responsive-img" alt="SQLSyntaxErrorException">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/12.jpg" class="responsive-img" alt="SQLSyntaxErrorException">
                         
                         <span class="card-title">SQLSyntaxErrorException</span>
                     </div>
@@ -1151,7 +1151,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/41.jpg" class="responsive-img" alt="事务的传播属性和声明式事务的配置方式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/40.jpg" class="responsive-img" alt="事务的传播属性和声明式事务的配置方式">
                         
                         <span class="card-title">事务的传播属性和声明式事务的配置方式</span>
                     </div>
@@ -1159,7 +1159,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            transaction那篇太长了，就把事务的传播属性和声明式事务的配置方式搬到这边。
+                            transaction那篇太长了，就把事务的传播属性和声明式事务的配置方式放到这。
                         
                     </div>
                     <div class="publish-info">
@@ -1356,7 +1356,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">181.4k</span>
+            <span class="white-color">182k</span>
             
 
             <br>
