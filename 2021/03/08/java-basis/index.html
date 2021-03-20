@@ -257,7 +257,7 @@ Java 不提供指">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,14 +412,14 @@ Java 不提供指">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.2k
+                    5.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    20 分
                 </div>
                 
                 
@@ -642,6 +642,28 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 <h2 id="线程池中为什么先入队列而不是先创建最大线程"><a href="#线程池中为什么先入队列而不是先创建最大线程" class="headerlink" title="线程池中为什么先入队列而不是先创建最大线程"></a>线程池中为什么先入队列而不是先创建最大线程</h2><p>在创建新线程时，<strong>要获取全局锁</strong>，这时其他都得阻塞，影响效率。</p>
 <h2 id="线程池中线程复用原理"><a href="#线程池中线程复用原理" class="headerlink" title="线程池中线程复用原理"></a>线程池中线程复用原理</h2><p>线程池将线程和任务进行解耦，摆脱了之前通过Thread创建线程时一个线程必须对应一个任务的限制。</p>
 <p>同一个线程可以从阻塞队列中不对获取新任务来执行，其核心原理在于线程池对Thread封装，并<strong>不是每次执行任务都调用Thread.start（）来创建新线程</strong>，而是让每个线程执行一个“循环任务”，不断检查是否有任务需要被执行，有就<strong>调用任务中的run方法</strong>。</p>
+<h2 id="TCP和UDP"><a href="#TCP和UDP" class="headerlink" title="TCP和UDP"></a>TCP和UDP</h2><p>Transfer Control Protocol 是一种面向连接，可靠的传输层协议</p>
+<p>User Datagram Protocol 是一种无连接，不可靠的传输层协议</p>
+<h2 id="NIO、AIO"><a href="#NIO、AIO" class="headerlink" title="NIO、AIO"></a>NIO、AIO</h2><p>同步非阻塞，解决了BIO中线程太多的问题，引入了Selector，不过还是要检查有没有处理完</p>
+<blockquote>
+<p><strong>异步是针对请求，阻塞、非阻塞是针对客户端</strong></p>
+</blockquote>
+<p>AIO：后端有一个异步请求队列，服务端处理完之后放入队列，通过队列把响应推给客户端，解决了服务端一直守着线程的问题</p>
+<p>然而异步通知的过程服务是没法做的，需要操作系统的支持，因为服务是不稳定的。</p>
+<h2 id="NIO的组件"><a href="#NIO的组件" class="headerlink" title="NIO的组件"></a>NIO的组件</h2><p>client→<strong>Buffer→Channel→Selector</strong>→Thread</p>
+<p>Channel类似于“流”。每个Channel对应一个Buffer缓冲区。Channel会注册到selector。</p>
+<p>Selector会根据Channel上发生的读写事件，将请求交由某个空闲的线程处理。</p>
+<p>buffer和channel都是<strong>全双工</strong></p>
+<h2 id="select、poll和epoll（API）"><a href="#select、poll和epoll（API）" class="headerlink" title="select、poll和epoll（API）"></a>select、poll和epoll（API）</h2><p>他们是NIO中多路复用的三种实现机制，由LinuxOS提供。</p>
+<p>文件描述符 File Descriptor（FD）：形式上是个整数，实际上是一个索引值。指向内核中为每个进程维护进程所打开的文件的记录表。当程序打开或创建一个文件时，内核就会向进程返回一个FD。</p>
+<ol>
+<li>Select机制：会维护一个FD的<strong>数组</strong> fd_set。将fd_set从用户空间复制到内核空间，激活socket。最大为2048</li>
+<li>Poll机制：和select机制差不多，把fd_set结构进行优化换成了<strong>链表</strong>实现，FD集合的大小突破了OS的限制</li>
+<li>EPoll（<strong>红黑树</strong>）：Event Poll，epoll不再扫描所有的FD，只将用户关心的FD事件放到内核的一个事件表中。减少用户空间和内核空间之间需要拷贝的数据</li>
+</ol>
+<blockquote>
+<p>java的NIO用的什么机制？可以查看DefaultSelectorProvider，在windows下，WindowsSelectorProvider。而Linux下，根据Linux内核版本，2.6以上是EPollSelectorProvider，否则是默认的PollSelectorProvider。</p>
+</blockquote>
 
             </div>
             <hr />
@@ -748,7 +770,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/74.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/73.jpg" class="responsive-img" alt="Java的守护线程">
                         
                         <span class="card-title">Java的守护线程</span>
                     </div>
@@ -801,7 +823,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="Helm安装ingress">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/80.jpg" class="responsive-img" alt="Helm安装ingress">
                         
                         <span class="card-title">Helm安装ingress</span>
                     </div>
@@ -1010,7 +1032,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">183.7k</span>
             
 
             <br>

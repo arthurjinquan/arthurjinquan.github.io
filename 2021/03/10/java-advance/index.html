@@ -254,7 +254,7 @@ IOCIO">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/95.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,14 +409,14 @@ IOCIO">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.9k
+                    5.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    18 分
                 </div>
                 
                 
@@ -472,6 +472,31 @@ IOCIO">
 <p>再是初始化的具体操作，有 Aware 接口的依赖注入、BeanPostProcessor 在初始化前后的处理以及 InitializingBean 和 init-method 的初始化操作；</p>
 <p>销毁的具体操作，有注册相关销毁回调接口，最后通过DisposableBean 和 destory-method 进行销毁。</p>
 <p><a href="https://arthurjq.com/2020/12/29/java/spring-bean-life-cycle/">https://arthurjq.com/2020/12/29/java/spring-bean-life-cycle/</a></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-7.jpg" alt></p>
+<p>三级缓存（解决循环依赖）：</p>
+<p>一级：singletonObjects map&lt;beanName，Object&gt; （单例池）</p>
+<p>二级：earlySingletonObjects map&lt;beanName，Object&gt; （提前AOP）</p>
+<p>三级：singletonFactories （放了个lambda）</p>
+<p>earlyProxyReferences ConcurrentHashMap&lt;beanName，bean的原始对象&gt;（循环引用时记录是否提前生成了代理对象）</p>
+<p>creatingSet （）</p>
+<h3 id="循环依赖"><a href="#循环依赖" class="headerlink" title="循环依赖"></a>循环依赖</h3><p>假设Aservice和Bservice互相依赖，当Aservice出现循环依赖的话会提前AOP</p>
+<ol>
+<li>creatingSet.add（Aservice）</li>
+<li>class→实例化得到Aservice原始对象→singletonFactories map&lt;beanName，lambda（beanName，BeanDefinition，Aservice原始对象）&gt;</li>
+<li>给Bservice属性赋值→从单例池找Bservice→找不到→创建Bservice的bean<ol>
+<li>class→实例化得到Bservice原始对象</li>
+<li>给Aservice属性赋值→从单例池找Aservice→找不到→creatingSet→Aservice出现循环→earlySingletonObjects→singletonFactories→lambda→AOP→Aservice代理对象→放入二级缓存（调用getEarlyBeanReference（）提前生成代理对象）</li>
+<li>给其他属性赋值</li>
+<li>其余AOP</li>
+<li>将对象放入单例池</li>
+</ol>
+</li>
+<li>给其他属性赋值</li>
+<li>其余事情AOP→Aservice代理对象→postProcessAfterInitialization（）（看earlyProxyReferences有没有提前生成代理对象）</li>
+<li>earlySingletonObjects.get（Aservice）</li>
+<li>creatingSet.remove（Aservice）</li>
+<li>将对象放入单例池</li>
+</ol>
 <h2 id="Spring-Bean作用域"><a href="#Spring-Bean作用域" class="headerlink" title="Spring Bean作用域"></a>Spring Bean作用域</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-1.jpg" alt></p>
 <h2 id="Spring框架中的设计模式"><a href="#Spring框架中的设计模式" class="headerlink" title="Spring框架中的设计模式"></a>Spring框架中的设计模式</h2><h3 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h3><p>由一个工厂类根据传入的参数，动态觉得应该创建哪一个产品类</p>
 <p>BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得Bean对象，但是否是在传入参数后创建还是传入参数前创建根据具体情况来定。</p>
@@ -729,7 +754,7 @@ IOCIO">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/76.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/75.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
                         
                         <span class="card-title">Dubbo的整体架构设计及分层</span>
                     </div>
@@ -778,7 +803,7 @@ IOCIO">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/74.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/73.jpg" class="responsive-img" alt="Java的守护线程">
                         
                         <span class="card-title">Java的守护线程</span>
                     </div>
@@ -987,7 +1012,7 @@ IOCIO">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">183.7k</span>
             
 
             <br>

@@ -255,7 +255,7 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -410,7 +410,7 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    1.8k
                 </div>
                 
 
@@ -505,6 +505,11 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
 <h3 id="rebalance问题"><a href="#rebalance问题" class="headerlink" title="rebalance问题"></a>rebalance问题</h3><p>如果C1消费者消息超时，触发rebalance，重新分配，该消息被其他消费者消费，此时C1消费完成提交offset导致错误</p>
 <p>解决：coordinator每次rebalance，会<strong>标记一个Generation</strong>给到consumer，每次rebalance该Generation会+1，consumer提交offset时，coordinator会比对Generation，不一致则拒绝</p>
 <h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><p>待补充</p>
+<h2 id="如何保证分布式事务的最终一致性"><a href="#如何保证分布式事务的最终一致性" class="headerlink" title="如何保证分布式事务的最终一致性"></a>如何保证分布式事务的最终一致性</h2><p>分布式事务：业务相关的多个操作，保证同时commit或rollback</p>
+<ol>
+<li>生产者要保证100%的消息投递（事务消息机制，服务质量Quality of Service）</li>
+<li>消费者这端保证幂等性（唯一ID+业务自己实现幂等） </li>
+</ol>
 
             </div>
             <hr />
@@ -611,7 +616,7 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/36.jpg" class="responsive-img" alt="Java中的集合类">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/35.jpg" class="responsive-img" alt="Java中的集合类">
                         
                         <span class="card-title">Java中的集合类</span>
                     </div>
@@ -660,7 +665,7 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/76.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/75.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
                         
                         <span class="card-title">Dubbo的整体架构设计及分层</span>
                     </div>
@@ -865,7 +870,7 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">183.7k</span>
             
 
             <br>

@@ -1,4 +1,5 @@
-https://arthurjq.com/2021/03/19/binary-tree-traversal/
+https://arthurjq.com/2021/03/20/mq/
+https://arthurjq.com/2021/03/19/algorithm/binary-tree-traversal/
 https://arthurjq.com/2021/03/17/algorithm/quicksort/
 https://arthurjq.com/2021/03/17/java/jvm-gc/
 https://arthurjq.com/2021/03/16/java/jvm-tuning/

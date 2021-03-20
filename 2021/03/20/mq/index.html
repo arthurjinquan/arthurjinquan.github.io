@@ -4,14 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="二叉树遍历, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="MQ消息队列, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="前序遍历从前序与中序遍历序列构造二叉树做选择题做过，其实是一个思路。
-class Solution {
-public:
-    TreeNode* buildTree(vector&amp;lt;int&gt;&amp;amp; preorder, vector">
+    <meta name="description" content="MQ的作用
+异步，如快递。快递员→菜鸟驿站→客户。提高系统的响应速度和吞吐量。
+解耦，如java引用别的语言的功能。提高系统稳定性和可拓展性；可以实现数据分发，生产者发送一个消息后，可以由多个消费者来处理。
+削峰，如 长江涨水→三峡大坝。以">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +19,7 @@ public:
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>二叉树遍历 | 锦泉^-^</title>
+    <title>MQ消息队列 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -256,13 +256,13 @@ public:
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/43.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        二叉树遍历
+                        MQ消息队列
                     </div>
                 </div>
             </div>
@@ -373,12 +373,12 @@ public:
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/leetcode/" target="_blank">
-                            <span class="chip bg-color">leetcode</span>
+                        <a href="/tags/中间件/" target="_blank">
+                            <span class="chip bg-color">中间件</span>
                         </a>
                         
-                        <a href="/tags/算法/" target="_blank">
-                            <span class="chip bg-color">算法</span>
+                        <a href="/tags/rabbitmq/" target="_blank">
+                            <span class="chip bg-color">rabbitmq</span>
                         </a>
                         
                     </div>
@@ -389,8 +389,8 @@ public:
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/编程算法/" class="post-category" target="_blank">
-                            编程算法
+                        <a href="/categories/项目/" class="post-category" target="_blank">
+                            项目
                         </a>
                         
                     </div>
@@ -401,7 +401,7 @@ public:
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-19
+                    2021-03-20
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -415,7 +415,7 @@ public:
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    715
+                    871
                 </div>
                 
 
@@ -438,116 +438,61 @@ public:
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><h4 id="从前序与中序遍历序列构造二叉树"><a href="#从前序与中序遍历序列构造二叉树" class="headerlink" title="从前序与中序遍历序列构造二叉树"></a><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" target="_blank" rel="noopener">从前序与中序遍历序列构造二叉树</a></h4><p>做选择题做过，其实是一个思路。</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    TreeNode<span class="token operator">*</span> <span class="token function">buildTree</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> preorder<span class="token punctuation">,</span> vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> inorder<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> length <span class="token operator">=</span> preorder<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        TreeNode<span class="token operator">*</span> root <span class="token operator">=</span> <span class="token function">preSort</span><span class="token punctuation">(</span>preorder<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>length<span class="token number">-1</span><span class="token punctuation">,</span>inorder<span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span>length<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> root<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    TreeNode<span class="token operator">*</span> <span class="token function">preSort</span><span class="token punctuation">(</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> preorder<span class="token punctuation">,</span><span class="token keyword">int</span> pl<span class="token punctuation">,</span><span class="token keyword">int</span> pr<span class="token punctuation">,</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">></span><span class="token operator">&amp;</span> inorder<span class="token punctuation">,</span><span class="token keyword">int</span> il<span class="token punctuation">,</span><span class="token keyword">int</span> ir<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>pl<span class="token operator">></span>pr<span class="token punctuation">)</span><span class="token keyword">return</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
-        TreeNode<span class="token operator">*</span> root <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>preorder<span class="token punctuation">[</span>pl<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> m <span class="token operator">=</span> preorder<span class="token punctuation">[</span>pl<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> i<span class="token punctuation">;</span>
-        <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> il<span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> ir<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">if</span><span class="token punctuation">(</span>inorder<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> m<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">int</span> len <span class="token operator">=</span> i<span class="token operator">-</span>il<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">;</span>
-        root<span class="token operator">-</span><span class="token operator">></span>left<span class="token operator">=</span><span class="token function">preSort</span><span class="token punctuation">(</span>preorder<span class="token punctuation">,</span>pl<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>pl<span class="token operator">+</span>len<span class="token number">-1</span><span class="token punctuation">,</span>inorder<span class="token punctuation">,</span>il<span class="token punctuation">,</span>i<span class="token number">-1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        root<span class="token operator">-</span><span class="token operator">></span>right<span class="token operator">=</span><span class="token function">preSort</span><span class="token punctuation">(</span>preorder<span class="token punctuation">,</span>pl<span class="token operator">+</span>len<span class="token punctuation">,</span>pr<span class="token punctuation">,</span>inorder<span class="token punctuation">,</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span>ir<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> root<span class="token punctuation">;</span>        
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这题就是参数多了点。</p>
-<h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><p> <a href="https://leetcode-cn.com/problems/recover-binary-search-tree/" title="LeetCode 99. 恢复二叉搜索树" target="_blank" rel="noopener">LeetCode 99. 恢复二叉搜索树</a></p>
-<p>一开始我是这样写的：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    TreeNode<span class="token operator">*</span> pre <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">void</span> <span class="token function">recoverTree</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">midFunc</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">void</span> <span class="token function">midFunc</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token function">midFunc</span><span class="token punctuation">(</span>root<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>pre <span class="token operator">&amp;&amp;</span> root<span class="token operator">-</span><span class="token operator">></span>val<span class="token operator">&lt;</span>pre<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token function">swap</span><span class="token punctuation">(</span>root<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">,</span>pre<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        pre <span class="token operator">=</span> root<span class="token punctuation">;</span>
-        <span class="token function">midFunc</span><span class="token punctuation">(</span>root<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>考虑的还是太片面了，下面这种情况就没办法通过：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/binary-tree-traversal-1.jpg" alt></p>
-<p>思考一下，第一步是比较3和2的大小，然后2和3交换，然后就是3和1的比较，发现1&lt;3，又交换。问题就出现了，它不会比较根节点和跟节点的左节点！！！整个结果都是错的。</p>
-<p>所以说不能只记录前一个节点，不能只考虑两个节点的关系，要考虑三个节点：<strong>前一个元素 &lt; 当前元素 &lt; 后一个元素</strong></p>
-<p>如下图所示，中序遍历顺序是 <code>4,2,3,1</code>，我们只要找到节点 <code>4</code> 和节点 <code>1</code> 交换顺序即可</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/binary-tree-traversal-2.png" alt></p>
-<p>这里我们有个规律发现这两个节点：</p>
-<ol>
-<li>第一个节点，是第一个按照中序遍历时候前一个节点大于后一个节点，我们选取前一个节点，这里指节点 4</li>
-<li>第二个节点，是在第一个节点找到之后，后面出现前一个节点大于后一个节点，我们选择后一个节点，这里指节点 1</li>
+                <h2 id="MQ的作用"><a href="#MQ的作用" class="headerlink" title="MQ的作用"></a>MQ的作用</h2><ol>
+<li>异步，如快递。快递员→菜鸟驿站→客户。提高系统的响应速度和吞吐量。</li>
+<li>解耦，如java引用别的语言的功能。提高系统稳定性和可拓展性；可以实现数据分发，生产者发送一个消息后，可以由多个消费者来处理。</li>
+<li>削峰，如 长江涨水→三峡大坝。以稳定的系统资源对突发的流量冲击。</li>
 </ol>
-<blockquote>
-<p><strong>注意审题</strong>：该树中的两个节点被错误地交换，只有两个节点错了！！！</p>
-</blockquote>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">//记录那两个节点</span>
-    TreeNode firstNode <span class="token operator">=</span> null<span class="token punctuation">;</span>
-    TreeNode secondNode <span class="token operator">=</span> null<span class="token punctuation">;</span>
-    TreeNode preNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TreeNode</span><span class="token punctuation">(</span>Integer<span class="token punctuation">.</span>MIN_VALUE<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">recoverTree</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-        <span class="token function">in_order</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> tmp <span class="token operator">=</span> firstNode<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
-        firstNode<span class="token punctuation">.</span>val <span class="token operator">=</span> secondNode<span class="token punctuation">.</span>val<span class="token punctuation">;</span>
-        secondNode<span class="token punctuation">.</span>val <span class="token operator">=</span> tmp<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">in_order</span><span class="token punctuation">(</span>TreeNode root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>root <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
-        <span class="token function">in_order</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//记录第一个错误节点</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>firstNode <span class="token operator">==</span> null <span class="token operator">&amp;&amp;</span> preNode<span class="token punctuation">.</span>val <span class="token operator">></span> root<span class="token punctuation">.</span>val<span class="token punctuation">)</span> 
-            firstNode <span class="token operator">=</span> preNode<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//记录第二个错误节点</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>firstNode <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> preNode<span class="token punctuation">.</span>val <span class="token operator">></span> root<span class="token punctuation">.</span>val<span class="token punctuation">)</span> 
-            secondNode <span class="token operator">=</span> root<span class="token punctuation">;</span>
-        preNode <span class="token operator">=</span> root<span class="token punctuation">;</span>
-        <span class="token function">in_order</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>以后换回Java写了。</p>
-</blockquote>
-<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><h4 id="124-二叉树中的最大路径和"><a href="#124-二叉树中的最大路径和" class="headerlink" title="124. 二叉树中的最大路径和"></a><a href="https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/" target="_blank" rel="noopener">124. 二叉树中的最大路径和</a></h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token comment" spellcheck="true">//最大路径和</span>
-    <span class="token keyword">int</span> result <span class="token operator">=</span> INT_MIN<span class="token punctuation">;</span>
-    <span class="token keyword">int</span> <span class="token function">maxPathSum</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">fun</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> result<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">int</span> <span class="token function">fun</span><span class="token punctuation">(</span>TreeNode<span class="token operator">*</span> root<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>root <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token comment" spellcheck="true">//比0小的话直接抛弃</span>
-        <span class="token keyword">int</span> left <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token function">fun</span><span class="token punctuation">(</span>root<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">int</span> right <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token function">fun</span><span class="token punctuation">(</span>root<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        result <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>result<span class="token punctuation">,</span>root<span class="token operator">-</span><span class="token operator">></span>val<span class="token operator">+</span>left<span class="token operator">+</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//路径只能左右中选其一</span>
-        <span class="token keyword">return</span> <span class="token function">max</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span>right<span class="token punctuation">)</span><span class="token operator">+</span>root<span class="token operator">-</span><span class="token operator">></span>val<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>缺点：</p>
+<ol>
+<li>系统可用性降低：一旦MQ宕机，整个业务都会产生影响。高可用</li>
+<li>系统的复杂度提高：要保证消息不丢失，消息不会重复调用，保证消息顺序性</li>
+<li>数据一致性</li>
+</ol>
+<h2 id="如何保证消息不丢失"><a href="#如何保证消息不丢失" class="headerlink" title="如何保证消息不丢失"></a>如何保证消息不丢失</h2><h3 id="哪些环节会造成消息丢失"><a href="#哪些环节会造成消息丢失" class="headerlink" title="哪些环节会造成消息丢失"></a>哪些环节会造成消息丢失</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mq-1.jpg" alt="照成丢失的四种情况"></p>
+<h3 id="怎么防止消息丢失"><a href="#怎么防止消息丢失" class="headerlink" title="怎么防止消息丢失"></a>怎么防止消息丢失</h3><h4 id="生产者发送消息不丢失"><a href="#生产者发送消息不丢失" class="headerlink" title="生产者发送消息不丢失"></a>生产者发送消息不丢失</h4><p>kafka：消息发送 + 回调</p>
+<p>RocketMQ：1、消息发送 + 回调。 2、事务消息。（保证生产者发送消息和执行本地事务的原子性）</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mq-2.jpg" alt="事务消息"></p>
+<p>现实生活中5min内要完成支付，就可以用事务消息保证。</p>
+<p>RabbitMQ：1、消息发送 + 回调</p>
+<p>2、手动事务：channel.txSelect（）开启事务，channel.txCommit（）提交事务，channel.txRollback（）回滚事务。这种方式channel会产生阻塞，吞吐量低。</p>
+<p>3、Publisher Confirm。流程跟RocketMQ的事务消息基本一样。</p>
+<h4 id="MQ主从消息同步不丢失"><a href="#MQ主从消息同步不丢失" class="headerlink" title="MQ主从消息同步不丢失"></a>MQ主从消息同步不丢失</h4><p><strong>RocketMQ</strong></p>
+<ol>
+<li>同步同步，异步同步</li>
+<li>两阶段提交</li>
+</ol>
+<p><strong>RabbitMQ</strong></p>
+<ol>
+<li>普通集群：消息时分散存储的，节点之间不会主动进行消息同步，可能丢消息。</li>
+<li>镜像集群：会在节点之间主动进行数据同步，这样数据安全性得到提高。</li>
+</ol>
+<p><strong>Kafka</strong>：通常都是用在允许消息少量丢失的场景（acks，0，1，all）</p>
+<h4 id="MQ消息存盘不丢失"><a href="#MQ消息存盘不丢失" class="headerlink" title="MQ消息存盘不丢失"></a>MQ消息存盘不丢失</h4><p>RocketMQ：同步刷盘，异步刷盘：异步刷盘效率更高，但是可能丢消息。</p>
+<p>RabbitMQ：将队列配置成持久化队列。新增的Quorum队列，采用Raft协议来进行消息同步。</p>
+<h4 id="MQ消费者消费信息不丢失"><a href="#MQ消费者消费信息不丢失" class="headerlink" title="MQ消费者消费信息不丢失"></a>MQ消费者消费信息不丢失</h4><p>RocketMQ：使用默认方式就行，不采用异步方式。</p>
+<p>RabbitMQ：autoCommit → 手动提交offset</p>
+<p>Kafka：手动提交offset</p>
+<h2 id="如何保证消息的顺序"><a href="#如何保证消息的顺序" class="headerlink" title="如何保证消息的顺序"></a>如何保证消息的顺序</h2><p>全局有序和局部有序：MQ只需要保证局部有序，不保证全局有序。</p>
+<p><a href="https://rocketmq.apache.org/docs/order-example/" target="_blank" rel="noopener">https://rocketmq.apache.org/docs/order-example/</a></p>
+<p>对于一个队列来说总是有序的。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mq-3.jpg" alt="局部有序"></p>
+<p><strong>生产者把一组有序的消息放到同一个队列当中，而消费者一次消费整个队列当中的消息</strong>。</p>
+<p>RocketMQ中有完整的设计，但是在RabbitMQ和Kafka当中需要自己设计。</p>
+<p>RabbitMQ：要保证目标exchange只对应一个队列。并且一个队列只对应一个消费者。</p>
+<p>Kafka：生产者通过定制partition分配规则，将消息分配到同一个partition，Topic下只对应一个消费者。</p>
+<h2 id="产品选择"><a href="#产品选择" class="headerlink" title="产品选择"></a>产品选择</h2><p><strong>Kafka</strong></p>
+<p>优点：吞吐量非常大，性能非常好，集群高可用。</p>
+<p>缺点：会丢数据，功能单一。</p>
+<p>使用场景：日志分析、大数据采集</p>
+<p><strong>RabbitMQ</strong></p>
+<p>优点：消息可靠性高，功能全面</p>
+<p>缺点：吞吐量比较低，消息积累会严重影响性能，erlang语言不好定制。</p>
+<p>使用场景：小规模场景。</p>
+<p><strong>RocketMQ</strong></p>
+<p>优点：高吞吐，高性能，高可以，功能非常全面。</p>
+<p>缺点：开源版功能不如云上商业版，官方文档和周边生态不够成熟。客户端只支持java。</p>
+<p>使用场景：几乎全场景。</p>
 
             </div>
             <hr />
@@ -582,9 +527,9 @@ public:
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《二叉树遍历》
+                    《MQ消息队列》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/19/binary-tree-traversal/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/20/mq/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -625,7 +570,7 @@ public:
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/03/19/binary-tree-traversal/',
+        id: '2021/03/20/mq/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -651,11 +596,65 @@ public:
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/03/19/binary-tree-traversal/">
+                <a href="/2021/03/20/mq/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/43.jpg" class="responsive-img" alt="二叉树遍历">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg" class="responsive-img" alt="MQ消息队列">
+                        
+                        <span class="card-title">MQ消息队列</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            消息队列学习。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/项目/" class="post-category" target="_blank">
+                                    项目
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/中间件/" target="_blank">
+                        <span class="chip bg-color">中间件</span>
+                    </a>
+                    
+                    <a href="/tags/rabbitmq/" target="_blank">
+                        <span class="chip bg-color">rabbitmq</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/19/algorithm/binary-tree-traversal/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/44.jpg" class="responsive-img" alt="二叉树遍历">
                         
                         <span class="card-title">二叉树遍历</span>
                     </div>
@@ -682,69 +681,15 @@ public:
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/leetcode/" target="_blank">
-                        <span class="chip bg-color">leetcode</span>
-                    </a>
                     
                     <a href="/tags/算法/" target="_blank">
                         <span class="chip bg-color">算法</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/03/17/algorithm/quicksort/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/16.jpg" class="responsive-img" alt="快速排序单边循环">
-                        
-                        <span class="card-title">快速排序单边循环</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            刷leetcode 912时用快排双边循环直接堆溢出，只能用单边循环做。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-17
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/编程算法/" class="post-category" target="_blank">
-                                    编程算法
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
                     <a href="/tags/leetcode/" target="_blank">
                         <span class="chip bg-color">leetcode</span>
-                    </a>
-                    
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -918,7 +863,7 @@ public:
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182k</span>
+            <span class="white-color">183.7k</span>
             
 
             <br>

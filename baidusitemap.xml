@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
+    <lastmod>2021-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
+    <lastmod>2021-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2020/12/22/web/https/</loc>
+    <lastmod>2021-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/20/mq/</loc>
+    <lastmod>2021-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/10/java-advance/</loc>
+    <lastmod>2021-03-20</lastmod>
+  </url>
+  <url>
     <loc>https://arthurjq.com/2020/12/28/web/cdn/</loc>
     <lastmod>2021-03-19</lastmod>
   </url>
@@ -45,10 +65,6 @@
     <lastmod>2021-03-19</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
-    <lastmod>2021-03-19</lastmod>
-  </url>
-  <url>
     <loc>https://arthurjq.com/2020/12/30/database/sql-exists-in/</loc>
     <lastmod>2021-03-19</lastmod>
   </url>
@@ -57,15 +73,11 @@
     <lastmod>2021-03-19</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2021/03/19/binary-tree-traversal/</loc>
+    <loc>https://arthurjq.com/2021/03/19/algorithm/binary-tree-traversal/</loc>
     <lastmod>2021-03-19</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2020/12/29/project/im/</loc>
-    <lastmod>2021-03-18</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/10/java-advance/</loc>
     <lastmod>2021-03-18</lastmod>
   </url>
   <url>
@@ -98,10 +110,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2020/12/23/web/nginx/</loc>
-    <lastmod>2021-03-18</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2020/12/22/web/https/</loc>
     <lastmod>2021-03-18</lastmod>
   </url>
   <url>
@@ -138,10 +146,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2021/03/17/algorithm/quicksort/</loc>
-    <lastmod>2021-03-17</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
     <lastmod>2021-03-17</lastmod>
   </url>
   <url>

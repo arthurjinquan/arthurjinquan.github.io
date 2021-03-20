@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
+    
+    <lastmod>2021-03-20T14:03:21.384Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
+    
+    <lastmod>2021-03-20T12:44:37.625Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2020/12/22/web/https/</loc>
+    
+    <lastmod>2021-03-20T12:05:29.173Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/20/mq/</loc>
+    
+    <lastmod>2021-03-20T11:52:22.032Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/10/java-advance/</loc>
+    
+    <lastmod>2021-03-20T08:23:29.994Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://arthurjq.com/2020/12/28/web/cdn/</loc>
     
     <lastmod>2021-03-19T15:00:24.866Z</lastmod>
@@ -79,13 +114,6 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
-    
-    <lastmod>2021-03-19T07:49:54.559Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://arthurjq.com/2020/12/30/database/sql-exists-in/</loc>
     
     <lastmod>2021-03-19T07:47:40.418Z</lastmod>
@@ -100,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/03/19/binary-tree-traversal/</loc>
+    <loc>https://arthurjq.com/2021/03/19/algorithm/binary-tree-traversal/</loc>
     
     <lastmod>2021-03-19T06:20:03.170Z</lastmod>
     
@@ -110,13 +138,6 @@
     <loc>https://arthurjq.com/2020/12/29/project/im/</loc>
     
     <lastmod>2021-03-18T14:33:35.663Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/10/java-advance/</loc>
-    
-    <lastmod>2021-03-18T14:13:12.169Z</lastmod>
     
   </url>
   
@@ -173,13 +194,6 @@
     <loc>https://arthurjq.com/2020/12/23/web/nginx/</loc>
     
     <lastmod>2021-03-18T11:12:45.826Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2020/12/22/web/https/</loc>
-    
-    <lastmod>2021-03-18T09:09:50.742Z</lastmod>
     
   </url>
   
@@ -243,13 +257,6 @@
     <loc>https://arthurjq.com/2021/03/17/algorithm/quicksort/</loc>
     
     <lastmod>2021-03-17T15:30:29.091Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
-    
-    <lastmod>2021-03-17T15:18:49.617Z</lastmod>
     
   </url>
   
