@@ -1,3 +1,5 @@
+https://arthurjq.com/2021/03/26/threadpool/
+https://arthurjq.com/2021/03/22/substring/
 https://arthurjq.com/2021/03/20/mq/
 https://arthurjq.com/2021/03/19/algorithm/binary-tree-traversal/
 https://arthurjq.com/2021/03/17/algorithm/quicksort/

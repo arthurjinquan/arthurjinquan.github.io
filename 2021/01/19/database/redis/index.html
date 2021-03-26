@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/114.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -415,7 +415,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.8k
+                    4k
                 </div>
                 
 
@@ -529,14 +529,21 @@
 <li>通过调用DISCARD，客户端可以<strong>清空事务队列</strong>，并放弃执行事务，并且客户端会从事务状态中退出。</li>
 <li>UNWATCH命令可以取消WATCH对所有key的监控。</li>
 </ol>
-<h2 id="主从复制核心原理"><a href="#主从复制核心原理" class="headerlink" title="主从复制核心原理"></a>主从复制核心原理</h2><p>通过执行slaveof命令或设置slaveof选项，让一个服务器去复制另一个服务器的数据。主数据库可以进行读写操作，当写操作导致数据变化时会自动将数据同步给从数据库。而从数据库一般是只读的。一个主数据库可以拥有多个从库，而一个从库只能有一个主库。</p>
+<h2 id="主从复制核心原理"><a href="#主从复制核心原理" class="headerlink" title="主从复制核心原理"></a>主从复制核心原理</h2><ol>
+<li>从节点执行slaveof masterIp port保存主节点信息</li>
+<li>从节点中的定时任务发现主节点信息，建立和主节点socket连接</li>
+<li>建立连接后，主节点将所有数据发送给从节点</li>
+<li>完成数据同步后，主节点就会持续的把写命令发送给从节点，保证主从数据一致</li>
+</ol>
 <h3 id="全量复制"><a href="#全量复制" class="headerlink" title="全量复制"></a>全量复制</h3><ol>
-<li>主节点通过bgsave命令fork子进程进行RDB持久化，该过程是非常消耗CPU、内存（页表复制）、IO的</li>
-<li>主节点通过网络将RDB文件发送给从节点，消耗贷款</li>
-<li>从节点清空老数据、载入新RDB文件的过程是阻塞的，无法响应客户端的命令；如果从节点执行bgrewriteaof会带来额外的消耗</li>
+<li>从节点发送psync命令，psync runid offset（第一次runid为？，offset为-1）</li>
+<li>主节点返回 FULLRESYNC runid offset</li>
+<li>主节点启动bgsave命令fork子进程进行RDB持久化</li>
+<li>主节点将RDB文件发送给从节点，到从节点加载数据完成之前，写命令写入缓存区</li>
+<li>从节点清理本地数据并加载RDB，如果开启AOF会重新AOF</li>
 </ol>
 <h3 id="部分复制（增量复制）"><a href="#部分复制（增量复制）" class="headerlink" title="部分复制（增量复制）"></a>部分复制（增量复制）</h3><ol>
-<li>复制偏移量：执行复制的双方，主从节点分别维护一个复制偏移量offset，以主节点为主</li>
+<li>复制偏移量：psync runid offset</li>
 <li>复制积压缓冲区：主节点内部维护的一个固定长度的、FIFO队列，当主从节点offset的差距过大超过缓冲区长度时，无法执行部分复制，只能全量复制</li>
 <li>服务器运行ID（runid）：每个Redis节点都有运行ID，由节点在启动时自动生成，主节点会将自己的运行ID发送给从节点，从节点会将主节点的运行ID存起来。从节点Redis断开重连时根据运行ID来判断同步进度：<ol>
 <li>如果从节点保存的runid与主节点现在的runid相同，主节点会继续尝试使用部分复制（到底能不能部分复制还是看offset和复制积压缓冲区的情况）</li>
@@ -545,8 +552,8 @@
 </li>
 </ol>
 <h3 id="过程原理图"><a href="#过程原理图" class="headerlink" title="过程原理图"></a>过程原理图</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-2.jpg" alt></p>
-<h2 id="Redis集群方案"><a href="#Redis集群方案" class="headerlink" title="Redis集群方案"></a>Redis集群方案</h2><h3 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-1.jpg" alt></p>
-<h3 id="Redis-Cluster"><a href="#Redis-Cluster" class="headerlink" title="Redis Cluster"></a>Redis Cluster</h3><p>Redis Cluster时一种服务端Sharding技术，3.0版本开始正式提供。利用了slot（槽）的概念，一共分成16384个槽。将请求发送到任意节点，<strong>接收到请求的节点会将查询请求发送到正确的节点上执行</strong></p>
+<h2 id="Redis高可用集群方案"><a href="#Redis高可用集群方案" class="headerlink" title="Redis高可用集群方案"></a>Redis高可用集群方案</h2><h3 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-1.jpg" alt></p>
+<h3 id="Redis-Cluster"><a href="#Redis-Cluster" class="headerlink" title="Redis Cluster"></a>Redis Cluster</h3><p>Redis Cluster时一种服务端Sharding技术，3.0版本开始正式提供。利用了slot（槽）的概念，一共分成<strong>16384</strong>个槽。将请求发送到任意节点，<strong>接收到请求的节点会将查询请求发送到正确的节点上执行</strong></p>
 <p>方案说明：</p>
 <ol>
 <li>通过哈希的方式，将数据分片，每个节点均分存储一定哈希槽（哈希值）区间的数据，默认分配了16384个槽位</li>
@@ -576,6 +583,11 @@
 <li>由于sharding处理放到客户端，规模进一步扩大给运维带来挑战。</li>
 <li>客户端sharding不支持动态增删节点。服务器Redis实例群拓扑结构有变化时，每个客户端都要更新调整。</li>
 <li>连接不能共享，当应用规模增大时，资源浪费制约优化</li>
+</ol>
+<h2 id="分布式缓存寻址算法"><a href="#分布式缓存寻址算法" class="headerlink" title="分布式缓存寻址算法"></a>分布式缓存寻址算法</h2><ol>
+<li>hash算法：根据key进行hash，适合固定分片数量的场景，减少或拓展分片时都要重新计算</li>
+<li>一致性hash：将整个hash值的区间组织成闭合圆环，计算每台服务器的hasnh映射到圆环中。使用hash算法计算数据的hash值顺时针寻找，找到的第一个服务器就是数据存储的服务。新增或减少节点只影响逆时针最近的一个服务器；数据倾斜用虚拟节点解决</li>
+<li>hash slot：将数据与服务器隔离开，<strong>数据与slot映射，slot与服务器映射</strong>，数据进行hash决定存放的slot新增及删除节点时，将slot进行迁移即可</li>
 </ol>
 
             </div>
@@ -683,7 +695,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/28.jpg" class="responsive-img" alt="2021年的学习目标">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="2021年的学习目标">
                         
                         <span class="card-title">2021年的学习目标</span>
                     </div>
@@ -736,7 +748,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="互联网医院bug反馈">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/26.jpg" class="responsive-img" alt="互联网医院bug反馈">
                         
                         <span class="card-title">互联网医院bug反馈</span>
                     </div>
@@ -945,7 +957,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182.7k</span>
+            <span class="white-color">184.8k</span>
             
 
             <br>

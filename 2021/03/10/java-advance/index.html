@@ -254,7 +254,7 @@ IOCIO">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/95.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,7 +409,7 @@ IOCIO">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.1k
+                    5.2k
                 </div>
                 
 
@@ -551,7 +551,10 @@ String <span class="token function">getDescription</span><span class="token punc
 </blockquote>
 <h2 id="慢查询优化"><a href="#慢查询优化" class="headerlink" title="慢查询优化"></a>慢查询优化</h2><ol>
 <li>是否load了额外的数据</li>
+<li>锁</li>
+<li>刷新脏页redo log在持久化</li>
 <li>是否走索引</li>
+<li>从库在执行sql</li>
 <li>横向或纵向分表</li>
 </ol>
 <h2 id="ACID靠什么保证"><a href="#ACID靠什么保证" class="headerlink" title="ACID靠什么保证"></a>ACID靠什么保证</h2><ol>
@@ -597,6 +600,14 @@ String <span class="token function">getDescription</span><span class="token punc
 <li><strong>Nginx</strong>：七层负载均衡，支持HTTP、E-mail协议，同时也支持4层负载均衡（解析url，与客户端和服务端都要保持长连接，性能损耗）</li>
 <li><strong>HAproxy</strong>：支持七层规则，性能不错。OpenStack 默认使用</li>
 <li><strong>LVS</strong>：运行在内核态，性能最高，严格说工作在第三层（ip——&gt;Server）</li>
+</ol>
+<h3 id="负载均衡算法"><a href="#负载均衡算法" class="headerlink" title="负载均衡算法"></a>负载均衡算法</h3><ol>
+<li>轮询法：按顺序轮流分配</li>
+<li>加权轮询：按照权重分配到后端</li>
+<li>随机法</li>
+<li>加权随机法</li>
+<li>ip_hash法，解决session共享问题</li>
+<li>最小连接数法，看谁最空闲</li>
 </ol>
 <h2 id="分布式下Session共享方案"><a href="#分布式下Session共享方案" class="headerlink" title="分布式下Session共享方案"></a>分布式下Session共享方案</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-4.jpg" alt></p>
 <h2 id="分布式锁解决方案"><a href="#分布式锁解决方案" class="headerlink" title="分布式锁解决方案"></a>分布式锁解决方案</h2><p>需要这个锁独立于每一个服务之外，而不是在服务里面。</p>
@@ -755,7 +766,7 @@ String <span class="token function">getDescription</span><span class="token punc
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/76.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/75.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
                         
                         <span class="card-title">Dubbo的整体架构设计及分层</span>
                     </div>
@@ -804,7 +815,7 @@ String <span class="token function">getDescription</span><span class="token punc
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/74.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/73.jpg" class="responsive-img" alt="Java的守护线程">
                         
                         <span class="card-title">Java的守护线程</span>
                     </div>
@@ -1013,7 +1024,7 @@ String <span class="token function">getDescription</span><span class="token punc
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">182.7k</span>
+            <span class="white-color">184.8k</span>
             
 
             <br>
