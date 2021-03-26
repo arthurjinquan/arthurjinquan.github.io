@@ -95,9 +95,9 @@
       <category term="项目" scheme="https://arthurjq.com/categories/%E9%A1%B9%E7%9B%AE/"/>
     
     
-      <category term="rabbitmq" scheme="https://arthurjq.com/tags/rabbitmq/"/>
-    
       <category term="中间件" scheme="https://arthurjq.com/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+    
+      <category term="rabbitmq" scheme="https://arthurjq.com/tags/rabbitmq/"/>
     
   </entry>
   

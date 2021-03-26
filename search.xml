@@ -74,9 +74,9 @@
       
         <tags>
             
-            <tag> rabbitmq </tag>
-            
             <tag> 中间件 </tag>
+            
+            <tag> rabbitmq </tag>
             
         </tags>
       
@@ -1471,9 +1471,9 @@
       
         <tags>
             
-            <tag> 事务 </tag>
-            
             <tag> mybatis </tag>
+            
+            <tag> 事务 </tag>
             
             <tag> mysql </tag>
             
