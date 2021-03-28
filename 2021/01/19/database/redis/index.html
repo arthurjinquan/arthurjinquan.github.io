@@ -8,10 +8,10 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="RDB持久化机制Redis DataBase
-在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是fork一个子进程，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩技术存储。
-优点
-整个Redis数据库将只包含">
+    <meta name="description" content="数据类型
+stringset key value时，redis会判断value能否转为int，能的话就encoding成int，不能就encoding成embstr。
+
+计数器：INCR article:readcount:{文章id}→G">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/114.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -415,14 +415,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4k
+                    4.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    14 分
                 </div>
                 
                 
@@ -438,7 +438,30 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="RDB持久化机制"><a href="#RDB持久化机制" class="headerlink" title="RDB持久化机制"></a>RDB持久化机制</h2><p>Redis DataBase</p>
+                <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-9.jpg" alt="五种"></p>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>set key value时，redis会判断value能否转为int，能的话就encoding成int，不能就encoding成embstr。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-8.jpg" alt></p>
+<p>计数器：INCR article:readcount:{文章id}→GET article:readcount:{文章id}</p>
+<p>分布式系统全局序列号：INCRBY orderId 100</p>
+<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>value又是一个map结构，也就是 &lt;key1,&lt;key2,value&gt;&gt;</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-10.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-11.jpg" alt></p>
+<p>一行数据只有一个字段经常变动的话推荐用hash。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-12.jpg" alt></p>
+<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-13.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-14.jpg" alt></p>
+<p>应用场景：微博、微信公号消息流，用LPUSH msg:{用户-ID} 消息ID和LRANGE msg:{用户-ID} start stop实现</p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-15.jpg" alt></p>
+<p>应用场景：</p>
+<img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-16.jpg" alt="a" style="zoom:80%;">
+
+<img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-17.jpg" style="zoom:80%;">
+
+<p>集合操作实现微博微信关注模型</p>
+<h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-18.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-19.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-20.jpg" alt></p>
+<h2 id="RDB持久化机制"><a href="#RDB持久化机制" class="headerlink" title="RDB持久化机制"></a>RDB持久化机制</h2><p>Redis DataBase</p>
 <p>在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是<strong>fork一个子进程</strong>，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩技术存储。</p>
 <h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
 <li>整个Redis数据库将只包含一个文件 <strong>dump.rdb</strong> ，方便持久化</li>
@@ -589,6 +612,15 @@
 <li>一致性hash：将整个hash值的区间组织成闭合圆环，计算每台服务器的hasnh映射到圆环中。使用hash算法计算数据的hash值顺时针寻找，找到的第一个服务器就是数据存储的服务。新增或减少节点只影响逆时针最近的一个服务器；数据倾斜用虚拟节点解决</li>
 <li>hash slot：将数据与服务器隔离开，<strong>数据与slot映射，slot与服务器映射</strong>，数据进行hash决定存放的slot新增及删除节点时，将slot进行迁移即可</li>
 </ol>
+<h2 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-9.jpg" alt></p>
+<p>redisson核心代码：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-3.jpg" alt></p>
+<p>lua原子命令，看门狗的默认超时时间是30s</p>
+<p>回到上一层：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-4.jpg" alt></p>
+<p>锁续命：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-5.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-6.jpg" alt></p>
 
             </div>
             <hr />
@@ -695,7 +727,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="2021年的学习目标">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/33.jpg" class="responsive-img" alt="2021年的学习目标">
                         
                         <span class="card-title">2021年的学习目标</span>
                     </div>
@@ -748,7 +780,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/26.jpg" class="responsive-img" alt="互联网医院bug反馈">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/32.jpg" class="responsive-img" alt="互联网医院bug反馈">
                         
                         <span class="card-title">互联网医院bug反馈</span>
                     </div>
@@ -957,7 +989,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">184.8k</span>
+            <span class="white-color">185.6k</span>
             
 
             <br>

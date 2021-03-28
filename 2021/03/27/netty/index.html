@@ -4,13 +4,19 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="消毒供应室项目业务流程图, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="Netty, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="用的是 ProcessOn 画的业务流程图，项目是消毒供应室（ sterilization_supplement_department ）。
-这个图刚入职的时候为了熟悉业务流程画的，很早就画好了,就放几张重要的版本。
-这张是第一天画的版本，">
+    <meta name="description" content="NIO
+
+Epoll函数详解
+
+
+
+epoll_create：创建epoll实例
+epoll_ctl：添加socketchannel到epoll实例并关联事件
+epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +24,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>消毒供应室项目业务流程图 | 锦泉^-^</title>
+    <title>Netty | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -255,13 +261,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/58.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/83.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        消毒供应室项目业务流程图
+                        Netty
                     </div>
                 </div>
             </div>
@@ -372,8 +378,12 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/流程图/" target="_blank">
-                            <span class="chip bg-color">流程图</span>
+                        <a href="/tags/netty/" target="_blank">
+                            <span class="chip bg-color">netty</span>
+                        </a>
+                        
+                        <a href="/tags/网络通信框架/" target="_blank">
+                            <span class="chip bg-color">网络通信框架</span>
                         </a>
                         
                     </div>
@@ -396,7 +406,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-05
+                    2021-03-27
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -410,14 +420,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    102
+                    584
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -433,14 +443,61 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>用的是 <em>ProcessOn</em> 画的业务流程图，项目是消毒供应室（ sterilization_supplement_department ）。</p>
-<p>这个图刚入职的时候为了熟悉业务流程画的，很早就画好了,就放几张重要的版本。</p>
-<p>这张是第一天画的版本，很粗略，没有画出并发核心模块的操作流程。</p>
-<p><strong>点击看大图</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssd-pic-3.0.jpg" alt></p>
-<p>这张就是改了几版后的最终修订版：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssd-pic-4.2.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssd-pic-1.0.jpg" alt></p>
+                <h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-7.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-1.jpg" alt="NIO流程"></p>
+<h3 id="Epoll函数详解"><a href="#Epoll函数详解" class="headerlink" title="Epoll函数详解"></a>Epoll函数详解</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-2.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-4.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-5.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-6.jpg" alt></p>
+<p>epoll_create：创建epoll实例</p>
+<p>epoll_ctl：添加socketchannel到epoll实例并关联事件</p>
+<p>epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时服务器的OS中断处理响应，添加到就绪事件rdlist并跳出阻塞处理事件</p>
+<p>可以在liunx通过man命令查看手册说明，比如man epoll_ctl：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-3.jpg" alt></p>
+<h2 id="Netty的零拷贝"><a href="#Netty的零拷贝" class="headerlink" title="Netty的零拷贝"></a>Netty的零拷贝</h2><p>在操作系统层面上的零拷贝是指避免在用户态与内核态之间来回拷贝数据的技术。 Netty中的零拷贝与操作系统层面上的零拷贝不完全一样, Netty的零拷贝完全是在用户态（Java层面）的，更多是数据操作的优化。</p>
+<ol>
+<li><p>Netty的接收和发送ByteBuffer使用<strong>直接内存</strong>（NIO中ByteBuffer.allocateDirect方法，返回一个地址。netty中通过byteBuf = allocHandle.allocate（allocator）→ ioBuffer中return directBuffer（initialCapactiy））进行Socket读写，不需要进行字节缓冲区的二次拷贝。如果使用JVM的堆内存进行Socket读写，JVM会将堆内存Buffer拷贝一份到直接内存中，然后才写入Socket中。相比于使用直接内存，消息在发送过程中多了一次缓冲区的内存拷贝。</p>
+</li>
+<li><p>Netty的文件传输调用FileRegion包装的transferTo方法，可以<strong>直接将文件缓冲区的数据发送到目标Channel</strong>，避免通过循环write方式导致的内存拷贝问题。</p>
+</li>
+<li><p>Netty提供CompositeByteBuf类, 可以将多个ByteBuf合并为一个逻辑上的ByteBuf, 避免了各个ByteBuf之间的拷贝。</p>
+</li>
+<li><p>通过wrap操作, 我们可以将byte[ ]数组、ByteBuf、ByteBuffer等包装成一个Netty ByteBuf对象, 进而避免拷贝操作。</p>
+</li>
+<li><p>ByteBuf支持slice操作，可以将ByteBuf分解为多个共享同一个存储区域的ByteBuf, 避免内存的拷贝。</p>
+</li>
+</ol>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-1.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-2.jpg" alt></p>
+<h3 id="通过FileRegion实现零拷贝"><a href="#通过FileRegion实现零拷贝" class="headerlink" title="通过FileRegion实现零拷贝"></a>通过FileRegion实现零拷贝</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">channelRead0</span><span class="token punctuation">(</span>ChannelHandlerContext ctx<span class="token punctuation">,</span> String msg<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+    RandomAccessFile raf <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token keyword">long</span> length <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 1. 通过 RandomAccessFile 打开一个文件.</span>
+        raf <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RandomAccessFile</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        length <span class="token operator">=</span> raf<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ctx<span class="token punctuation">.</span><span class="token function">writeAndFlush</span><span class="token punctuation">(</span><span class="token string">"ERR: "</span> <span class="token operator">+</span> e<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getSimpleName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>length <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> raf <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            raf<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    ctx<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"OK: "</span> <span class="token operator">+</span> raf<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ctx<span class="token punctuation">.</span><span class="token function">pipeline</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>SslHandler<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// SSL not enabled - can use zero-copy file transfer.</span>
+        <span class="token comment" spellcheck="true">// 2. 调用 raf.getChannel() 获取一个 FileChannel</span>
+        <span class="token comment" spellcheck="true">// 3. 将 FileChannel 封装成一个 DefaultFileRegion</span>
+        ctx<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">DefaultFileRegion</span><span class="token punctuation">(</span>raf<span class="token punctuation">.</span><span class="token function">getChannel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// SSL enabled - cannot use zero-copy file transfer.</span>
+        ctx<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ChunkedFile</span><span class="token punctuation">(</span>raf<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    ctx<span class="token punctuation">.</span><span class="token function">writeAndFlush</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="ByteBuf"><a href="#ByteBuf" class="headerlink" title="ByteBuf"></a>ByteBuf</h3><p>缓冲区重用机制</p>
 
             </div>
             <hr />
@@ -475,9 +532,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《消毒供应室项目业务流程图》
+                    《Netty》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/01/05/project/ssd-pic/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/27/netty/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -518,7 +575,7 @@
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/01/05/project/ssd-pic/',
+        id: '2021/03/27/netty/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -539,29 +596,84 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/01/06/java/spring-transaction-propagation/">
+                <a href="/2021/03/27/netty/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/45.jpg" class="responsive-img" alt="事务的传播属性和声明式事务的配置方式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/83.jpg" class="responsive-img" alt="Netty">
                         
-                        <span class="card-title">事务的传播属性和声明式事务的配置方式</span>
+                        <span class="card-title">Netty</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            transaction那篇太长了，就把事务的传播属性和声明式事务的配置方式放到这。
+                            netty源码分析
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-06
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/项目/" class="post-category" target="_blank">
+                                    项目
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/netty/" target="_blank">
+                        <span class="chip bg-color">netty</span>
+                    </a>
+                    
+                    <a href="/tags/网络通信框架/" target="_blank">
+                        <span class="chip bg-color">网络通信框架</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/26/threadpool/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="线程池源码理解">
+                        
+                        <span class="card-title">线程池源码理解</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            阅读线程池源码。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -577,61 +689,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/事务/" target="_blank">
-                        <span class="chip bg-color">事务</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/01/05/project/nullpointerexception/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/67.jpg" class="responsive-img" alt="空指针异常NullPointerException">
-                        
-                        <span class="card-title">空指针异常NullPointerException</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            记录踩过的坑。
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-01-05
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/项目/" class="post-category" target="_blank">
-                                    项目
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
                     <a href="/tags/java/" target="_blank">
                         <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/bug/" target="_blank">
-                        <span class="chip bg-color">bug</span>
+                    <a href="/tags/thread/" target="_blank">
+                        <span class="chip bg-color">thread</span>
                     </a>
                     
                 </div>
