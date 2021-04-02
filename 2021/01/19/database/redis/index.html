@@ -256,7 +256,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -415,14 +415,14 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.1k
+                    4.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    14 分
+                    17 分
                 </div>
                 
                 
@@ -443,6 +443,13 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-8.jpg" alt></p>
 <p>计数器：INCR article:readcount:{文章id}→GET article:readcount:{文章id}</p>
 <p>分布式系统全局序列号：INCRBY orderId 100</p>
+<p>C语言，SDS（simple dynamic string）</p>
+<ol>
+<li>二进制安全的数据结构</li>
+<li>内存预分配机制，避免频繁的内存分配</li>
+<li>兼容C函数库</li>
+</ol>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-21.jpg" alt></p>
 <h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>value又是一个map结构，也就是 &lt;key1,&lt;key2,value&gt;&gt;</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-10.jpg" alt></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-11.jpg" alt></p>
@@ -451,6 +458,8 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-13.jpg" alt></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-14.jpg" alt></p>
 <p>应用场景：微博、微信公号消息流，用LPUSH msg:{用户-ID} 消息ID和LRANGE msg:{用户-ID} start stop实现</p>
+<p>ziplist底层源码：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-23.jpg" alt></p>
 <h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-15.jpg" alt></p>
 <p>应用场景：</p>
 <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-16.jpg" alt="a" style="zoom:80%;">
@@ -461,6 +470,96 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-18.jpg" alt></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-19.jpg" alt></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-20.jpg" alt></p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> redisDb <span class="token punctuation">{</span>
+    dict <span class="token operator">*</span>dict<span class="token punctuation">;</span>                 <span class="token comment" spellcheck="true">/* The keyspace for this DB */</span>
+    dict <span class="token operator">*</span>expires<span class="token punctuation">;</span>              <span class="token comment" spellcheck="true">/* Timeout of keys with a timeout set */</span>
+    dict <span class="token operator">*</span>blocking_keys<span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">/* Keys with clients waiting for data (BLPOP)*/</span>
+    dict <span class="token operator">*</span>ready_keys<span class="token punctuation">;</span>           <span class="token comment" spellcheck="true">/* Blocked keys that received a PUSH */</span>
+    dict <span class="token operator">*</span>watched_keys<span class="token punctuation">;</span>         <span class="token comment" spellcheck="true">/* WATCHED keys for MULTI/EXEC CAS */</span>
+    <span class="token keyword">int</span> id<span class="token punctuation">;</span>                     <span class="token comment" spellcheck="true">/* Database ID */</span>
+    <span class="token keyword">long</span> <span class="token keyword">long</span> avg_ttl<span class="token punctuation">;</span>          <span class="token comment" spellcheck="true">/* Average TTL, just for stats */</span>
+<span class="token punctuation">}</span> redisDb<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>底层是以<strong>dict</strong>存储键值对的，键空间的键也就是数据库键，都是字符串对象，值可以是字符串对象、列表对象、哈希表对象、集合对象和有序集合对象中的任意一种。键的增加、删除、更新、读取都是对键空间的操作，不同的命令会执行不通的代码，最终都是在键空间上进行一系列操作。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-22.jpg" alt="dict结构"></p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">/* Expand or create the hash table */</span>
+<span class="token keyword">int</span> <span class="token function">dictExpand</span><span class="token punctuation">(</span>dict <span class="token operator">*</span>d<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">long</span> size<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    dictht n<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* the new hash table */</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token comment" spellcheck="true">//如果已经在rehash过程中，不能expand</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">dictIsRehashing</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span> <span class="token operator">||</span> d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>used <span class="token operator">></span> size<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> DICT_ERR<span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token comment" spellcheck="true">/* Allocate the new hash table and initialize all pointers to NULL */</span>
+    n<span class="token punctuation">.</span>table <span class="token operator">=</span> <span class="token function">zcalloc</span><span class="token punctuation">(</span>realsize<span class="token operator">*</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>dictEntry<span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment" spellcheck="true">/* Is this the first initialization? If so it's not really a rehashing
+     * we just set the first hash table so that it can accept keys. */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>table <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> n<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> DICT_OK<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/* Prepare a second hash table for incremental rehashing */</span>
+    d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> n<span class="token punctuation">;</span>
+    d<span class="token operator">-</span><span class="token operator">></span>rehashidx <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> DICT_OK<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>扩充空间的时候没有直接rehash</strong>，具体执行rehash的是<code>dictRehash</code>方法：</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">dictRehash</span><span class="token punctuation">(</span>dict <span class="token operator">*</span>d<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> empty_visits <span class="token operator">=</span> n<span class="token operator">*</span><span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* Max number of empty buckets to visit. */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">dictIsRehashing</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">while</span><span class="token punctuation">(</span>n<span class="token operator">--</span> <span class="token operator">&amp;&amp;</span> d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>used <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        dictEntry <span class="token operator">*</span>de<span class="token punctuation">,</span> <span class="token operator">*</span>nextde<span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">/* Note that rehashidx can't overflow as we are sure there are more
+         * elements because ht[0].used != 0 */</span>
+        <span class="token comment" spellcheck="true">//由rehashidx来标记搬运到了第几个元素</span>
+        <span class="token function">assert</span><span class="token punctuation">(</span>d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>size <span class="token operator">></span> <span class="token punctuation">(</span><span class="token keyword">unsigned</span> <span class="token keyword">long</span><span class="token punctuation">)</span>d<span class="token operator">-</span><span class="token operator">></span>rehashidx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>table<span class="token punctuation">[</span>d<span class="token operator">-</span><span class="token operator">></span>rehashidx<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            d<span class="token operator">-</span><span class="token operator">></span>rehashidx<span class="token operator">++</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">--</span>empty_visits <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        de <span class="token operator">=</span> d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>table<span class="token punctuation">[</span>d<span class="token operator">-</span><span class="token operator">></span>rehashidx<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">/* Move all the keys in this bucket from the old to the new hash HT */</span>
+        <span class="token comment" spellcheck="true">//每个桶关联了一个链表</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>de<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">unsigned</span> <span class="token keyword">int</span> h<span class="token punctuation">;</span>
+
+            nextde <span class="token operator">=</span> de<span class="token operator">-</span><span class="token operator">></span>next<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">/* Get the index in the new hash table */</span>
+            h <span class="token operator">=</span> <span class="token function">dictHashKey</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span> de<span class="token operator">-</span><span class="token operator">></span>key<span class="token punctuation">)</span> <span class="token operator">&amp;</span> d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>sizemask<span class="token punctuation">;</span>
+            de<span class="token operator">-</span><span class="token operator">></span>next <span class="token operator">=</span> d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>table<span class="token punctuation">[</span>h<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>table<span class="token punctuation">[</span>h<span class="token punctuation">]</span> <span class="token operator">=</span> de<span class="token punctuation">;</span>
+            d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>used<span class="token operator">--</span><span class="token punctuation">;</span>
+            d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>used<span class="token operator">++</span><span class="token punctuation">;</span>
+            de <span class="token operator">=</span> nextde<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>table<span class="token punctuation">[</span>d<span class="token operator">-</span><span class="token operator">></span>rehashidx<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
+        d<span class="token operator">-</span><span class="token operator">></span>rehashidx<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/* Check if we already rehashed the whole table... */</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>used <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">zfree</span><span class="token punctuation">(</span>d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>table<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token function">_dictReset</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>d<span class="token operator">-</span><span class="token operator">></span>ht<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        d<span class="token operator">-</span><span class="token operator">></span>rehashidx <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/* More to rehash... */</span>
+    <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>redis提供了<code>_dictRehashStep</code>方法：</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">_dictRehashStep</span><span class="token punctuation">(</span>dict <span class="token operator">*</span>d<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>d<span class="token operator">-</span><span class="token operator">></span>iterators <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token function">dictRehash</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>在“合适”的地方渐进地调用这个<code>_dictRehashStep</code>，就实现了渐进式Rehash！就是实际对hashtable的数据有操作的地方，lookup or update operation。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-24.jpg" alt="redis对象"></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-25.jpg" alt="底层结构"></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-26.jpg" alt></p>
 <h2 id="RDB持久化机制"><a href="#RDB持久化机制" class="headerlink" title="RDB持久化机制"></a>RDB持久化机制</h2><p>Redis DataBase</p>
 <p>在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是<strong>fork一个子进程</strong>，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩技术存储。</p>
 <h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
@@ -727,7 +826,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/33.jpg" class="responsive-img" alt="2021年的学习目标">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/28.jpg" class="responsive-img" alt="2021年的学习目标">
                         
                         <span class="card-title">2021年的学习目标</span>
                     </div>
@@ -780,7 +879,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/32.jpg" class="responsive-img" alt="互联网医院bug反馈">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="互联网医院bug反馈">
                         
                         <span class="card-title">互联网医院bug反馈</span>
                     </div>
@@ -989,7 +1088,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">185.6k</span>
+            <span class="white-color">197k</span>
             
 
             <br>

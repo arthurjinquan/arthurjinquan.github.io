@@ -10,8 +10,8 @@
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="Spring 事务管理Spring 事务管理分为编程式和声明式的两种方式。
 
-编程式事务指的是通过编码方式实现事务；声明式事务基于 AOP,将具体业务逻辑与事务处理解耦。
-声明式事务管理使业务代码逻辑不受污染, 因此在实际使用中声明式事务用">
+编程式事务指的是通过编码方式实现事务
+声明式事务基于 AOP,将具体业务逻辑与事务处理解耦。声明式事务管理使业务代码逻辑不受污染, 因此在实际使用中声明式事务用的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/106.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/111.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -419,7 +419,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.4k
+                    3.3k
                 </div>
                 
 
@@ -444,8 +444,8 @@
             <div id="articleContent">
                 <h2 id="Spring-事务管理"><a href="#Spring-事务管理" class="headerlink" title="Spring 事务管理"></a>Spring 事务管理</h2><p>Spring 事务管理分为<strong>编程式</strong>和<strong>声明式</strong>的两种方式。</p>
 <ol>
-<li>编程式事务指的是通过<strong>编码</strong>方式实现事务；声明式事务基于 AOP,将具体业务逻辑与事务处理解耦。</li>
-<li><strong>声明式事务管理使业务代码逻辑不受污染</strong>, 因此在实际使用中声明式事务用的比较多。</li>
+<li>编程式事务指的是通过<strong>编码</strong>方式实现事务</li>
+<li>声明式事务基于 AOP,将具体业务逻辑与事务处理解耦。<strong>声明式事务管理使业务代码逻辑不受污染</strong>, 因此在实际使用中声明式事务用的比较多</li>
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-1.png" alt></p>
 <p>参考整理于：<a href="https://blog.csdn.net/trigl/article/details/50968079" target="_blank" rel="noopener">https://blog.csdn.net/trigl/article/details/50968079</a> | <a href="https://www.cnblogs.com/jing99/p/11495252.html" target="_blank" rel="noopener">https://www.cnblogs.com/jing99/p/11495252.html</a> | <a href="https://www.it610.com/article/4944062.htm" target="_blank" rel="noopener">https://www.it610.com/article/4944062.htm</a></p>
@@ -458,16 +458,14 @@
 <li>另一种是基于 @Transactional 注解的方式</li>
 </ol>
 <p>具体的声明书事务配置方式有五种，在另一篇文章的后边：<a href="https://arthurjq.com/2021/01/06/java/spring-transaction-propagation/">https://arthurjq.com/2021/01/06/java/spring-transaction-propagation/</a></p>
-<p>需要明确几点：</p>
+<p>这些场景都会导致@Transactional失效：</p>
 <ol>
-<li><p>默认配置下 Spring 只会回滚运行时、未检查异常（继承自 RuntimeException 的异常）或者 Error。</p>
-</li>
-<li><p>@Transactional 注解只能应用到 public 方法才有效。</p>
-</li>
-<li><p>@Transactional 注解可以被应用于接口定义和接口方法、类定义和类的 public 方法上。然而仅仅 @Transactional 注解的出现不足以开启事务行为，它仅仅是一种元数据，能够被可以识别 @Transactional 注解和上述的配置适当的具有事务行为的beans所使用。其实是 <code>&lt;tx:annotation-driven/&gt;</code>元素的出现开启了事务行为。</p>
-</li>
-<li><p><strong>注解不可以继承</strong>，建议在具体的类（或类的方法）上使用 @Transactional 注解，而不要使用在类所要实现的任何接口上。当然可以在接口上使用 @Transactional 注解，但是这将只有当你设置了基于接口的代理时它才生效。</p>
-</li>
+<li>数据库不支持事务</li>
+<li>注解放在了私有方法上</li>
+<li>类内部调用，类里面使用this调用本类方法（this通常省略）</li>
+<li>未捕获异常</li>
+<li>没有被Spring管理（没加@Service等注解）</li>
+<li>多线程场景</li>
 </ol>
 <blockquote>
 <p>Spring配置文件中关于事务配置总是由三个组成部分，分别是<strong>DataSource、TransactionManager和代理机制</strong>这三部分，无论哪种配置方式，一般变化的只是代理机制这部分。</p>
@@ -823,7 +821,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/67.jpg" class="responsive-img" alt="空指针异常NullPointerException">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/72.jpg" class="responsive-img" alt="空指针异常NullPointerException">
                         
                         <span class="card-title">空指针异常NullPointerException</span>
                     </div>
@@ -876,7 +874,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/60.jpg" class="responsive-img" alt="Mysql的explain">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/55.jpg" class="responsive-img" alt="Mysql的explain">
                         
                         <span class="card-title">Mysql的explain</span>
                     </div>
@@ -1089,7 +1087,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">185.6k</span>
+            <span class="white-color">197k</span>
             
 
             <br>
