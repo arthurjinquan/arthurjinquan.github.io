@@ -257,7 +257,7 @@ Java 不提供指">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/22.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,14 +412,14 @@ Java 不提供指">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.3k
+                    5.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    20 分
                 </div>
                 
                 
@@ -515,9 +515,23 @@ Java 不提供指">
 </ol>
 <p>yield执行后线程直接进入就绪状态，马上释放cpu的执行权</p>
 <p>join执行后线程进入阻塞状态，例如线程B中调用了线程A的join方法，那线程B会进入阻塞队列，直到线程A结束或中断线程</p>
-<blockquote>
-<p>线程的五种状态：创建，就绪，运行，阻塞，死亡</p>
-</blockquote>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> State <span class="token punctuation">{</span>
+    NEW<span class="token punctuation">,</span>
+    RUNNABLE<span class="token punctuation">,</span>
+    BLOCKED<span class="token punctuation">,</span>
+    WAITING<span class="token punctuation">,</span>
+    TIMED_WAITING<span class="token punctuation">,</span>
+    TERMINATED<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol>
+<li>NEW(初始)：线程被创建后尚未启动</li>
+<li>RUNNABLE(运行)：包括了操作系统线程状态中的Running和Ready，也就是处于此状态的线程可能正在运行，也可能正在等待系统资源，如等待CPU为它分配时间片</li>
+<li>BLOCKED(阻塞)：线程阻塞于锁</li>
+<li>WAITING(等待)：线程需要等待其他线程做出一些特定动作（通知或中断）</li>
+<li>TIME_WAITING(超时等待)：该状态不同于WAITING，它可以在指定的时间内自行返回</li>
+<li>TERMINATED(终止)：该线程已经执行完毕</li>
+</ol>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-5.jpg" alt></p>
 <h2 id="处理不想序列化的字段"><a href="#处理不想序列化的字段" class="headerlink" title="处理不想序列化的字段"></a>处理不想序列化的字段</h2><p>使用 transient 关键字修饰。</p>
 <p>作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复。</p>
 <p>transient 只能修饰变量，不能修饰类和方法。</p>
@@ -621,6 +635,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 <blockquote>
 <p>as-if-serial语义：不管怎么重排序（编译器和处理器为了提高并行度），（单线程）程序的执行结果不能被改变。编译器和处理器不会对存在<strong>数据依赖关系</strong>的操作做重排序，因为这种重排序会改变执行结果。</p>
 </blockquote>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-6.jpg" alt="三种重排序"></p>
 <p><strong>volatile</strong>：禁止重排序，使用内存屏障，统一由jvm来生成内存屏障的指令，Lock是软件指令。</p>
 <p><strong>内存屏障</strong>的作用：</p>
 <ol>
@@ -632,10 +647,48 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 <li>Load Barrier，<strong>读前插</strong>读屏障，可以<strong>让高速缓存中的数据失效，强制重新从主内存加载新数据</strong></li>
 <li>Store Barrier，<strong>写后加</strong>写屏障，能<strong>让写入缓存中的最新数据更新写入主内存，让其他线程可见</strong></li>
 </ol>
+<pre class="line-numbers language-cpp"><code class="language-cpp">          <span class="token comment" spellcheck="true">//hotspot/src/share/vm/interpreter/bytecodeInterpreter.cpp</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>cache<span class="token operator">-</span><span class="token operator">></span><span class="token function">is_volatile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>tos_type <span class="token operator">==</span> itos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              obj<span class="token operator">-</span><span class="token operator">></span><span class="token function">release_int_field_put</span><span class="token punctuation">(</span>field_offset<span class="token punctuation">,</span> <span class="token function">STACK_INT</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>tos_type <span class="token operator">==</span> atos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token function">VERIFY_OOP</span><span class="token punctuation">(</span><span class="token function">STACK_OBJECT</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              obj<span class="token operator">-</span><span class="token operator">></span><span class="token function">release_obj_field_put</span><span class="token punctuation">(</span>field_offset<span class="token punctuation">,</span> <span class="token function">STACK_OBJECT</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+              OrderAccess<span class="token operator">::</span><span class="token function">release_store</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>BYTE_MAP_BASE<span class="token punctuation">[</span><span class="token punctuation">(</span>uintptr_t<span class="token punctuation">)</span>obj <span class="token operator">>></span> CardTableModRefBS<span class="token operator">::</span>card_shift<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>tos_type <span class="token operator">==</span> btos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              obj<span class="token operator">-</span><span class="token operator">></span><span class="token function">release_byte_field_put</span><span class="token punctuation">(</span>field_offset<span class="token punctuation">,</span> <span class="token function">STACK_INT</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>tos_type <span class="token operator">==</span> ltos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              obj<span class="token operator">-</span><span class="token operator">></span><span class="token function">release_long_field_put</span><span class="token punctuation">(</span>field_offset<span class="token punctuation">,</span> <span class="token function">STACK_LONG</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>tos_type <span class="token operator">==</span> ctos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              obj<span class="token operator">-</span><span class="token operator">></span><span class="token function">release_char_field_put</span><span class="token punctuation">(</span>field_offset<span class="token punctuation">,</span> <span class="token function">STACK_INT</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>tos_type <span class="token operator">==</span> stos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              obj<span class="token operator">-</span><span class="token operator">></span><span class="token function">release_short_field_put</span><span class="token punctuation">(</span>field_offset<span class="token punctuation">,</span> <span class="token function">STACK_INT</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>tos_type <span class="token operator">==</span> ftos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              obj<span class="token operator">-</span><span class="token operator">></span><span class="token function">release_float_field_put</span><span class="token punctuation">(</span>field_offset<span class="token punctuation">,</span> <span class="token function">STACK_FLOAT</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+              obj<span class="token operator">-</span><span class="token operator">></span><span class="token function">release_double_field_put</span><span class="token punctuation">(</span>field_offset<span class="token punctuation">,</span> <span class="token function">STACK_DOUBLE</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            OrderAccess<span class="token operator">::</span><span class="token function">storeload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span> 
+
+<span class="token comment" spellcheck="true">//hotspot/src/os_cpu/linux_x86/vm/orderAccess_linux_x86.inline.hpp</span>
+<span class="token keyword">inline</span> <span class="token keyword">void</span> OrderAccess<span class="token operator">::</span><span class="token function">storeload</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span> <span class="token function">fence</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">inline</span> <span class="token keyword">void</span> OrderAccess<span class="token operator">::</span><span class="token function">fence</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>os<span class="token operator">::</span><span class="token function">is_MP</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// always use locked addl since mfence is sometimes expensive</span>
+<span class="token macro property">#<span class="token directive keyword">ifdef</span> AMD64</span>
+    __asm__ <span class="token keyword">volatile</span> <span class="token punctuation">(</span><span class="token string">"lock; addl $0,0(%%rsp)"</span> <span class="token operator">:</span> <span class="token operator">:</span> <span class="token operator">:</span> <span class="token string">"cc"</span><span class="token punctuation">,</span> <span class="token string">"memory"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">else</span></span>
+    __asm__ <span class="token keyword">volatile</span> <span class="token punctuation">(</span><span class="token string">"lock; addl $0,0(%%esp)"</span> <span class="token operator">:</span> <span class="token operator">:</span> <span class="token operator">:</span> <span class="token string">"cc"</span><span class="token punctuation">,</span> <span class="token string">"memory"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token macro property">#<span class="token directive keyword">endif</span></span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>StoreLoad屏障：</strong>对于这样的语句Store1; StoreLoad; Load2，在Load2及后续所有读取操作执行前，保证Store1的写入对所有处理器可见。它的开销是四种屏障中最大的。在大多数处理器的实现中，这个屏障是个万能屏障，兼具其它三种内存屏障的功能。</p>
 <blockquote>
 <p>如果指令甲happens-before指令乙，那么指令甲必须排序在指令乙之前，并且指令甲的执行结果对指令乙可见。</p>
 </blockquote>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-7.jpg" alt="happen-before"></p>
 <h2 id="ThreadPool-中-submit-和-execute"><a href="#ThreadPool-中-submit-和-execute" class="headerlink" title="ThreadPool 中 submit 和 execute"></a>ThreadPool 中 submit 和 execute</h2><p>都是用来执行线程池的，只不过使用 execute 执行线程池<strong>不能有返回方法</strong>，而使用 submit 可以使用 <strong>Future 接收线程池执行的返回值</strong>。</p>
 <h2 id="ThreadPoolExecutor-都需要哪些参数"><a href="#ThreadPoolExecutor-都需要哪些参数" class="headerlink" title="ThreadPoolExecutor 都需要哪些参数"></a>ThreadPoolExecutor 都需要哪些参数</h2><ol>
 <li>corePoolSize：线程池中的核心线程数</li>
@@ -756,7 +809,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/97.jpg" class="responsive-img" alt="面试">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/95.jpg" class="responsive-img" alt="面试">
                         
                         <span class="card-title">面试</span>
                     </div>
@@ -805,7 +858,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="Helm安装ingress">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/83.jpg" class="responsive-img" alt="Helm安装ingress">
                         
                         <span class="card-title">Helm安装ingress</span>
                     </div>
@@ -1014,7 +1067,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">197k</span>
+            <span class="white-color">201.8k</span>
             
 
             <br>

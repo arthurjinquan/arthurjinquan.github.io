@@ -8,7 +8,10 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="动态规划的核心是穷举转载：https://labuladong.gitbook.io/algo/dong-tai-gui-hua-xi-lie/dong-tai-gui-hua-ji-ben-ji-qiao/dong-tai-gui-hua">
+    <meta name="description" content="动态规划的核心是穷举动态规划问题的一般形式就是求最值
+明确 base case -&amp;gt; 明确「状态」-&amp;gt; 明确「选择」 -&amp;gt; 定义 dp 数组/函数的含义
+确定「状态」，也就是原问题和子问题中会变化的变量。
+确定「选择」，也">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -253,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,14 +415,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    840
+                    2.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    12 分
                 </div>
                 
                 
@@ -435,13 +438,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="动态规划的核心是穷举"><a href="#动态规划的核心是穷举" class="headerlink" title="动态规划的核心是穷举"></a>动态规划的核心是穷举</h2><p>转载：<a href="https://labuladong.gitbook.io/algo/dong-tai-gui-hua-xi-lie/dong-tai-gui-hua-ji-ben-ji-qiao/dong-tai-gui-hua-xiang-jie-jin-jie#er-cou-ling-qian-wen-ti" target="_blank" rel="noopener">https://labuladong.gitbook.io/algo/dong-tai-gui-hua-xi-lie/dong-tai-gui-hua-ji-ben-ji-qiao/dong-tai-gui-hua-xiang-jie-jin-jie#er-cou-ling-qian-wen-ti</a></p>
-<p>动态规划问题的一般形式就是<strong>求最值</strong></p>
-<ol>
-<li><strong>存在「重叠子问题」</strong>，如果暴力穷举的话效率会极其低下，所以需要「备忘录」或者「DP table」来优化穷举过程，避免不必要的计算。</li>
-<li>具备「最优子结构」</li>
-<li>写出<strong>「状态转移方程」</strong>：</li>
-</ol>
+                <h2 id="动态规划的核心是穷举"><a href="#动态规划的核心是穷举" class="headerlink" title="动态规划的核心是穷举"></a>动态规划的核心是穷举</h2><p>动态规划问题的一般形式就是<strong>求最值</strong></p>
 <p>明确 base case -&gt; 明确「状态」-&gt; 明确「选择」 -&gt; 定义 dp 数组/函数的含义</p>
 <p><strong>确定「状态」，也就是原问题和子问题中会变化的变量</strong>。</p>
 <p><strong>确定「选择」，也就是导致「状态」产生变化的行为</strong>。</p>
@@ -452,6 +449,25 @@ dp<span class="token punctuation">[</span><span class="token number">0</span><sp
     <span class="token keyword">for</span> 状态<span class="token number">2</span> in 状态<span class="token number">2</span>的所有取值：
         <span class="token keyword">for</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
             dp<span class="token punctuation">[</span>状态<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>状态<span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span> <span class="token operator">=</span> 求最值<span class="token punctuation">(</span>选择<span class="token number">1</span>，选择<span class="token number">2</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="01背包第二个循环逆序的原因"><a href="#01背包第二个循环逆序的原因" class="headerlink" title="01背包第二个循环逆序的原因"></a>01背包第二个循环逆序的原因</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> V<span class="token punctuation">;</span> j <span class="token operator">>=</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span>
+        f<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> f<span class="token punctuation">[</span>j <span class="token operator">-</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>从上面可以看到，对v来说，它是从V递减到Ci的，而且一定只能是<strong>逆序</strong>，这是因为：</p>
+<p>从内循环来说，每一次内循环，都相当于更新在i下，背包容量为v最优解。<strong>更新之前，F[v]表示i-1下的最优解</strong>，<strong>而一旦赋值结束，F[v]就表示i下的最优解了。</strong></p>
+<p>如果为顺序，当我们进行到F[v]时，要使用到F[v-Ci]，但是这个F[v-Ci]必须是i-1下的最优解，而<strong>由于顺序的原因</strong>，<strong>在我们将v递增到（顺序的情况下）v时</strong>，<strong>已经经历了v-Ci这个背包容量了</strong>，换句话说，<strong>此时v下的F[v-Ci]</strong>，<strong>已经代表的是i下背包容量为v-Ci的最优解了</strong>，<strong>而我们需要的是i-1下，背包容量为v-Ci的最优解！</strong></p>
+<p>因此，我们必须要使用<strong>逆序</strong>，这样当进行到v时，F[v-Ci]还未更新，它还依然表示i-1下的最优解。</p>
+<h3 id="完全背包循环顺序问题"><a href="#完全背包循环顺序问题" class="headerlink" title="完全背包循环顺序问题"></a>完全背包循环顺序问题</h3><p>求组合数（比如2，1和1，2只算一个，不重复）代码如下：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> coins<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 遍历物品</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> coins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> amount<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 遍历背包容量</span>
+        dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+=</span> dp<span class="token punctuation">[</span>j <span class="token operator">-</span> coins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>排列数（重复）：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> amount<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 遍历背包容量</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> coins<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// 遍历物品</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>j <span class="token operator">-</span> coins<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">>=</span> <span class="token number">0</span><span class="token punctuation">)</span> dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+=</span> dp<span class="token punctuation">[</span>j <span class="token operator">-</span> coins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="熟悉套路"><a href="#熟悉套路" class="headerlink" title="熟悉套路"></a>熟悉套路</h2><h4 id="322-零钱兑换"><a href="#322-零钱兑换" class="headerlink" title="322. 零钱兑换"></a><a href="https://leetcode-cn.com/problems/coin-change/" target="_blank" rel="noopener">322. 零钱兑换</a></h4><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">coinChange</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> coins<span class="token punctuation">,</span> <span class="token keyword">int</span> amount<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">//自顶向下</span>
@@ -561,6 +577,46 @@ dp<span class="token punctuation">[</span><span class="token number">0</span><sp
         <span class="token keyword">return</span> dp<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span>len<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><p>只考虑第 i 件物品的策略</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>i−<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>i−<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j−w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">+</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> V<span class="token punctuation">;</span> j <span class="token operator">>=</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span>
+        f<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> f<span class="token punctuation">[</span>j <span class="token operator">-</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="初始化的细节"><a href="#初始化的细节" class="headerlink" title="初始化的细节"></a>初始化的细节</h3><p>有的题目要求”恰好装满背包”时的最优解，有的题目则并没有要求必须把背包装满。这两种问法的区别是在初始化的时候有所不同。<br>如果是第一种问法，要求恰好装满背包，那么在初始化时除了f [ 0 ]为0其它f [ 1… V ]均设为− ∞，这样就可以保证最终得到的f [ N ]是一种恰好装满背包的最优解。<br>如果并没有要求必须把背包装满，而是只希望价格尽量大，初始化时应该将f [ 0… V ]全部设为0。<br>为什么呢？可以这样理解：初始化的f数组事实上就是在没有任何物品可以放入背包时的合法状态。如果要求背包恰好装满，那么此时只有容量为0的背包可能被价值为0的n o t h i n g“恰好装满”，其它容量的背包均没有合法的解，属于未定义的状态，它们的值就都应该是− ∞了。如果背包并非必须被装满，那么任何容量的背包都有一个合法解“什么都不装”，这个解的价值为0，所以初始时状态的值也就全部为0了。这个小技巧完全可以推广到其它类型的背包问题，后面也就不再对进行状态转移之前的初始化进行讲解。</p>
+<h2 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h2><pre class="line-numbers language-cpp"><code class="language-cpp">f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>i−<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j−k∗w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">+</span>k∗v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>∣<span class="token number">0</span><span class="token operator">&lt;=</span>k∗w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">&lt;=</span>j<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>若两件物品i、j满足w [ i ] &lt; = w [ j ] 且v [ i ] &gt; = v [ j ]，则将物品j去掉，不用考虑。</p>
+<p>首先将费用大于V的物品去掉，然后使用类似计数排序的做法，计算出费用相同的物品中价值最高的是哪个，可以O ( V + N )地完成这个优化</p>
+<h3 id="转化为01背包"><a href="#转化为01背包" class="headerlink" title="转化为01背包"></a>转化为01背包</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> V<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span>
+        f<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> f<span class="token punctuation">[</span>j <span class="token operator">-</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//等价于</span>
+f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>i−<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j−w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">+</span>v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h2><pre class="line-numbers language-cpp"><code class="language-cpp">f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>i−<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j−k∗w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token operator">+</span>k∗v<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>∣<span class="token number">0</span><span class="token operator">&lt;=</span>k<span class="token operator">&lt;=</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> V <span class="token operator">/</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> k <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> num <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">;</span> k <span class="token operator">&lt;&lt;=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">></span> num<span class="token punctuation">)</span> k <span class="token operator">=</span> num<span class="token punctuation">;</span>
+        num <span class="token operator">-</span><span class="token operator">=</span> k<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> V<span class="token punctuation">;</span> j <span class="token operator">>=</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> k<span class="token punctuation">;</span> j<span class="token operator">--</span><span class="token punctuation">)</span>
+            f<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>f<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> f<span class="token punctuation">[</span>j <span class="token operator">-</span> w<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> k<span class="token punctuation">]</span> <span class="token operator">+</span> v<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="背包问题问法变化"><a href="#背包问题问法变化" class="headerlink" title="背包问题问法变化"></a>背包问题问法变化</h2><h3 id="输出方案"><a href="#输出方案" class="headerlink" title="输出方案"></a>输出方案</h3><p>再用一个数组g [ i ] [ j ]，设g [ i ] [ j ] = 0表示推出f [ i ] [ j ]的值时是采用了方程的前一项（也即<code>f [ i ] [ j ] = f [ i − 1 ] [ j ]</code> ），g [ i ] [ j ] = 1表示采用了方程的后一项。注意这两项分别表示了两种策略：未选第i个物品及选了第i个物品，最终状态为f [ N ] [ V ] 。</p>
+<h3 id="求方案总数"><a href="#求方案总数" class="headerlink" title="求方案总数"></a>求方案总数</h3><p>对于一个给定了背包容量、物品费用、物品间相互关系（分组、依赖等）的背包问题，除了再给定每个物品的价值后求可得到的最大价值外，还可以得到装满背包或将背包装至某一指定容量的方案总数。对于一个给定了背包容量、物品费用、物品间相互关系（分组、依赖等）的背包问题，除了再给定每个物品的价值后求可得到的最大价值外，还可以得到装满背包或将背包装至某一指定容量的方案总数。对于这类改变问法的问题，一般只需将状态转移方程中的m a x改成s u m即可。例如若每件物品均是完全背包中的物品，转移方程即为</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>∑f<span class="token punctuation">[</span>i−<span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>f<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j−w<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>初始条件f [ 0 ] [ 0 ] = 1。事实上，这样做可行的原因在于状态转移方程已经考察了所有可能的背包组成方案。</p>
+<h3 id="最优方案的总数"><a href="#最优方案的总数" class="headerlink" title="最优方案的总数"></a>最优方案的总数</h3><p>这里的最优方案是指物品总价值最大的方案。以01背包为例。<br>结合求最大总价值和方案总数两个问题的思路，最优方案的总数可以这样求：f [ i ] [ j ]意义同前述，g [ i ] [ j ]表示这个子问题的最优方案的总数，则在求f [ i ] [ j ]的同时求g [ i ] [ j ]</p>
+<h2 id="背包问题的搜索解法"><a href="#背包问题的搜索解法" class="headerlink" title="背包问题的搜索解法"></a>背包问题的搜索解法</h2><h3 id="搜索的剪枝"><a href="#搜索的剪枝" class="headerlink" title="搜索的剪枝"></a>搜索的剪枝</h3><p>基本的剪枝方法不外乎可行性剪枝或最优性剪枝。</p>
+<p>可行性剪枝即判断按照当前的搜索路径搜下去能否找到一个可行解，例如：若将剩下所有物品都放入背包仍然无法将背包充满（设题目要求必须将背包充满），则剪枝。</p>
+<p>最优性剪枝即判断按照当前的搜索路径搜下去能否找到一个最优解，例如：若加上剩下所有物品的权值也无法得到比当前得到的最优解更优的解，则剪枝。</p>
+<h3 id="搜索的顺序"><a href="#搜索的顺序" class="headerlink" title="搜索的顺序"></a>搜索的顺序</h3><p>在搜索中，可以认为顺序靠前的物品会被优先考虑。</p>
+<p>所以利用贪心的思想，将更有可能出现在结果中的物品的顺序提前，可以较快地得出贪心地较优解，更有利于最优性剪枝。所以，可以考虑将按照“性价比”（权值/费用）来排列搜索顺序。</p>
+<p>另一方面，若将费用较大的物品排列在前面，可以较快地填满背包，有利于可行性剪枝。</p>
+<p>最后一种可以考虑的方案是：在开始搜索前将输入文件中给定的物品的顺序随机打乱。这样可以避免命题人故意设置的陷阱。</p>
+<p>以上三种决定搜索顺序的方法很难说哪种更好，事实上每种方法都有适用的题目和数据，也有可能将它们在某种程度上混合使用。</p>
+<h3 id="搜索还是D-P"><a href="#搜索还是D-P" class="headerlink" title="搜索还是D P"></a>搜索还是D P</h3><p>首先，可以从数据范围中得到命题人意图的线索。如果一个背包问题可以用D P解，V一定不能很大，否则O （ V N ）的算法无法承受，而一般的搜索解法都是仅与N有关，与V 无关的。所以，V 很大时（例如上百万），命题人的意图就应该是考察搜索。另一方面，N较大时（例如上百），命题人的意图就很有可能是考察动态规划了。另外，当想不出合适的动态规划算法时，就只能用搜索了。例如看到一个从未见过的背包中物品的限制条件，无法想出D P的方程，只好写搜索以谋求一定的分数了。</p>
 
             </div>
             <hr />
@@ -667,7 +723,7 @@ dp<span class="token punctuation">[</span><span class="token number">0</span><sp
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg" class="responsive-img" alt="MQ消息队列">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/3.jpg" class="responsive-img" alt="MQ消息队列">
                         
                         <span class="card-title">MQ消息队列</span>
                     </div>
@@ -720,7 +776,7 @@ dp<span class="token punctuation">[</span><span class="token number">0</span><sp
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/43.jpg" class="responsive-img" alt="二叉树遍历">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/41.jpg" class="responsive-img" alt="二叉树遍历">
                         
                         <span class="card-title">二叉树遍历</span>
                     </div>
@@ -929,7 +985,7 @@ dp<span class="token punctuation">[</span><span class="token number">0</span><sp
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">197k</span>
+            <span class="white-color">201.8k</span>
             
 
             <br>

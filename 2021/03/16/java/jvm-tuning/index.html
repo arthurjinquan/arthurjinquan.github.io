@@ -8,14 +8,17 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="JVM
+    <meta name="description" content="JMM
+
+其实就是工作内存和主内存之间的交互
+JVM
 线程栈
 方法区
 对象头
-jvisualvm在cmd输入jvisualvm回车就会打开可视化界面。
-arthas官网下载arthas的jar包。
-java -jar arthas-boot.jar
-//会看到存在的java进程，输入序">
+
+64位的话：
+
+锁升级jvm默认延时4s自动开启偏向锁，可通过 -XX:BiasedLockingStartupDelay=0 取消延时，如果不要偏向锁，可通过">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -260,7 +263,7 @@ java -jar arthas-boot.jar
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/112.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/114.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -419,7 +422,7 @@ java -jar arthas-boot.jar
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    251
+                    322
                 </div>
                 
 
@@ -442,10 +445,18 @@ java -jar arthas-boot.jar
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-4.jpg" alt="JMM"></p>
+                <h2 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-jmm-1.jpg" alt="3级缓存"></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-jmm-2.jpg" alt="JMM数据原子操作"></p>
+<p>其实就是工作内存和主内存之间的交互</p>
+<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-4.jpg" alt="JMM"></p>
 <h3 id="线程栈"><a href="#线程栈" class="headerlink" title="线程栈"></a>线程栈</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-1.jpg" alt="栈结构"></p>
 <h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-3.jpg" alt></p>
-<h3 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-2.jpg" alt></p>
+<h3 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-9.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-2.jpg" alt="32位对象头"></p>
+<p>64位的话：</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-10.jpg" alt="64位对象头"></p>
+<h3 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h3><p>jvm默认延时4s自动开启偏向锁，可通过 <code>-XX:BiasedLockingStartupDelay=0</code> 取消延时，如果不要偏向锁，可通过<code>-XX:-UserBiasedLocking = false</code> 来设置</p>
+<p>重量级锁的指针指向monitor</p>
 <h2 id="jvisualvm"><a href="#jvisualvm" class="headerlink" title="jvisualvm"></a>jvisualvm</h2><p>在cmd输入jvisualvm回车就会打开可视化界面。</p>
 <h2 id="arthas"><a href="#arthas" class="headerlink" title="arthas"></a>arthas</h2><p>官网下载arthas的jar包。</p>
 <pre class="line-numbers language-shell"><code class="language-shell">java -jar arthas-boot.jar
@@ -458,7 +469,7 @@ dashboard<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 <p>然后去代码里找第39行：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-6.jpg" alt></p>
 <p>反编译：</p>
-<pre class="line-numbers language-shell"><code class="language-shell">jad com.tuling.jvm.ArthasTest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-shell"><code class="language-shell">jad XXX.ArthasTest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="调优案例"><a href="#调优案例" class="headerlink" title="调优案例"></a>调优案例</h2><h3 id="动态对象年龄判定"><a href="#动态对象年龄判定" class="headerlink" title="动态对象年龄判定"></a>动态对象年龄判定</h3><p>虚拟机并不是永远地要求对象的年龄必须达到了MaxTenuringThreshold才能晋升老年代，如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到MaxTenuringThreshold中要求的年龄。</p>
 <p>比如如下设置：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-7.jpg" alt></p>
@@ -571,7 +582,7 @@ dashboard<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/68.jpg" class="responsive-img" alt="JVM垃圾回收机制">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/70.jpg" class="responsive-img" alt="JVM垃圾回收机制">
                         
                         <span class="card-title">JVM垃圾回收机制</span>
                     </div>
@@ -624,7 +635,7 @@ dashboard<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/26.jpg" class="responsive-img" alt="单例模式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg" class="responsive-img" alt="单例模式">
                         
                         <span class="card-title">单例模式</span>
                     </div>
@@ -833,7 +844,7 @@ dashboard<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">197k</span>
+            <span class="white-color">201.8k</span>
             
 
             <br>

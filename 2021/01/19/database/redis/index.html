@@ -256,7 +256,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/117.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -422,7 +422,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    17 分
+                    18 分
                 </div>
                 
                 
@@ -674,8 +674,10 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 </li>
 </ol>
 <h3 id="过程原理图"><a href="#过程原理图" class="headerlink" title="过程原理图"></a>过程原理图</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-2.jpg" alt></p>
-<h2 id="Redis高可用集群方案"><a href="#Redis高可用集群方案" class="headerlink" title="Redis高可用集群方案"></a>Redis高可用集群方案</h2><h3 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-1.jpg" alt></p>
-<h3 id="Redis-Cluster"><a href="#Redis-Cluster" class="headerlink" title="Redis Cluster"></a>Redis Cluster</h3><p>Redis Cluster时一种服务端Sharding技术，3.0版本开始正式提供。利用了slot（槽）的概念，一共分成<strong>16384</strong>个槽。将请求发送到任意节点，<strong>接收到请求的节点会将查询请求发送到正确的节点上执行</strong></p>
+<h2 id="Redis高可用集群方案"><a href="#Redis高可用集群方案" class="headerlink" title="Redis高可用集群方案"></a>Redis高可用集群方案</h2><h3 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-27.jpg" alt></p>
+<p>弊端：1、单点写故障。2、选主时访问瞬断。3、单机redis容易达到性能瓶颈，数据量大持久化时间长。4、写瓶颈，顶多10w并发</p>
+<h3 id="Redis-Cluster"><a href="#Redis-Cluster" class="headerlink" title="Redis Cluster"></a>Redis Cluster</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-28.jpg" alt></p>
+<p>Redis Cluster时一种服务端Sharding技术，3.0版本开始正式提供。利用了slot（槽）的概念，一共分成<strong>16384</strong>个槽。将请求发送到任意节点，<strong>接收到请求的节点会将查询请求发送到正确的节点上执行</strong></p>
 <p>方案说明：</p>
 <ol>
 <li>通过哈希的方式，将数据分片，每个节点均分存储一定哈希槽（哈希值）区间的数据，默认分配了16384个槽位</li>
@@ -826,7 +828,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/28.jpg" class="responsive-img" alt="2021年的学习目标">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/30.jpg" class="responsive-img" alt="2021年的学习目标">
                         
                         <span class="card-title">2021年的学习目标</span>
                     </div>
@@ -879,7 +881,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="互联网医院bug反馈">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/29.jpg" class="responsive-img" alt="互联网医院bug反馈">
                         
                         <span class="card-title">互联网医院bug反馈</span>
                     </div>
@@ -1088,7 +1090,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">197k</span>
+            <span class="white-color">201.8k</span>
             
 
             <br>

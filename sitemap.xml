@@ -2,35 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://arthurjq.com/2021/01/19/database/redis/</loc>
-    
-    <lastmod>2021-04-02T12:22:41.127Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://arthurjq.com/2021/03/09/interview/</loc>
     
-    <lastmod>2021-04-01T13:14:58.081Z</lastmod>
+    <lastmod>2021-04-13T14:35:21.526Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/03/30/sumabc/</loc>
+    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
     
-    <lastmod>2021-04-01T13:14:51.564Z</lastmod>
+    <lastmod>2021-04-12T13:16:13.008Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/16/java/jvm-tuning/</loc>
+    
+    <lastmod>2021-04-12T12:40:27.394Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://arthurjq.com/2021/03/19/dynamic-programming/</loc>
     
-    <lastmod>2021-03-31T09:42:34.622Z</lastmod>
+    <lastmod>2021-04-07T08:03:30.383Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/03/30/nqueen/</loc>
+    <loc>https://arthurjq.com/2021/01/19/database/redis/</loc>
+    
+    <lastmod>2021-04-02T16:25:45.788Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/30/algorithm/sumabc/</loc>
+    
+    <lastmod>2021-04-01T13:14:51.564Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/30/algorithm/nqueen/</loc>
     
     <lastmod>2021-03-30T12:52:54.176Z</lastmod>
     
@@ -93,23 +107,9 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
-    
-    <lastmod>2021-03-24T12:40:43.079Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://arthurjq.com/2021/03/17/java/jvm-gc/</loc>
     
     <lastmod>2021-03-21T08:21:10.781Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/16/java/jvm-tuning/</loc>
-    
-    <lastmod>2021-03-21T07:09:36.273Z</lastmod>
     
   </url>
   
@@ -373,7 +373,7 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/03/14/java-collection/</loc>
+    <loc>https://arthurjq.com/2021/03/14/java/java-collection/</loc>
     
     <lastmod>2021-03-15T09:23:42.008Z</lastmod>
     
