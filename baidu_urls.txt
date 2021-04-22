@@ -1,3 +1,5 @@
+https://arthurjq.com/2021/04/21/net/
+https://arthurjq.com/2021/04/12/reentrantlock/
 https://arthurjq.com/2021/03/30/algorithm/nqueen/
 https://arthurjq.com/2021/03/30/algorithm/sumabc/
 https://arthurjq.com/2021/03/27/netty/

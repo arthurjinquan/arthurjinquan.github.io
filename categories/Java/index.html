@@ -293,19 +293,10 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
                 
                 
                 
-                <a href="/categories/Java/" title="Java: 28">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F9EBEA;">Java
-                        <span class="tag-length">28</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/categories/编程算法/" title="编程算法: 8">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F5EEF8;">编程算法
+                            style="background-color: #F9EBEA;">编程算法
                         <span class="tag-length">8</span>
                     </span>
                 </a>
@@ -314,8 +305,26 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
                 <a href="/categories/项目/" title="项目: 24">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">项目
+                            style="background-color: #F5EEF8;">项目
                         <span class="tag-length">24</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/Java/" title="Java: 29">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active "
+                            style="background-color: #D5F5E3;">Java
+                        <span class="tag-length">29</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/Web/" title="Web: 8">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #E8F8F5;">Web
+                        <span class="tag-length">8</span>
                     </span>
                 </a>
                 
@@ -323,17 +332,8 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
                 <a href="/categories/数据库/" title="数据库: 22">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #E8F8F5;">数据库
+                            style="background-color: #FEF9E7;">数据库
                         <span class="tag-length">22</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Web/" title="Web: 7">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            style="background-color: #FEF9E7;">Web
-                        <span class="tag-length">7</span>
                     </span>
                 </a>
                 
@@ -347,6 +347,56 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
 
     <article id="articles" class="container articles">
         <div class="row tags-posts">
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/04/12/reentrantlock/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/101.jpg" class="responsive-img" alt="ReentrantLock">
+                            
+                            <span class="card-title">ReentrantLock</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                在JDK1.6之前，synchronized这个重量级锁其性能一直都是较为低下，虽然在1.6后，进行大量的锁优化策略,但是与Lock相比synchronized还是存在一些缺陷的：虽然synchronized提供了便捷性的隐式获取锁释放锁机
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fa fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Java/" class="post-category" target="_blank">
+                                    Java
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/java/" target="_blank">
+                            <span class="chip bg-color">java</span>
+                        </a>
+                        
+                        <a href="/tags/lock/" target="_blank">
+                            <span class="chip bg-color">lock</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -865,70 +915,12 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
                     
                     <div class="card-action article-tags">
                         
+                        <a href="/tags/annotation/" target="_blank">
+                            <span class="chip bg-color">annotation</span>
+                        </a>
+                        
                         <a href="/tags/事务/" target="_blank">
                             <span class="chip bg-color">事务</span>
-                        </a>
-                        
-                        <a href="/tags/annotation/" target="_blank">
-                            <span class="chip bg-color">annotation</span>
-                        </a>
-                        
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2021/02/23/java/refreshscope/">
-                        <div class="card-image tag-image">
-                            
-                            
-                            <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/28.jpg" class="responsive-img" alt="RefreshScope注解和Spring bean scope">
-                            
-                            <span class="card-title">RefreshScope注解和Spring bean scope</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                用过Spring Cloud的朋友都知道在使用动态配置刷新的我们要配置一个@RefreshScope 在类上才可以实现对象属性的的动态更新。
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-23
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fa fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/springcloud/" target="_blank">
-                            <span class="chip bg-color">springcloud</span>
-                        </a>
-                        
-                        <a href="/tags/spring/" target="_blank">
-                            <span class="chip bg-color">spring</span>
-                        </a>
-                        
-                        <a href="/tags/annotation/" target="_blank">
-                            <span class="chip bg-color">annotation</span>
-                        </a>
-                        
-                        <a href="/tags/bean/" target="_blank">
-                            <span class="chip bg-color">bean</span>
                         </a>
                         
                     </div>
@@ -972,7 +964,7 @@ $('.bg-cover').css('background-image', 'url(https://gitee.com/arthurjq/blogimage
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">190.1k</span>
+            <span class="white-color">191.8k</span>
             
 
             <br>

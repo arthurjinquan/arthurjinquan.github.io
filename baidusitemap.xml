@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arthurjq.com/2021/04/12/reentrantlock/</loc>
+    <lastmod>2021-04-22</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/01/19/database/redis/</loc>
+    <lastmod>2021-04-21</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/04/21/net/</loc>
+    <lastmod>2021-04-21</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/10/java-advance/</loc>
+    <lastmod>2021-04-17</lastmod>
+  </url>
+  <url>
     <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
-    <lastmod>2021-04-12</lastmod>
+    <lastmod>2021-04-15</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/19/dynamic-programming/</loc>
+    <lastmod>2021-04-15</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/03/16/java/jvm-tuning/</loc>
     <lastmod>2021-04-12</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/19/dynamic-programming/</loc>
-    <lastmod>2021-04-07</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/01/19/database/redis/</loc>
-    <lastmod>2021-04-02</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/03/30/algorithm/sumabc/</loc>
@@ -23,10 +35,6 @@
   <url>
     <loc>https://arthurjq.com/2021/03/30/algorithm/nqueen/</loc>
     <lastmod>2021-03-30</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/10/java-advance/</loc>
-    <lastmod>2021-03-29</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2020/12/31/java/spring-transaction/</loc>

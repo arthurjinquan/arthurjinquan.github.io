@@ -412,14 +412,14 @@ Java 不提供指">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.6k
+                    6.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    22 分
                 </div>
                 
                 
@@ -532,6 +532,13 @@ Java 不提供指">
 <li>TERMINATED(终止)：该线程已经执行完毕</li>
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-5.jpg" alt></p>
+<h2 id="进程和线程，线程的通信方式"><a href="#进程和线程，线程的通信方式" class="headerlink" title="进程和线程，线程的通信方式"></a>进程和线程，线程的通信方式</h2><p>进程是资源分配的最小单位，线程是CPU调度的最小单位</p>
+<ol>
+<li>基于 volatile 关键字来实现线程间相互通信是使用共享内存的思想</li>
+<li>Object类提供了线程间通信的方法：<code>wait()、notify()、notifyaAl()</code>，注意： wait和 notify必须配合synchronized使用，wait方法释放锁，notify方法不释放锁</li>
+<li>使用JUC工具类 CountDownLatch，相当于也是维护了一个线程间共享变量state</li>
+<li>使用 ReentrantLock 结合 Condition，condition.signal和condition.await</li>
+</ol>
 <h2 id="处理不想序列化的字段"><a href="#处理不想序列化的字段" class="headerlink" title="处理不想序列化的字段"></a>处理不想序列化的字段</h2><p>使用 transient 关键字修饰。</p>
 <p>作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复。</p>
 <p>transient 只能修饰变量，不能修饰类和方法。</p>
@@ -703,6 +710,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 <h2 id="线程池中为什么先入队列而不是先创建最大线程"><a href="#线程池中为什么先入队列而不是先创建最大线程" class="headerlink" title="线程池中为什么先入队列而不是先创建最大线程"></a>线程池中为什么先入队列而不是先创建最大线程</h2><p>在创建新线程时，<strong>要获取全局锁</strong>，这时其他都得阻塞，影响效率。</p>
 <h2 id="线程池中线程复用原理"><a href="#线程池中线程复用原理" class="headerlink" title="线程池中线程复用原理"></a>线程池中线程复用原理</h2><p>线程池将线程和任务进行解耦，摆脱了之前通过Thread创建线程时一个线程必须对应一个任务的限制。</p>
 <p>同一个线程可以从阻塞队列中不对获取新任务来执行，其核心原理在于线程池对Thread封装，并<strong>不是每次执行任务都调用Thread.start（）来创建新线程</strong>，而是让每个线程执行一个“循环任务”，不断检查是否有任务需要被执行，有就<strong>调用任务中的run方法</strong>。</p>
+<h2 id="对象池对垃圾回收的影响"><a href="#对象池对垃圾回收的影响" class="headerlink" title="对象池对垃圾回收的影响"></a>对象池对垃圾回收的影响</h2><p>对象池的缺点:<br>(1)现在Java的对象分配操作不比c语言的malloc调用慢, 对于轻中量级的对象, 分配/释放对象的开销可以忽略不计;<br>(2)并发环境中, 多个线程可能(同时)需要获取池中对象, 进而需要在堆数据结构上进行同步或者因为锁竞争而产生阻塞, 这种开销要比创建销毁对象的开销高数百倍;<br>(3)由于池中对象的数量有限, 势必成为一个可伸缩性瓶颈;<br>(4)很难正确的设定对象池的大小, 如果太小则起不到作用, 如果过大, 则占用内存资源高, 可以起一个线程定期扫描分析, 将池压缩到一个合适的尺寸以节约内存,但为了获得不错的分析结果, 在扫描期间可能需要暂停复用以避免干扰(造成效率低下), 或者使用非常复杂的算法策略(增加维护难度);<br>(5)设计和使用对象池容易出错, 设计上需要注意状态同步, 这是个难点, 使用上可能存在忘记归还(就像c语言编程忘记free一样), 重复归还(可能需要做个循环判断一下是否池中存在此对象, 这也是个开销), 归还后仍旧使用对象(可能造成多个线程并发使用一个对象的情况)等问题;</p>
 
             </div>
             <hr />
@@ -1071,7 +1079,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">190.1k</span>
+            <span class="white-color">191.8k</span>
             
 
             <br>

@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://arthurjq.com/2021/04/12/reentrantlock/</loc>
+    
+    <lastmod>2021-04-22T14:30:10.290Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/01/19/database/redis/</loc>
+    
+    <lastmod>2021-04-21T13:50:01.784Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/04/21/net/</loc>
+    
+    <lastmod>2021-04-21T13:37:43.421Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/10/java-advance/</loc>
+    
+    <lastmod>2021-04-17T11:48:09.758Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
     
-    <lastmod>2021-04-12T13:16:13.008Z</lastmod>
+    <lastmod>2021-04-15T06:53:22.752Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/19/dynamic-programming/</loc>
+    
+    <lastmod>2021-04-15T04:08:30.145Z</lastmod>
     
   </url>
   
@@ -12,20 +47,6 @@
     <loc>https://arthurjq.com/2021/03/16/java/jvm-tuning/</loc>
     
     <lastmod>2021-04-12T12:40:27.394Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/19/dynamic-programming/</loc>
-    
-    <lastmod>2021-04-07T08:03:30.383Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/01/19/database/redis/</loc>
-    
-    <lastmod>2021-04-02T16:25:45.788Z</lastmod>
     
   </url>
   
@@ -40,13 +61,6 @@
     <loc>https://arthurjq.com/2021/03/30/algorithm/nqueen/</loc>
     
     <lastmod>2021-03-30T12:52:54.176Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/10/java-advance/</loc>
-    
-    <lastmod>2021-03-29T02:39:02.661Z</lastmod>
     
   </url>
   
