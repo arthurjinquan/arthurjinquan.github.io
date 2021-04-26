@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -422,7 +422,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
                 
@@ -471,6 +471,19 @@
     <span class="token keyword">return</span> a<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h3><p>当多个线程访问某个方法时，<strong>不管你通过怎样的调用方式、或者说这些线程如何交替地执行</strong>，我们在主程序中<strong>不需要去做任何的同步</strong>，这个类的<strong>结果行为都是我们设想的正确行为</strong>，那么我们就可以说这个类是线程安全的。 </p>
+<h3 id="求2个集合的交集"><a href="#求2个集合的交集" class="headerlink" title="求2个集合的交集"></a>求2个集合的交集</h3><pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> List <span class="token function">intersect</span><span class="token punctuation">(</span>List ls<span class="token punctuation">,</span> List ls2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span>ls<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Collections<span class="token punctuation">.</span><span class="token function">copy</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> ls<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">retainAll</span><span class="token punctuation">(</span>ls2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="求2个集合的并集"><a href="#求2个集合的并集" class="headerlink" title="求2个集合的并集"></a>求2个集合的并集</h3><pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> List <span class="token function">union</span><span class="token punctuation">(</span>List ls<span class="token punctuation">,</span> List ls2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">[</span>ls<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Collections<span class="token punctuation">.</span><span class="token function">copy</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span> ls<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//将ls的值拷贝一份到list中</span>
+        list<span class="token punctuation">.</span><span class="token function">removeAll</span><span class="token punctuation">(</span>ls2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>ls2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="SynchronizedList"><a href="#SynchronizedList" class="headerlink" title="SynchronizedList"></a>SynchronizedList</h2><p>java.util.Collections.SynchronizedList，它能把所有 List 接口的实现类转换成线程安全的List，比 Vector 有更好的扩展性和兼容性，SynchronizedList的构造方法如下：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">final</span> List<span class="token operator">&lt;</span>E<span class="token operator">></span> list<span class="token punctuation">;</span>
 
@@ -676,7 +689,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/12.jpg" class="responsive-img" alt="String">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/15.jpg" class="responsive-img" alt="String">
                         
                         <span class="card-title">String</span>
                     </div>
@@ -729,7 +742,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="List">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg" class="responsive-img" alt="List">
                         
                         <span class="card-title">List</span>
                     </div>
@@ -939,7 +952,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">191.8k</span>
+            <span class="white-color">193k</span>
             
 
             <br>

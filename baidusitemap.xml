@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arthurjq.com/2020/12/09/java/list/</loc>
+    <lastmod>2021-04-26</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/19/algorithm/binary-tree-traversal/</loc>
+    <lastmod>2021-04-26</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/04/25/algorithm/heapsort/</loc>
+    <lastmod>2021-04-25</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/03/19/algorithm/dynamic-programming/</loc>
+    <lastmod>2021-04-24</lastmod>
+  </url>
+  <url>
     <loc>https://arthurjq.com/2021/04/12/reentrantlock/</loc>
     <lastmod>2021-04-22</lastmod>
   </url>
@@ -18,10 +34,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
-    <lastmod>2021-04-15</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/19/dynamic-programming/</loc>
     <lastmod>2021-04-15</lastmod>
   </url>
   <url>
@@ -125,10 +137,6 @@
     <lastmod>2021-03-19</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2021/03/19/algorithm/binary-tree-traversal/</loc>
-    <lastmod>2021-03-19</lastmod>
-  </url>
-  <url>
     <loc>https://arthurjq.com/2020/12/29/project/im/</loc>
     <lastmod>2021-03-18</lastmod>
   </url>
@@ -202,10 +210,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2021/02/25/database/es/</loc>
-    <lastmod>2021-03-16</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2020/12/09/java/list/</loc>
     <lastmod>2021-03-16</lastmod>
   </url>
   <url>

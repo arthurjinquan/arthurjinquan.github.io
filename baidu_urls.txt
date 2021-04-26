@@ -1,3 +1,4 @@
+https://arthurjq.com/2021/04/25/algorithm/heapsort/
 https://arthurjq.com/2021/04/21/net/
 https://arthurjq.com/2021/04/12/reentrantlock/
 https://arthurjq.com/2021/03/30/algorithm/nqueen/
@@ -6,7 +7,7 @@ https://arthurjq.com/2021/03/27/netty/
 https://arthurjq.com/2021/03/26/java/threadpool/
 https://arthurjq.com/2021/03/22/algorithm/substring/
 https://arthurjq.com/2021/03/20/project/mq/
-https://arthurjq.com/2021/03/19/dynamic-programming/
+https://arthurjq.com/2021/03/19/algorithm/dynamic-programming/
 https://arthurjq.com/2021/03/19/algorithm/binary-tree-traversal/
 https://arthurjq.com/2021/03/17/algorithm/quicksort/
 https://arthurjq.com/2021/03/17/java/jvm-gc/
