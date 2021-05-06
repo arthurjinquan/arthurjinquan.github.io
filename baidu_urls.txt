@@ -1,3 +1,4 @@
+https://arthurjq.com/2021/05/06/xor/
 https://arthurjq.com/2021/04/25/algorithm/heapsort/
 https://arthurjq.com/2021/04/21/net/
 https://arthurjq.com/2021/04/12/reentrantlock/

@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>异或</title>
+      <link href="2021/05/06/xor/"/>
+      <url>2021/05/06/xor/</url>
+      
+        <content type="html"><![CDATA[<h2 id="异或性质"><a href="#异或性质" class="headerlink" title="异或性质"></a>异或性质</h2><p>一个值与自身的异或总是为 0</p><p><code>x ^ x = 0</code></p><p>一个值与 0 异或等于本身</p><p><code>x ^ 0 = x</code></p><p>可交换性</p><p><code>a ^ b = b ^ a</code></p><p>可结合性</p><p><code>(a ^ b) ^ c = a ^ (b ^ c)</code></p><h2 id="根据以上的四个特点"><a href="#根据以上的四个特点" class="headerlink" title="根据以上的四个特点"></a>根据以上的四个特点</h2><p>我们可以推导:</p><p>a ^ b = c</p><p>等式两边都增加对b的异或, 等价于</p><p>a ^ b ^ b = c ^ b</p><p>等式左边的 b^b=0, a^0=a, 所以有</p><p>a = c ^ b</p><p>最终相当于把 b 从等号左边转到等号右边来了.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>堆排序</title>
       <link href="2021/04/25/algorithm/heapsort/"/>
       <url>2021/04/25/algorithm/heapsort/</url>
@@ -708,9 +733,9 @@
       
         <tags>
             
-            <tag> annotation </tag>
-            
             <tag> 事务 </tag>
+            
+            <tag> annotation </tag>
             
         </tags>
       
@@ -735,11 +760,11 @@
       
         <tags>
             
+            <tag> 事务 </tag>
+            
             <tag> redis </tag>
             
             <tag> cache </tag>
-            
-            <tag> 事务 </tag>
             
         </tags>
       
@@ -849,11 +874,11 @@
       
         <tags>
             
+            <tag> springcloud </tag>
+            
             <tag> spring </tag>
             
             <tag> annotation </tag>
-            
-            <tag> springcloud </tag>
             
             <tag> bean </tag>
             
@@ -1046,11 +1071,11 @@
       
         <tags>
             
-            <tag> springcloud </tag>
-            
             <tag> 事务 </tag>
             
             <tag> 分布式事务 </tag>
+            
+            <tag> springcloud </tag>
             
         </tags>
       
@@ -1471,9 +1496,9 @@
             
             <tag> springcloud </tag>
             
-            <tag> feign </tag>
-            
             <tag> interface </tag>
+            
+            <tag> feign </tag>
             
         </tags>
       
@@ -1683,9 +1708,9 @@
       
         <tags>
             
-            <tag> mysql </tag>
-            
             <tag> sql </tag>
+            
+            <tag> mysql </tag>
             
             <tag> 数据库优化 </tag>
             
@@ -1930,11 +1955,11 @@
       
         <tags>
             
-            <tag> mysql </tag>
-            
             <tag> sql </tag>
             
             <tag> index </tag>
+            
+            <tag> mysql </tag>
             
             <tag> 数据库优化 </tag>
             
@@ -2206,9 +2231,9 @@
             
             <tag> java </tag>
             
-            <tag> mybatis </tag>
-            
             <tag> druid </tag>
+            
+            <tag> mybatis </tag>
             
         </tags>
       
@@ -2233,9 +2258,9 @@
       
         <tags>
             
-            <tag> mysql </tag>
-            
             <tag> index </tag>
+            
+            <tag> mysql </tag>
             
             <tag> 数据库优化 </tag>
             
@@ -2320,9 +2345,9 @@
             
             <tag> mybatis </tag>
             
-            <tag> mysql </tag>
-            
             <tag> sql </tag>
+            
+            <tag> mysql </tag>
             
         </tags>
       
