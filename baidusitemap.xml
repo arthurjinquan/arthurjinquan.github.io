@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://arthurjq.com/2021/05/06/xor/</loc>
+    <loc>https://arthurjq.com/2021/05/11/heuristic-search/</loc>
+    <lastmod>2021-05-11</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2020/12/25/project/jenkins/</loc>
+    <lastmod>2021-05-11</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2020/12/23/web/nginx/</loc>
+    <lastmod>2021-05-11</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2020/12/28/web/cdn/</loc>
+    <lastmod>2021-05-11</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/05/11/webhook/</loc>
+    <lastmod>2021-05-11</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/05/06/algorithm/xor/</loc>
     <lastmod>2021-05-11</lastmod>
   </url>
   <url>
@@ -69,7 +89,7 @@
     <lastmod>2021-03-28</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2021/03/27/netty/</loc>
+    <loc>https://arthurjq.com/2021/03/27/project/netty/</loc>
     <lastmod>2021-03-27</lastmod>
   </url>
   <url>
@@ -89,7 +109,7 @@
     <lastmod>2021-03-21</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2021/03/13/kafka/</loc>
+    <loc>https://arthurjq.com/2021/03/13/project/kafka/</loc>
     <lastmod>2021-03-20</lastmod>
   </url>
   <url>
@@ -99,10 +119,6 @@
   <url>
     <loc>https://arthurjq.com/2021/03/20/project/mq/</loc>
     <lastmod>2021-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2020/12/28/web/cdn/</loc>
-    <lastmod>2021-03-19</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/01/13/project/elk/</loc>
@@ -174,10 +190,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2020/12/24/web/mqtt/</loc>
-    <lastmod>2021-03-18</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2020/12/23/web/nginx/</loc>
     <lastmod>2021-03-18</lastmod>
   </url>
   <url>
@@ -322,10 +334,6 @@
   </url>
   <url>
     <loc>https://arthurjq.com/2021/01/21/project/netty-pipeline/</loc>
-    <lastmod>2021-02-08</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2020/12/25/project/jenkins/</loc>
     <lastmod>2021-02-08</lastmod>
   </url>
   <url>

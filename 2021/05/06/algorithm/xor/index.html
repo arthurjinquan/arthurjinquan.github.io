@@ -4,13 +4,20 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Kafka, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="异或, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="kafka架构设计
-Consumer Group：消费者组，消费者组内每个消费者负责消费不同分区的数据，提高消费能力。逻辑上的一个订阅者。
-Topic：可以理解为一个队列，Topic将消息分类，生产者和消费者面向的同一个Topic，也就是生">
+    <meta name="description" content="异或性质一个值与自身的异或总是为 0
+x ^ x = 0
+一个值与 0 异或等于本身
+x ^ 0 = x
+可交换性
+a ^ b = b ^ a
+可结合性
+(a ^ b) ^ c = a ^ (b ^ c)
+根据以上的四个特点我们可以推导:
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +25,7 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Kafka | 锦泉^-^</title>
+    <title>异或 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -255,13 +262,13 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/55.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Kafka
+                        异或
                     </div>
                 </div>
             </div>
@@ -372,8 +379,8 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/中间件/" target="_blank">
-                            <span class="chip bg-color">中间件</span>
+                        <a href="/tags/算法/" target="_blank">
+                            <span class="chip bg-color">算法</span>
                         </a>
                         
                     </div>
@@ -384,8 +391,8 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/项目/" class="post-category" target="_blank">
-                            项目
+                        <a href="/categories/编程算法/" class="post-category" target="_blank">
+                            编程算法
                         </a>
                         
                     </div>
@@ -396,7 +403,7 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-13
+                    2021-05-06
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -410,14 +417,14 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    127
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    1 分
                 </div>
                 
                 
@@ -433,83 +440,21 @@ Topic：可以理解为一个队列，Topic将消息分类，生产者和消费�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="kafka架构设计"><a href="#kafka架构设计" class="headerlink" title="kafka架构设计"></a>kafka架构设计</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/kafka-1.jpg" alt></p>
-<p><strong>Consumer Group</strong>：消费者组，消费者组内每个消费者负责消费不同分区的数据，提高消费能力。<strong>逻辑上的一个订阅者</strong>。</p>
-<p><strong>Topic</strong>：可以理解为一个<strong>队列</strong>，Topic将消息分类，<strong>生产者和消费者面向的同一个Topic</strong>，也就是生产者往Topic发，消费者从Topic拿。</p>
-<p><strong>Partition</strong>：为了实现扩展性，提高并发能力，<strong>一个Topic以多个Partition的方式分布到多个Broker上</strong>，每个Partition是一个<strong>有序</strong>的队列。一个Topic的每个Partition都有若干个副本（Replica），一个Leader和若干个Follower。生产者发送数据的对象，以及消费者消费数据的对象，都是Leader。Follower负责实时从Leader中同步数据，保持和Leader数据的同步。Leader发生故障时，某个Follower还会成为新的Leader。</p>
-<p>Offset：消费者消费的位置信息，监控数据消费到什么位置，用于<strong>数据恢复</strong>。</p>
-<p>Zookeeper：Kafka集群能够正常工作，依赖于Zookeeper，<strong>Zookeeper帮助Kafka存储和管理集群信息</strong>，broker的注册（临时节点），注册Topic，重新选举，存储Offset，消费者组中的消费者注册，保证一条消息只被一个消费者组的其中一个消费者消费，消息消费的配置等。</p>
-<h3 id="zk的作用"><a href="#zk的作用" class="headerlink" title="zk的作用"></a>zk的作用</h3><p><strong>/brokers/ids</strong>：临时节点，保存所有broker节点信息，存储broker的物理地址，版本信息，启动时间等，节点名称为brokerID，broker定时发送心跳到zk，如果断开则该brokerID会被删除</p>
-<p><strong>/brokers/topics</strong>：临时节点，节点保存broker节点下所有的topic信息，每一个topic节点下包含一个固定的partitions节点，patitions的子节点就是topic的分区，每个分区下保存一个<strong>state节点，保存着当前leader分区和ISR的brokerID</strong>，<strong>state节点由leader创建</strong>，若leader宕机该节点会被删除，直到有新的leader选举产生，重新生成state节点</p>
-<p>/consumers/[group_id]/<strong>owners</strong>/[topic]/[broker_id-partition_id]：维护消费者和分区的<strong>注册关系</strong></p>
-<p>/consumers/[group_id]/<strong>offset</strong>/[topic]/[broker_id-partition_id]：分区信息的消费进度Offset</p>
-<p>client通过topic找到topic树下的state节点获得leader的brokerID，到broker树中找到broker的物理地址，但是<strong>client不会直连zk</strong>，而是通过配置的broker获取zk中的消息</p>
-<h2 id="消息丢失的场景和解决方案"><a href="#消息丢失的场景和解决方案" class="headerlink" title="消息丢失的场景和解决方案"></a>消息丢失的场景和解决方案</h2><h3 id="消息发送时丢失"><a href="#消息发送时丢失" class="headerlink" title="消息发送时丢失"></a>消息发送时丢失</h3><ol>
-<li><p>ack=0，不重试，producer发送信息完，不管效果，如果发送失败就丢失。</p>
-</li>
-<li><p>ack=1，leader crash，producer发送消息完，只等待lead写入成功就返回，leader crash了，这时如果follower没来得及同步，消息丢失。</p>
-</li>
-<li><p>unclean.leader.election.enable 配置 true</p>
-<p>允许选举ISR以外的副本为leader，会导致数据丢失，默认为false。producer发送异步消息完，只等待lead写入成功就返回了，leader crash了，这时ISR中没有follower，leader从OSR中选举，因为OSR中本来落后于leader造成消息丢失。</p>
-</li>
-</ol>
-<h3 id="消息发送解决方案"><a href="#消息发送解决方案" class="headerlink" title="消息发送解决方案"></a>消息发送解决方案</h3><ol>
-<li><p>配置 <strong>ack = all</strong> / -1（指的是ISR中的所有从节点），tries &gt; 1，unclean.leader.election.enable ：false（不允许选举ISR以外的副本为leader）</p>
-<p>producer发送消息完，等待follower同步完再返回，如果异常则重试，但副本数量影响吞吐量</p>
-</li>
-<li><p>配置 <strong>min.insync.replicas &gt; 1</strong>（同步副本数量指的是ISR中的从节点，<strong>只有ack=all时才会生效</strong>）</p>
-<p>副本指定必须确认写操作成功的最小副本数量。如果不满足这个最小值，则生产者将引发一个异常（NotEnoughReplicas，NotEnoughReplicasAfterAppend）。min.insync.replicas 和 ack 持久性保证，确保如果大多数副本没有收到写操作，则生产者引发异常。</p>
-</li>
-<li><p>失败地offset单独记录</p>
-<p>producer发送消息，会自动重试，遇到不可恢复异常会抛出，这时可以捕获异常记录到数据库或缓存单独处理。</p>
-</li>
-</ol>
-<h3 id="消费"><a href="#消费" class="headerlink" title="消费"></a>消费</h3><p>先commit再处理消息，如果出现异常，但是offset已经提交，消息对于消费者来说丢失了。</p>
-<h3 id="broker的刷盘"><a href="#broker的刷盘" class="headerlink" title="broker的刷盘"></a>broker的刷盘</h3><p>减小刷盘间隔（往pagecache中刷盘的时间）</p>
-<h2 id="Consumer是pull还是push"><a href="#Consumer是pull还是push" class="headerlink" title="Consumer是pull还是push"></a>Consumer是pull还是push</h2><h3 id="pull模式"><a href="#pull模式" class="headerlink" title="pull模式"></a>pull模式</h3><ol>
-<li>根据consumer的消费能力进行数据拉取，可以控制速率</li>
-<li>可以批量拉取或单条拉取</li>
-<li>可以设置不同的提交方式，实现不同的传输语义</li>
-</ol>
-<p>缺点：如果kafka没有数据，会导致consumer<strong>空循环</strong>，消耗资源</p>
-<p>解决：通过参数设置，consumer拉取数据为空或没达到一定数量时阻塞</p>
-<h3 id="push"><a href="#push" class="headerlink" title="push"></a>push</h3><p>不会导致consumer循环等待</p>
-<p>缺点：速率固定，忽略consumer的消费能力，可能导致拒绝服务或网络拥塞等</p>
-<h2 id="Kafka中高性能的原因"><a href="#Kafka中高性能的原因" class="headerlink" title="Kafka中高性能的原因"></a>Kafka中高性能的原因</h2><p>kafka不基于内存，而是硬盘存储，因此<strong>消息堆积能力更强</strong></p>
-<p><strong>顺序写</strong>：利用磁盘的顺序访问速度可以接近内存，kafka的消息都是append操作，partition是有序的，节省了磁盘的寻道时间，同时通过 批量操作 节省写入次数，<strong>partition物理上分为多个segment存储，方便删除</strong></p>
-<p>传统和<strong>零拷贝</strong>：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/kafka-2.PNG" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/kafka-3.PNG" alt></p>
-<pre class="line-numbers language-shell"><code class="language-shell">buf = mmap(diskfd, len);
-write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>应用程序调用<code>mmap()</code>，磁盘上的数据会通过<code>DMA</code>被拷贝的内核缓冲区，接着操作系统会把这段内核缓冲区与应用程序共享，这样就<strong>不需要把内核缓冲区的内容往用户空间拷贝</strong>。应用程序再调用<code>write()</code>,操作系统直接将内核缓冲区的内容拷贝到<code>socket</code>缓冲区中，这一切都发生在内核态，最后，<code>socket</code>缓冲区再把数据发到网卡去。</p>
-<blockquote>
-<p>kafka不太依赖jvm（存储数据不依赖堆内存），靠OS的pageCache，如果生产者和消费者速率相当，则直接用pageCache交换数据，不需要经过磁盘IO</p>
-</blockquote>
-<h2 id="Rebalance机制"><a href="#Rebalance机制" class="headerlink" title="Rebalance机制"></a>Rebalance机制</h2><p>consumer group中的消费者与topic下的partition重新匹配的过程</p>
-<p>何时会产生rebalance：</p>
-<ol>
-<li>consumer group中的成员个数发生变化</li>
-<li>consumer消费超时</li>
-<li>group订阅的topic个数发生变化</li>
-<li>group订阅的topic的partition数变化</li>
-</ol>
-<p><strong>coordinator</strong>：通常是partition的leader节点所在的broker，负责监控group中consumer的存活，consumer维持到coordinator的心跳来判断consumer的消费超时</p>
-<ol>
-<li>coordinator<strong>通过心跳</strong>返回通知consumer进行rebalance</li>
-<li>consumer请求coordinator加入组，coordinator<strong>选举</strong>产生leader consumer</li>
-<li>leader consumer从coordinator获取获取所有的consumer，<strong>发送syncGroup</strong>（分配信息）给到coordinator</li>
-<li>coordinator通过心跳机制将syncGroup下发给consumer，完成rebalance</li>
-</ol>
-<p>topic或者patition数量发生变化coordinator是不知道的，此时<strong>leader consumer监控topic的变化</strong>，通知coordinator触发rebalance</p>
-<h3 id="rebalance问题"><a href="#rebalance问题" class="headerlink" title="rebalance问题"></a>rebalance问题</h3><p>如果C1消费者消息超时，触发rebalance，重新分配，该消息被其他消费者消费，此时C1消费完成提交offset导致错误</p>
-<p>解决：coordinator每次rebalance，会<strong>标记一个Generation</strong>给到consumer，每次rebalance该Generation会+1，consumer提交offset时，coordinator会比对Generation，不一致则拒绝</p>
-<h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><p>待补充</p>
-<h2 id="如何保证分布式事务的最终一致性"><a href="#如何保证分布式事务的最终一致性" class="headerlink" title="如何保证分布式事务的最终一致性"></a>如何保证分布式事务的最终一致性</h2><p>分布式事务：业务相关的多个操作，保证同时commit或rollback</p>
-<ol>
-<li>生产者要保证100%的消息投递（事务消息机制，服务质量Quality of Service）</li>
-<li>消费者这端保证幂等性（唯一ID+业务自己实现幂等） </li>
-</ol>
+                <h2 id="异或性质"><a href="#异或性质" class="headerlink" title="异或性质"></a>异或性质</h2><p>一个值与自身的异或总是为 0</p>
+<p><code>x ^ x = 0</code></p>
+<p>一个值与 0 异或等于本身</p>
+<p><code>x ^ 0 = x</code></p>
+<p>可交换性</p>
+<p><code>a ^ b = b ^ a</code></p>
+<p>可结合性</p>
+<p><code>(a ^ b) ^ c = a ^ (b ^ c)</code></p>
+<h2 id="根据以上的四个特点"><a href="#根据以上的四个特点" class="headerlink" title="根据以上的四个特点"></a>根据以上的四个特点</h2><p>我们可以推导:</p>
+<p>a ^ b = c</p>
+<p>等式两边都增加对b的异或, 等价于</p>
+<p>a ^ b ^ b = c ^ b</p>
+<p>等式左边的 b^b=0, a^0=a, 所以有</p>
+<p>a = c ^ b</p>
+<p>最终相当于把 b 从等号左边转到等号右边来了</p>
 
             </div>
             <hr />
@@ -544,9 +489,9 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Kafka》
+                    《异或》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/13/kafka/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/05/06/algorithm/xor/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -587,7 +532,7 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/03/13/kafka/',
+        id: '2021/05/06/algorithm/xor/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -612,31 +557,31 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/14/java/java-collection/">
+                <a href="/2021/05/11/webhook/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/39.jpg" class="responsive-img" alt="Java中的集合类">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/79.jpg" class="responsive-img" alt="Webhook了解">
                         
-                        <span class="card-title">Java中的集合类</span>
+                        <span class="card-title">Webhook了解</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java中的集合主要分为以下集合类：Map、List、Set、Queue和concurrent包里面供多线程环境下使用的以上几种集合类。
+                            在 Webhook 范式下，服务器更新所需提供的资源，然后自动将其作为更新发送到客户端
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-14
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-11
                         </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/Web/" class="post-category" target="_blank">
+                                    Web
                                 </a>
                             
                             
@@ -646,8 +591,8 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/http/" target="_blank">
+                        <span class="chip bg-color">http</span>
                     </a>
                     
                 </div>
@@ -661,31 +606,31 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/12/java/dubbo/">
+                <a href="/2021/04/25/algorithm/heapsort/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/79.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/54.jpg" class="responsive-img" alt="堆排序">
                         
-                        <span class="card-title">Dubbo的整体架构设计及分层</span>
+                        <span class="card-title">堆排序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            没用过，与springcloud比较一下。
+                            复习一下，太久没用都忘记了
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-12
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-25
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/编程算法/" class="post-category" target="_blank">
+                                    编程算法
                                 </a>
                             
                             
@@ -695,8 +640,8 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -870,7 +815,7 @@ write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">205.2k</span>
+            <span class="white-color">208.1k</span>
             
 
             <br>

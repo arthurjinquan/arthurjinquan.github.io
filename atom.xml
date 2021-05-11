@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://arthurjq.com/"/>
-  <updated>2021-05-11T02:48:33.719Z</updated>
+  <updated>2021-05-11T09:48:48.544Z</updated>
   <id>https://arthurjq.com/</id>
   
   <author>
@@ -17,9 +17,62 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>启发性搜索算法</title>
+    <link href="https://arthurjq.com/2021/05/11/heuristic-search/"/>
+    <id>https://arthurjq.com/2021/05/11/heuristic-search/</id>
+    <published>2021-05-11T09:19:41.000Z</published>
+    <updated>2021-05-11T09:48:48.544Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="启发性搜索"><a href="#启发性搜索" class="headerlink" title="启发性搜索"></a>启发性搜索</h2><p>在宽度优先和深度优先搜索里面，我们都是根据搜索的顺序依次进行搜索，可以称为盲目搜索，搜索效率非常低。</p><p>在状态空间中的搜索对每一个搜索的位置进行评估，得到<strong>最好的位置</strong>，再从这个位置进行搜索直到目标。这样可以省略大量无谓的搜索路径，提高了效率。</p><h2 id="Leetcode-1723"><a href="#Leetcode-1723" class="headerlink" title="Leetcode 1723"></a>Leetcode 1723</h2><h4 id="1723-完成所有工作的最短时间"><a href="#1723-完成所有工作的最短时间" class="headerlink" title="1723. 完成所有工作的最短时间"></a><a href="https://leetcode-cn.com/problems/find-minimum-time-to-finish-all-jobs/" target="_blank" rel="noopener">1723. 完成所有工作的最短时间</a></h4><p>给你一个整数数组 jobs ，其中 jobs[i] 是完成第 i 项工作要花费的时间。</p><p>请你将这些工作分配给 k 位工人。所有工作都应该分配给工人，且每项工作只能分配给一位工人。工人的 工作时间 是完成分配给他们的所有工作花费时间的总和。请你设计一套最佳的工作分配方案，使工人的 最大工作时间 得以 最小化 。</p><p>返回分配方案中尽可能 最小 的 最大工作时间 。</p><p>参考宫水三叶的解法，记录一下：</p><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>    <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> jobs<span class="token punctuation">;</span>    <span class="token keyword">int</span> n<span class="token punctuation">,</span> k<span class="token punctuation">;</span>    <span class="token keyword">int</span> ans <span class="token operator">=</span> <span class="token number">0x3f3f3f3f</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//无穷大，并且不像Integer.MAX_VALUE加1直接溢出</span>    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">minimumTimeRequired</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> _jobs<span class="token punctuation">,</span> <span class="token keyword">int</span> _k<span class="token punctuation">)</span> <span class="token punctuation">{</span>        jobs <span class="token operator">=</span> _jobs<span class="token punctuation">;</span>        n <span class="token operator">=</span> jobs<span class="token punctuation">.</span>length<span class="token punctuation">;</span>        k <span class="token operator">=</span> _k<span class="token punctuation">;</span>        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> sum <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> sum<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token keyword">return</span> ans<span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token comment" spellcheck="true">/**     * u     : 当前处理到那个 job     * used  : 当前分配给了多少个工人了     * sum   : 工人的分配情况          例如：sum[0] = x 代表 0 号工人工作量为 x     * max   : 当前的「最大工作时间」     */</span>    <span class="token keyword">void</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> used<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> sum<span class="token punctuation">,</span> <span class="token keyword">int</span> max<span class="token punctuation">)</span> <span class="token punctuation">{</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>max <span class="token operator">>=</span> ans<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>u <span class="token operator">==</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>            ans <span class="token operator">=</span> max<span class="token punctuation">;</span>            <span class="token keyword">return</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token comment" spellcheck="true">// 优先分配给「空闲工人」</span>        <span class="token keyword">if</span> <span class="token punctuation">(</span>used <span class="token operator">&lt;</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>            sum<span class="token punctuation">[</span>used<span class="token punctuation">]</span> <span class="token operator">=</span> jobs<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>            <span class="token function">dfs</span><span class="token punctuation">(</span>u <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> used <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> sum<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>sum<span class="token punctuation">[</span>used<span class="token punctuation">]</span><span class="token punctuation">,</span> max<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            sum<span class="token punctuation">[</span>used<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token comment" spellcheck="true">//i &lt; used是精华！</span>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> used<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> jobs<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>            <span class="token function">dfs</span><span class="token punctuation">(</span>u <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> used<span class="token punctuation">,</span> sum<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> max<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-=</span> jobs<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>    <span class="token punctuation">}</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="为什么是-i-lt-used"><a href="#为什么是-i-lt-used" class="headerlink" title="为什么是 i &lt; used"></a>为什么是 i &lt; used</h2><pre class="line-numbers language-java"><code class="language-java">      <span class="token keyword">if</span> <span class="token punctuation">(</span>used <span class="token operator">&lt;</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>            sum<span class="token punctuation">[</span>used<span class="token punctuation">]</span> <span class="token operator">=</span> jobs<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>            <span class="token function">dfs</span><span class="token punctuation">(</span>u <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> used <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> sum<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>sum<span class="token punctuation">[</span>used<span class="token punctuation">]</span><span class="token punctuation">,</span> max<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            sum<span class="token punctuation">[</span>used<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span>        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> used<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>            sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> jobs<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>            <span class="token function">dfs</span><span class="token punctuation">(</span>u <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> used<span class="token punctuation">,</span> sum<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> max<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            sum<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">-=</span> jobs<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>        <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>当if语句执行完时，意味着平均分配时的解已经找完了。</p><p>现在<strong>尝试寻找不平均分配时的解</strong>。 也就是尝试有空余人不分配任务，也就是有部分人先执行两个 / 多个任务而有部分人空着。也就是搜索树的剩余部分。</p><p>例：1 2 4分配给甲乙，if执行完之后，已经尝试了平均分配的情况： 即先分配1给甲，随后分配2给乙（剩余的空闲的人），再搜索4。或其他情况。</p><p>if完成之后，现在平均分配方案已经全部尝试完毕，所以我们应该：尝试先将1分配给甲，再将2分配给甲，再搜索4。</p><p>如果有多个人，会依次在 sum[used] = 0位置时回溯多次，依次在每一次回溯时回退多个空余的人，继续搜索树。</p><p>注意：例：有三个人甲乙丙，if执行完成。 第一轮：退出<code>dfs(used+1)</code>语句， sum[used] = 0语句回退空余的丙。进入<code>for(i &lt; used)</code>,对下一个任务在甲乙之间分配（注意此时used为2，区间为甲乙，和<code>dfs(used+1)</code>的参数不同）。然后进入dfs，这时再进if,给空余的丙分配任务。</p><p>第二轮，退出dfs,回退空余的乙丙，进入<code>for(i &lt; used)</code>,对下一个任务在甲之间分配。然后进入dfs，这时再进if,给空余的乙丙分配任务。再次进入回溯步骤。</p><blockquote><p>如果是i &lt; k，多了[used，k），在这部分空闲工人中分配的结果和if（used &lt; k）中的结果是一样的，都是分配给空闲的工人，因为他本身就没有「工作时间」，给谁都是一样的。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;启发性搜索&quot;&gt;&lt;a href=&quot;#启发性搜索&quot; class=&quot;headerlink&quot; title=&quot;启发性搜索&quot;&gt;&lt;/a&gt;启发性搜索&lt;/h2&gt;&lt;p&gt;在宽度优先和深度优先搜索里面，我们都是根据搜索的顺序依次进行搜索，可以称为盲目搜索，搜索效率非常低。&lt;/p&gt;
+&lt;p&gt;
+      
+    
+    </summary>
+    
+      <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Webhook了解</title>
+    <link href="https://arthurjq.com/2021/05/11/webhook/"/>
+    <id>https://arthurjq.com/2021/05/11/webhook/</id>
+    <published>2021-05-11T06:35:12.000Z</published>
+    <updated>2021-05-11T06:57:58.223Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Webhook是什么"><a href="#Webhook是什么" class="headerlink" title="Webhook是什么"></a>Webhook是什么</h2><p>Webhook 是一个 API 概念，是微服务 API 的使用范式之一，也被成为反向 API，即前端不主动发送请求，完全由后端推送；举个常用例子，比如你的好友发了一条朋友圈，后端将这条消息推送给所有其他好友的客户端，就是 Webhook 的典型场景。</p><p>简单来说，Webhook 就是一个接收 HTTP POST（或GET，PUT，DELETE）的URL，一个实现了 Webhook 的 API 提供商就是在当事件发生的时候会向这个配置好的 URL 发送一条信息，与请求-响应式不同，使用 Webhook 你可以实时接受到变化。</p><p>这又是一种对 客户机-服务器 模式的逆转，在传统方法中，客户端从服务器请求数据，然后服务器提供给客户端数据（客户端是在拉数据），在 Webhook 范式下，服务器更新所需提供的资源，然后自动将其作为更新发送到客户端（服务器是在推数据），客户端不是请求者，而是被动接收方；这种控制关系的反转可以用来促进许多原本需要在远程服务器上进行更复杂的请求和不断的轮询的通信请求；通过简单地接收资源而不是直接发送请求，我们可以更新远程代码库，轻松地分配资源，甚至将其集成到现有系统中来根据 API 的需要来更新端点和相关数据，唯一的缺点是初始建立困难。</p><p>主要用途：<strong>更新客户端，在资源新建或者更新时提供更新的、指定的数据。</strong></p><h2 id="常见-Webhook-使用场景"><a href="#常见-Webhook-使用场景" class="headerlink" title="常见 Webhook 使用场景"></a>常见 Webhook 使用场景</h2><p>对于第三方平台验权、登陆等 没有前端界面做中转的场景，或者强安全要求的支付场景等，适合用 Webhook 做数据主动推送，说白了就是在前端无从参与，或者因为前端安全问题不适合参与时，就是 Webhook 的场景；很显然 Webhook 也不是 Http 的替代品，不过的确是一种新的前后端交互方式。</p><p>如果客户端要长期监听某个任务的状态，按照正常的 API 调用的方式去做，那么必须不停得轮训服务器来获取当前状态；使用 Webhook 则无需轮训，通过 API 可以确定是否发生了更改，如果更改了只需要等待服务器推送信息过来，然后客户端更新就可以；git webhook其实也是这方面的应用。</p><h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>Webhook 通过请求发送数据到你的应用后，就不再关注这些数据；也就是说如果你的应用存在问题，数据会丢失，许多 Webhook 会处理回应，如果程序出现错误会重传数据；如果你的应用处理这个请求并且依然返回一个错误，你的应用就会收到重复数据。</p><p>Webhook 可能会发出大量的请求，这样会造成你的应用阻塞，确保你的应用能处理这些请求。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Webhook是什么&quot;&gt;&lt;a href=&quot;#Webhook是什么&quot; class=&quot;headerlink&quot; title=&quot;Webhook是什么&quot;&gt;&lt;/a&gt;Webhook是什么&lt;/h2&gt;&lt;p&gt;Webhook 是一个 API 概念，是微服务 API 的使用范式之一，也被
+      
+    
+    </summary>
+    
+      <category term="Web" scheme="https://arthurjq.com/categories/Web/"/>
+    
+    
+      <category term="http" scheme="https://arthurjq.com/tags/http/"/>
+    
+  </entry>
+  
+  <entry>
     <title>异或</title>
-    <link href="https://arthurjq.com/2021/05/06/xor/"/>
-    <id>https://arthurjq.com/2021/05/06/xor/</id>
+    <link href="https://arthurjq.com/2021/05/06/algorithm/xor/"/>
+    <id>https://arthurjq.com/2021/05/06/algorithm/xor/</id>
     <published>2021-05-06T12:48:25.000Z</published>
     <updated>2021-05-11T02:48:33.719Z</updated>
     
@@ -141,9 +194,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -175,8 +228,8 @@
   
   <entry>
     <title>Netty</title>
-    <link href="https://arthurjq.com/2021/03/27/netty/"/>
-    <id>https://arthurjq.com/2021/03/27/netty/</id>
+    <link href="https://arthurjq.com/2021/03/27/project/netty/"/>
+    <id>https://arthurjq.com/2021/03/27/project/netty/</id>
     <published>2021-03-27T03:28:34.000Z</published>
     <updated>2021-03-27T14:26:30.029Z</updated>
     
@@ -307,9 +360,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -335,9 +388,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -362,9 +415,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -489,58 +542,6 @@
       
         &lt;p&gt;Java中的集合主要分为以下集合类：&lt;strong&gt;Map、List、Set、Queue和concurrent&lt;/strong&gt;包里面供多线程环境下使用的以上几种集合类。&lt;/p&gt;
 &lt;p&gt;转载：&lt;a href=&quot;https://zhuanlan.zhihu.com/p/112
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="https://arthurjq.com/categories/Java/"/>
-    
-    
-      <category term="java" scheme="https://arthurjq.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kafka</title>
-    <link href="https://arthurjq.com/2021/03/13/kafka/"/>
-    <id>https://arthurjq.com/2021/03/13/kafka/</id>
-    <published>2021-03-13T13:57:38.000Z</published>
-    <updated>2021-03-20T12:44:37.625Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="kafka架构设计"><a href="#kafka架构设计" class="headerlink" title="kafka架构设计"></a>kafka架构设计</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/kafka-1.jpg" alt></p><p><strong>Consumer Group</strong>：消费者组，消费者组内每个消费者负责消费不同分区的数据，提高消费能力。<strong>逻辑上的一个订阅者</strong>。</p><p><strong>Topic</strong>：可以理解为一个<strong>队列</strong>，Topic将消息分类，<strong>生产者和消费者面向的同一个Topic</strong>，也就是生产者往Topic发，消费者从Topic拿。</p><p><strong>Partition</strong>：为了实现扩展性，提高并发能力，<strong>一个Topic以多个Partition的方式分布到多个Broker上</strong>，每个Partition是一个<strong>有序</strong>的队列。一个Topic的每个Partition都有若干个副本（Replica），一个Leader和若干个Follower。生产者发送数据的对象，以及消费者消费数据的对象，都是Leader。Follower负责实时从Leader中同步数据，保持和Leader数据的同步。Leader发生故障时，某个Follower还会成为新的Leader。</p><p>Offset：消费者消费的位置信息，监控数据消费到什么位置，用于<strong>数据恢复</strong>。</p><p>Zookeeper：Kafka集群能够正常工作，依赖于Zookeeper，<strong>Zookeeper帮助Kafka存储和管理集群信息</strong>，broker的注册（临时节点），注册Topic，重新选举，存储Offset，消费者组中的消费者注册，保证一条消息只被一个消费者组的其中一个消费者消费，消息消费的配置等。</p><h3 id="zk的作用"><a href="#zk的作用" class="headerlink" title="zk的作用"></a>zk的作用</h3><p><strong>/brokers/ids</strong>：临时节点，保存所有broker节点信息，存储broker的物理地址，版本信息，启动时间等，节点名称为brokerID，broker定时发送心跳到zk，如果断开则该brokerID会被删除</p><p><strong>/brokers/topics</strong>：临时节点，节点保存broker节点下所有的topic信息，每一个topic节点下包含一个固定的partitions节点，patitions的子节点就是topic的分区，每个分区下保存一个<strong>state节点，保存着当前leader分区和ISR的brokerID</strong>，<strong>state节点由leader创建</strong>，若leader宕机该节点会被删除，直到有新的leader选举产生，重新生成state节点</p><p>/consumers/[group_id]/<strong>owners</strong>/[topic]/[broker_id-partition_id]：维护消费者和分区的<strong>注册关系</strong></p><p>/consumers/[group_id]/<strong>offset</strong>/[topic]/[broker_id-partition_id]：分区信息的消费进度Offset</p><p>client通过topic找到topic树下的state节点获得leader的brokerID，到broker树中找到broker的物理地址，但是<strong>client不会直连zk</strong>，而是通过配置的broker获取zk中的消息</p><h2 id="消息丢失的场景和解决方案"><a href="#消息丢失的场景和解决方案" class="headerlink" title="消息丢失的场景和解决方案"></a>消息丢失的场景和解决方案</h2><h3 id="消息发送时丢失"><a href="#消息发送时丢失" class="headerlink" title="消息发送时丢失"></a>消息发送时丢失</h3><ol><li><p>ack=0，不重试，producer发送信息完，不管效果，如果发送失败就丢失。</p></li><li><p>ack=1，leader crash，producer发送消息完，只等待lead写入成功就返回，leader crash了，这时如果follower没来得及同步，消息丢失。</p></li><li><p>unclean.leader.election.enable 配置 true</p><p>允许选举ISR以外的副本为leader，会导致数据丢失，默认为false。producer发送异步消息完，只等待lead写入成功就返回了，leader crash了，这时ISR中没有follower，leader从OSR中选举，因为OSR中本来落后于leader造成消息丢失。</p></li></ol><h3 id="消息发送解决方案"><a href="#消息发送解决方案" class="headerlink" title="消息发送解决方案"></a>消息发送解决方案</h3><ol><li><p>配置 <strong>ack = all</strong> / -1（指的是ISR中的所有从节点），tries &gt; 1，unclean.leader.election.enable ：false（不允许选举ISR以外的副本为leader）</p><p>producer发送消息完，等待follower同步完再返回，如果异常则重试，但副本数量影响吞吐量</p></li><li><p>配置 <strong>min.insync.replicas &gt; 1</strong>（同步副本数量指的是ISR中的从节点，<strong>只有ack=all时才会生效</strong>）</p><p>副本指定必须确认写操作成功的最小副本数量。如果不满足这个最小值，则生产者将引发一个异常（NotEnoughReplicas，NotEnoughReplicasAfterAppend）。min.insync.replicas 和 ack 持久性保证，确保如果大多数副本没有收到写操作，则生产者引发异常。</p></li><li><p>失败地offset单独记录</p><p>producer发送消息，会自动重试，遇到不可恢复异常会抛出，这时可以捕获异常记录到数据库或缓存单独处理。</p></li></ol><h3 id="消费"><a href="#消费" class="headerlink" title="消费"></a>消费</h3><p>先commit再处理消息，如果出现异常，但是offset已经提交，消息对于消费者来说丢失了。</p><h3 id="broker的刷盘"><a href="#broker的刷盘" class="headerlink" title="broker的刷盘"></a>broker的刷盘</h3><p>减小刷盘间隔（往pagecache中刷盘的时间）</p><h2 id="Consumer是pull还是push"><a href="#Consumer是pull还是push" class="headerlink" title="Consumer是pull还是push"></a>Consumer是pull还是push</h2><h3 id="pull模式"><a href="#pull模式" class="headerlink" title="pull模式"></a>pull模式</h3><ol><li>根据consumer的消费能力进行数据拉取，可以控制速率</li><li>可以批量拉取或单条拉取</li><li>可以设置不同的提交方式，实现不同的传输语义</li></ol><p>缺点：如果kafka没有数据，会导致consumer<strong>空循环</strong>，消耗资源</p><p>解决：通过参数设置，consumer拉取数据为空或没达到一定数量时阻塞</p><h3 id="push"><a href="#push" class="headerlink" title="push"></a>push</h3><p>不会导致consumer循环等待</p><p>缺点：速率固定，忽略consumer的消费能力，可能导致拒绝服务或网络拥塞等</p><h2 id="Kafka中高性能的原因"><a href="#Kafka中高性能的原因" class="headerlink" title="Kafka中高性能的原因"></a>Kafka中高性能的原因</h2><p>kafka不基于内存，而是硬盘存储，因此<strong>消息堆积能力更强</strong></p><p><strong>顺序写</strong>：利用磁盘的顺序访问速度可以接近内存，kafka的消息都是append操作，partition是有序的，节省了磁盘的寻道时间，同时通过 批量操作 节省写入次数，<strong>partition物理上分为多个segment存储，方便删除</strong></p><p>传统和<strong>零拷贝</strong>：</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/kafka-2.PNG" alt></p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/kafka-3.PNG" alt></p><pre class="line-numbers language-shell"><code class="language-shell">buf = mmap(diskfd, len);write(sockfd, buf, len);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>应用程序调用<code>mmap()</code>，磁盘上的数据会通过<code>DMA</code>被拷贝的内核缓冲区，接着操作系统会把这段内核缓冲区与应用程序共享，这样就<strong>不需要把内核缓冲区的内容往用户空间拷贝</strong>。应用程序再调用<code>write()</code>,操作系统直接将内核缓冲区的内容拷贝到<code>socket</code>缓冲区中，这一切都发生在内核态，最后，<code>socket</code>缓冲区再把数据发到网卡去。</p><blockquote><p>kafka不太依赖jvm（存储数据不依赖堆内存），靠OS的pageCache，如果生产者和消费者速率相当，则直接用pageCache交换数据，不需要经过磁盘IO</p></blockquote><h2 id="Rebalance机制"><a href="#Rebalance机制" class="headerlink" title="Rebalance机制"></a>Rebalance机制</h2><p>consumer group中的消费者与topic下的partition重新匹配的过程</p><p>何时会产生rebalance：</p><ol><li>consumer group中的成员个数发生变化</li><li>consumer消费超时</li><li>group订阅的topic个数发生变化</li><li>group订阅的topic的partition数变化</li></ol><p><strong>coordinator</strong>：通常是partition的leader节点所在的broker，负责监控group中consumer的存活，consumer维持到coordinator的心跳来判断consumer的消费超时</p><ol><li>coordinator<strong>通过心跳</strong>返回通知consumer进行rebalance</li><li>consumer请求coordinator加入组，coordinator<strong>选举</strong>产生leader consumer</li><li>leader consumer从coordinator获取获取所有的consumer，<strong>发送syncGroup</strong>（分配信息）给到coordinator</li><li>coordinator通过心跳机制将syncGroup下发给consumer，完成rebalance</li></ol><p>topic或者patition数量发生变化coordinator是不知道的，此时<strong>leader consumer监控topic的变化</strong>，通知coordinator触发rebalance</p><h3 id="rebalance问题"><a href="#rebalance问题" class="headerlink" title="rebalance问题"></a>rebalance问题</h3><p>如果C1消费者消息超时，触发rebalance，重新分配，该消息被其他消费者消费，此时C1消费完成提交offset导致错误</p><p>解决：coordinator每次rebalance，会<strong>标记一个Generation</strong>给到consumer，每次rebalance该Generation会+1，consumer提交offset时，coordinator会比对Generation，不一致则拒绝</p><h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><p>待补充</p><h2 id="如何保证分布式事务的最终一致性"><a href="#如何保证分布式事务的最终一致性" class="headerlink" title="如何保证分布式事务的最终一致性"></a>如何保证分布式事务的最终一致性</h2><p>分布式事务：业务相关的多个操作，保证同时commit或rollback</p><ol><li>生产者要保证100%的消息投递（事务消息机制，服务质量Quality of Service）</li><li>消费者这端保证幂等性（唯一ID+业务自己实现幂等） </li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;kafka架构设计&quot;&gt;&lt;a href=&quot;#kafka架构设计&quot; class=&quot;headerlink&quot; title=&quot;kafka架构设计&quot;&gt;&lt;/a&gt;kafka架构设计&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://gitee.com/arthurjq/blogi
-      
-    
-    </summary>
-    
-      <category term="项目" scheme="https://arthurjq.com/categories/%E9%A1%B9%E7%9B%AE/"/>
-    
-    
-      <category term="中间件" scheme="https://arthurjq.com/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Dubbo的整体架构设计及分层</title>
-    <link href="https://arthurjq.com/2021/03/12/java/dubbo/"/>
-    <id>https://arthurjq.com/2021/03/12/java/dubbo/</id>
-    <published>2021-03-12T11:59:32.000Z</published>
-    <updated>2021-03-13T13:19:06.115Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="五个角色"><a href="#五个角色" class="headerlink" title="五个角色"></a>五个角色</h2><p>注册中心registry：服务注册与发现</p><p>服务提供者provider：暴露服务</p><p>服务消费者consumer：调用远程服务</p><p>监控中心monitor：统计服务的调用次数和调用时间</p><p>容器container：服务允许容器，装载provider</p><h2 id="调用流程"><a href="#调用流程" class="headerlink" title="调用流程"></a>调用流程</h2><ol><li>container容器负责启动、加载、运行provider</li><li>provider在启动时，向regisitry中心注册自己提供的服务，基于心跳机制的长连接</li><li>consumer在启动时，向registry中心订阅自己所需的服务</li><li>consumer返回服务提供者列表给consumer，如果有变更，registry将基于<strong>长连接</strong>推送变更数据给consumer</li><li>consumer调用provider服务，基于负载均衡算法调用</li><li>consumer调用provider的统计，基于短链接定时每分钟一次统计到monitor</li></ol><h2 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h2><p>接口服务层（Service）：面向开发者，业务代码，接口，实现等</p><p>配置层（Config）：对外配置接口，以ServiceConfig和ReferenceConfig为配置中心去加载我们的配置和维护我们的配置，当有变化时通常使用Zookeeper去通知客户端</p><p>服务代理层（Proxy）：对于生产者和消费者、dubbo都会<strong>产生一个代理类封装调用细节</strong>，业务层对远程调用无感</p><p>服务注册层（Registry）：封装服务地址的注册和发现，以URL为中心，通常使用ZK</p><p>路由层（Monitor）：封装多个提供者的路由和负载均衡，并桥接注册中心</p><p>监控层（Monitor）：RPC调用次数和调用时间监控</p><p>远程调用层（Protocal）：封装RPC调用（基于TCP）</p><p>信息交换层（Exchange）：封装请求响应模式，同步转异步</p><p>网络传输层（Transport）：抽象mina 和 netty 为统一接口，<strong>统一网络传输接口</strong></p><p>数据序列化层（Serialize）：数据传输的序列化和反序列化</p><p><strong>没有解决服务熔断，服务降级</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;五个角色&quot;&gt;&lt;a href=&quot;#五个角色&quot; class=&quot;headerlink&quot; title=&quot;五个角色&quot;&gt;&lt;/a&gt;五个角色&lt;/h2&gt;&lt;p&gt;注册中心registry：服务注册与发现&lt;/p&gt;
-&lt;p&gt;服务提供者provider：暴露服务&lt;/p&gt;
-&lt;p&gt;服务消费者con
       
     
     </summary>
