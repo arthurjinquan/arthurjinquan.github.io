@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://arthurjq.com/"/>
-  <updated>2021-05-06T12:54:27.653Z</updated>
+  <updated>2021-05-11T02:48:33.719Z</updated>
   <id>https://arthurjq.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://arthurjq.com/2021/05/06/xor/"/>
     <id>https://arthurjq.com/2021/05/06/xor/</id>
     <published>2021-05-06T12:48:25.000Z</published>
-    <updated>2021-05-06T12:54:27.653Z</updated>
+    <updated>2021-05-11T02:48:33.719Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="异或性质"><a href="#异或性质" class="headerlink" title="异或性质"></a>异或性质</h2><p>一个值与自身的异或总是为 0</p><p><code>x ^ x = 0</code></p><p>一个值与 0 异或等于本身</p><p><code>x ^ 0 = x</code></p><p>可交换性</p><p><code>a ^ b = b ^ a</code></p><p>可结合性</p><p><code>(a ^ b) ^ c = a ^ (b ^ c)</code></p><h2 id="根据以上的四个特点"><a href="#根据以上的四个特点" class="headerlink" title="根据以上的四个特点"></a>根据以上的四个特点</h2><p>我们可以推导:</p><p>a ^ b = c</p><p>等式两边都增加对b的异或, 等价于</p><p>a ^ b ^ b = c ^ b</p><p>等式左边的 b^b=0, a^0=a, 所以有</p><p>a = c ^ b</p><p>最终相当于把 b 从等号左边转到等号右边来了.</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="异或性质"><a href="#异或性质" class="headerlink" title="异或性质"></a>异或性质</h2><p>一个值与自身的异或总是为 0</p><p><code>x ^ x = 0</code></p><p>一个值与 0 异或等于本身</p><p><code>x ^ 0 = x</code></p><p>可交换性</p><p><code>a ^ b = b ^ a</code></p><p>可结合性</p><p><code>(a ^ b) ^ c = a ^ (b ^ c)</code></p><h2 id="根据以上的四个特点"><a href="#根据以上的四个特点" class="headerlink" title="根据以上的四个特点"></a>根据以上的四个特点</h2><p>我们可以推导:</p><p>a ^ b = c</p><p>等式两边都增加对b的异或, 等价于</p><p>a ^ b ^ b = c ^ b</p><p>等式左边的 b^b=0, a^0=a, 所以有</p><p>a = c ^ b</p><p>最终相当于把 b 从等号左边转到等号右边来了</p>]]></content>
     
     <summary type="html">
     
