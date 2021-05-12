@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://arthurjq.com/2021/05/11/heuristic-search/</loc>
+    <loc>https://arthurjq.com/2020/12/30/database/mysql-join/</loc>
     
-    <lastmod>2021-05-11T09:48:48.544Z</lastmod>
+    <lastmod>2021-05-12T03:35:50.860Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/16/java/singleton/</loc>
+    
+    <lastmod>2021-05-12T03:08:18.402Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/13/project/kafka/</loc>
+    
+    <lastmod>2021-05-12T02:39:01.348Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/19/algorithm/dynamic-programming/</loc>
+    
+    <lastmod>2021-05-12T02:36:28.778Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/05/11/algorithm/heuristic-search/</loc>
+    
+    <lastmod>2021-05-12T02:34:27.165Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/05/12/traverse-method/</loc>
+    
+    <lastmod>2021-05-11T16:57:42.384Z</lastmod>
     
   </url>
   
@@ -30,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/05/11/webhook/</loc>
+    <loc>https://arthurjq.com/2021/05/11/web/webhook/</loc>
     
     <lastmod>2021-05-11T06:57:58.223Z</lastmod>
     
@@ -79,13 +114,6 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/03/19/algorithm/dynamic-programming/</loc>
-    
-    <lastmod>2021-04-24T12:34:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://arthurjq.com/2021/04/12/reentrantlock/</loc>
     
     <lastmod>2021-04-22T14:30:10.290Z</lastmod>
@@ -100,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/04/21/net/</loc>
+    <loc>https://arthurjq.com/2021/04/21/web/net/</loc>
     
     <lastmod>2021-04-21T13:37:43.421Z</lastmod>
     
@@ -191,13 +219,6 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/03/13/project/kafka/</loc>
-    
-    <lastmod>2021-03-20T12:44:37.625Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://arthurjq.com/2020/12/22/web/https/</loc>
     
     <lastmod>2021-03-20T12:05:29.173Z</lastmod>
@@ -257,13 +278,6 @@
     <loc>https://arthurjq.com/2020/12/30/database/mysql-explain/</loc>
     
     <lastmod>2021-03-19T08:56:51.809Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2020/12/30/database/mysql-join/</loc>
-    
-    <lastmod>2021-03-19T08:28:09.949Z</lastmod>
     
   </url>
   
@@ -404,13 +418,6 @@
     <loc>https://arthurjq.com/2021/02/25/database/es/</loc>
     
     <lastmod>2021-03-16T12:49:41.090Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/16/java/singleton/</loc>
-    
-    <lastmod>2021-03-16T05:56:20.142Z</lastmod>
     
   </url>
   

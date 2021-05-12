@@ -1,8 +1,9 @@
-https://arthurjq.com/2021/05/11/heuristic-search/
-https://arthurjq.com/2021/05/11/webhook/
+https://arthurjq.com/2021/05/12/traverse-method/
+https://arthurjq.com/2021/05/11/algorithm/heuristic-search/
+https://arthurjq.com/2021/05/11/web/webhook/
 https://arthurjq.com/2021/05/06/algorithm/xor/
 https://arthurjq.com/2021/04/25/algorithm/heapsort/
-https://arthurjq.com/2021/04/21/net/
+https://arthurjq.com/2021/04/21/web/net/
 https://arthurjq.com/2021/04/12/reentrantlock/
 https://arthurjq.com/2021/03/30/algorithm/nqueen/
 https://arthurjq.com/2021/03/30/algorithm/sumabc/

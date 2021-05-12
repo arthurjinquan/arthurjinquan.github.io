@@ -4,13 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="计算机网络, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="Webhook了解, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="输入www.taobao.com会发生什么？
-最后关闭TCP连接
-三次握手的第三个ACK包丢了如果此时ACK在网络中丢失，那么Server端该TCP连接的状态为SYN_RECV，并且依次等待3秒、6秒、12秒后重新发送SYN+ACK包，以便">
+    <meta name="description" content="Webhook是什么Webhook 是一个 API 概念，是微服务 API 的使用范式之一，也被成为反向 API，即前端不主动发送请求，完全由后端推送；举个常用例子，比如你的好友发了一条朋友圈，后端将这条消息推送给所有其他好友的客户端，就是">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>计算机网络 | 锦泉^-^</title>
+    <title>Webhook了解 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -255,13 +253,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/80.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        计算机网络
+                        Webhook了解
                     </div>
                 </div>
             </div>
@@ -372,8 +370,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/计算机网络/" target="_blank">
-                            <span class="chip bg-color">计算机网络</span>
+                        <a href="/tags/http/" target="_blank">
+                            <span class="chip bg-color">http</span>
                         </a>
                         
                     </div>
@@ -396,7 +394,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-04-21
+                    2021-05-11
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -410,14 +408,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    507
+                    800
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -433,24 +431,14 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="输入www-taobao-com会发生什么？"><a href="#输入www-taobao-com会发生什么？" class="headerlink" title="输入www.taobao.com会发生什么？"></a>输入<a href="http://www.taobao.com会发生什么？" target="_blank" rel="noopener">www.taobao.com会发生什么？</a></h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-1.jpg" alt></p>
-<p>最后关闭TCP连接</p>
-<h2 id="三次握手的第三个ACK包丢了"><a href="#三次握手的第三个ACK包丢了" class="headerlink" title="三次握手的第三个ACK包丢了"></a>三次握手的第三个ACK包丢了</h2><p>如果此时ACK在网络中丢失，那么Server端该TCP连接的状态为SYN_RECV，并且依次等待3秒、6秒、12秒后重新发送SYN+ACK包，以便Client重新发送ACK包。 </p>
-<p>Server重发SYN+ACK包的次数，可以通过设置/proc/sys/net/ipv4/tcp_synack_retries修改，默认值为5。     </p>
-<p>如果重发指定次数后，仍然未收到ACK应答，那么一段时间后，Server自动关闭这个连接。</p>
-<p>但是Client认为这个连接已经建立，如果Client端向Server写数据，Server端将以RST包响应，方能感知到Server的错误。</p>
-<h2 id="为什么一定要TIME-WAIT"><a href="#为什么一定要TIME-WAIT" class="headerlink" title="为什么一定要TIME-WAIT"></a>为什么一定要TIME-WAIT</h2><ol>
-<li>可靠地实现TCP全双工连接地终止：当客户端发送最后一次ACK后，自身进入TIME-WAIT，ACK报文丢失后，客户端再次发送FIN报文给客户端，若此时客户端已关闭，则客户端发送一个RST，服务器收到后认为该连接出现异常</li>
-<li>保证让迟来地TCP报文有足够时间被识别并丢弃：如果关闭了连接又立马新建立一个连接，则上一个连接传输较慢地数据包很可能会被新连接接收</li>
-</ol>
-<h2 id="存在TIME-WAIT一定保证正常关闭么"><a href="#存在TIME-WAIT一定保证正常关闭么" class="headerlink" title="存在TIME-WAIT一定保证正常关闭么"></a>存在TIME-WAIT一定保证正常关闭么</h2><p>如果TIME-WAIT发送地ACK丢失，服务器超时重发FIN也丢失，则进入CLOSED阶段</p>
-<h2 id="介绍下进程和线程，介绍下线程的通信方式"><a href="#介绍下进程和线程，介绍下线程的通信方式" class="headerlink" title="介绍下进程和线程，介绍下线程的通信方式"></a>介绍下进程和线程，介绍下线程的通信方式</h2><p>进程是资源分配的最小单位，线程是CPU调度的最小单位</p>
-<ol>
-<li>基于 volatile 关键字来实现线程间相互通信是使用共享内存的思想</li>
-<li>Object类提供了线程间通信的方法：<code>wait()、notify()、notifyaAl()</code>，注意： wait和 notify必须配合synchronized使用，wait方法释放锁，notify方法不释放锁</li>
-<li>使用JUC工具类 CountDownLatch，相当于也是维护了一个线程间共享变量state</li>
-<li>使用 ReentrantLock 结合 Condition，condition.signal和condition.await</li>
-</ol>
+                <h2 id="Webhook是什么"><a href="#Webhook是什么" class="headerlink" title="Webhook是什么"></a>Webhook是什么</h2><p>Webhook 是一个 API 概念，是微服务 API 的使用范式之一，也被成为反向 API，即前端不主动发送请求，完全由后端推送；举个常用例子，比如你的好友发了一条朋友圈，后端将这条消息推送给所有其他好友的客户端，就是 Webhook 的典型场景。</p>
+<p>简单来说，Webhook 就是一个接收 HTTP POST（或GET，PUT，DELETE）的URL，一个实现了 Webhook 的 API 提供商就是在当事件发生的时候会向这个配置好的 URL 发送一条信息，与请求-响应式不同，使用 Webhook 你可以实时接受到变化。</p>
+<p>这又是一种对 客户机-服务器 模式的逆转，在传统方法中，客户端从服务器请求数据，然后服务器提供给客户端数据（客户端是在拉数据），在 Webhook 范式下，服务器更新所需提供的资源，然后自动将其作为更新发送到客户端（服务器是在推数据），客户端不是请求者，而是被动接收方；这种控制关系的反转可以用来促进许多原本需要在远程服务器上进行更复杂的请求和不断的轮询的通信请求；通过简单地接收资源而不是直接发送请求，我们可以更新远程代码库，轻松地分配资源，甚至将其集成到现有系统中来根据 API 的需要来更新端点和相关数据，唯一的缺点是初始建立困难。</p>
+<p>主要用途：<strong>更新客户端，在资源新建或者更新时提供更新的、指定的数据。</strong></p>
+<h2 id="常见-Webhook-使用场景"><a href="#常见-Webhook-使用场景" class="headerlink" title="常见 Webhook 使用场景"></a>常见 Webhook 使用场景</h2><p>对于第三方平台验权、登陆等 没有前端界面做中转的场景，或者强安全要求的支付场景等，适合用 Webhook 做数据主动推送，说白了就是在前端无从参与，或者因为前端安全问题不适合参与时，就是 Webhook 的场景；很显然 Webhook 也不是 Http 的替代品，不过的确是一种新的前后端交互方式。</p>
+<p>如果客户端要长期监听某个任务的状态，按照正常的 API 调用的方式去做，那么必须不停得轮训服务器来获取当前状态；使用 Webhook 则无需轮训，通过 API 可以确定是否发生了更改，如果更改了只需要等待服务器推送信息过来，然后客户端更新就可以；git webhook其实也是这方面的应用。</p>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p>Webhook 通过请求发送数据到你的应用后，就不再关注这些数据；也就是说如果你的应用存在问题，数据会丢失，许多 Webhook 会处理回应，如果程序出现错误会重传数据；如果你的应用处理这个请求并且依然返回一个错误，你的应用就会收到重复数据。</p>
+<p>Webhook 可能会发出大量的请求，这样会造成你的应用阻塞，确保你的应用能处理这些请求。</p>
 
             </div>
             <hr />
@@ -485,9 +473,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《计算机网络》
+                    《Webhook了解》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/04/21/net/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/05/11/web/webhook/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -528,7 +516,7 @@
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/04/21/net/',
+        id: '2021/05/11/web/webhook/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -553,25 +541,78 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/04/25/algorithm/heapsort/">
+                <a href="/2021/05/11/algorithm/heuristic-search/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/54.jpg" class="responsive-img" alt="堆排序">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/85.jpg" class="responsive-img" alt="启发性搜索算法">
                         
-                        <span class="card-title">堆排序</span>
+                        <span class="card-title">启发性搜索算法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            复习一下，太久没用都忘记了
+                            先确定开始的位置~
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-25
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-11
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/编程算法/" class="post-category" target="_blank">
+                                    编程算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/05/06/algorithm/xor/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/56.jpg" class="responsive-img" alt="异或">
+                        
+                        <span class="card-title">异或</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            a ^ b = c <==> a = c ^ b
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -589,59 +630,6 @@
                     
                     <a href="/tags/算法/" target="_blank">
                         <span class="chip bg-color">算法</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/04/12/reentrantlock/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/99.jpg" class="responsive-img" alt="ReentrantLock">
-                        
-                        <span class="card-title">ReentrantLock</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            在JDK1.6之前，synchronized这个重量级锁其性能一直都是较为低下，虽然在1.6后，进行大量的锁优化策略,但是与Lock相比synchronized还是存在一些缺陷的：虽然synchronized提供了便捷性的隐式获取锁释放锁机
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-04-12
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
-                    </a>
-                    
-                    <a href="/tags/lock/" target="_blank">
-                        <span class="chip bg-color">lock</span>
                     </a>
                     
                 </div>
@@ -815,7 +803,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">208.1k</span>
+            <span class="white-color">208.6k</span>
             
 
             <br>
