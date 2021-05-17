@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://arthurjq.com/2020/12/11/java/lambda/</loc>
+    <lastmod>2021-05-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2020/12/11/java/arrays/</loc>
+    <lastmod>2021-05-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/01/15/project/kubernetes-kubectl/</loc>
+    <lastmod>2021-05-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/05/17/array-traverse/</loc>
+    <lastmod>2021-05-16</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/05/16/trie/</loc>
+    <lastmod>2021-05-16</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/04/25/algorithm/heapsort/</loc>
+    <lastmod>2021-05-15</lastmod>
+  </url>
+  <url>
     <loc>https://arthurjq.com/2020/12/30/database/mysql-join/</loc>
     <lastmod>2021-05-12</lastmod>
   </url>
@@ -59,10 +83,6 @@
   <url>
     <loc>https://arthurjq.com/2021/03/19/algorithm/binary-tree-traversal/</loc>
     <lastmod>2021-04-26</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/04/25/algorithm/heapsort/</loc>
-    <lastmod>2021-04-25</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/04/12/reentrantlock/</loc>
@@ -309,10 +329,6 @@
     <lastmod>2021-03-03</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2021/01/15/project/kubernetes-kubectl/</loc>
-    <lastmod>2021-03-03</lastmod>
-  </url>
-  <url>
     <loc>https://arthurjq.com/2021/02/25/database/lucene/</loc>
     <lastmod>2021-02-26</lastmod>
   </url>
@@ -353,19 +369,11 @@
     <lastmod>2021-02-07</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2020/12/11/java/lambda/</loc>
-    <lastmod>2021-02-07</lastmod>
-  </url>
-  <url>
     <loc>https://arthurjq.com/2021/01/19/java/keep-learning/</loc>
     <lastmod>2021-02-07</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/01/23/java/autowired-resource/</loc>
-    <lastmod>2021-02-07</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2020/12/11/java/arrays/</loc>
     <lastmod>2021-02-07</lastmod>
   </url>
   <url>
