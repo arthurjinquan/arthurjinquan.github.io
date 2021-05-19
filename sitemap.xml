@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://arthurjq.com/2021/05/06/algorithm/xor/</loc>
+    
+    <lastmod>2021-05-18T13:22:24.158Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/05/18/instanceof/</loc>
+    
+    <lastmod>2021-05-18T10:28:13.381Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/04/12/reentrantlock/</loc>
+    
+    <lastmod>2021-05-17T09:41:52.093Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://arthurjq.com/2020/12/11/java/lambda/</loc>
     
     <lastmod>2021-05-17T03:08:27.489Z</lastmod>
@@ -23,14 +44,14 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/05/17/array-traverse/</loc>
+    <loc>https://arthurjq.com/2021/05/17/algorithm/array-traverse/</loc>
     
     <lastmod>2021-05-16T17:12:39.065Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/05/16/trie/</loc>
+    <loc>https://arthurjq.com/2021/05/16/algorithm/trie/</loc>
     
     <lastmod>2021-05-16T15:39:51.032Z</lastmod>
     
@@ -79,7 +100,7 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/05/12/traverse-method/</loc>
+    <loc>https://arthurjq.com/2021/05/12/algorithm/traverse-method/</loc>
     
     <lastmod>2021-05-11T16:57:42.384Z</lastmod>
     
@@ -114,13 +135,6 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/05/06/algorithm/xor/</loc>
-    
-    <lastmod>2021-05-11T02:48:33.719Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://arthurjq.com/2020/12/09/java/string/</loc>
     
     <lastmod>2021-05-10T09:50:54.539Z</lastmod>
@@ -145,13 +159,6 @@
     <loc>https://arthurjq.com/2021/03/19/algorithm/binary-tree-traversal/</loc>
     
     <lastmod>2021-04-26T07:01:03.655Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/04/12/reentrantlock/</loc>
-    
-    <lastmod>2021-04-22T14:30:10.290Z</lastmod>
     
   </url>
   

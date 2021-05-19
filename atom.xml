@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://arthurjq.com/"/>
-  <updated>2021-05-16T17:12:39.065Z</updated>
+  <updated>2021-05-18T10:28:13.381Z</updated>
   <id>https://arthurjq.com/</id>
   
   <author>
@@ -17,9 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Java关键字——instanceof</title>
+    <link href="https://arthurjq.com/2021/05/18/instanceof/"/>
+    <id>https://arthurjq.com/2021/05/18/instanceof/</id>
+    <published>2021-05-18T07:22:38.000Z</published>
+    <updated>2021-05-18T10:28:13.381Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>测试一个对象是否为一个类的实例，用法为：</p><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">boolean</span> result <span class="token operator">=</span> obj <span class="token keyword">instanceof</span> <span class="token class-name">Class</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>其中 obj 为一个对象，Class 表示一个类或者一个接口，当 obj 为 Class 的对象，或者是其直接或间接子类，或者是其接口的实现类，结果result 都返回 true，否则返回false。</p><blockquote><p>注意：编译器会检查 obj 是否能转换成右边的class类型，如果不能转换则直接报错，如果不能确定类型，则通过编译，具体看运行时定。</p></blockquote><h3 id="obj-为-null"><a href="#obj-为-null" class="headerlink" title="obj 为 null"></a>obj 为 null</h3><p>Java分为两种数据类型，一种是基本数据类型，有八个分别是 byte short int long float double char boolean,一种是引用类型，包括类，接口，数组等等。而Java中还有一种特殊的 null 类型，该类型没有名字，所以不可能声明为 null 类型的变量或者转换为 null 类型，null 引用是 null 类型表达式唯一可能的值，null 引用也可以转换为任意引用类型。我们不需要对 null 类型有多深刻的了解，我们只需要知道 null 是可以成为任意引用类型的<strong>特殊符号</strong>。</p><p>在 <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.20.2" target="_blank" rel="noopener">JavaSE规范</a> 中对 instanceof 运算符的规定就是：如果 obj 为 null，那么将返回 false。</p><p>参考链接：<a href="https://www.zhihu.com/question/21574535" target="_blank" rel="noopener">https://www.zhihu.com/question/21574535</a></p><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><strong>编译器会检查 obj 是否能转换成右边的class类型，如果不能转换则直接报错，如果不能确定类型，则通过编译，具体看运行时定。</strong></p><pre class="line-numbers language-java"><code class="language-java">Person p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>p1 <span class="token keyword">instanceof</span> <span class="token class-name">String</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//编译报错</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>p1 <span class="token keyword">instanceof</span> <span class="token class-name">List</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>p1 <span class="token keyword">instanceof</span> <span class="token class-name">List</span><span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//false</span>System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>p1 <span class="token keyword">instanceof</span> <span class="token class-name">List</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//编译报错</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>按照我们上面的说法，这里就存在问题了，Person 的对象 p1 很明显不能转换为 String 对象，那么自然 Person 的对象 p1 instanceof String 不能通过编译，但为什么 p1 instanceof List 却能通过编译呢？而 instanceof List&lt; Person &gt; 又不能通过编译了？</p><h3 id="源码伪代码"><a href="#源码伪代码" class="headerlink" title="源码伪代码"></a>源码伪代码</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">boolean</span> result<span class="token punctuation">;</span><span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  result <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  <span class="token keyword">try</span> <span class="token punctuation">{</span>      T temp <span class="token operator">=</span> <span class="token punctuation">(</span>T<span class="token punctuation">)</span> obj<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// checkcast</span>      result <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ClassCastException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>      result <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  <span class="token punctuation">}</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>obj instanceof T，instanceof 运算符的 obj 操作数的类型必须是引用类型或空类型; 否则，会发生编译时错误。 </p><p>如果 obj 强制转换为 T 时发生编译错误，则关系表达式的 instanceof 同样会产生编译时错误。 在这种情况下，表达式实例的结果永远为false。</p><p>在运行时，如果 T 的值不为null，并且 obj 可以转换为 T 而不引发ClassCastException，则instanceof运算符的结果为true。 否则结果是错误的</p><p>简单来说就是：<strong>如果 obj 不为 null 并且 （T） obj 不抛 ClassCastException 异常则该表达式值为 true ，否则值为 false 。</strong></p><p>所以对于上面提出的问题就很好理解了，为什么 p1 instanceof String 编译报错，因为（String）p1 是不能通过编译的，而 （List）p1 可以通过编译。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;用法&quot;&gt;&lt;a href=&quot;#用法&quot; class=&quot;headerlink&quot; title=&quot;用法&quot;&gt;&lt;/a&gt;用法&lt;/h2&gt;&lt;p&gt;测试一个对象是否为一个类的实例，用法为：&lt;/p&gt;
+&lt;pre class=&quot;line-numbers language-java&quot;&gt;&lt;code
+      
+    
+    </summary>
+    
+      <category term="Java" scheme="https://arthurjq.com/categories/Java/"/>
+    
+    
+      <category term="java" scheme="https://arthurjq.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
     <title>二维数组遍历方式</title>
-    <link href="https://arthurjq.com/2021/05/17/array-traverse/"/>
-    <id>https://arthurjq.com/2021/05/17/array-traverse/</id>
+    <link href="https://arthurjq.com/2021/05/17/algorithm/array-traverse/"/>
+    <id>https://arthurjq.com/2021/05/17/algorithm/array-traverse/</id>
     <published>2021-05-16T17:06:33.000Z</published>
     <updated>2021-05-16T17:12:39.065Z</updated>
     
@@ -37,16 +63,16 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
-    
       <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
     
   </entry>
   
   <entry>
     <title>前缀树</title>
-    <link href="https://arthurjq.com/2021/05/16/trie/"/>
-    <id>https://arthurjq.com/2021/05/16/trie/</id>
+    <link href="https://arthurjq.com/2021/05/16/algorithm/trie/"/>
+    <id>https://arthurjq.com/2021/05/16/algorithm/trie/</id>
     <published>2021-05-16T09:44:32.000Z</published>
     <updated>2021-05-16T15:39:51.032Z</updated>
     
@@ -64,16 +90,16 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
-    
       <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
     
   </entry>
   
   <entry>
     <title>遍历方式的区别</title>
-    <link href="https://arthurjq.com/2021/05/12/traverse-method/"/>
-    <id>https://arthurjq.com/2021/05/12/traverse-method/</id>
+    <link href="https://arthurjq.com/2021/05/12/algorithm/traverse-method/"/>
+    <id>https://arthurjq.com/2021/05/12/algorithm/traverse-method/</id>
     <published>2021-05-11T16:33:33.000Z</published>
     <updated>2021-05-11T16:57:42.384Z</updated>
     
@@ -92,9 +118,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
-    
       <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
     
   </entry>
   
@@ -120,9 +146,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
-    
       <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
     
   </entry>
   
@@ -156,9 +182,9 @@
     <link href="https://arthurjq.com/2021/05/06/algorithm/xor/"/>
     <id>https://arthurjq.com/2021/05/06/algorithm/xor/</id>
     <published>2021-05-06T12:48:25.000Z</published>
-    <updated>2021-05-11T02:48:33.719Z</updated>
+    <updated>2021-05-18T13:22:24.158Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="异或性质"><a href="#异或性质" class="headerlink" title="异或性质"></a>异或性质</h2><p>一个值与自身的异或总是为 0</p><p><code>x ^ x = 0</code></p><p>一个值与 0 异或等于本身</p><p><code>x ^ 0 = x</code></p><p>可交换性</p><p><code>a ^ b = b ^ a</code></p><p>可结合性</p><p><code>(a ^ b) ^ c = a ^ (b ^ c)</code></p><h2 id="根据以上的四个特点"><a href="#根据以上的四个特点" class="headerlink" title="根据以上的四个特点"></a>根据以上的四个特点</h2><p>我们可以推导:</p><p>a ^ b = c</p><p>等式两边都增加对b的异或, 等价于</p><p>a ^ b ^ b = c ^ b</p><p>等式左边的 b^b=0, a^0=a, 所以有</p><p>a = c ^ b</p><p>最终相当于把 b 从等号左边转到等号右边来了</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="异或性质"><a href="#异或性质" class="headerlink" title="异或性质"></a>异或性质</h2><p>一个值与自身的异或总是为 0</p><p><code>x ^ x = 0</code></p><p>一个值与 0 异或等于本身</p><p><code>x ^ 0 = x</code></p><p>可交换性</p><p><code>a ^ b = b ^ a</code></p><p>可结合性</p><p><code>(a ^ b) ^ c = a ^ (b ^ c)</code></p><h2 id="根据以上的四个特点"><a href="#根据以上的四个特点" class="headerlink" title="根据以上的四个特点"></a>根据以上的四个特点</h2><p>我们可以推导:</p><p>a ^ b = c</p><p>等式两边都增加对b的异或, 等价于</p><p>a ^ b ^ b = c ^ b</p><p>等式左边的 b^b=0, a^0=a, 所以有</p><p>a = c ^ b</p><p>最终相当于把 b 从等号左边转到等号右边来了</p><blockquote><p>|=：两个二进制对应位都为0时，结果等于0，否则结果等于1；</p><p>&amp;=：两个二进制的对应位都为1时，结果为1，否则结果等于0；</p><p>^=：两个二进制的对应位相同，结果为0，否则结果为1。</p></blockquote>]]></content>
     
     <summary type="html">
     
@@ -233,9 +259,9 @@
     <link href="https://arthurjq.com/2021/04/12/reentrantlock/"/>
     <id>https://arthurjq.com/2021/04/12/reentrantlock/</id>
     <published>2021-04-12T12:10:42.000Z</published>
-    <updated>2021-04-22T14:30:10.290Z</updated>
+    <updated>2021-05-17T09:41:52.093Z</updated>
     
-    <content type="html"><![CDATA[<p>在JDK1.6之前，synchronized这个重量级锁其性能一直都是较为低下，虽然在1.6后，进行大量的锁优化策略,但是与Lock相比synchronized还是存在一些缺陷的：虽然synchronized提供了便捷性的隐式获取锁释放锁机制（基于JVM机制），但是它却缺少了获取锁与释放锁的可操作性，可中断、超时获取锁，且它为独占式在高并发场景下性能大打折扣。</p><h2 id="park-自旋方式实现同步"><a href="#park-自旋方式实现同步" class="headerlink" title="park+自旋方式实现同步"></a>park+自旋方式实现同步</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">volatile</span> <span class="token keyword">int</span> status<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>Queue parkQueue<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//集合 数组  list</span><span class="token keyword">void</span> <span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">compareAndSet</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">//</span>        <span class="token function">park</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token comment" spellcheck="true">//lock    10分钟</span>   。。。。。。   <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span> <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token function">lock_notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span> <span class="token function">park</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//将当期线程加入到等待队列</span>    parkQueue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>currentThread<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//将当期线程释放cpu  阻塞</span>    <span class="token function">releaseCpu</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span> <span class="token function">lock_notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//得到要唤醒的线程头部线程</span>    Thread t<span class="token operator">=</span>parkQueue<span class="token punctuation">.</span><span class="token function">header</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//唤醒等待线程</span>    <span class="token function">unpark</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">transient</span> <span class="token keyword">volatile</span> Node head<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//队首</span><span class="token keyword">private</span> <span class="token keyword">transient</span> <span class="token keyword">volatile</span> Node tail<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//尾</span><span class="token keyword">private</span> <span class="token keyword">volatile</span> <span class="token keyword">int</span> state<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//锁状态，加锁成功则为1，重入+1 解锁则为0</span><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">{</span>    <span class="token keyword">volatile</span> Node prev<span class="token punctuation">;</span>    <span class="token keyword">volatile</span> Node next<span class="token punctuation">;</span>    <span class="token keyword">volatile</span> Thread thread<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">int</span> CANCELLED <span class="token operator">=</span>  <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//waitStatus值为1时表示该线程节点已释放（超时、中断），已取消的节点不会再阻塞。</span><span class="token keyword">int</span> SIGNAL    <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//waitStatus为-1时表示该线程的后续线程需要阻塞，即只要前置节点释放锁，就会通知标识为 SIGNAL 状态的后续节点的线程 </span><span class="token keyword">int</span> CONDITION <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//waitStatus为-2时，表示该线程在condition队列中阻塞（Condition有使用）</span> <span class="token keyword">int</span> PROPAGATE <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//waitStatus为-3时，表示该线程以及后续线程进行无条件传播（CountDownLatch中有使用）共享模式下， PROPAGATE 状态的线程处于可运行状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>waitStatus：仅仅是一个状态而已；ws是一个过渡状态，在不同方法里面判断ws的状态做不同的处理，所以ws=0有其存在的必要性</p><p>单个线程或者交替执行其实和队列无关，lock可以在jdk级别解决同步问题</p>]]></content>
+    <content type="html"><![CDATA[<p>在JDK1.6之前，synchronized这个重量级锁其性能一直都是较为低下，虽然在1.6后，进行大量的锁优化策略,但是与Lock相比synchronized还是存在一些缺陷的：虽然synchronized提供了便捷性的隐式获取锁释放锁机制（基于JVM机制），但是它却缺少了获取锁与释放锁的可操作性，可中断、超时获取锁，且它为独占式在高并发场景下性能大打折扣。</p><h2 id="park-自旋方式实现同步"><a href="#park-自旋方式实现同步" class="headerlink" title="park+自旋方式实现同步"></a>park+自旋方式实现同步</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">volatile</span> <span class="token keyword">int</span> status<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>Queue parkQueue<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//集合 数组  list</span><span class="token keyword">void</span> <span class="token function">lock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">compareAndSet</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>        <span class="token comment" spellcheck="true">//</span>        <span class="token function">park</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span>    <span class="token comment" spellcheck="true">//lock    10分钟</span>   。。。。。。   <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span> <span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token function">lock_notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span> <span class="token function">park</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//将当期线程加入到等待队列</span>    parkQueue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>currentThread<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//将当期线程释放cpu  阻塞</span>    <span class="token function">releaseCpu</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">void</span> <span class="token function">lock_notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//得到要唤醒的线程头部线程</span>    Thread t<span class="token operator">=</span>parkQueue<span class="token punctuation">.</span><span class="token function">header</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">//唤醒等待线程</span>    <span class="token function">unpark</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">transient</span> <span class="token keyword">volatile</span> Node head<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//队首</span><span class="token keyword">private</span> <span class="token keyword">transient</span> <span class="token keyword">volatile</span> Node tail<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//尾</span><span class="token keyword">private</span> <span class="token keyword">volatile</span> <span class="token keyword">int</span> state<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//锁状态，加锁成功则为1，重入+1 解锁则为0</span><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Node</span><span class="token punctuation">{</span>    <span class="token keyword">volatile</span> Node prev<span class="token punctuation">;</span>    <span class="token keyword">volatile</span> Node next<span class="token punctuation">;</span>    <span class="token keyword">volatile</span> Thread thread<span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token keyword">int</span> CANCELLED <span class="token operator">=</span>  <span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//waitStatus值为1时表示该线程节点已释放（超时、中断），已取消的节点不会再阻塞。</span><span class="token keyword">int</span> SIGNAL    <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//waitStatus为-1时表示该线程的后续线程需要阻塞，即只要前置节点释放锁，就会通知标识为 SIGNAL 状态的后续节点的线程 </span><span class="token keyword">int</span> CONDITION <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//waitStatus为-2时，表示该线程在condition队列中阻塞（Condition有使用）</span> <span class="token keyword">int</span> PROPAGATE <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//waitStatus为-3时，表示该线程以及后续线程进行无条件传播（CountDownLatch中有使用）共享模式下， PROPAGATE 状态的线程处于可运行状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>waitStatus：仅仅是一个状态而已；ws是一个过渡状态，在不同方法里面判断ws的状态做不同的处理，所以ws=0有其存在的必要性</p><h2 id="acquire方法"><a href="#acquire方法" class="headerlink" title="acquire方法"></a>acquire方法</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">acquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment" spellcheck="true">//tryAcquire(arg)尝试加锁，如果加锁失败则会调用acquireQueued方法加入队列去排队，如果加锁成功则不会调用</span>    <span class="token comment" spellcheck="true">//acquireQueued方法下文会有解释</span>    <span class="token comment" spellcheck="true">//加入队列之后线程会立马park，等到解锁之后会被unpark，醒来之后判断自己是否被打断了；被打断下次分析</span>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">tryAcquire</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>        <span class="token function">acquireQueued</span><span class="token punctuation">(</span><span class="token function">addWaiter</span><span class="token punctuation">(</span>Node<span class="token punctuation">.</span>EXCLUSIVE<span class="token punctuation">)</span><span class="token punctuation">,</span> arg<span class="token punctuation">)</span><span class="token punctuation">)</span>        <span class="token function">selfInterrupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
     
     <summary type="html">
     
@@ -276,9 +302,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
-    
       <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
     
   </entry>
   
@@ -442,9 +468,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
-    
       <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
     
   </entry>
   
@@ -470,9 +496,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
-    
       <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
     
   </entry>
   
@@ -497,9 +523,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
-    
       <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
     
   </entry>
   
@@ -517,33 +543,6 @@
       
       
         &lt;h2 id=&quot;怎么判断那些对象应该回收&quot;&gt;&lt;a href=&quot;#怎么判断那些对象应该回收&quot; class=&quot;headerlink&quot; title=&quot;怎么判断那些对象应该回收&quot;&gt;&lt;/a&gt;怎么判断那些对象应该回收&lt;/h2&gt;&lt;h3 id=&quot;引用计数算法&quot;&gt;&lt;a href=&quot;#引用计数算法&quot;
-      
-    
-    </summary>
-    
-      <category term="Java" scheme="https://arthurjq.com/categories/Java/"/>
-    
-    
-      <category term="java" scheme="https://arthurjq.com/tags/java/"/>
-    
-      <category term="jvm" scheme="https://arthurjq.com/tags/jvm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM 调优</title>
-    <link href="https://arthurjq.com/2021/03/16/java/jvm-tuning/"/>
-    <id>https://arthurjq.com/2021/03/16/java/jvm-tuning/</id>
-    <published>2021-03-16T09:31:34.000Z</published>
-    <updated>2021-04-12T12:40:27.394Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-jmm-1.jpg" alt="3级缓存"></p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-jmm-2.jpg" alt="JMM数据原子操作"></p><p>其实就是工作内存和主内存之间的交互</p><h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-4.jpg" alt="JMM"></p><h3 id="线程栈"><a href="#线程栈" class="headerlink" title="线程栈"></a>线程栈</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-1.jpg" alt="栈结构"></p><h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-3.jpg" alt></p><h3 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-9.jpg" alt></p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-2.jpg" alt="32位对象头"></p><p>64位的话：</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-10.jpg" alt="64位对象头"></p><h3 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h3><p>jvm默认延时4s自动开启偏向锁，可通过 <code>-XX:BiasedLockingStartupDelay=0</code> 取消延时，如果不要偏向锁，可通过<code>-XX:-UserBiasedLocking = false</code> 来设置</p><p>重量级锁的指针指向monitor</p><h2 id="jvisualvm"><a href="#jvisualvm" class="headerlink" title="jvisualvm"></a>jvisualvm</h2><p>在cmd输入jvisualvm回车就会打开可视化界面。</p><h2 id="arthas"><a href="#arthas" class="headerlink" title="arthas"></a>arthas</h2><p>官网下载arthas的jar包。</p><pre class="line-numbers language-shell"><code class="language-shell">java -jar arthas-boot.jar//会看到存在的java进程，输入序号进入进程dashboard<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-4.jpg" alt></p><p>看到线程0占用了90%的cpu，明显有问题。输入thread+id号进入线程：</p><pre class="line-numbers language-shell"><code class="language-shell">thread 8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-5.jpg" alt></p><p>然后去代码里找第39行：</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-6.jpg" alt></p><p>反编译：</p><pre class="line-numbers language-shell"><code class="language-shell">jad XXX.ArthasTest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="调优案例"><a href="#调优案例" class="headerlink" title="调优案例"></a>调优案例</h2><h3 id="动态对象年龄判定"><a href="#动态对象年龄判定" class="headerlink" title="动态对象年龄判定"></a>动态对象年龄判定</h3><p>虚拟机并不是永远地要求对象的年龄必须达到了MaxTenuringThreshold才能晋升老年代，如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到MaxTenuringThreshold中要求的年龄。</p><p>比如如下设置：</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-7.jpg" alt></p><p>60MB对象放入幸存者区触发动态对象年龄判定，直接进入老年代，导致频繁full gc。</p><p>解决方法如下，把年轻代调大：</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-8.jpg" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;JMM&quot;&gt;&lt;a href=&quot;#JMM&quot; class=&quot;headerlink&quot; title=&quot;JMM&quot;&gt;&lt;/a&gt;JMM&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://gitee.com/arthurjq/blogimage/raw/master/img/pic/
       
     
     </summary>

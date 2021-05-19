@@ -1,6 +1,7 @@
-https://arthurjq.com/2021/05/17/array-traverse/
-https://arthurjq.com/2021/05/16/trie/
-https://arthurjq.com/2021/05/12/traverse-method/
+https://arthurjq.com/2021/05/18/instanceof/
+https://arthurjq.com/2021/05/17/algorithm/array-traverse/
+https://arthurjq.com/2021/05/16/algorithm/trie/
+https://arthurjq.com/2021/05/12/algorithm/traverse-method/
 https://arthurjq.com/2021/05/11/algorithm/heuristic-search/
 https://arthurjq.com/2021/05/11/web/webhook/
 https://arthurjq.com/2021/05/06/algorithm/xor/
