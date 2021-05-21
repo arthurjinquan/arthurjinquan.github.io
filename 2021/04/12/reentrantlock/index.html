@@ -253,7 +253,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/100.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/102.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,14 +412,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    569
+                    3.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    14 分
                 </div>
                 
                 
@@ -480,14 +480,177 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
 <span class="token keyword">int</span> CONDITION <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//waitStatus为-2时，表示该线程在condition队列中阻塞（Condition有使用）</span>
  <span class="token keyword">int</span> PROPAGATE <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//waitStatus为-3时，表示该线程以及后续线程进行无条件传播（CountDownLatch中有使用）共享模式下， PROPAGATE 状态的线程处于可运行状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>waitStatus：仅仅是一个状态而已；ws是一个过渡状态，在不同方法里面判断ws的状态做不同的处理，所以ws=0有其存在的必要性</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-1.png" alt></p>
 <h2 id="acquire方法"><a href="#acquire方法" class="headerlink" title="acquire方法"></a>acquire方法</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">acquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//tryAcquire(arg)尝试加锁，如果加锁失败则会调用acquireQueued方法加入队列去排队，如果加锁成功则不会调用</span>
-    <span class="token comment" spellcheck="true">//acquireQueued方法下文会有解释</span>
     <span class="token comment" spellcheck="true">//加入队列之后线程会立马park，等到解锁之后会被unpark，醒来之后判断自己是否被打断了；被打断下次分析</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">tryAcquire</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
         <span class="token function">acquireQueued</span><span class="token punctuation">(</span><span class="token function">addWaiter</span><span class="token punctuation">(</span>Node<span class="token punctuation">.</span>EXCLUSIVE<span class="token punctuation">)</span><span class="token punctuation">,</span> arg<span class="token punctuation">)</span><span class="token punctuation">)</span>
         <span class="token function">selfInterrupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="tryAcquire方法"><a href="#tryAcquire方法" class="headerlink" title="tryAcquire方法"></a>tryAcquire方法</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">tryAcquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> acquires<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//获取当前线程</span>
+    <span class="token keyword">final</span> Thread current <span class="token operator">=</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//获取lock对象的上锁状态，如果锁是自由状态则=0，如果被上锁则为1，大于1表示重入</span>
+    <span class="token keyword">int</span> c <span class="token operator">=</span> <span class="token function">getState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment" spellcheck="true">//没人占用锁--->我要去上锁----1、锁是自由状态</span>
+        <span class="token comment" spellcheck="true">//hasQueuedPredecessors，判断自己是否需要排队这个方法比较复杂，</span>
+        <span class="token comment" spellcheck="true">//下面我会单独介绍，如果不需要排队则进行cas尝试加锁，如果加锁成功则把当前线程设置为拥有锁的线程</span>
+        <span class="token comment" spellcheck="true">//继而返回true</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">hasQueuedPredecessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+            <span class="token function">compareAndSetState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> acquires<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//设置当前线程为拥有锁的线程，方面后面判断是不是重入（只需把这个线程拿出来判断是否当前线程即可判断重入）    </span>
+            <span class="token function">setExclusiveOwnerThread</span><span class="token punctuation">(</span>current<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//如果C不等于0，而且当前线程不等于拥有锁的线程则不会进else if 直接返回false，加锁失败</span>
+    <span class="token comment" spellcheck="true">//如果C不等于0，但是当前线程等于拥有锁的线程则表示这是一次重入，那么直接把状态+1表示重入次数+1</span>
+    <span class="token comment" spellcheck="true">//那么这里也侧面说明了reentrantlock是可以重入的，因为如果是重入也返回true，也能lock成功</span>
+    <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>current <span class="token operator">==</span> <span class="token function">getExclusiveOwnerThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> nextc <span class="token operator">=</span> c <span class="token operator">+</span> acquires<span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nextc <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Maximum lock count exceeded"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">setState</span><span class="token punctuation">(</span>nextc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="hasQueuedPredecessors判断是否需要排队的源码分析"><a href="#hasQueuedPredecessors判断是否需要排队的源码分析" class="headerlink" title="hasQueuedPredecessors判断是否需要排队的源码分析"></a>hasQueuedPredecessors判断是否需要排队的源码分析</h3><blockquote>
+<p>tail：队列的队尾          head：队列的对首 </p>
+<p>ts：第二个给lock加锁的线程 </p>
+<p>tf：第一个给lock加锁的线程 </p>
+<p>tc：当前给线程加锁的线程</p>
+<p>tl：最后一个加锁的线程 </p>
+<p>tn：随便某个线程</p>
+</blockquote>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">hasQueuedPredecessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Node t <span class="token operator">=</span> tail<span class="token punctuation">;</span> 
+    Node h <span class="token operator">=</span> head<span class="token punctuation">;</span>
+    Node s<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 下面提到的所有不需要排队
+     * 一：队列没有初始化，不需要排队；直接去加锁，但是可能会失败；
+     * 假设两个线程同时来lock，都看到队列没有初始化，都认为不需要排队，都去进行CAS修改计数器；有一个必然失败
+     * 比如t1先拿到锁，那么另外一个t2则会CAS失败，这个时候t2就会去初始化队列，并排队
+     *
+     * 二：队列被初始化了，但是tc过来加锁，发觉队列当中第一个排队的就是自己；比如重入；
+     * 那么什么叫做第一个排队的呢？下面解释了，很重要往下看；
+     * 这个时候他也不需要排队；为什么不需要排对？
+     * 因为队列当中第一个排队的线程他会去尝试获取一下锁，因为有可能这个时候持有锁的那个线程可能释放了锁；
+     * 如果释放了就直接获取锁执行。但是如果没有释放他就会去排队，
+     * 所以这里的不需要排队，不是真的不需要排队
+     *
+     *
+     * h != t 判断首不等于尾这里要分三种情况
+     * 1、队列没有初始化，也就是第一个线程tf来加锁的时候那么这个时候队列没有初始化，
+     * h和t都是null，那么这个时候判断不等于则不成立（false）那么由于是&amp;&amp;运算后面的就不会走了，
+     * 直接返回false表示不需要排队，而前面又是取反（if (!hasQueuedPredecessors()），所以会直接去cas加锁。
+     * ----------第一种情况总结：队列没有初始化没人排队，那么我直接不排队，直接上锁；合情合理、有理有据令人信服；
+     * 好比你去火车站买票，服务员都闲的蛋疼，整个队列都没有形成；没人排队，你直接过去交钱拿票
+     *
+     * 2、队列被初始化了，后面会分析队列初始化的流程，如果队列被初始化那么h!=t则成立；（不绝对，还有第3中情况）
+     * h != t 返回true；但是由于是&amp;&amp;运算，故而代码还需要进行后续的判断
+     * （有人可能会疑问，比如队列初始化了；里面只有一个数据，那么头和尾都是同一个怎么会成立呢？
+     * 其实这是第3种情况--对头等于对尾；但是这里先不考虑，我们假设现在队列里面有大于1个数据）
+     * 大于1个数据则成立;继续判断把h.next赋值给s；s有是对头的下一个Node，
+     * 这个时候s则表示他是队列当中参与排队的线程而且是排在最前面的；
+     * 为什么是s最前面不是h嘛？诚然h是队列里面的第一个，但是不是排队的第一个；下文有详细解释
+     * 因为h也就是对头对应的Node对象或者线程他是持有锁的，但是不参与排队；
+     * 这个很好理解，比如你去买车票，你如果是第一个这个时候售票员已经在给你服务了，你不算排队，你后面的才算排队；
+     * 队列里面的h是不参与排队的这点一定要明白；参考下面关于队列初始化的解释；
+     * 因为h要么是虚拟出来的节点，要么是持有锁的节点；什么时候是虚拟的呢？什么时候是持有锁的节点呢？下文分析
+     * 然后判断s是否等于空，其实就是判断队列里面是否只有一个数据；
+     * 假设队列大于1个，那么肯定不成立（s==null---->false），因为大于一个Node的时候h.next肯定不为空；
+     * 由于是||运算如果返回false，还要判断s.thread != Thread.currentThread()；这里又分为两种情况
+     *        2.1 s.thread != Thread.currentThread() 返回true，就是当前线程不等于在排队的第一个线程s；
+     *              那么这个时候整体结果就是h!=t：true; （s==null false || s.thread != Thread.currentThread() true  最后true）
+     *              结果： true &amp;&amp; true 方法最终放回true，所以需要去排队
+     *              其实这样符合情理，试想一下买火车票，队列不为空，有人在排队；
+     *              而且第一个排队的人和现在来参与竞争的人不是同一个，那么你就乖乖去排队
+     *        2.2 s.thread != Thread.currentThread() 返回false 表示当前来参与竞争锁的线程和第一个排队的线程是同一个线程
+     *             这个时候整体结果就是h!=t---->true; （s==null false || s.thread != Thread.currentThread() false-----> 最后false）
+     *            结果：true &amp;&amp; false 方法最终放回false，所以不需要去排队
+     *            不需要排队则调用 compareAndSetState(0, acquires) 去改变计数器尝试上锁；
+     *            这里又分为两种情况（日了狗了这一行代码；有同学课后反应说子路老师老师老是说这个AQS难，
+     *            你现在仔细看看这一行代码的意义，真的不简单的）
+     *             2.2.1  第一种情况加锁成功？有人会问为什么会成功啊，如这个时候h也就是持有锁的那个线程执行完了
+     *                      释放锁了，那么肯定成功啊；成功则执行 setExclusiveOwnerThread(current); 然后返回true 自己看代码
+     *             2.2.2  第二种情况加锁失败？有人会问为什么会失败啊。假如这个时候h也就是持有锁的那个线程没执行完
+     *                       没释放锁，那么肯定失败啊；失败则直接返回false，不会进else if（else if是相对于 if (c == 0)的）
+     *                      那么如果失败怎么办呢？后面分析；
+     *
+     *----------第二种情况总结，如果队列被初始化了，而且至少有一个人在排队那么自己也去排队；但是有个插曲；
+     * ----------他会去看看那个第一个排队的人是不是自己，如果是自己那么他就去尝试加锁；尝试看看锁有没有释放
+     *----------也合情合理，好比你去买票，如果有人排队，那么你乖乖排队，但是你会去看第一个排队的人是不是你女朋友；
+     *----------如果是你女朋友就相当于是你自己（这里实在想不出现实世界关于重入的例子，只能用男女朋友来替代）；
+     * --------- 你就叫你女朋友看看售票员有没有搞完，有没有轮到你女朋友，因为你女朋友是第一个排队的
+     * 疑问：比如如果在在排队，那么他是park状态，如果是park状态，自己怎么还可能重入啊。
+     * 希望有同学可以想出来为什么和我讨论一下，作为一个菜逼，希望有人教教我
+     *  
+     * 
+     * 3、队列被初始化了，但是里面只有一个数据；什么情况下才会出现这种情况呢？ts加锁的时候里面就只有一个数据？
+     * 其实不是，因为队列初始化的时候会虚拟一个h作为头结点，tc=ts作为第一个排队的节点；tf为持有锁的节点
+     * 为什么这么做呢？因为AQS认为h永远是不排队的，假设你不虚拟节点出来那么ts就是h，
+     *  而ts其实需要排队的，因为这个时候tf可能没有执行完，还持有着锁，ts得不到锁，故而他需要排队；
+     * 那么为什么要虚拟为什么ts不直接排在tf之后呢，上面已经时说明白了，tf来上锁的时候队列都没有，他不进队列，
+     * 故而ts无法排在tf之后，只能虚拟一个thread=null的节点出来（Node对象当中的thread为null）；
+     * 那么问题来了；究竟什么时候会出现队列当中只有一个数据呢？假设原队列里面有5个人在排队，当前面4个都执行完了
+     * 轮到第五个线程得到锁的时候；他会把自己设置成为头部，而尾部又没有，故而队列当中只有一个h就是第五个
+     * 至于为什么需要把自己设置成头部；其实已经解释了，因为这个时候五个线程已经不排队了，他拿到锁了；
+     * 所以他不参与排队，故而需要设置成为h；即头部；所以这个时间内，队列当中只有一个节点
+     * 关于加锁成功后把自己设置成为头部的源码，后面会解析到；继续第三种情况的代码分析
+     * 记得这个时候队列已经初始化了，但是只有一个数据，并且这个数据所代表的线程是持有锁
+     * h != t false 由于后面是&amp;&amp;运算，故而返回false可以不参与运算，整个方法返回false；不需要排队
+     *
+     *
+     *-------------第三种情况总结：如果队列当中只有一个节点，而这种情况我们分析了，
+     *-------------这个节点就是当前持有锁的那个节点，故而我不需要排队，进行cas；尝试加锁
+     *-------------这是AQS的设计原理，他会判断你入队之前，队列里面有没有人排队；
+     *-------------有没有人排队分两种情况；队列没有初始化，不需要排队
+     *--------------队列初始化了，按时只有一个节点，也是没人排队，自己先也不排队
+     *--------------只要认定自己不需要排队，则先尝试加锁；加锁失败之后再排队；
+     *--------------再一次解释了不需要排队这个词的歧义性
+     *-------------如果加锁失败了，在去park，下文有详细解释这样设计源码和原因
+     *-------------如果持有锁的线程释放了锁，那么我能成功上锁
+     *
+     **/</span>
+    <span class="token keyword">return</span> h <span class="token operator">!=</span> t <span class="token operator">&amp;&amp;</span>
+        <span class="token punctuation">(</span><span class="token punctuation">(</span>s <span class="token operator">=</span> h<span class="token punctuation">.</span>next<span class="token punctuation">)</span> <span class="token operator">==</span> null <span class="token operator">||</span> s<span class="token punctuation">.</span>thread <span class="token operator">!=</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="addWaiter方法"><a href="#addWaiter方法" class="headerlink" title="addWaiter方法"></a>addWaiter方法</h2><pre class="line-numbers language-java"><code class="language-java">
+
+    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">acquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> var1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 这个addWaiter方法就是将当前线程封装成一个Node.EXCLUSIVE类型的节点，然后丢到阻塞队列中；</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">tryAcquire</span><span class="token punctuation">(</span>var1<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">acquireQueued</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addWaiter</span><span class="token punctuation">(</span>AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node<span class="token punctuation">.</span>EXCLUSIVE<span class="token punctuation">)</span><span class="token punctuation">,</span> var1<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">selfInterrupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">private</span> AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node <span class="token function">addWaiter</span><span class="token punctuation">(</span>AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//根据当前线程创建节点，等待状态为0</span>
+        AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node</span><span class="token punctuation">(</span>Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var3 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tail<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 如果阻塞队列中尾节点不为空，就cas将当前节点添加到最后</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>var3 <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            var2<span class="token punctuation">.</span>prev <span class="token operator">=</span> var3<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">compareAndSetTail</span><span class="token punctuation">(</span>var3<span class="token punctuation">,</span> var2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                var3<span class="token punctuation">.</span>next <span class="token operator">=</span> var2<span class="token punctuation">;</span>
+                <span class="token keyword">return</span> var2<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 第一次还没有阻塞队列的时候，会到enq方法里面</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">enq</span><span class="token punctuation">(</span>var2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> var2<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-2.png" alt></p>
+<p>我们在第一次进入这个方法的时候，上面图一所示，tail和head都指向null；</p>
+<p>第一次循环，首先会到图二，然后判断t所指向的节点是不是null，如果是的话，就用CAS更新节点，这个CAS我们可以看作：头节点head为null，我们把head节点更新为一个哨兵节点（哨兵节点就是<code>new Node()</code>），再将tail也指向head，就是图三了</p>
+<p>第二次for循环：走到上面的else语句，将新节点的前一个节点设置为哨兵节点；</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-3.png" alt></p>
+<p>然后就是CAS更新节点，这里CAS的意思：<strong>如果最后的节点tail指向的和t是一样的，那么就将tail指向node节点</strong></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-4.png" alt></p>
+<p>最后再将t的下一个节点设置为node，下图所示，就ok了</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-5.png" alt></p>
 
             </div>
             <hr />
@@ -594,7 +757,7 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/7.jpg" class="responsive-img" alt="计算机网络">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/5.jpg" class="responsive-img" alt="计算机网络">
                         
                         <span class="card-title">计算机网络</span>
                     </div>
@@ -643,7 +806,7 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/55.jpg" class="responsive-img" alt="回溯算法-N皇后">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/53.jpg" class="responsive-img" alt="回溯算法-N皇后">
                         
                         <span class="card-title">回溯算法-N皇后</span>
                     </div>
@@ -673,12 +836,12 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
                     <a href="/tags/leetcode/" target="_blank">
                         <span class="chip bg-color">leetcode</span>
+                    </a>
+                    
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -852,7 +1015,7 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">211.9k</span>
+            <span class="white-color">216.8k</span>
             
 
             <br>

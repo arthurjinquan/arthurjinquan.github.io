@@ -4,12 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Zookeeper的原理和分布式锁, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="aqs, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="Zookeeper介绍Zookeeper是一个高性能的分布式一致系统，在分布式系统中有着广泛的应用。基于它，可以实现分布式同步、配置管理、命名空间管理等众多功能，是分布式系统中常见的基础系统。
-Zookeeper主要用来解决分布式集群中应用">
+    <meta name="description" content="基础AbstractQueuedSynchronizer抽象同步队列简称A Q S，它是实现同步器的基础组件，如常用的ReentrantLock、Semaphore、CountDownLatch等。A Q S定义了一套多线程访问共享资源的同">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@ Zookeeper主要用来解决分布式集群中应用">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Zookeeper的原理和分布式锁 | 锦泉^-^</title>
+    <title>aqs | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -254,13 +253,13 @@ Zookeeper主要用来解决分布式集群中应用">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Zookeeper的原理和分布式锁
+                        aqs
                     </div>
                 </div>
             </div>
@@ -371,16 +370,12 @@ Zookeeper主要用来解决分布式集群中应用">
                     
                     <div class="article-tag">
                         
+                        <a href="/tags/java/" target="_blank">
+                            <span class="chip bg-color">java</span>
+                        </a>
+                        
                         <a href="/tags/lock/" target="_blank">
                             <span class="chip bg-color">lock</span>
-                        </a>
-                        
-                        <a href="/tags/zookeeper/" target="_blank">
-                            <span class="chip bg-color">zookeeper</span>
-                        </a>
-                        
-                        <a href="/tags/分布式锁/" target="_blank">
-                            <span class="chip bg-color">分布式锁</span>
                         </a>
                         
                     </div>
@@ -391,8 +386,8 @@ Zookeeper主要用来解决分布式集群中应用">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/项目/" class="post-category" target="_blank">
-                            项目
+                        <a href="/categories/Java/" class="post-category" target="_blank">
+                            Java
                         </a>
                         
                     </div>
@@ -403,7 +398,7 @@ Zookeeper主要用来解决分布式集群中应用">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-24
+                    2021-05-21
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -417,14 +412,14 @@ Zookeeper主要用来解决分布式集群中应用">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.3k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    12 分
+                    6 分
                 </div>
                 
                 
@@ -440,156 +435,125 @@ Zookeeper主要用来解决分布式集群中应用">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Zookeeper介绍"><a href="#Zookeeper介绍" class="headerlink" title="Zookeeper介绍"></a>Zookeeper介绍</h2><p>Zookeeper是一个高性能的分布式一致系统，在分布式系统中有着广泛的应用。基于它，可以实现分布式同步、配置管理、命名空间管理等众多功能，是分布式系统中常见的基础系统。</p>
-<p>Zookeeper主要用来解决分布式集群中应用系统的一致性问题，它有着树状结构的节点，每个节点均可存储少量的数据。同时，用户可以修改和订阅节点中的内容。分布式系统中的节点通过监控这些数据状态的变化，从而可以达到基于数据的集群管理。</p>
-<p>从设计模式角度来看，Zookeeper是基于观察者模式实现的。可以把它作为一个信息的中心。使用该服务的生产者和消费者都以Zookeeper中的数据为基准。即：</p>
-<ol>
-<li>生产者可以改变Zookeeper的节点，或者节点上的数据</li>
-<li>消费者通过订阅Zookeeper节点，从而能够在节点变动时收到通知</li>
-</ol>
-<p>基于这样的机制，将Zookeeper作为信息中心，便可以实现分布式系统中节点状态的最终一致性。</p>
-<p><strong>Zookeeper具有以下特点</strong>：</p>
-<ol>
-<li>最终一致性：客户端不论连接到哪个Zookeeper的哪一个节点，都会收到同一份状态。这是zookeeper最重要的性能。</li>
-<li>可靠性：Zookeeper集群具有简单、健壮、良好的性能，如果消息m被到一台server接受，那么它将被所有的server接受。</li>
-<li>实时性：Zookeeper保证client将在一个时间间隔范围内获得server的更新信息，或者server失效的信息。但由于网络延时等原因，Zookeeper不能保证两个client能同时得到刚更新的数据，如果需要最新数据，应该在读数据之前调用sync()接口。</li>
-<li>等待无关（wait-free）：慢的或者失效的client不得干预快速的client的请求，使得每个client都能有效的等待。</li>
-<li>原子性：更新只能成功或者失败，没有中间状态。</li>
-<li>顺序性：包括全局有序和偏序两种：全局有序是指如果在一台server上消息a在消息b前发布，则在所有Server上消息a都将在消息b前被发布；偏序是指如果一个消息b在消息a后被同一个发送者发布，a必将排在b前面。</li>
-</ol>
-<h2 id="zookeeper应用场景"><a href="#zookeeper应用场景" class="headerlink" title="zookeeper应用场景"></a>zookeeper应用场景</h2><ol>
-<li><p><strong>数据发布与订阅</strong>：应用配置集中到节点上，应用启动时主动获取，并在节点上注册一个watcher，每次配置更新都会通知到应用。</p>
-</li>
-<li><p><strong>命名服务</strong>：分布式命名服务，创建一个节点后，<strong>节点的路径就是全局唯一</strong>的，这个路径可以作为全局名称使用。一些分布式服务框架（RPC，RMI）中的服务地址列表，通过使用命名服务，客户端应该能够根据特定的命中来获取资源的实体、服务地址和提供者信息等</p>
-</li>
-<li><p><strong>分布式通知/协调</strong>：不同的系统都监听同一个节点，一旦有了更新，另一个系统能够收到通知。</p>
-</li>
-<li><p><strong>分布式锁</strong>：Zookeeper能<strong>保证数据的强一致性</strong>，用户任何时候都可以相信集群中每个节点的数据都是相同的。一个用户创建一个节点作为锁，另一个用户检测该节点，如果存在，代表别的用户已经锁住，如果不存在，则可以创建一个节点，代表拥有一个锁。</p>
-</li>
-<li><p><strong>集群管理</strong>：包括集群监控和集群控制，就是监控集群机器状态，剔除集群和加入机器。zookeeper可以方便集群机器的管理，它可以实时监控znode节点的变化，一旦发现有机器挂了，该机器就会与zk断开连接，对应的临时目录节点会被删除，其他所有机器都收到通知。新机器加入类似，如图：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/zookeeper-1.jpg" alt></p>
-</li>
-<li><p><strong>配置管理</strong>：在分布式应用环境中很常见，例如同一个应用系统需要多台节点运行，但是它们运行的应用系统的某些配置项是相同的，如果要修改这些相同的配置项，那么就必须同时修改每台运行这个应用系统的.properties或者xml配置，这样非常麻烦而且容易出错。</p>
-<p>像这样的配置信息完全可以交给 Zookeeper 来管理，<strong>将配置信息保存在 Zookeeper 的某个目录节点</strong>中，然后将所有需要修改的应用机器监控配置信息的状态，一旦配置信息发生变化，利用watcher通知给各个客户端，从而修改配置。如图：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/zookeeper-2.jpg" alt></p>
-</li>
-</ol>
-<h2 id="ZK的数据模型和节点类型"><a href="#ZK的数据模型和节点类型" class="headerlink" title="ZK的数据模型和节点类型"></a>ZK的数据模型和节点类型</h2><p>zk采用事务日志及快照文件的方案来落盘数据，保障数据在不丢失的情况下能快速恢复。</p>
-<h3 id="Znode"><a href="#Znode" class="headerlink" title="Znode"></a>Znode</h3><p>Znode兼具<strong>文件和目录</strong>两种特点，可以做路径标识，也可以存储数据，并可以具有子Znode。具有增删改查等操作。</p>
-<p>Znode具有原子性操作，读操作一次性获取与节点相关的<strong>所有数据</strong>，写操作也将替换掉节点的<strong>所有数据</strong>。每一个节点都有自己的访问控制表，这个表规定了用户的权限。</p>
-<p>Znode存储数据大小有限制。每个Znode数据大小之多1M。</p>
-<p>Znode通过路径引用，如同Unix中的文件路径。路径必须是绝对的，唯一的。</p>
-<h3 id="Znode节点类型"><a href="#Znode节点类型" class="headerlink" title="Znode节点类型"></a>Znode节点类型</h3><ol>
-<li>持久节点：一旦创建，该数据节点会一直存储在zk服务器上，即使创建该节点的客户端与服务端的会话关闭了节点也不会删除</li>
-<li>临时节点：当创建该节点的客户端会话因超时或发生异常而关闭时，该节点也相应的在zk上被删除。</li>
-<li>有序节点：不是一种单纯种类的节点，而是在持久节点和临时节点的基础上，增加了一个节点有序的性质。</li>
-</ol>
-<h2 id="Zookeeper-watch机制"><a href="#Zookeeper-watch机制" class="headerlink" title="Zookeeper watch机制"></a>Zookeeper watch机制</h2><p>客户端，可以通过在Znode上设置watch，实现实时监听znode的变化</p>
-<p>watch事件是一个一次性的触发器，当被设置了watch的数据发生了变化的时候，则服务器将这个改变发送给设置了watch的客户端</p>
-<ol>
-<li>父节点的创建、修改、删除都会出发watcher事件</li>
-<li>子节点的创建，删除会触发watcher事件</li>
-</ol>
-<p>一次性：一旦被触发就会移除，再次使用需要重新注册，因为每次变动都需要通知所有客户端</p>
-<p>轻量：只通知发生了事件，不告知事件内容，减轻服务器和带宽压力</p>
-<h3 id="三个角色"><a href="#三个角色" class="headerlink" title="三个角色"></a>三个角色</h3><p>watcher机制包括三个角色：客户端线程、客户端的watch manager以及zookeeper服务器</p>
-<ol>
-<li>客户端向zookeeper服务器注册一个watcher监听</li>
-<li>把这个监听信息存储到客户端的WatchManager中</li>
-<li>当zookeeper中的节点发生变化时，会通知客户端，客户端会调用相应watcher对象中的回调方法。watch回调时串行同步的（FIFO）</li>
-</ol>
-<h2 id="ZAB协议"><a href="#ZAB协议" class="headerlink" title="ZAB协议"></a>ZAB协议</h2><p>ZAB协议是为Zookeeper专门设计的一种支持崩溃恢复的原子广播协议，实现分布式数据一致性。</p>
-<p>所有客户端的请求都写入到Leader进程中，然后，由Leader同步到其他节点Follower。</p>
-<p>ZAB协议包括两种基本模式：<strong>崩溃恢复和消息广播</strong>。</p>
-<h3 id="消息广播"><a href="#消息广播" class="headerlink" title="消息广播"></a>消息广播</h3><p>集群中所有事务请求都由Leader节点处理，Leader将客户端的事务请求转换为事务Proposal，并分发给集群中的所有Follower。</p>
-<p>完成广播后，Leader等Follower反馈，当有过半数的Follower反馈消息后，Leader将再次向Follower广播Commit信息，确认之前的Proposal提交。（有点像2PC）</p>
-<p>Leader节点的写入是一个两步操作，第一步是广播事务操作，第二步时广播提交操作，其中过半数指的是<strong>反馈节点数 &gt;= N/2 + 1</strong>，N是全部Follower节点数。</p>
-<h3 id="崩溃恢复"><a href="#崩溃恢复" class="headerlink" title="崩溃恢复"></a>崩溃恢复</h3><p>以下状态进入崩溃恢复：</p>
-<ol>
-<li>初始化集群，刚刚启动的时候</li>
-<li>Leader崩溃，故障宕机</li>
-<li>Leader失去了半数机器支持，与集群中超过一半的节点断连</li>
-</ol>
-<p>此时开启新一轮Leader选举，选举产生的Leader会与过半的Follower进行同步，<strong>强一致性</strong>（CP），当与过半机器同步完成后，推出恢复模式，进入消息广布模式</p>
-<p>整个Zookeeper集群的一致性保证都是在以上两个状态之间切换。</p>
-<h3 id="ZAB节点的三种状态"><a href="#ZAB节点的三种状态" class="headerlink" title="ZAB节点的三种状态"></a>ZAB节点的三种状态</h3><p><strong>following</strong>：服从leader的命令（从节点，负责读）</p>
-<p><strong>leading</strong>：负责协调事务（主节点）</p>
-<p><strong>election/looking</strong>：选举状态</p>
-<h3 id="Zxid"><a href="#Zxid" class="headerlink" title="Zxid"></a>Zxid</h3><p>ZAB协议的一个事务编号，<strong>一次事务意味着出现了一次选举</strong>，Zxid是一个64位的数字，其中低32位是一个简单的单调递增计数器，针对客户端每一个事务请求，计数器加1；而高32位则代表Leader周期年代编号。</p>
-<p>Leader周期（epoch），每当一个新的leader选举出来，会从这个leader服务器上取出本地日志中最大事务的Zxid并从中读取epoch值，然后加1作为新的周期ID。</p>
-<p><strong>高32位代表每代Leader的唯一性，低32位代表了每代Leader中事务的唯一性</strong>。</p>
-<h2 id="分布式锁的流程"><a href="#分布式锁的流程" class="headerlink" title="分布式锁的流程"></a>分布式锁的流程</h2><p>分布式锁的应用上面已经讲到了，具体流程如下：</p>
-<p>假如说有n个分布式的工作点，定义为a1,a2,a3,a4……</p>
-<p>当某个分布式点做一件事时，先去zk某个固定位置判断（例如：/aTask/sync目录下）是否存在一个特定节点（例如节点名：lock）:</p>
-<ol>
-<li>如果没有，则创建该节点，即声明自己持有该锁。然后进行分布式任务，任务结束后。去删除该节点，表明释放该锁。</li>
-<li>如果有，表明其他工作点持有了锁，不能开展分布式任务。</li>
-</ol>
-<h2 id="分布式锁的应用"><a href="#分布式锁的应用" class="headerlink" title="分布式锁的应用"></a>分布式锁的应用</h2><p>举一个最简单的例子：</p>
-<p>1、假如有一个系统，能够提供报表查看功能——&gt;于是我们开发了一个单节点应用</p>
-<p>2、该系统访量非常大，系统难以支撑——&gt;我们部署了多个节点（加入为5个），分担访问请求。于是成了分布式应用</p>
-<p>3、老板要求增加一个每天晚上向指定邮件发送该日统计报表的功能—–&gt;应用中增加个定时线程，每天晚上半夜跑报表，发邮件</p>
-<p>这个时候，出问题了，老板每天晚上会收到5封邮件！因为同样的程序我们部署了5个节点！怎么解决呢？</p>
-<p><strong>方案一</strong>：有一个节点和其他节点不一样，具有每日汇总功能。</p>
-<p>优点：开发简单。</p>
-<p>缺点：这样，一个应用便成了两个应用。我们必须维护两份代码。一份是不具有每日汇总功能的，一份是具有每日汇总功能的。</p>
-<p><strong>方案二</strong>：增加分布式锁。这样，5个节点中，只有获取到锁的节点才会发出邮件。</p>
-<p>优点：代码还是只有一份，维护简单。扩展性强，可以继续扩展类似的需要锁的功能（例如某个业务流程只允许处理一次，还可以继续复用相关逻辑）。</p>
-<p>缺点：开发稍微复杂一点。</p>
-<p>因此，方案二是最好的选择。</p>
-<h2 id="基于ZooKeeper的三种分布式锁实现"><a href="#基于ZooKeeper的三种分布式锁实现" class="headerlink" title="基于ZooKeeper的三种分布式锁实现"></a>基于ZooKeeper的三种分布式锁实现</h2><p><a href="https://www.cnblogs.com/codestory/p/11387116.html" target="_blank" rel="noopener">https://www.cnblogs.com/codestory/p/11387116.html</a></p>
-<h2 id="zookeeper安装"><a href="#zookeeper安装" class="headerlink" title="zookeeper安装"></a>zookeeper安装</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># 版本信息：3.5.8</span>
-<span class="token comment" spellcheck="true"># 路径：/home/rndii/projects/zookeeper/apache-zookeeper-3.5.8</span>
-<span class="token comment" spellcheck="true"># 服务器节点：10.0.1.104   10.0.1.117    10.0.1.127</span>
-<span class="token comment" spellcheck="true"># 操作系统用户：rndii</span>
+                <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p><code>AbstractQueuedSynchronizer</code>抽象同步队列简称<code>A Q S</code>，它是实现同步器的基础组件，如常用的<code>ReentrantLock、Semaphore、CountDownLatch</code>等。<code>A Q S</code>定义了一套多线程访问共享资源的同步模板，解决了实现同步器时涉及的大量细节问题，能够极大地减少实现工作</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-1.png" alt="AQS组成结构"></p>
+<p>三部分组成，<code>state</code>同步状态、<code>Node</code>组成的<code>CLH</code>队列、<code>ConditionObject</code>条件变量（<strong>包含<code>Node</code>组成的条件单向队列</strong>），下面会分别对这三部分做介绍。</p>
+<p><strong>状态</strong></p>
+<ul>
+<li><code>getState()</code>：返回同步状态</li>
+<li><code>setState(int newState)</code>：设置同步状态</li>
+<li><code>compareAndSetState(int expect, int update)</code>：使用<code>C A S</code>设置同步状态</li>
+<li><code>isHeldExclusively()</code>：当前线程是否持有资源</li>
+</ul>
+<p><strong>独占资源（不响应线程中断）</strong></p>
+<ul>
+<li><code>tryAcquire(int arg)</code>：独占式获取资源，子类实现</li>
+<li><code>acquire(int arg)</code>：独占式获取资源模板</li>
+<li><code>tryRelease(int arg)</code>：独占式释放资源，子类实现</li>
+<li><code>release(int arg)</code>：独占式释放资源模板</li>
+</ul>
+<p><strong>共享资源（不响应线程中断）</strong></p>
+<ul>
+<li><code>tryAcquireShared(int arg)</code>：共享式获取资源，返回值大于等于0则表示获取成功，否则获取失败，子类实现</li>
+<li><code>acquireShared(int arg)</code>：共享式获取资源模板</li>
+<li><code>tryReleaseShared(int arg)</code>：共享式释放资源，子类实现</li>
+<li><code>releaseShared(int arg)</code>：共享式释放资源模板</li>
+</ul>
+<h3 id="共享状态"><a href="#共享状态" class="headerlink" title="共享状态"></a>共享状态</h3><p>在<code>A Q S</code>中维护了一个同步状态变量<code>state</code>，<code>getState</code>函数获取同步状态，<code>setState、compareAndSetState</code>函数修改同步状态，对于<code>A Q S</code>来说，线程同步的关键是对<code>state</code>的操作，可以说获取、释放资源是否成功都是由<code>state</code>决定的，比如<code>state&gt;0</code>代表可获取资源，否则无法获取，所以<code>state</code>的具体语义由实现者去定义，现有的<code>ReentrantLock、ReentrantReadWriteLock、Semaphore、CountDownLatch</code>定义的<code>state</code>语义都不一样。</p>
+<ul>
+<li><strong><code>ReentrantLock</code>的<code>state</code>用来表示是否有锁资源</strong></li>
+<li><strong><code>ReentrantReadWriteLock</code>的<code>state</code>高<code>16</code>位代表读锁状态，低<code>16</code>位代表写锁状态</strong></li>
+<li><strong><code>Semaphore</code>的<code>state</code>用来表示可用信号的个数</strong></li>
+<li><strong><code>CountDownLatch</code>的<code>state</code>用来表示计数器的值</strong></li>
+</ul>
+<h3 id="CLH队列"><a href="#CLH队列" class="headerlink" title="CLH队列"></a>CLH队列</h3><p><code>CLH</code>是<code>A Q S</code>内部维护的<code>FIFO</code>（<strong>先进先出</strong>）双端双向队列（<strong>方便尾部节点插入</strong>），基于链表数据结构，当一个线程竞争资源失败，就会将等待资源的线程封装成一个<code>Node</code>节点，通过<code>C A S</code>原子操作插入队列尾部，最终不同的<code>Node</code>节点连接组成了一个<code>CLH</code>队列，所以说<code>A Q S</code>通过<code>CLH</code>队列管理竞争资源的线程，个人总结<code>CLH</code>队列具有如下几个优点：</p>
+<ul>
+<li>先进先出保证了公平性</li>
+<li>非阻塞的队列，通过自旋锁和<code>C A S</code>保证节点插入和移除的原子性，实现无锁快速插入</li>
+<li>采用了自旋锁思想，所以<code>CLH</code>也是一种基于链表的可扩展、高性能、公平的自旋锁</li>
+</ul>
+<h4 id="Node内部类"><a href="#Node内部类" class="headerlink" title="Node内部类"></a>Node内部类</h4><p><code>Node</code>是<code>A Q S</code>的内部类，每个等待资源的线程都会封装成<code>Node</code>节点组成<code>C L H</code>队列、等待队列，所以说<code>Node</code>是非常重要的部分，理解它是理解<code>A Q S</code>的第一步。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-3.png" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-4.png" alt="waitStatus等待状态"></p>
+<p><strong>nextWaiter特殊标记</strong></p>
+<ul>
+<li><code>Node</code>在<code>CLH</code>队列时，<code>nextWaiter</code>表示共享式或独占式标记</li>
+<li><code>Node</code>在条件队列时，<code>nextWaiter</code>表示下个<code>Node</code>节点指针</li>
+</ul>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-2.png" alt="node过程"></p>
+<p>注意：队头head节点的thread一定为null，用于表示正在执行的线程对象，且用于唤醒后续线程</p>
+<h4 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h4><pre class="line-numbers language-java"><code class="language-java">
+    <span class="token keyword">private</span> AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node <span class="token function">addWaiter</span><span class="token punctuation">(</span>AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//根据当前线程创建节点，等待状态为0</span>
+        AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node</span><span class="token punctuation">(</span>Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var3 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tail<span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 如果阻塞队列中尾节点不为空，就cas将当前节点添加到最后</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>var3 <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            var2<span class="token punctuation">.</span>prev <span class="token operator">=</span> var3<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">compareAndSetTail</span><span class="token punctuation">(</span>var3<span class="token punctuation">,</span> var2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                var3<span class="token punctuation">.</span>next <span class="token operator">=</span> var2<span class="token punctuation">;</span>
+                <span class="token keyword">return</span> var2<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 第一次还没有阻塞队列的时候，会到enq方法里面</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">enq</span><span class="token punctuation">(</span>var2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> var2<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-2.png" alt></p>
+<p>我们在第一次进入这个方法的时候，上面图一所示，tail和head都指向null；</p>
+<p>第一次循环，首先会到图二，然后判断t所指向的节点是不是null，如果是的话，就用CAS更新节点，这个CAS我们可以看作：头节点head为null，我们把head节点更新为一个哨兵节点（哨兵节点就是<code>new Node()</code>），再将tail也指向head，就是图三了</p>
+<p>第二次for循环：走到上面的else语句，将新节点的前一个节点设置为哨兵节点；</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-3.png" alt></p>
+<p>然后就是CAS更新节点，这里CAS的意思：<strong>如果最后的节点tail指向的和t是一样的，那么就将tail指向node节点</strong></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-4.png" alt></p>
+<p>最后再将t的下一个节点设置为node，下图所示，就ok了</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-5.png" alt></p>
+<h4 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h4><pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">acquireQueued</span><span class="token punctuation">(</span>AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var1<span class="token punctuation">,</span> <span class="token keyword">int</span> var2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">boolean</span> var3 <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">boolean</span> var4 <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">//1.获取前驱节点</span>
+                AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var5 <span class="token operator">=</span> var1<span class="token punctuation">.</span><span class="token function">predecessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment" spellcheck="true">//如果前驱节点是首节点，获取资源（子类实现）</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>var5 <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">.</span>head <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">tryAcquire</span><span class="token punctuation">(</span>var2<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">//2.获取资源成功，设置当前节点为头节点，清空当前节点的信息，把当前节点变成哨兵节点</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setHead</span><span class="token punctuation">(</span>var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">//3.原来首节点下个节点指向为null</span>
+                    var5<span class="token punctuation">.</span>next <span class="token operator">=</span> null<span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">//4.非异常状态，防止指向finally逻辑</span>
+                    var3 <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+                    <span class="token keyword">boolean</span> var6 <span class="token operator">=</span> var4<span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">//5.返回线程中断状态</span>
+                    <span class="token keyword">return</span> var6<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
 
-<span class="token comment" spellcheck="true"># 1.修改zoo.conf文件，如果该文件不存在，则cp zoo.simple.cnf zoo.cnf</span>
-<span class="token comment" spellcheck="true"># zoo.cnf 如下修改：</span>
-<span class="token comment" spellcheck="true"># The number of milliseconds of each tick</span>
-tickTime<span class="token operator">=</span>2000
-<span class="token comment" spellcheck="true"># The number of ticks that the initial </span>
-<span class="token comment" spellcheck="true"># synchronization phase can take</span>
-initLimit<span class="token operator">=</span>10
-<span class="token comment" spellcheck="true"># The number of ticks that can pass between </span>
-<span class="token comment" spellcheck="true"># sending a request and getting an acknowledgement</span>
-syncLimit<span class="token operator">=</span>5
-<span class="token comment" spellcheck="true"># the directory where the snapshot is stored.</span>
-<span class="token comment" spellcheck="true"># do not use /tmp for storage, /tmp here is just </span>
-<span class="token comment" spellcheck="true"># example sakes.</span>
-dataDir<span class="token operator">=</span>/home/rndii/projects/zookeeper/apache-zookeeper-3.5.8/data
-<span class="token comment" spellcheck="true"># the port at which the clients will connect</span>
-clientPort<span class="token operator">=</span>2181
-<span class="token comment" spellcheck="true"># the maximum number of client connections.</span>
-<span class="token comment" spellcheck="true"># increase this if you need to handle more clients</span>
-<span class="token comment" spellcheck="true">#maxClientCnxns=60</span>
-<span class="token comment" spellcheck="true">#</span>
-<span class="token comment" spellcheck="true"># Be sure to read the maintenance section of the </span>
-<span class="token comment" spellcheck="true"># administrator guide before turning on autopurge.</span>
-<span class="token comment" spellcheck="true">#</span>
-<span class="token comment" spellcheck="true"># http://zookeeper.apache.org/doc/current/zookeeperAdmin.html#sc_maintenance</span>
-<span class="token comment" spellcheck="true">#</span>
-<span class="token comment" spellcheck="true"># The number of snapshots to retain in dataDir</span>
-<span class="token comment" spellcheck="true">#autopurge.snapRetainCount=3</span>
-<span class="token comment" spellcheck="true"># Purge task interval in hours</span>
-<span class="token comment" spellcheck="true"># Set to "0" to disable auto purge feature</span>
-<span class="token comment" spellcheck="true">#autopurge.purgeInterval=1</span>
-server.1<span class="token operator">=</span>10.0.1.104:2888:3888
-server.2<span class="token operator">=</span>10.0.1.117:2888:3888
-server.3<span class="token operator">=</span>10.0.1.127:2888:3888
-<span class="token comment" spellcheck="true"># 配置文件到此结束</span>
-
-
-<span class="token comment" spellcheck="true"># 2.在data文件夹中新增myid文本文件，内容为对应ip的节点id。对应zoo.cnf下的server.x=10.0.1.104:2888:3888的x</span>
-
-<span class="token comment" spellcheck="true"># 3.如果未配置全局环境变量可修改zoo下的bin/zkServer.sh文件增加JAVA_HOME=xx</span>
-
-<span class="token comment" spellcheck="true"># 4. 常规命令</span>
-<span class="token comment" spellcheck="true"># 启动</span>
-bin/zkServer.sh start
-<span class="token comment" spellcheck="true"># 停止</span>
-bin/zkServer.sh stop
-<span class="token comment" spellcheck="true"># 查看zookeeper的状态</span>
-bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">shouldParkAfterFailedAcquire</span><span class="token punctuation">(</span>var5<span class="token punctuation">,</span> var1<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">parkAndCheckInterrupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    var4 <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>var3<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">cancelAcquire</span><span class="token punctuation">(</span>var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">setHead</span><span class="token punctuation">(</span>Node node<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//节点设置为头部</span>
+    head <span class="token operator">=</span> node<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//清空线程</span>
+    node<span class="token punctuation">.</span>thread <span class="token operator">=</span> null<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//清空前驱节点</span>
+    node<span class="token punctuation">.</span>prev <span class="token operator">=</span> null<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>假设获取资源成功，更换头部节点，并把头部节点的信息清除变成哨兵节点，注意这个过程是不需要使用<code>C A S</code>来保证，因为只有一个线程能够成功获取到资源。</p>
+<h3 id="条件变量"><a href="#条件变量" class="headerlink" title="条件变量"></a>条件变量</h3><p><code>Object</code>的<code>wait、notify</code>函数是配合<code>Synchronized</code>锁实现线程间同步协作的功能，<code>A Q S</code>的<code>ConditionObject</code>条件变量也提供这样的功能，通过<code>ConditionObject</code>的<code>await</code>和<code>signal</code>两类函数完成。</p>
+<p>不同于<code>Synchronized</code>锁，一个<code>A Q S</code>可以对应多个条件变量，而<code>Synchronized</code>只有一个。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-5.png" alt></p>
+<p>如上图所示，<code>ConditionObject</code>内部维护着一个单向条件队列，不同于<code>C H L</code>队列，条件队列只入队执行<code>await</code>的线程节点，并且加入条件队列的节点，不能在<code>C H L</code>队列， 条件队列出队的节点，会入队到<code>C H L</code>队列。</p>
+<p>当某个线程执行了<code>ConditionObject</code>的<code>await</code>函数，阻塞当前线程，线程会被封装成<code>Node</code>节点添加到条件队列的末端，其他线程执行<code>ConditionObject</code>的<code>signal</code>函数，会将条件队列头部线程节点转移到<code>C H L</code>队列参与竞争资源，具体流程如下图</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-6.png" alt></p>
+<p>最后补充下，条件队列<code>Node</code>类是使用<code>nextWaiter</code>变量指向下个节点，并且因为是单向队列，所以<code>prev</code>与<code>next</code>变量都是<code>null</code></p>
 
             </div>
             <hr />
@@ -624,9 +588,9 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Zookeeper的原理和分布式锁》
+                    《aqs》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/02/24/project/zookeeper/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/05/21/aqs/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -667,7 +631,7 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/02/24/project/zookeeper/',
+        id: '2021/05/21/aqs/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -688,54 +652,52 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/02/25/database/es/">
+                <a href="/2021/05/21/aqs/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/39.jpg" class="responsive-img" alt="Elasticsearch 集群架构学习">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg" class="responsive-img" alt="aqs">
                         
-                        <span class="card-title">Elasticsearch 集群架构学习</span>
+                        <span class="card-title">aqs</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Elasticsearch是一个实时的分布式搜索和分析引擎，它可以帮助我们用很快的速度去处理大规模数据，可以用于全文检索、结构化检索、推荐、分析以及统计聚合等多种场景。
+                            基础AbstractQueuedSynchronizer抽象同步队列简称A Q S，它是实现同步器的基础组件，如常用的ReentrantLock、Semaphore、CountDownLatch等。A Q S定义了一套多线程访问共享资源的同
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
-                                    数据库
+                            <a href="/categories/Java/" class="post-category" target="_blank">
+                                    Java
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/elasticsearch/" target="_blank">
-                        <span class="chip bg-color">elasticsearch</span>
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/分布式系统/" target="_blank">
-                        <span class="chip bg-color">分布式系统</span>
-                    </a>
-                    
-                    <a href="/tags/lucene/" target="_blank">
-                        <span class="chip bg-color">lucene</span>
+                    <a href="/tags/lock/" target="_blank">
+                        <span class="chip bg-color">lock</span>
                     </a>
                     
                 </div>
@@ -749,24 +711,24 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/02/23/java/refreshscope/">
+                <a href="/2021/05/18/instanceof/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/29.jpg" class="responsive-img" alt="RefreshScope注解和Spring bean scope">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/86.jpg" class="responsive-img" alt="Java关键字——instanceof">
                         
-                        <span class="card-title">RefreshScope注解和Spring bean scope</span>
+                        <span class="card-title">Java关键字——instanceof</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            用过Spring Cloud的朋友都知道在使用动态配置刷新的我们要配置一个@RefreshScope 在类上才可以实现对象属性的的动态更新。
+                            测试一个对象是否为一个类的实例
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-02-23
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-18
                             </span>
                         <span class="publish-author">
                             
@@ -783,20 +745,8 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/springcloud/" target="_blank">
-                        <span class="chip bg-color">springcloud</span>
-                    </a>
-                    
-                    <a href="/tags/spring/" target="_blank">
-                        <span class="chip bg-color">spring</span>
-                    </a>
-                    
-                    <a href="/tags/annotation/" target="_blank">
-                        <span class="chip bg-color">annotation</span>
-                    </a>
-                    
-                    <a href="/tags/bean/" target="_blank">
-                        <span class="chip bg-color">bean</span>
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
                     </a>
                     
                 </div>
