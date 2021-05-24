@@ -1,5 +1,6 @@
+https://arthurjq.com/2021/05/24/java/enum/
 https://arthurjq.com/2021/05/21/aqs/
-https://arthurjq.com/2021/05/18/instanceof/
+https://arthurjq.com/2021/05/18/java/instanceof/
 https://arthurjq.com/2021/05/17/algorithm/array-traverse/
 https://arthurjq.com/2021/05/16/algorithm/trie/
 https://arthurjq.com/2021/05/12/algorithm/traverse-method/
@@ -97,4 +98,3 @@ https://arthurjq.com/2020/12/11/java/lambda/
 https://arthurjq.com/2020/12/11/database/mybatis/
 https://arthurjq.com/2020/12/11/java/arrays/
 https://arthurjq.com/2020/12/09/algorithm/sort-algorithms/
-https://arthurjq.com/2020/12/09/java/string/

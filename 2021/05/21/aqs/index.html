@@ -253,7 +253,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/117.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -554,7 +554,7 @@
 <p>当某个线程执行了<code>ConditionObject</code>的<code>await</code>函数，阻塞当前线程，线程会被封装成<code>Node</code>节点添加到条件队列的末端，其他线程执行<code>ConditionObject</code>的<code>signal</code>函数，会将条件队列头部线程节点转移到<code>C H L</code>队列参与竞争资源，具体流程如下图</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-6.png" alt></p>
 <p>最后补充下，条件队列<code>Node</code>类是使用<code>nextWaiter</code>变量指向下个节点，并且因为是单向队列，所以<code>prev</code>与<code>next</code>变量都是<code>null</code></p>
-
+<h2 id="模板方法"><a href="#模板方法" class="headerlink" title="模板方法"></a>模板方法</h2>
             </div>
             <hr />
 
@@ -652,30 +652,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/05/21/aqs/">
+                <a href="/2021/05/24/java/enum/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg" class="responsive-img" alt="aqs">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/55.jpg" class="responsive-img" alt="枚举enum">
                         
-                        <span class="card-title">aqs</span>
+                        <span class="card-title">枚举enum</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            基础AbstractQueuedSynchronizer抽象同步队列简称A Q S，它是实现同步器的基础组件，如常用的ReentrantLock、Semaphore、CountDownLatch等。A Q S定义了一套多线程访问共享资源的同
+                            enum的values方法此方法可以将枚举类转变为一个枚举类型的数组，因为枚举中没有下标，我们没有办法通过下标来快速找到需要的枚举类，这时候，转变为数组之后，我们就可以通过数组的下标，来找到我们需要的枚举类。
+testpublic enum
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-21
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-05-24
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -688,16 +688,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/java/" target="_blank">
                         <span class="chip bg-color">java</span>
-                    </a>
-                    
-                    <a href="/tags/lock/" target="_blank">
-                        <span class="chip bg-color">lock</span>
                     </a>
                     
                 </div>
@@ -711,11 +706,11 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/18/instanceof/">
+                <a href="/2021/05/18/java/instanceof/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/86.jpg" class="responsive-img" alt="Java关键字——instanceof">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/90.jpg" class="responsive-img" alt="Java关键字——instanceof">
                         
                         <span class="card-title">Java关键字——instanceof</span>
                     </div>
@@ -920,7 +915,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">216.8k</span>
+            <span class="white-color">217.4k</span>
             
 
             <br>

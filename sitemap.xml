@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://arthurjq.com/2021/05/24/java/enum/</loc>
+    
+    <lastmod>2021-05-24T10:13:59.705Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2020/12/09/java/list/</loc>
+    
+    <lastmod>2021-05-24T10:11:15.184Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/01/19/java/keep-learning/</loc>
+    
+    <lastmod>2021-05-24T10:10:26.670Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2020/12/22/web/https/</loc>
+    
+    <lastmod>2021-05-24T10:09:51.092Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://arthurjq.com/2021/05/21/aqs/</loc>
     
-    <lastmod>2021-05-21T10:34:19.071Z</lastmod>
+    <lastmod>2021-05-24T09:48:50.051Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/02/22/java/classloader/</loc>
+    
+    <lastmod>2021-05-21T10:39:02.719Z</lastmod>
     
   </url>
   
@@ -23,7 +58,7 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/05/18/instanceof/</loc>
+    <loc>https://arthurjq.com/2021/05/18/java/instanceof/</loc>
     
     <lastmod>2021-05-18T10:28:13.381Z</lastmod>
     
@@ -149,13 +184,6 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2020/12/09/java/list/</loc>
-    
-    <lastmod>2021-04-26T09:02:07.252Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://arthurjq.com/2021/03/09/interview/</loc>
     
     <lastmod>2021-04-26T08:18:13.981Z</lastmod>
@@ -264,13 +292,6 @@
     <loc>https://arthurjq.com/2021/03/17/java/jvm-gc/</loc>
     
     <lastmod>2021-03-21T08:21:10.781Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2020/12/22/web/https/</loc>
-    
-    <lastmod>2021-03-20T12:05:29.173Z</lastmod>
     
   </url>
   
@@ -527,13 +548,6 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/02/22/java/classloader/</loc>
-    
-    <lastmod>2021-03-09T05:06:11.360Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://arthurjq.com/2021/03/06/project/helm-ingress/</loc>
     
     <lastmod>2021-03-06T08:06:45.000Z</lastmod>
@@ -670,13 +684,6 @@
     <loc>https://arthurjq.com/2021/02/02/java/reflection/</loc>
     
     <lastmod>2021-02-07T15:58:51.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/01/19/java/keep-learning/</loc>
-    
-    <lastmod>2021-02-07T15:57:06.000Z</lastmod>
     
   </url>
   
