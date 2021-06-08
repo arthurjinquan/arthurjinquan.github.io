@@ -2,7 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://arthurjq.com/2021/04/12/reentrantlock/</loc>
+    <loc>https://arthurjq.com/2021/06/03/threadlocal/</loc>
+    
+    <lastmod>2021-06-03T09:23:16.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2020/12/11/java/arrays/</loc>
+    
+    <lastmod>2021-06-03T08:40:33.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/06/02/optional/</loc>
+    
+    <lastmod>2021-06-02T10:49:48.829Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/06/01/throw/</loc>
+    
+    <lastmod>2021-06-01T10:31:50.030Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/05/31/lowbit/</loc>
+    
+    <lastmod>2021-06-01T02:04:43.272Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
+    
+    <lastmod>2021-05-31T07:11:30.087Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://arthurjq.com/2021/04/12/java/reentrantlock/</loc>
     
     <lastmod>2021-05-28T10:20:41.570Z</lastmod>
     
@@ -16,7 +58,7 @@
   </url>
   
   <url>
-    <loc>https://arthurjq.com/2021/05/26/interceptor/</loc>
+    <loc>https://arthurjq.com/2021/05/26/java/interceptor/</loc>
     
     <lastmod>2021-05-26T10:37:12.551Z</lastmod>
     
@@ -75,13 +117,6 @@
     <loc>https://arthurjq.com/2020/12/11/java/lambda/</loc>
     
     <lastmod>2021-05-17T03:08:27.489Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2020/12/11/java/arrays/</loc>
-    
-    <lastmod>2021-05-17T03:06:18.805Z</lastmod>
     
   </url>
   
@@ -222,13 +257,6 @@
     <loc>https://arthurjq.com/2021/03/10/java-advance/</loc>
     
     <lastmod>2021-04-17T11:48:09.758Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
-    
-    <lastmod>2021-04-15T06:53:22.752Z</lastmod>
     
   </url>
   

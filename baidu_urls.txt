@@ -1,4 +1,8 @@
-https://arthurjq.com/2021/05/26/interceptor/
+https://arthurjq.com/2021/06/03/threadlocal/
+https://arthurjq.com/2021/06/02/optional/
+https://arthurjq.com/2021/06/01/throw/
+https://arthurjq.com/2021/05/31/lowbit/
+https://arthurjq.com/2021/05/26/java/interceptor/
 https://arthurjq.com/2021/05/24/java/enum/
 https://arthurjq.com/2021/05/21/aqs/
 https://arthurjq.com/2021/05/18/java/instanceof/
@@ -10,7 +14,7 @@ https://arthurjq.com/2021/05/11/web/webhook/
 https://arthurjq.com/2021/05/06/algorithm/xor/
 https://arthurjq.com/2021/04/25/algorithm/heapsort/
 https://arthurjq.com/2021/04/21/web/net/
-https://arthurjq.com/2021/04/12/reentrantlock/
+https://arthurjq.com/2021/04/12/java/reentrantlock/
 https://arthurjq.com/2021/03/30/algorithm/nqueen/
 https://arthurjq.com/2021/03/30/algorithm/sumabc/
 https://arthurjq.com/2021/03/27/project/netty/
@@ -94,7 +98,3 @@ https://arthurjq.com/2020/12/17/database/mysql-index/
 https://arthurjq.com/2020/12/17/java/design-pattern-chain-of-responsibility/
 https://arthurjq.com/2020/12/16/database/database-validationquery/
 https://arthurjq.com/2020/12/15/database/sql-injection-attack/
-https://arthurjq.com/2020/12/12/algorithm/jz59-60/
-https://arthurjq.com/2020/12/11/java/lambda/
-https://arthurjq.com/2020/12/11/database/mybatis/
-https://arthurjq.com/2020/12/11/java/arrays/
