@@ -9,7 +9,7 @@
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="Jenkins介绍整理于：https://www.jianshu.com/p/5f671aca2b5a
-Jenkins是什么最近接触了jenkins这个东西，所以花点时间了解了下。它可以在代码上传仓库（如github,gitlab）后，在j">
+Jenkins介绍jenkins可以在代码上传仓库（如github,gitlab）后，在jenkins（一个网站界面）中通过获取代码仓库">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -254,7 +254,7 @@ Jenkins是什么最近接触了jenkins这个东西，所以花点时间了解了
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/92.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/91.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -413,14 +413,14 @@ Jenkins是什么最近接触了jenkins这个东西，所以花点时间了解了
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.4k
+                    3.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    12 分
                 </div>
                 
                 
@@ -437,12 +437,12 @@ Jenkins是什么最近接触了jenkins这个东西，所以花点时间了解了
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>Jenkins介绍整理于：<a href="https://www.jianshu.com/p/5f671aca2b5a" target="_blank" rel="noopener">https://www.jianshu.com/p/5f671aca2b5a</a></p>
-<h2 id="Jenkins是什么"><a href="#Jenkins是什么" class="headerlink" title="Jenkins是什么"></a>Jenkins是什么</h2><p>最近接触了jenkins这个东西，所以花点时间了解了下。它可以在代码上传仓库（如github,gitlab）后，在jenkins（一个网站界面）中通过获取代码仓库中最新代码，进行自动化部署，而省去手动打包、上传服务器、部署这一系列步骤，非常方便。</p>
-<p>Jenkins是一个开源的、提供友好操作界面的持续集成（CI）工具，起源于Hudson（Hudson是商用的），主要用于持续、自动的构建/测试软件项目、监控外部任务的运行（这个比较抽象，暂且写上，不做解释）。<strong>Jenkins用Java语言编写</strong>，可在Tomcat等流行的servlet容器中运行，也可独立运行。通常与版本管理工具(SCM)、构建工具结合使用。常用的版本控制工具有SVN、GIT，构建工具有Maven、Ant、Gradle。</p>
-<h2 id="CI-CD是什么"><a href="#CI-CD是什么" class="headerlink" title="CI/CD是什么"></a>CI/CD是什么</h2><p>在敏捷模式中，通常都是先开发一个小的模块，再逐渐和其他开发好的模块组合在一起来提高产品的完成度。这个过程称之为集成，通常由上传代码，构建应用，部署环境和测试等一系列步骤所组成。</p>
-<p>但是如果这些步骤都由人手工来做的话，每次都会耗费大量的时间精力在重复的流程上面，所以就有人考虑把集成步骤交给工具来完成，然后不断的循环相同的流程，这个动作我们称之为持续集成。</p>
-<p>CI（Continuous integration，中文意思是持续集成）是一种软件开发实践。持续集成强调开发人员提交了新代码之后，立刻进行构建、（单元）测试。根据测试结果，我们可以确定新代码和原有代码能否正确地集成在一起。借用网络图片对CI加以理解。<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jenkins-continuous-integration.jpg" alt></p>
-<p>CD（Continuous Delivery， 中文意思持续交付）是在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境（类生产环境）中。比如，我们完成单元测试后，可以把代码部署到连接数据库的Staging环境中更多的测试。如果代码没有问题，可以继续手动部署到生产环境。下图反应的是CI/CD 的大概工作模式。<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jenkins-continuous-delivery.jpg" alt></p>
+<h2 id="Jenkins介绍"><a href="#Jenkins介绍" class="headerlink" title="Jenkins介绍"></a>Jenkins介绍</h2><p>jenkins可以在代码上传仓库（如github,gitlab）后，在jenkins（一个网站界面）中通过获取代码仓库中最新代码，进行自动化部署，而省去手动打包、上传服务器、部署这一系列步骤，非常方便。</p>
+<p>Jenkins起源于Hudson（Hudson是商用的），主要用于持续、自动的构建/测试软件项目、监控外部任务的运行。<strong>Jenkins用Java语言编写</strong>，可在Tomcat等流行的servlet容器中运行，也可独立运行。通常与版本控制工具（SCM）、构建工具结合使用。常用的版本控制工具有SVN、GIT，构建工具有Maven、Ant、Gradle。</p>
+<h2 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI / CD"></a>CI / CD</h2><h3 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h3><p>CI（Continuous integration，中文意思是持续集成）是一种软件开发实践。持续集成强调开发人员提交了新代码之后，立刻进行构建、（单元）测试。根据测试结果，我们可以确定新代码和原有代码能否正确地集成在一起。借用网络图片对CI加以理解。<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jenkins-continuous-integration.jpg" alt></p>
+<p>Jenkins自诞生之日起，至今已发展了近20年，社区、生态都已经非常完善了，光是插件就有1500+，基本上，你想要的功能在Jenkins中都能找到。国内不少公司都有在使用，很多公司还基于Jenkins开发了自己的插件，从而与内部自研系统进行集成。并且，Jenkins 2.x版本支持Pipeline as Code特性，允许用户通过代码来定义流水线，从而可以将CI过程也纳入版本管理，这与近几年诞生的GitOps理念不谋而合。此外，Jenkins社区也诞生了kubernetes-plugin这样的插件，使得我们可以将流水线的执行从传统的物理机转移到容器中，再依托Kubernetes的调度能力，就可以实现动态的资源调度和利用。</p>
+<p>不过，Jenkins由于历史悠久，插件众多，要想用好它也并不容易。不论是1.x版本的UI配置风格，还是2.x的Groovy脚本，对于普通开发者而言，都是有一定的学习成本的。除此之外，Jenkins作为一个半自动的持续集成工具，很多时候我们的需求场景都需要基于jenkins编写一些脚本，导致整体接入效率较低，且无法标准化。最后，Jenkins开源版本也缺乏一些企业级的特性，比如隔离性、服务高可用等等。</p>
+<h3 id="持续交付"><a href="#持续交付" class="headerlink" title="持续交付"></a>持续交付</h3><p>CD（Continuous Delivery， 中文意思持续交付）是在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境（类生产环境）中。比如，我们完成单元测试后，可以把代码部署到连接数据库的Staging环境中更多的测试。如果代码没有问题，可以继续手动部署到生产环境。下图反应的是CI/CD 的大概工作模式。<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jenkins-continuous-delivery.jpg" alt></p>
 <h2 id="为什么要持续集成"><a href="#为什么要持续集成" class="headerlink" title="为什么要持续集成"></a>为什么要持续集成</h2><p>想象一下这个场景，我们实际的项目中经常会遇到这种情况，客户临时提出一个需求，让我们短时间内做出一个产品原型，然后客户看了满意之后再在这个产品原型的基础上提出一些新的需求点，然后不断迭代这个过程。</p>
 <p>如果我们按照原来的瀑布流程来开发产品肯定是无法完成这个任务的，首先就卡在需求上，因为客户无法提供完整的需求，我们就无法根据需求来开发一个完成度很高的产品，那么客户就会产生不满，公司拿不到项目会因此丢单。</p>
 <p>其次，时间问题，无法短时间内完成一个高完成度的产品，如果赶工可能会存在产品有重大缺陷无法被发布之前就发现，导致公司由此蒙受损失。</p>
@@ -450,6 +450,15 @@ Jenkins是什么最近接触了jenkins这个东西，所以花点时间了解了
 <blockquote>
 <p>持续集成中的任何一个环节都是自动完成的，无需太多的人工干预，有利于减少重复过程以节省时间、费用和工作量。</p>
 </blockquote>
+<h3 id="大规模部署的烦恼"><a href="#大规模部署的烦恼" class="headerlink" title="大规模部署的烦恼"></a>大规模部署的烦恼</h3><p>对于同样的功能，在用户量不同的系统中，工作量是完全不同的，后台为性能考虑而设计的架构完全不一样。对于CI&amp;CD 也是如此，小规模的很容易，配几个作业就可以完成工作，但对于大规模的CI&amp;CD，一旦系统数量、实例数量上去后各种问题就都来了。下面列举几个主要的问题。</p>
+<p>1）更新问题。更新一次要耗费大量精力，很多企业都是晚上更新，员工得通宵加班，还不能保证更新没问题，不具备快速大批量部署的能力。</p>
+<p>2）部署包（jar 包、war 包、ear 包等）的管理问题。为了保证版本可追溯，出错后能够回滚，我们需要保存各个历史版本，而且方便下载。</p>
+<p>3）版本的安全性。传统上以Java 语言开发的系统多数以jar 包、war 包、ear 包的方式发布，容易被篡改（人为修改，传输过程不完整）；通常我们用md5 来验证完整性，但包与md5 对应关系的管理并没有系统化，往往在出问题后人工进行md5 验证。</p>
+<p>4）主机管理问题。系统部署到哪些机器上需要进行主机管理？在部署时人工选择部署到哪台主机显然不是一种明智的方式，能否自动进行调度？同时，不会产生有些主机性能堪忧、有些主机空闲导致的负载不均情况。</p>
+<p>5）端口管理问题，在部署Java 项目时我们并不建议设置太多的JVM 内存，因此一台主机上往往能够部署多个应用实例，同一台机器上多个实例的开放端口就必须不一致，于是端口又成了需要管理的资源。有人会说可以选用虚拟机，一台虚拟机上只部署一个实例。当然，这也是可以的。实际上，多数企业也是这么做的。这种做法也有弊端，虚拟机虽然帮助做了隔离，但会损失一些主机性能；虚拟机要使用内网IP，这样IP 又成了稀有资源，当部署多个实例时IP 会不够用。</p>
+<p>6）负载均衡管理问题。不管是在主机上部署多个实例，还是利用虚拟机来部署多个实例，在做集群时，都会通过代理（Nginx、Apache、LVS……）软件来做负载均衡，因此我们需要把各实例的访问地址配置到负载器的配置文件中。实例数少的时候手工配置还可以接受，多了就没法手工配置了。当然，方法也会有，比如用Etcd+Confd+Nginx（HAProxy）来做服务发现，我们需要自己部署一套工具，并进行维护，复杂的框架提高了对运维人员的要求。</p>
+<p>7）服务伸缩问题。当服务访问量上去后，要能够具备快速扩充的能力；当访问量下去后，要能够具备缩小服务规模的能力，收放自如。这种弹性的服务能力显然是通过工具来完成的，手动完成是不可能的。</p>
+<p>8）IP 管理问题。当大规模部署后，IP 资源会成为稀有资源，如何用更少的IP 来部署更多的服务？IP 的分配及管理显然不能人工完成，那样效率太过低下，这就需要一个IP 管理工具。</p>
 <h2 id="使用Jenkins进行测试、打包"><a href="#使用Jenkins进行测试、打包" class="headerlink" title="使用Jenkins进行测试、打包"></a>使用Jenkins进行测试、打包</h2><p>Jenkins是一个强大的CI工具，虽然本身使用Java开发，但也能用来做其他语言开发的项目CI。下面讲解如何使用Jenkins创建一个构建任务。</p>
 <p> 登录Jenkins， 点击左侧的新建，创建新的构建任务。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jenkins-1.jpg" alt></p>
@@ -618,7 +627,7 @@ mvn -DskipTests docker:build<span aria-hidden="true" class="line-numbers-rows"><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/97.jpg" class="responsive-img" alt="一致性">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="一致性">
                         
                         <span class="card-title">一致性</span>
                     </div>
@@ -667,7 +676,7 @@ mvn -DskipTests docker:build<span aria-hidden="true" class="line-numbers-rows"><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="MQTT协议">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/82.jpg" class="responsive-img" alt="MQTT协议">
                         
                         <span class="card-title">MQTT协议</span>
                     </div>
@@ -876,7 +885,7 @@ mvn -DskipTests docker:build<span aria-hidden="true" class="line-numbers-rows"><
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">237.4k</span>
+            <span class="white-color">240.7k</span>
             
 
             <br>
