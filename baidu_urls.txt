@@ -1,3 +1,4 @@
+https://arthurjq.com/2021/07/05/sql-null/
 https://arthurjq.com/2021/06/24/gcd/
 https://arthurjq.com/2021/06/22/applicationcontext/
 https://arthurjq.com/2021/06/18/shiro-filter/
@@ -97,4 +98,3 @@ https://arthurjq.com/2020/12/25/project/jenkins/
 https://arthurjq.com/2020/12/24/web/mqtt/
 https://arthurjq.com/2020/12/23/web/nginx/
 https://arthurjq.com/2020/12/22/web/https/
-https://arthurjq.com/2020/12/22/web/amqp/

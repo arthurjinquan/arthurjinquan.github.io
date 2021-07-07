@@ -257,7 +257,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/103.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/104.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,7 +412,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.8k
+                    3.7k
                 </div>
                 
 
@@ -439,22 +439,22 @@
 <p>官方文档：<a href="https://www.infoq.com/articles/apache-shiro/" target="_blank" rel="noopener">https://www.infoq.com/articles/apache-shiro/</a></p>
 <p>参考：<a href="https://www.jianshu.com/p/7f724bec3dc3" target="_blank" rel="noopener">https://www.jianshu.com/p/7f724bec3dc3</a></p>
 <h2 id="为什么使用-Shiro"><a href="#为什么使用-Shiro" class="headerlink" title="为什么使用 Shiro"></a>为什么使用 Shiro</h2><ol>
-<li><strong>易于使用</strong>——易用性是项目的最终目标。应用程序安全非常令人困惑和沮丧,被认为是“不可避免的灾难”。如果你让它简化到新手都可以使用它,它就将不再是一种痛苦了。</li>
+<li><strong>易于使用</strong>——易用性是项目的最终目标。</li>
 <li><strong>全面</strong>——没有其他安全框架的宽度范围可以同Apache Shiro一样,它可以成为你的“一站式”为您的安全需求提供保障。</li>
-<li><strong>灵活</strong>——Apache Shiro可以在任何应用程序环境中工作。虽然在网络工作、EJB和IoC环境中可能并不需要它。但Shiro的授权也没有任何规范,甚至没有许多依赖关系。</li>
-<li><strong>Web支持</strong>——Apache Shiro拥有令人兴奋的web应用程序支持,允许您基于应用程序的url创建灵活的安全策略和网络协议(例如REST),同时还提供一组JSP库控制页面输出。</li>
-<li><strong>低耦合</strong>——Shiro干净的API和设计模式使它容易与许多其他框架和应用程序集成。你会看到Shiro无缝地集成Spring这样的框架, 以及Grails, Wicket, Tapestry, Mule, Apache Camel, Vaadin…等。</li>
-<li><strong>被广泛支持</strong>——Apache Shiro是Apache软件基金会的一部分。项目开发和用户组都有友好的网民愿意帮助。这样的商业公司如果需要Katasoft还提供专业的支持和服务。</li>
+<li><strong>灵活</strong>——可以在任何应用程序环境中工作。虽然在网络工作、EJB和IoC环境中可能并不需要它。但Shiro的授权也没有任何规范,甚至没有许多依赖关系。</li>
+<li><strong>Web支持</strong>——允许您基于应用程序的url创建灵活的安全策略和网络协议（例如REST）。</li>
+<li><strong>低耦合</strong>——Shiro干净的API和设计模式使它容易与许多其他框架和应用程序集成。</li>
+<li><strong>被广泛支持</strong>——Apache Shiro是Apache软件基金会的一部分。</li>
 </ol>
 <h2 id="High-Level-Overview-高级概述"><a href="#High-Level-Overview-高级概述" class="headerlink" title="High-Level Overview 高级概述"></a>High-Level Overview 高级概述</h2><p>在概念层，Shiro 架构包含三个主要的理念：Subject,SecurityManager和 Realm。</p>
 <ol>
 <li><strong>Subject：</strong>当前用户，Subject 可以是一个人，但也可以是第三方服务、守护进程帐户、时钟守护任务或者其它–当前和软件交互的任何事件。</li>
-<li><strong>SecurityManager：</strong>管理所有Subject，SecurityManager 是 Shiro 架构的核心，配合内部安全组件共同组成安全伞。</li>
-<li><strong>Realms：</strong>用于进行权限信息的验证，我们自己实现。Realm 本质上是一个特定的安全 DAO：它封装与数据源连接的细节，得到Shiro 所需的相关的数据。在配置 Shiro 的时候，你必须指定至少一个Realm 来实现认证（authentication）和/或授权（authorization）。</li>
+<li><strong>SecurityManager：</strong>管理所有Subject，SecurityManager 是 Shiro 架构的<strong>核心</strong>，配合内部安全组件共同组成安全伞。</li>
+<li><strong>Realms：</strong>用于进行权限信息的验证，我们自己实现。Realm 本质上是一个特定的安全 DAO：它封装与数据源连接的细节，得到Shiro 所需的相关的数据。在配置 Shiro 的时候，你必须指定至少一个Realm 来实现认证（authentication）和授权（authorization）。</li>
 </ol>
 <p>我们需要实现Realms的Authentication 和 Authorization。其中 Authentication 是用来验证用户身份，Authorization 是授权访问控制，用于对用户进行的操作授权，证明该用户是否允许进行当前操作，如访问某个链接，某个资源文件等。</p>
 <h3 id="细分功能"><a href="#细分功能" class="headerlink" title="细分功能"></a>细分功能</h3><ol>
-<li><p>Authentication：身份认证/登录(账号密码验证)。</p>
+<li><p>Authentication：身份认证/登录（账号密码验证）。</p>
 </li>
 <li><p>Authorization：授权，即角色或者权限验证。</p>
 </li>
@@ -468,17 +468,17 @@
 </li>
 <li><p>Concurrency：多线程并发验证，在一个线程中开启另一个线程，可以把权限自动传播过去。</p>
 </li>
-<li><p>Testing：测试支持；</p>
+<li><p>Testing：测试支持。</p>
 </li>
 <li><p>Run As：允许一个用户假装为另一个用户（如果他们允许）的身份进行访问。</p>
 </li>
-<li><p>Remember Me：记住我，登录后，下次再来的话不用登录了。</p>
+<li><p>Remember Me：记住我，登录后，下次再来就不用登录了。</p>
 </li>
 </ol>
 <h2 id="Shiro-认证过程"><a href="#Shiro-认证过程" class="headerlink" title="Shiro 认证过程"></a>Shiro 认证过程</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/shiro-2.png" alt></p>
 <p>流程如下：</p>
 <ol>
-<li>首先调用 Subject.login(token) 进行登录，其会自动委托给 Security Manager，调用之前必须通过 SecurityUtils.setSecurityManager() 设置；</li>
+<li>首先调用 <code>Subject.login(token)</code> 进行登录，其会自动委托给 Security Manager，调用之前必须通过 <code>SecurityUtils.setSecurityManager()</code> 设置；</li>
 <li>SecurityManager 负责真正的身份验证逻辑；它会委托给 Authenticator 进行身份验证；</li>
 <li>Authenticator 才是真正的身份验证者，Shiro API 中核心的身份认证入口点，此处可以自定义插入自己的实现；</li>
 <li>Authenticator 可能会委托给相应的 AuthenticationStrategy 进行多 Realm 身份验证，默认 ModularRealmAuthenticator 会调用 AuthenticationStrategy 进行多 Realm 身份验证；</li>
@@ -486,7 +486,10 @@
 </ol>
 <h2 id="Shiro-授权过程"><a href="#Shiro-授权过程" class="headerlink" title="Shiro 授权过程"></a>Shiro 授权过程</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/shiro-3.png" alt></p>
 <p>跟认证过程大致相似</p>
-<h2 id="Shiro-加密"><a href="#Shiro-加密" class="headerlink" title="Shiro 加密"></a>Shiro 加密</h2><p>在之前的学习中，我们在数据库中保存的密码都是明文的，一旦数据库数据泄露，那就会造成不可估算的损失，所以我们通常都会使用非对称加密，简单理解也就是<strong>不可逆</strong>的加密，而 md5 加密算法就是符合这样的一种算法。</p>
+<h2 id="Shiro-加密（未实现）"><a href="#Shiro-加密（未实现）" class="headerlink" title="Shiro 加密（未实现）"></a>Shiro 加密（未实现）</h2><blockquote>
+<p>一件构建系统采用YYOA和LDAP双认证登录，不需要Shiro框架支持</p>
+</blockquote>
+<p>在之前的学习中，我们在数据库中保存的密码都是明文的，一旦数据库数据泄露，那就会造成不可估算的损失，所以我们通常都会使用非对称加密，简单理解也就是<strong>不可逆</strong>的加密，而 md5 加密算法就是符合这样的一种算法。</p>
 <p>如 123456 用 Md5 加密后，得到的字符串：<strong>e10adc3949ba59abbe56e057f20f883e</strong>，就无法通过计算还原回 123456，我们把这个加密的字符串保存在数据库中，等下次用户登录时我们把密码通过同样的算法加密后再从数据库中取出这个字符串进行比较，就能够知道密码是否正确了，这样既保留了密码验证的功能又大大增加了安全性，<strong>但是问题是：虽然无法直接通过计算反推回密码，但是我们仍然可以通过计算一些简单的密码加密后的 Md5 值进行比较，推算出原来的密码</strong></p>
 <h3 id="加盐-多次加密"><a href="#加盐-多次加密" class="headerlink" title="加盐 + 多次加密"></a>加盐 + 多次加密</h3><p>既然相同的密码 md5 一样，那么我们就让我们的原始密码再<strong>加一个随机数</strong>，然后再进行 md5 加密，这个随机数就是我们说的<strong>盐(salt)</strong>，这样处理下来就能得到不同的 Md5 值，当然我们需要把这个随机数盐也保存进数据库中，以便我们进行验证。</p>
 <p>另外我们可以通过<strong>多次加密</strong>的方法，即使黑客通过一定的技术手段拿到了我们的密码 md5 值，但它并不知道我们到底加密了多少次，所以这也使得破解工作变得艰难。</p>
@@ -541,15 +544,12 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
          <span class="token keyword">this</span><span class="token punctuation">.</span>roles <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>因为我们项目已经有oa认证登录了，user表这边就不存密码了，采用<strong>无验证登录</strong>方式。</p>
+<p>因为我们项目已经有YYOA认证登录了，user表这边就不存密码了，并且采用<strong>无验证登录</strong>方式。</p>
 <h4 id="UserRole-java"><a href="#UserRole-java" class="headerlink" title="UserRole.java"></a>UserRole.java</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>IdType<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>TableId<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>TableName<span class="token punctuation">;</span>
 <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
 
-<span class="token comment" spellcheck="true">/**
- * @author wujinquan
- */</span>
 <span class="token annotation punctuation">@Data</span>
 <span class="token annotation punctuation">@EqualsAndHashCode</span><span class="token punctuation">(</span>callSuper<span class="token operator">=</span><span class="token boolean">false</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@Builder</span>
@@ -563,7 +563,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
     <span class="token keyword">private</span> Integer id<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">int</span> userId<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">int</span> roleId<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="Role-java"><a href="#Role-java" class="headerlink" title="Role.java"></a>Role.java</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>TableField<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>TableName<span class="token punctuation">;</span>
 <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
@@ -574,6 +574,7 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 
 <span class="token comment" spellcheck="true">/**
  * @author wujinquan
+ * @since 2021-06-04
  */</span>
 <span class="token annotation punctuation">@Data</span>
 <span class="token annotation punctuation">@EqualsAndHashCode</span><span class="token punctuation">(</span>callSuper <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
@@ -583,7 +584,13 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Role</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
 
     <span class="token keyword">private</span> Integer id<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 角色编码
+     */</span>
     <span class="token keyword">private</span> String roleCode<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 角色名
+     */</span>
     <span class="token keyword">private</span> String roleName<span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">/**
      * 角色对应权限集合
@@ -594,13 +601,16 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
     <span class="token keyword">public</span> <span class="token function">Role</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         <span class="token keyword">this</span><span class="token punctuation">.</span>permissions <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashSet</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="RolePermission-java"><a href="#RolePermission-java" class="headerlink" title="RolePermission.java"></a>RolePermission.java</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>IdType<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>TableId<span class="token punctuation">;</span>
 <span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>TableName<span class="token punctuation">;</span>
 <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>Serializable<span class="token punctuation">;</span>
+
 <span class="token comment" spellcheck="true">/**
  * @author wujinquan
+ * @since 2021-06-04
  */</span>
 <span class="token annotation punctuation">@Data</span>
 <span class="token annotation punctuation">@EqualsAndHashCode</span><span class="token punctuation">(</span>callSuper <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
@@ -608,18 +618,21 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token annotation punctuation">@AllArgsConstructor</span>
 <span class="token annotation punctuation">@NoArgsConstructor</span>
 <span class="token annotation punctuation">@TableName</span><span class="token punctuation">(</span>autoResultMap <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RolePermission</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RolePermission</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+
     <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 1L<span class="token punctuation">;</span>
+
     <span class="token annotation punctuation">@TableId</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">,</span> type <span class="token operator">=</span> IdType<span class="token punctuation">.</span>AUTO<span class="token punctuation">)</span>
     <span class="token keyword">private</span> Integer id<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">int</span> roleId<span class="token punctuation">;</span>
     <span class="token keyword">private</span> <span class="token keyword">int</span> permissionId<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="Permission-java"><a href="#Permission-java" class="headerlink" title="Permission.java"></a>Permission.java</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>baomidou<span class="token punctuation">.</span>mybatisplus<span class="token punctuation">.</span>annotation<span class="token punctuation">.</span>TableName<span class="token punctuation">;</span>
 <span class="token keyword">import</span> lombok<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
 
 <span class="token comment" spellcheck="true">/**
  * @author wujinquan
+ * @since 2021-06-04
  */</span>
 <span class="token annotation punctuation">@Data</span>
 <span class="token annotation punctuation">@EqualsAndHashCode</span><span class="token punctuation">(</span>callSuper <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
@@ -629,10 +642,19 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <span class="token annotation punctuation">@TableName</span><span class="token punctuation">(</span>autoResultMap <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Permission</span> <span class="token punctuation">{</span>
     <span class="token keyword">private</span> Integer id<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 权限名
+     */</span>
     <span class="token keyword">private</span> String permissionName<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 权限编码
+     */</span>
     <span class="token keyword">private</span> String permissionCode<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">/**
+     * 备注
+     */</span>
     <span class="token keyword">private</span> String permissionNote<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="数据库建表"><a href="#数据库建表" class="headerlink" title="数据库建表"></a>数据库建表</h3><pre class="line-numbers language-mysql"><code class="language-mysql">DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
@@ -1209,7 +1231,7 @@ CREATE TABLE `permission`
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/73.jpg" class="responsive-img" alt="DefaultAdvisorAutoProxyCreator">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/74.jpg" class="responsive-img" alt="DefaultAdvisorAutoProxyCreator">
                         
                         <span class="card-title">DefaultAdvisorAutoProxyCreator</span>
                     </div>
@@ -1258,7 +1280,7 @@ CREATE TABLE `permission`
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/90.jpg" class="responsive-img" alt="Spring中Bean的三种注入方式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/91.jpg" class="responsive-img" alt="Spring中Bean的三种注入方式">
                         
                         <span class="card-title">Spring中Bean的三种注入方式</span>
                     </div>
@@ -1467,7 +1489,7 @@ CREATE TABLE `permission`
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">240.7k</span>
+            <span class="white-color">242.5k</span>
             
 
             <br>

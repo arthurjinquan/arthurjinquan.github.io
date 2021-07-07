@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/116.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/117.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -413,14 +413,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    7 分
                 </div>
                 
                 
@@ -538,7 +538,50 @@
         <span class="token comment" spellcheck="true">//返回value</span>
         <span class="token keyword">return</span> var1<span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="set设置变量"><a href="#set设置变量" class="headerlink" title="set设置变量"></a>set设置变量</h3>
+<h3 id="set设置变量"><a href="#set设置变量" class="headerlink" title="set设置变量"></a>set设置变量</h3><pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">set</span><span class="token punctuation">(</span>T var1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">//获取当前线程</span>
+        Thread var2 <span class="token operator">=</span> Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//获取线程本地变量threadLocals</span>
+        ThreadLocal<span class="token punctuation">.</span>ThreadLocalMap var3 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getMap</span><span class="token punctuation">(</span>var2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>var3 <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//本地变量不为空，当前ThreadLocal为索引设置映射的value</span>
+            var3<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//本地变量为空，创建线程本地变量，当前ThreadLocal为所有设置映射的value</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">createMap</span><span class="token punctuation">(</span>var2<span class="token punctuation">,</span> var1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="remove清楚变量"><a href="#remove清楚变量" class="headerlink" title="remove清楚变量"></a>remove清楚变量</h3><pre class="line-numbers language-java"><code class="language-java">        <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span>ThreadLocal<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token operator">></span> var1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//获取Entry数组</span>
+            ThreadLocal<span class="token punctuation">.</span>ThreadLocalMap<span class="token punctuation">.</span>Entry<span class="token punctuation">[</span><span class="token punctuation">]</span> var2 <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>table<span class="token punctuation">;</span>
+            <span class="token keyword">int</span> var3 <span class="token operator">=</span> var2<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//计算出当前ThreadLocal的数组下标</span>
+            <span class="token keyword">int</span> var4 <span class="token operator">=</span> var1<span class="token punctuation">.</span>threadLocalHashCode <span class="token operator">&amp;</span> var3 <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">for</span><span class="token punctuation">(</span>ThreadLocal<span class="token punctuation">.</span>ThreadLocalMap<span class="token punctuation">.</span>Entry var5 <span class="token operator">=</span> var2<span class="token punctuation">[</span>var4<span class="token punctuation">]</span><span class="token punctuation">;</span> var5 <span class="token operator">!=</span> null<span class="token punctuation">;</span> var5 <span class="token operator">=</span> var2<span class="token punctuation">[</span>var4 <span class="token operator">=</span> <span class="token function">nextIndex</span><span class="token punctuation">(</span>var4<span class="token punctuation">,</span> var3<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">//遍历，直到找到Entry中key为当前ThreadLocal的那个元素</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>var5<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> var1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">//清楚该元素</span>
+                    var5<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">expungeStaleEntry</span><span class="token punctuation">(</span>var4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">return</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+
+        <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>核心就三样：ThreadLocal线程本地变量工具类（同时作为索引）、Entry基本元素（由弱引用包装类ThreadLocal与value组成），Entry数组容器，到这里流程很清晰了，ThreadLocal计算出数组索引，用 ThreadLocal 与 value 构建出 Entry 元素，最终放入 Entry 容器中。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/threadlocal-3.jpg" alt></p>
+<h2 id="remove背后的意义"><a href="#remove背后的意义" class="headerlink" title="remove背后的意义"></a>remove背后的意义</h2><p>大伙都知道 Entry 中对 ThreadLocal 使用弱引用，但value是强引用，如果消除 ThreadLocal 强引用，value值无法清理，最终内存溢出。</p>
+<p>其实value作为强引用设计属于合理，如果用软或弱引用，就出大问题了，程序跑着跑着突然get到了一个null，估计都得骂娘了，所以为解决内存溢出问题 J D K提供remove方法，使开发人员可以选择手动清理整个Entry元素，防止内存溢出。</p>
+<p>还记的之前说过吗？线程本地变量的生命周期与线程绑定，一般线程的生命周期比较短，线程结束时，线程本地变量自然就销毁了，软引用与 remove 会不会有点多余了？</p>
+<p>业务瞬息万变，大部分情况来说线程的生命周期比较短，但也业务场景会导致线程的生命周期较长，甚至可能线程无限循环执行，这些是你没办法预料到的，数量一旦上来很容易内存溢出，所以个人建议使用完之后及时清理ThreadLocal，理由如下</p>
+<ul>
+<li>生命周期较长的线程场景</li>
+<li>无限循环线程的场景</li>
+<li>线程池场景（因为线程池可以复用线程，而且公司使用的框架可能会定制化线程池，你不能保证他会在线程池内帮你remove）</li>
+</ul>
+<p>转载：<a href="https://mp.weixin.qq.com/s?__biz=MzAwMDg2OTAxNg==&amp;mid=2652048380&amp;idx=1&amp;sn=d4420022dee3f10a39cbc8ca24fcf955&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">https://mp.weixin.qq.com/s?__biz=MzAwMDg2OTAxNg==&amp;mid=2652048380&amp;idx=1&amp;sn=d4420022dee3f10a39cbc8ca24fcf955&amp;scene=21#wechat_redirect</a></p>
+
             </div>
             <hr />
 
@@ -644,7 +687,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/90.jpg" class="responsive-img" alt="Spring中Bean的三种注入方式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/91.jpg" class="responsive-img" alt="Spring中Bean的三种注入方式">
                         
                         <span class="card-title">Spring中Bean的三种注入方式</span>
                     </div>
@@ -697,7 +740,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/109.jpg" class="responsive-img" alt="Optional">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/110.jpg" class="responsive-img" alt="Optional">
                         
                         <span class="card-title">Optional</span>
                     </div>
@@ -902,7 +945,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">240.7k</span>
+            <span class="white-color">242.5k</span>
             
 
             <br>
