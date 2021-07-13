@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://arthurjq.com/"/>
-  <updated>2021-07-05T07:02:48.740Z</updated>
+  <updated>2021-07-13T09:34:07.005Z</updated>
   <id>https://arthurjq.com/</id>
   
   <author>
@@ -18,19 +18,18 @@
   
   <entry>
     <title>sql的三值逻辑</title>
-    <link href="https://arthurjq.com/2021/07/05/sql-null/"/>
-    <id>https://arthurjq.com/2021/07/05/sql-null/</id>
+    <link href="https://arthurjq.com/2021/07/05/database/sql-null/"/>
+    <id>https://arthurjq.com/2021/07/05/database/sql-null/</id>
     <published>2021-07-05T03:58:15.000Z</published>
-    <updated>2021-07-05T07:02:48.740Z</updated>
+    <updated>2021-07-13T09:34:07.005Z</updated>
     
-    <content type="html"><![CDATA[<p>## </p><p>在SQL中，NULL是一种特有的数据类型，其等价于没知有任何值、是未知数。NULL与0、空道字符串、空格都不同。SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误。内容<br>非ANSI SQL标准中data=NULL等同于data IS NULL，data&lt;&gt;NULL等同于data IS NOT NULL。<br>所以：默认情况下做比较条件时使用关键字“is null”和“is not null”。</p><pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- SQL 不报错，但查不出结果</span><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_sample_null <span class="token keyword">WHERE</span> remark <span class="token operator">=</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="三值逻辑"><a href="#三值逻辑" class="headerlink" title="三值逻辑"></a>三值逻辑</h2><p>在主流的编程语言中（C、JAVA、Python、JS等）中，逻辑值确实只有 2 个，但在 SQL 中却存在第三个逻辑值：unknown。这有点类似于我们平时所说的：对、错、不知道。</p><p>逻辑值 unknown 和作为 NULL 的一种的 UNKNOWN （未知）是不同的东西。前者是明确的布尔型的逻辑值，后者既不是值也不是变量。为了便于区分，前者采用小写字母 unknown ，后者用大写字母 UNKNOWN 来表示。为了让大家理解两者的不同，我们来看一个 x=x 这样的简单等式。x 是逻辑值 unknown 时，x=x 被判断为 true ，而 x 是 UNKNOWN 时被判断为 unknown </p><pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 这个是明确的逻辑值的比较</span>unknown <span class="token operator">=</span> unknown → <span class="token boolean">true</span><span class="token comment" spellcheck="true">-- 这个相当于NULL = NULL</span>UNKNOWN <span class="token operator">=</span> UNKNOWN → unknown<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="三值逻辑的逻辑值表"><a href="#三值逻辑的逻辑值表" class="headerlink" title="三值逻辑的逻辑值表"></a>三值逻辑的逻辑值表</h2><p>NOT:</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/sql-null-1.jpg" alt></p><p>AND:</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/sql-null-2.jpg" alt></p><p>OR:</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/sql-null-3.jpg" alt></p><p>图中蓝色部分是三值逻辑中独有的运算，这在二值逻辑中是没有的。其余的 SQL 谓词全部都能由这三个逻辑运算组合而来。从这个意义上讲，这个几个逻辑表可以说是 SQL 的母体（matrix）。</p><p>NOT 的话，因为逻辑值表比较简单，所以很好记；但是对于 AND 和 OR，因为组合出来的逻辑值较多，所以全部记住非常困难。为了便于记忆，请注意这三个逻辑值之间有下面这样的优先级顺序。</p><p>AND 的情况： false ＞ unknown ＞ true</p><p>OR 的情况： true ＞ unknown ＞ false</p><p>　　　　优先级高的逻辑值会决定计算结果。例如 true AND unknown ，因为 unknown 的优先级更高，所以结果是 unknown 。而 true OR unknown 的话，因为 true 优先级更高，所以结果是 true 。记住这个顺序后就能更方便地进行三值逻辑运算了。特别需要记住的是，当 AND 运算中包含 unknown 时，结果肯定不会是 true （反之，如果AND 运算结果为 true ，则参与运算的双方必须都为 true ）。</p><pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 假设 a = 2, b = 5, c = NULL，下列表达式的逻辑值如下</span><span class="token number">a</span> <span class="token operator">&lt;</span> <span class="token number">b</span> <span class="token operator">AND</span> <span class="token number">b</span> <span class="token operator">></span> <span class="token number">c</span>  → unknown<span class="token number">a</span> <span class="token operator">></span> <span class="token number">b</span> <span class="token operator">OR</span> <span class="token number">b</span> <span class="token operator">&lt;</span> <span class="token number">c</span>   → unknown<span class="token number">a</span> <span class="token operator">&lt;</span> <span class="token number">b</span> <span class="token operator">OR</span> <span class="token number">b</span> <span class="token operator">&lt;</span> <span class="token number">c</span>   → <span class="token boolean">true</span><span class="token operator">NOT</span> <span class="token punctuation">(</span><span class="token number">b</span> <span class="token operator">&lt;></span> <span class="token number">c</span><span class="token punctuation">)</span>     → unknown<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="“IS-NULL”-而非-“-NULL”"><a href="#“IS-NULL”-而非-“-NULL”" class="headerlink" title="“IS NULL” 而非 “= NULL”"></a>“IS NULL” 而非 “= NULL”</h2><p>我们再回到问题：为什么必须写成“IS NULL”，而不是“＝ NULL”</p><p>对 NULL 使用比较谓词后得到的结果总是 unknown 。而查询结果只会包含 WHERE 子句里的判断结果为 true 的行，不会包含判断结果为 false 和 unknown 的行。不只是等号，对 NULL 使用其他比较谓词，结果也都是一样的。所以无论 remark 是不是 NULL ，比较结果都是 unknown ，那么永远没有结果返回。以下的式子都会被判为 unknown</p><pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 以下的式子都会被判为 unknown</span><span class="token operator">=</span> <span class="token boolean">NULL</span><span class="token operator">></span> <span class="token boolean">NULL</span><span class="token operator">&lt;</span> <span class="token boolean">NULL</span><span class="token operator">&lt;></span> <span class="token boolean">NULL</span><span class="token boolean">NULL</span> <span class="token operator">=</span> <span class="token boolean">NULL</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>那么，为什么对 NULL 使用比较谓词后得到的结果永远不可能为真呢？这是因为，NULL 既不是值也不是变量。NULL 只是一个表示“没有值”的标记，而比较谓词只适用于值。因此，对并非值的 NULL 使用比较谓词本来就是没有意义的。“列的值为 NULL ”、“NULL 值” 这样的说法本身就是错误的。因为 NULL不是值，所以不在定义域（domain）中。相反，如果有人认为 NULL 是值，那么我们可以倒过来想一下：它是什么类型的值？关系数据库中存在的值必然属于某种类型，比如字符型或数值型等。所以，假如 NULL 是值，那么它就必须属于某种类型。</p><p>NULL 容易被认为是值的原因有两个。第一个是高级编程语言里面，NULL 被定义为了一个常量（很多语言将其定义为了整数0），这导致了我们的混淆。但是，SQL 里的 NULL 和其他编程语言里的 NULL 是完全不同的东西。第二个原因是，IS NULL 这样的谓词是由两个单词构成的，所以我们容易把 IS 当作谓词，而把 NULL 当作值。特别是 SQL 里还有 IS TRUE 、IS FALSE 这样的谓词，我们由此类推，从而这样认为也不是没有道理。但是正如讲解标准 SQL 的书里提醒人们注意的那样，我们应该把 IS NULL 看作是一个谓词。因此，写成 IS_NULL 这样也许更合适。</p><p>转载：<a href="https://www.cnblogs.com/youzhibing/p/11337745.html" target="_blank" rel="noopener">https://www.cnblogs.com/youzhibing/p/11337745.html</a></p>]]></content>
+    <content type="html"><![CDATA[<p>在SQL中，NULL是一种特有的数据类型，其等价于没知有任何值、是未知数。NULL与0、空道字符串、空格都不同。SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误。内容<br>非ANSI SQL标准中data=NULL等同于data IS NULL，data&lt;&gt;NULL等同于data IS NOT NULL。<br>所以：默认情况下做比较条件时使用关键字“is null”和“is not null”。</p><pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- SQL 不报错，但查不出结果</span><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_sample_null <span class="token keyword">WHERE</span> remark <span class="token operator">=</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h2 id="三值逻辑"><a href="#三值逻辑" class="headerlink" title="三值逻辑"></a>三值逻辑</h2><p>在主流的编程语言中（C、JAVA、Python、JS等）中，逻辑值确实只有 2 个，但在 SQL 中却存在第三个逻辑值：unknown。这有点类似于我们平时所说的：对、错、不知道。</p><p>逻辑值 unknown 和作为 NULL 的一种的 UNKNOWN （未知）是不同的东西。前者是明确的布尔型的逻辑值，后者既不是值也不是变量。为了便于区分，前者采用小写字母 unknown ，后者用大写字母 UNKNOWN 来表示。为了让大家理解两者的不同，我们来看一个 x=x 这样的简单等式。x 是逻辑值 unknown 时，x=x 被判断为 true ，而 x 是 UNKNOWN 时被判断为 unknown </p><pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 这个是明确的逻辑值的比较</span>unknown <span class="token operator">=</span> unknown → <span class="token boolean">true</span><span class="token comment" spellcheck="true">-- 这个相当于NULL = NULL</span>UNKNOWN <span class="token operator">=</span> UNKNOWN → unknown<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="三值逻辑的逻辑值表"><a href="#三值逻辑的逻辑值表" class="headerlink" title="三值逻辑的逻辑值表"></a>三值逻辑的逻辑值表</h2><p>NOT:</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/sql-null-1.jpg" alt></p><p>AND:</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/sql-null-2.jpg" alt></p><p>OR:</p><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/sql-null-3.jpg" alt></p><p>图中蓝色部分是三值逻辑中独有的运算，这在二值逻辑中是没有的。其余的 SQL 谓词全部都能由这三个逻辑运算组合而来。从这个意义上讲，这个几个逻辑表可以说是 SQL 的母体（matrix）。</p><p>NOT 的话，因为逻辑值表比较简单，所以很好记；但是对于 AND 和 OR，因为组合出来的逻辑值较多，所以全部记住非常困难。为了便于记忆，请注意这三个逻辑值之间有下面这样的优先级顺序。</p><p>AND 的情况： false ＞ unknown ＞ true</p><p>OR 的情况： true ＞ unknown ＞ false</p><p>　　　　优先级高的逻辑值会决定计算结果。例如 true AND unknown ，因为 unknown 的优先级更高，所以结果是 unknown 。而 true OR unknown 的话，因为 true 优先级更高，所以结果是 true 。记住这个顺序后就能更方便地进行三值逻辑运算了。特别需要记住的是，当 AND 运算中包含 unknown 时，结果肯定不会是 true （反之，如果AND 运算结果为 true ，则参与运算的双方必须都为 true ）。</p><pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 假设 a = 2, b = 5, c = NULL，下列表达式的逻辑值如下</span><span class="token number">a</span> <span class="token operator">&lt;</span> <span class="token number">b</span> <span class="token operator">AND</span> <span class="token number">b</span> <span class="token operator">></span> <span class="token number">c</span>  → unknown<span class="token number">a</span> <span class="token operator">></span> <span class="token number">b</span> <span class="token operator">OR</span> <span class="token number">b</span> <span class="token operator">&lt;</span> <span class="token number">c</span>   → unknown<span class="token number">a</span> <span class="token operator">&lt;</span> <span class="token number">b</span> <span class="token operator">OR</span> <span class="token number">b</span> <span class="token operator">&lt;</span> <span class="token number">c</span>   → <span class="token boolean">true</span><span class="token operator">NOT</span> <span class="token punctuation">(</span><span class="token number">b</span> <span class="token operator">&lt;></span> <span class="token number">c</span><span class="token punctuation">)</span>     → unknown<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="“IS-NULL”-而非-“-NULL”"><a href="#“IS-NULL”-而非-“-NULL”" class="headerlink" title="“IS NULL” 而非 “= NULL”"></a>“IS NULL” 而非 “= NULL”</h2><p>我们再回到问题：为什么必须写成“IS NULL”，而不是“＝ NULL”</p><p>对 NULL 使用比较谓词后得到的结果总是 unknown 。而查询结果只会包含 WHERE 子句里的判断结果为 true 的行，不会包含判断结果为 false 和 unknown 的行。不只是等号，对 NULL 使用其他比较谓词，结果也都是一样的。所以无论 remark 是不是 NULL ，比较结果都是 unknown ，那么永远没有结果返回。以下的式子都会被判为 unknown</p><pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 以下的式子都会被判为 unknown</span><span class="token operator">=</span> <span class="token boolean">NULL</span><span class="token operator">></span> <span class="token boolean">NULL</span><span class="token operator">&lt;</span> <span class="token boolean">NULL</span><span class="token operator">&lt;></span> <span class="token boolean">NULL</span><span class="token boolean">NULL</span> <span class="token operator">=</span> <span class="token boolean">NULL</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>那么，为什么对 NULL 使用比较谓词后得到的结果永远不可能为真呢？这是因为，NULL 既不是值也不是变量。NULL 只是一个表示“没有值”的标记，而比较谓词只适用于值。因此，对并非值的 NULL 使用比较谓词本来就是没有意义的。“列的值为 NULL ”、“NULL 值” 这样的说法本身就是错误的。因为 NULL不是值，所以不在定义域（domain）中。相反，如果有人认为 NULL 是值，那么我们可以倒过来想一下：它是什么类型的值？关系数据库中存在的值必然属于某种类型，比如字符型或数值型等。所以，假如 NULL 是值，那么它就必须属于某种类型。</p><p>NULL 容易被认为是值的原因有两个。第一个是高级编程语言里面，NULL 被定义为了一个常量（很多语言将其定义为了整数0），这导致了我们的混淆。但是，SQL 里的 NULL 和其他编程语言里的 NULL 是完全不同的东西。第二个原因是，IS NULL 这样的谓词是由两个单词构成的，所以我们容易把 IS 当作谓词，而把 NULL 当作值。特别是 SQL 里还有 IS TRUE 、IS FALSE 这样的谓词，我们由此类推，从而这样认为也不是没有道理。但是正如讲解标准 SQL 的书里提醒人们注意的那样，我们应该把 IS NULL 看作是一个谓词。因此，写成 IS_NULL 这样也许更合适。</p><p>转载：<a href="https://www.cnblogs.com/youzhibing/p/11337745.html" target="_blank" rel="noopener">https://www.cnblogs.com/youzhibing/p/11337745.html</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;## &lt;/p&gt;
-&lt;p&gt;在SQL中，NULL是一种特有的数据类型，其等价于没知有任何值、是未知数。NULL与0、空道字符串、空格都不同。SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误。内容&lt;br&gt;非ANSI SQL标准中data=NU
+        &lt;p&gt;在SQL中，NULL是一种特有的数据类型，其等价于没知有任何值、是未知数。NULL与0、空道字符串、空格都不同。SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误。内容&lt;br&gt;非ANSI SQL标准中data=NULL等同于data I
       
     
     </summary>
@@ -44,8 +43,8 @@
   
   <entry>
     <title>最大公约数算法gcd</title>
-    <link href="https://arthurjq.com/2021/06/24/gcd/"/>
-    <id>https://arthurjq.com/2021/06/24/gcd/</id>
+    <link href="https://arthurjq.com/2021/06/24/algorithm/gcd/"/>
+    <id>https://arthurjq.com/2021/06/24/algorithm/gcd/</id>
     <published>2021-06-24T10:34:38.000Z</published>
     <updated>2021-07-01T12:27:33.111Z</updated>
     
@@ -69,8 +68,8 @@
   
   <entry>
     <title>获取ApplicationContext的五种方式和注意事项</title>
-    <link href="https://arthurjq.com/2021/06/22/applicationcontext/"/>
-    <id>https://arthurjq.com/2021/06/22/applicationcontext/</id>
+    <link href="https://arthurjq.com/2021/06/22/java/applicationcontext/"/>
+    <id>https://arthurjq.com/2021/06/22/java/applicationcontext/</id>
     <published>2021-06-22T07:02:38.000Z</published>
     <updated>2021-06-24T09:49:42.923Z</updated>
     
@@ -146,8 +145,8 @@
   
   <entry>
     <title>DefaultAdvisorAutoProxyCreator</title>
-    <link href="https://arthurjq.com/2021/06/09/defaultadvisorautoproxycreator/"/>
-    <id>https://arthurjq.com/2021/06/09/defaultadvisorautoproxycreator/</id>
+    <link href="https://arthurjq.com/2021/06/09/java/defaultadvisorautoproxycreator/"/>
+    <id>https://arthurjq.com/2021/06/09/java/defaultadvisorautoproxycreator/</id>
     <published>2021-06-09T10:26:21.000Z</published>
     <updated>2021-06-10T06:54:18.482Z</updated>
     
@@ -304,19 +303,19 @@
   </entry>
   
   <entry>
-    <title>lowbit函数</title>
+    <title>highbit和lowbit函数</title>
     <link href="https://arthurjq.com/2021/05/31/algorithm/lowbit/"/>
     <id>https://arthurjq.com/2021/05/31/algorithm/lowbit/</id>
     <published>2021-05-31T11:06:24.000Z</published>
-    <updated>2021-06-01T02:04:43.272Z</updated>
+    <updated>2021-07-08T03:14:47.752Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="lowbit的概念"><a href="#lowbit的概念" class="headerlink" title="lowbit的概念"></a>lowbit的概念</h2><pre><code>f=lowbit(x)</code></pre><p>这个函数的值是x的二进制表达式中最低位的1所对应的值。</p><p><code>lowbit(6)</code>因为<code>(110)2</code>中最低位（就是从右往左数的第二位）对应的数是2</p><p>所以假设一个数的二进制最低位的1在从右往左数的第k位，那么它的lowbit值就是</p><pre><code>2^{k-1}</code></pre><h2 id="lowbit函数的实现"><a href="#lowbit函数的实现" class="headerlink" title="lowbit函数的实现"></a>lowbit函数的实现</h2><p>一、</p><pre><code>x&amp;(x^(x-1))</code></pre><p>二、</p><pre><code>x&amp;-x</code></pre><p>我们得到lowbit的值，只需要得到最后一个1的位置，并且把除了这个位置之外的所有位置全部置成零。然后输出就可以。</p><blockquote><p>根据计算机补码的性质。</p><p>补码就是原码的反码加一</p></blockquote><h2 id="用lowbit运算统计1的个数"><a href="#用lowbit运算统计1的个数" class="headerlink" title="用lowbit运算统计1的个数"></a>用lowbit运算统计1的个数</h2><p>我们可以使用lowbit运算统计一个整数的二进制形式下1的个数。</p><p>实现原理很简单啦，就是：我们先用lowbit运算找出<code>lowbit(x)</code>，然后用原数减去这个数，依次循环，直到为0为止。</p><p>这也是树状数组的实现原理。</p><p>代码：</p><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">while</span><span class="token punctuation">(</span>x <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    x<span class="token operator">-=</span>x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">;</span>    ans<span class="token operator">++</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h2>]]></content>
+    <content type="html"><![CDATA[<h2 id="highbit"><a href="#highbit" class="headerlink" title="highbit"></a>highbit</h2><pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">highestOneBit</span><span class="token punctuation">(</span><span class="token keyword">int</span> var0<span class="token punctuation">)</span> <span class="token punctuation">{</span>        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">2</span><span class="token punctuation">;</span>        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">4</span><span class="token punctuation">;</span>        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">8</span><span class="token punctuation">;</span>        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">16</span><span class="token punctuation">;</span>        <span class="token keyword">return</span> var0 <span class="token operator">-</span> <span class="token punctuation">(</span>var0 <span class="token operator">>>></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>1、第一步的作用是把最高位1右移移位，并与原数据按位取或。那么这就使得最高位和它的下一位是连续两个1。<br>2、第二步的作用是把刚刚移位得到连续两个1继续右移两位并与原数据按位取或。那么这就使得最高两位和它的下两个连续位组成四个连续的1。<br>3、 以此类推，最终得到的i是从开始的最高位到结束全是1。并减去i不带符号的右移一位，即可得到一个int数据的最高位的值。<br>4、上述情况是针对于i不为零和负数的情况，如果i为零，那么得到的结果始终为零。如果i位负数，那么得到的结果始终是-2147483648。即等于Integer.MIN_VALUE。（原因在于负数的最高位始终为1，即是负数的符号位）</p><p>调用Integer.highestOneBit即可调用此方法。</p><h2 id="lowbit的概念"><a href="#lowbit的概念" class="headerlink" title="lowbit的概念"></a>lowbit的概念</h2><pre><code>f=lowbit(x)</code></pre><p>这个函数的值是x的二进制表达式中最低位的1所对应的值。</p><p><code>lowbit(6)</code>因为<code>(110)2</code>中最低位（就是从右往左数的第二位）对应的数是2</p><p>所以假设一个数的二进制最低位的1在从右往左数的第k位，那么它的lowbit值就是</p><pre><code>2^{k-1}</code></pre><h2 id="lowbit函数的实现"><a href="#lowbit函数的实现" class="headerlink" title="lowbit函数的实现"></a>lowbit函数的实现</h2><p>一、</p><pre><code>x&amp;(x^(x-1))</code></pre><p>注意这个<code>^</code>是异或！</p><p>二、</p><pre><code>    public static int lowestOneBit(int x) {        return x &amp; -x;    }</code></pre><p>我们得到lowbit的值，只需要得到最后一个1的位置，并且把除了这个位置之外的所有位置全部置成零。然后输出就可以。</p><blockquote><p>根据计算机补码的性质。</p><p>补码就是原码的反码加一</p></blockquote><h2 id="用lowbit运算统计1的个数"><a href="#用lowbit运算统计1的个数" class="headerlink" title="用lowbit运算统计1的个数"></a>用lowbit运算统计1的个数</h2><p>我们可以使用lowbit运算统计一个整数的二进制形式下1的个数。</p><p>实现原理很简单啦，就是：我们先用lowbit运算找出<code>lowbit(x)</code>，然后用原数减去这个数，依次循环，直到为0为止。</p><p>这也是树状数组的实现原理。</p><p>代码：</p><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">while</span><span class="token punctuation">(</span>x <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>    x<span class="token operator">-=</span>x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">;</span>    ans<span class="token operator">++</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h2>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;lowbit的概念&quot;&gt;&lt;a href=&quot;#lowbit的概念&quot; class=&quot;headerlink&quot; title=&quot;lowbit的概念&quot;&gt;&lt;/a&gt;lowbit的概念&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;f=lowbit(x)&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这个函数的值是
+        &lt;h2 id=&quot;highbit&quot;&gt;&lt;a href=&quot;#highbit&quot; class=&quot;headerlink&quot; title=&quot;highbit&quot;&gt;&lt;/a&gt;highbit&lt;/h2&gt;&lt;pre class=&quot;line-numbers language-java&quot;&gt;&lt;code class=&quot;
       
     
     </summary>
@@ -452,9 +451,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -479,9 +478,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -507,9 +506,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -535,9 +534,9 @@
       <category term="编程算法" scheme="https://arthurjq.com/categories/%E7%BC%96%E7%A8%8B%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="leetcode" scheme="https://arthurjq.com/tags/leetcode/"/>
+    
+      <category term="算法" scheme="https://arthurjq.com/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   

@@ -4,13 +4,14 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="lowbit函数, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="highbit和lowbit函数, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="lowbit的概念f=lowbit(x)这个函数的值是x的二进制表达式中最低位的1所对应的值。
-lowbit(6)因为(110)2中最低位（就是从右往左数的第二位）对应的数是2
-所以假设一个数的二进制最低位的1在从右往左数的第k位，那么它的">
+    <meta name="description" content="highbit    public static int highestOneBit(int var0) {
+        var0 |= var0 &gt;&gt; 1;
+        var0 |= var0 &gt;&gt; 2;
+        var">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +19,7 @@ lowbit(6)因为(110)2中最低位（就是从右往左数的第二位）对应�
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>lowbit函数 | 锦泉^-^</title>
+    <title>highbit和lowbit函数 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -255,13 +256,13 @@ lowbit(6)因为(110)2中最低位（就是从右往左数的第二位）对应�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/50.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        lowbit函数
+                        highbit和lowbit函数
                     </div>
                 </div>
             </div>
@@ -410,14 +411,14 @@ lowbit(6)因为(110)2中最低位（就是从右往左数的第二位）对应�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    277
+                    569
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -433,12 +434,25 @@ lowbit(6)因为(110)2中最低位（就是从右往左数的第二位）对应�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="lowbit的概念"><a href="#lowbit的概念" class="headerlink" title="lowbit的概念"></a>lowbit的概念</h2><pre><code>f=lowbit(x)</code></pre><p>这个函数的值是x的二进制表达式中最低位的1所对应的值。</p>
+                <h2 id="highbit"><a href="#highbit" class="headerlink" title="highbit"></a>highbit</h2><pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">highestOneBit</span><span class="token punctuation">(</span><span class="token keyword">int</span> var0<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">1</span><span class="token punctuation">;</span>
+        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">2</span><span class="token punctuation">;</span>
+        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">4</span><span class="token punctuation">;</span>
+        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">8</span><span class="token punctuation">;</span>
+        var0 <span class="token operator">|=</span> var0 <span class="token operator">>></span> <span class="token number">16</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> var0 <span class="token operator">-</span> <span class="token punctuation">(</span>var0 <span class="token operator">>>></span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>1、第一步的作用是把最高位1右移移位，并与原数据按位取或。那么这就使得最高位和它的下一位是连续两个1。<br>2、第二步的作用是把刚刚移位得到连续两个1继续右移两位并与原数据按位取或。那么这就使得最高两位和它的下两个连续位组成四个连续的1。<br>3、 以此类推，最终得到的i是从开始的最高位到结束全是1。并减去i不带符号的右移一位，即可得到一个int数据的最高位的值。<br>4、上述情况是针对于i不为零和负数的情况，如果i为零，那么得到的结果始终为零。如果i位负数，那么得到的结果始终是-2147483648。即等于Integer.MIN_VALUE。（原因在于负数的最高位始终为1，即是负数的符号位）</p>
+<p>调用Integer.highestOneBit即可调用此方法。</p>
+<h2 id="lowbit的概念"><a href="#lowbit的概念" class="headerlink" title="lowbit的概念"></a>lowbit的概念</h2><pre><code>f=lowbit(x)</code></pre><p>这个函数的值是x的二进制表达式中最低位的1所对应的值。</p>
 <p><code>lowbit(6)</code>因为<code>(110)2</code>中最低位（就是从右往左数的第二位）对应的数是2</p>
 <p>所以假设一个数的二进制最低位的1在从右往左数的第k位，那么它的lowbit值就是</p>
 <pre><code>2^{k-1}</code></pre><h2 id="lowbit函数的实现"><a href="#lowbit函数的实现" class="headerlink" title="lowbit函数的实现"></a>lowbit函数的实现</h2><p>一、</p>
-<pre><code>x&amp;(x^(x-1))</code></pre><p>二、</p>
-<pre><code>x&amp;-x</code></pre><p>我们得到lowbit的值，只需要得到最后一个1的位置，并且把除了这个位置之外的所有位置全部置成零。然后输出就可以。</p>
+<pre><code>x&amp;(x^(x-1))</code></pre><p>注意这个<code>^</code>是异或！</p>
+<p>二、</p>
+<pre><code>    public static int lowestOneBit(int x) {
+        return x &amp; -x;
+    }</code></pre><p>我们得到lowbit的值，只需要得到最后一个1的位置，并且把除了这个位置之外的所有位置全部置成零。然后输出就可以。</p>
 <blockquote>
 <p>根据计算机补码的性质。</p>
 <p>补码就是原码的反码加一</p>
@@ -485,7 +499,7 @@ lowbit(6)因为(110)2中最低位（就是从右往左数的第二位）对应�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《lowbit函数》
+                    《highbit和lowbit函数》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/05/31/algorithm/lowbit/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -557,7 +571,7 @@ lowbit(6)因为(110)2中最低位（就是从右往左数的第二位）对应�
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/95.jpg" class="responsive-img" alt="try-catch,throw和throws的使用">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="try-catch,throw和throws的使用">
                         
                         <span class="card-title">try-catch,throw和throws的使用</span>
                     </div>
@@ -606,7 +620,7 @@ lowbit(6)因为(110)2中最低位（就是从右往左数的第二位）对应�
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/97.jpg" class="responsive-img" alt="Interceptor">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/98.jpg" class="responsive-img" alt="Interceptor">
                         
                         <span class="card-title">Interceptor</span>
                     </div>
@@ -813,7 +827,7 @@ init() ：该方法在容器启动初始化过滤器时被调用，它在 Filter
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">242.5k</span>
+            <span class="white-color">242.8k</span>
             
 
             <br>

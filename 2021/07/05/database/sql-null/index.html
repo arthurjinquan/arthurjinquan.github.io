@@ -4,11 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="最大公约数算法gcd, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="sql的三值逻辑, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="GCD欧几里德算法(Euclid)阐述了一种gcd算法。gcd/最大公约数/（greatest common divisor），简言之，我们想求gcd(x,y)，假设(x&amp;gt;y)，如果存在下式:x = q*y + r，那么则有gcd(x">
+    <meta name="description" content="在SQL中，NULL是一种特有的数据类型，其等价于没知有任何值、是未知数。NULL与0、空道字符串、空格都不同。SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误。内容非ANSI SQL标准中data=">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>最大公约数算法gcd | 锦泉^-^</title>
+    <title>sql的三值逻辑 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -253,13 +253,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/107.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/90.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        最大公约数算法gcd
+                        sql的三值逻辑
                     </div>
                 </div>
             </div>
@@ -370,8 +370,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/算法/" target="_blank">
-                            <span class="chip bg-color">算法</span>
+                        <a href="/tags/sql/" target="_blank">
+                            <span class="chip bg-color">sql</span>
                         </a>
                         
                     </div>
@@ -382,8 +382,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/编程算法/" class="post-category" target="_blank">
-                            编程算法
+                        <a href="/categories/数据库/" class="post-category" target="_blank">
+                            数据库
                         </a>
                         
                     </div>
@@ -394,7 +394,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-06-24
+                    2021-07-05
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -408,14 +408,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    234
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
                 
@@ -431,14 +431,44 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><p>欧几里德算法(Euclid)阐述了一种gcd算法。gcd/最大公约数/（greatest common divisor），简言之，我们想求<code>gcd(x,y)</code>，假设<code>(x&gt;y)</code>，如果存在下式:x = q*y + r，那么则有<code>gcd(x,y) = gcd(y,r)</code> ，其实上式也称为gcd递归定理，即<code>gcd(a,b) = gcd (b,a mod b)</code>。<br>这个递归式看似很简单。实则它还是很值得推敲的，首先，它怎么证明？其次，该算法的运行时间为如何？<br>在密码学中，欧几里德算法有着相当广泛的应用，譬如求乘法逆元，大整数分解等等。。<br>在&lt;&lt;编程之美&gt;&gt;一书中，给出了不少gcd算法的简单实现。因为gcd算法的实现是递归，所以要特别注意栈溢出。</p>
-<p><strong>最简单的gcd算法</strong></p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">int</span> <span class="token function">GCD</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span><span class="token keyword">int</span> y<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>y<span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span> x<span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>x<span class="token operator">&lt;</span>y<span class="token punctuation">)</span>  <span class="token keyword">return</span> <span class="token function">GCD</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">else</span>  <span class="token keyword">return</span> <span class="token function">GCD</span><span class="token punctuation">(</span>y<span class="token punctuation">,</span>x<span class="token operator">%</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <p>在SQL中，NULL是一种特有的数据类型，其等价于没知有任何值、是未知数。NULL与0、空道字符串、空格都不同。SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误。内容<br>非ANSI SQL标准中data=NULL等同于data IS NULL，data&lt;&gt;NULL等同于data IS NOT NULL。<br>所以：默认情况下做比较条件时使用关键字“is null”和“is not null”。</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- SQL 不报错，但查不出结果</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t_sample_null <span class="token keyword">WHERE</span> remark <span class="token operator">=</span> <span class="token boolean">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="三值逻辑"><a href="#三值逻辑" class="headerlink" title="三值逻辑"></a>三值逻辑</h2><p>在主流的编程语言中（C、JAVA、Python、JS等）中，逻辑值确实只有 2 个，但在 SQL 中却存在第三个逻辑值：unknown。这有点类似于我们平时所说的：对、错、不知道。</p>
+<p>逻辑值 unknown 和作为 NULL 的一种的 UNKNOWN （未知）是不同的东西。前者是明确的布尔型的逻辑值，后者既不是值也不是变量。为了便于区分，前者采用小写字母 unknown ，后者用大写字母 UNKNOWN 来表示。为了让大家理解两者的不同，我们来看一个 x=x 这样的简单等式。x 是逻辑值 unknown 时，x=x 被判断为 true ，而 x 是 UNKNOWN 时被判断为 unknown </p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 这个是明确的逻辑值的比较</span>
+unknown <span class="token operator">=</span> unknown → <span class="token boolean">true</span>
+
+<span class="token comment" spellcheck="true">-- 这个相当于NULL = NULL</span>
+UNKNOWN <span class="token operator">=</span> UNKNOWN → unknown<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="三值逻辑的逻辑值表"><a href="#三值逻辑的逻辑值表" class="headerlink" title="三值逻辑的逻辑值表"></a>三值逻辑的逻辑值表</h2><p>NOT:</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/sql-null-1.jpg" alt></p>
+<p>AND:</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/sql-null-2.jpg" alt></p>
+<p>OR:</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/sql-null-3.jpg" alt></p>
+<p>图中蓝色部分是三值逻辑中独有的运算，这在二值逻辑中是没有的。其余的 SQL 谓词全部都能由这三个逻辑运算组合而来。从这个意义上讲，这个几个逻辑表可以说是 SQL 的母体（matrix）。</p>
+<p>NOT 的话，因为逻辑值表比较简单，所以很好记；但是对于 AND 和 OR，因为组合出来的逻辑值较多，所以全部记住非常困难。为了便于记忆，请注意这三个逻辑值之间有下面这样的优先级顺序。</p>
+<p>AND 的情况： false ＞ unknown ＞ true</p>
+<p>OR 的情况： true ＞ unknown ＞ false</p>
+<p>　　　　优先级高的逻辑值会决定计算结果。例如 true AND unknown ，因为 unknown 的优先级更高，所以结果是 unknown 。而 true OR unknown 的话，因为 true 优先级更高，所以结果是 true 。记住这个顺序后就能更方便地进行三值逻辑运算了。特别需要记住的是，当 AND 运算中包含 unknown 时，结果肯定不会是 true （反之，如果AND 运算结果为 true ，则参与运算的双方必须都为 true ）。</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 假设 a = 2, b = 5, c = NULL，下列表达式的逻辑值如下</span>
+
+<span class="token number">a</span> <span class="token operator">&lt;</span> <span class="token number">b</span> <span class="token operator">AND</span> <span class="token number">b</span> <span class="token operator">></span> <span class="token number">c</span>  → unknown
+<span class="token number">a</span> <span class="token operator">></span> <span class="token number">b</span> <span class="token operator">OR</span> <span class="token number">b</span> <span class="token operator">&lt;</span> <span class="token number">c</span>   → unknown
+<span class="token number">a</span> <span class="token operator">&lt;</span> <span class="token number">b</span> <span class="token operator">OR</span> <span class="token number">b</span> <span class="token operator">&lt;</span> <span class="token number">c</span>   → <span class="token boolean">true</span>
+<span class="token operator">NOT</span> <span class="token punctuation">(</span><span class="token number">b</span> <span class="token operator">&lt;></span> <span class="token number">c</span><span class="token punctuation">)</span>     → unknown<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="“IS-NULL”-而非-“-NULL”"><a href="#“IS-NULL”-而非-“-NULL”" class="headerlink" title="“IS NULL” 而非 “= NULL”"></a>“IS NULL” 而非 “= NULL”</h2><p>我们再回到问题：为什么必须写成“IS NULL”，而不是“＝ NULL”</p>
+<p>对 NULL 使用比较谓词后得到的结果总是 unknown 。而查询结果只会包含 WHERE 子句里的判断结果为 true 的行，不会包含判断结果为 false 和 unknown 的行。不只是等号，对 NULL 使用其他比较谓词，结果也都是一样的。所以无论 remark 是不是 NULL ，比较结果都是 unknown ，那么永远没有结果返回。以下的式子都会被判为 unknown</p>
+<pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- 以下的式子都会被判为 unknown</span>
+<span class="token operator">=</span> <span class="token boolean">NULL</span>
+<span class="token operator">></span> <span class="token boolean">NULL</span>
+<span class="token operator">&lt;</span> <span class="token boolean">NULL</span>
+<span class="token operator">&lt;></span> <span class="token boolean">NULL</span>
+<span class="token boolean">NULL</span> <span class="token operator">=</span> <span class="token boolean">NULL</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>那么，为什么对 NULL 使用比较谓词后得到的结果永远不可能为真呢？这是因为，NULL 既不是值也不是变量。NULL 只是一个表示“没有值”的标记，而比较谓词只适用于值。因此，对并非值的 NULL 使用比较谓词本来就是没有意义的。“列的值为 NULL ”、“NULL 值” 这样的说法本身就是错误的。因为 NULL不是值，所以不在定义域（domain）中。相反，如果有人认为 NULL 是值，那么我们可以倒过来想一下：它是什么类型的值？关系数据库中存在的值必然属于某种类型，比如字符型或数值型等。所以，假如 NULL 是值，那么它就必须属于某种类型。</p>
+<p>NULL 容易被认为是值的原因有两个。第一个是高级编程语言里面，NULL 被定义为了一个常量（很多语言将其定义为了整数0），这导致了我们的混淆。但是，SQL 里的 NULL 和其他编程语言里的 NULL 是完全不同的东西。第二个原因是，IS NULL 这样的谓词是由两个单词构成的，所以我们容易把 IS 当作谓词，而把 NULL 当作值。特别是 SQL 里还有 IS TRUE 、IS FALSE 这样的谓词，我们由此类推，从而这样认为也不是没有道理。但是正如讲解标准 SQL 的书里提醒人们注意的那样，我们应该把 IS NULL 看作是一个谓词。因此，写成 IS_NULL 这样也许更合适。</p>
+<p>转载：<a href="https://www.cnblogs.com/youzhibing/p/11337745.html" target="_blank" rel="noopener">https://www.cnblogs.com/youzhibing/p/11337745.html</a></p>
 
             </div>
             <hr />
@@ -473,9 +503,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《最大公约数算法gcd》
+                    《sql的三值逻辑》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/06/24/gcd/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/07/05/database/sql-null/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -516,7 +546,7 @@
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/06/24/gcd/',
+        id: '2021/07/05/database/sql-null/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -537,15 +567,16 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/07/05/sql-null/">
+                <a href="/2021/07/05/database/sql-null/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/91.jpg" class="responsive-img" alt="sql的三值逻辑">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/90.jpg" class="responsive-img" alt="sql的三值逻辑">
                         
                         <span class="card-title">sql的三值逻辑</span>
                     </div>
@@ -553,14 +584,13 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ## 
-在SQL中，NULL是一种特有的数据类型，其等价于没知有任何值、是未知数。NULL与0、空道字符串、空格都不同。SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误。内容非ANSI SQL标准中d
+                            在SQL中，NULL是一种特有的数据类型，其等价于没知有任何值、是未知数。NULL与0、空道字符串、空格都不同。SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误。内容非ANSI SQL标准中data=
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-05
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -573,6 +603,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -591,31 +622,31 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/22/applicationcontext/">
+                <a href="/2021/06/24/algorithm/gcd/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/34.jpg" class="responsive-img" alt="获取ApplicationContext的五种方式和注意事项">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/108.jpg" class="responsive-img" alt="最大公约数算法gcd">
                         
-                        <span class="card-title">获取ApplicationContext的五种方式和注意事项</span>
+                        <span class="card-title">最大公约数算法gcd</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ApplicationContext对象是Spring开源框架的上下文对象实例，在项目运行时自动装载Handler内的所有信息到内存
+                            GCD欧几里德算法(Euclid)阐述了一种gcd算法。gcd/最大公约数/（greatest common divisor），简言之，我们想求gcd(x,y)，假设(x&gt;y)，如果存在下式:x = q*y + r，那么则有gcd(x
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-22
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-24
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/编程算法/" class="post-category" target="_blank">
+                                    编程算法
                                 </a>
                             
                             
@@ -625,8 +656,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
                     </a>
                     
                 </div>
@@ -800,7 +831,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">242.5k</span>
+            <span class="white-color">242.8k</span>
             
 
             <br>

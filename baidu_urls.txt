@@ -1,9 +1,9 @@
-https://arthurjq.com/2021/07/05/sql-null/
-https://arthurjq.com/2021/06/24/gcd/
-https://arthurjq.com/2021/06/22/applicationcontext/
+https://arthurjq.com/2021/07/05/database/sql-null/
+https://arthurjq.com/2021/06/24/algorithm/gcd/
+https://arthurjq.com/2021/06/22/java/applicationcontext/
 https://arthurjq.com/2021/06/18/shiro-filter/
 https://arthurjq.com/2021/06/15/shiro-subject/
-https://arthurjq.com/2021/06/09/defaultadvisorautoproxycreator/
+https://arthurjq.com/2021/06/09/java/defaultadvisorautoproxycreator/
 https://arthurjq.com/2021/06/09/shiro/
 https://arthurjq.com/2021/06/08/spring-bean-injection/
 https://arthurjq.com/2021/06/03/threadlocal/
