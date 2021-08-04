@@ -254,7 +254,7 @@ Jenkins介绍jenkins可以在代码上传仓库（如github,gitlab）后，在je
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/89.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/90.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -413,7 +413,7 @@ Jenkins介绍jenkins可以在代码上传仓库（如github,gitlab）后，在je
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.5k
+                    3.4k
                 </div>
                 
 
@@ -437,15 +437,15 @@ Jenkins介绍jenkins可以在代码上传仓库（如github,gitlab）后，在je
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>Jenkins介绍整理于：<a href="https://www.jianshu.com/p/5f671aca2b5a" target="_blank" rel="noopener">https://www.jianshu.com/p/5f671aca2b5a</a></p>
-<h2 id="Jenkins介绍"><a href="#Jenkins介绍" class="headerlink" title="Jenkins介绍"></a>Jenkins介绍</h2><p>jenkins可以在代码上传仓库（如github,gitlab）后，在jenkins（一个网站界面）中通过获取代码仓库中最新代码，进行自动化部署，而省去手动打包、上传服务器、部署这一系列步骤，非常方便。</p>
+<h2 id="Jenkins介绍"><a href="#Jenkins介绍" class="headerlink" title="Jenkins介绍"></a>Jenkins介绍</h2><p>jenkins可以在代码上传仓库（如github,gitlab）后，在jenkins（一个网站界面）中通过获取代码仓库中最新代码，进行<strong>自动化部署</strong>，而省去手动打包、上传服务器、部署这一系列步骤，非常方便。</p>
 <p>Jenkins起源于Hudson（Hudson是商用的），主要用于持续、自动的构建/测试软件项目、监控外部任务的运行。<strong>Jenkins用Java语言编写</strong>，可在Tomcat等流行的servlet容器中运行，也可独立运行。通常与版本控制工具（SCM）、构建工具结合使用。常用的版本控制工具有SVN、GIT，构建工具有Maven、Ant、Gradle。</p>
 <h2 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI / CD"></a>CI / CD</h2><h3 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h3><p>CI（Continuous integration，中文意思是持续集成）是一种软件开发实践。持续集成强调开发人员提交了新代码之后，立刻进行构建、（单元）测试。根据测试结果，我们可以确定新代码和原有代码能否正确地集成在一起。借用网络图片对CI加以理解。<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jenkins-continuous-integration.jpg" alt></p>
-<p>Jenkins自诞生之日起，至今已发展了近20年，社区、生态都已经非常完善了，光是插件就有1500+，基本上，你想要的功能在Jenkins中都能找到。国内不少公司都有在使用，很多公司还基于Jenkins开发了自己的插件，从而与内部自研系统进行集成。并且，Jenkins 2.x版本支持Pipeline as Code特性，允许用户通过代码来定义流水线，从而可以将CI过程也纳入版本管理，这与近几年诞生的GitOps理念不谋而合。此外，Jenkins社区也诞生了kubernetes-plugin这样的插件，使得我们可以将流水线的执行从传统的物理机转移到容器中，再依托Kubernetes的调度能力，就可以实现动态的资源调度和利用。</p>
+<p>很多公司还基于Jenkins开发了自己的插件，从而与内部自研系统进行集成。并且，Jenkins 2.x版本支持Pipeline as Code特性，允许用户通过代码来定义流水线，从而可以将CI过程也纳入版本管理，这与近几年诞生的GitOps理念不谋而合。此外，Jenkins社区也诞生了kubernetes-plugin这样的插件，使得我们可以将流水线的执行从传统的物理机转移到容器中，再依托Kubernetes的调度能力，就可以实现动态的资源调度和利用。</p>
 <p>不过，Jenkins由于历史悠久，插件众多，要想用好它也并不容易。不论是1.x版本的UI配置风格，还是2.x的Groovy脚本，对于普通开发者而言，都是有一定的学习成本的。除此之外，Jenkins作为一个半自动的持续集成工具，很多时候我们的需求场景都需要基于jenkins编写一些脚本，导致整体接入效率较低，且无法标准化。最后，Jenkins开源版本也缺乏一些企业级的特性，比如隔离性、服务高可用等等。</p>
 <h3 id="持续交付"><a href="#持续交付" class="headerlink" title="持续交付"></a>持续交付</h3><p>CD（Continuous Delivery， 中文意思持续交付）是在持续集成的基础上，将集成后的代码部署到更贴近真实运行环境（类生产环境）中。比如，我们完成单元测试后，可以把代码部署到连接数据库的Staging环境中更多的测试。如果代码没有问题，可以继续手动部署到生产环境。下图反应的是CI/CD 的大概工作模式。<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jenkins-continuous-delivery.jpg" alt></p>
 <h2 id="为什么要持续集成"><a href="#为什么要持续集成" class="headerlink" title="为什么要持续集成"></a>为什么要持续集成</h2><p>想象一下这个场景，我们实际的项目中经常会遇到这种情况，客户临时提出一个需求，让我们短时间内做出一个产品原型，然后客户看了满意之后再在这个产品原型的基础上提出一些新的需求点，然后不断迭代这个过程。</p>
-<p>如果我们按照原来的瀑布流程来开发产品肯定是无法完成这个任务的，首先就卡在需求上，因为客户无法提供完整的需求，我们就无法根据需求来开发一个完成度很高的产品，那么客户就会产生不满，公司拿不到项目会因此丢单。</p>
-<p>其次，时间问题，无法短时间内完成一个高完成度的产品，如果赶工可能会存在产品有重大缺陷无法被发布之前就发现，导致公司由此蒙受损失。</p>
+<p>如果我们按照原来的瀑布流程来开发产品肯定是无法完成这个任务的，首先就卡在需求上，因为客户无法提供完整的需求，我们就<strong>无法根据需求来开发一个完成度很高的产品</strong>，那么客户就会产生不满，公司拿不到项目会因此丢单。</p>
+<p>其次，时间问题，<strong>无法短时间内完成一个高完成度的产品</strong>，如果赶工可能会存在产品有重大缺陷无法被发布之前就发现，导致公司由此蒙受损失。</p>
 <p>为了避免以上这些风险，持续集成就成了一个很好的解决问题方案，它能保证团队开发人员提交代码的质量，减轻了软件发布时的压力；</p>
 <blockquote>
 <p>持续集成中的任何一个环节都是自动完成的，无需太多的人工干预，有利于减少重复过程以节省时间、费用和工作量。</p>
@@ -627,7 +627,7 @@ mvn -DskipTests docker:build<span aria-hidden="true" class="line-numbers-rows"><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="一致性">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/95.jpg" class="responsive-img" alt="一致性">
                         
                         <span class="card-title">一致性</span>
                     </div>
@@ -676,7 +676,7 @@ mvn -DskipTests docker:build<span aria-hidden="true" class="line-numbers-rows"><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/84.jpg" class="responsive-img" alt="MQTT协议">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/83.jpg" class="responsive-img" alt="MQTT协议">
                         
                         <span class="card-title">MQTT协议</span>
                     </div>
@@ -885,7 +885,7 @@ mvn -DskipTests docker:build<span aria-hidden="true" class="line-numbers-rows"><
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">242.8k</span>
+            <span class="white-color">231.1k</span>
             
 
             <br>
