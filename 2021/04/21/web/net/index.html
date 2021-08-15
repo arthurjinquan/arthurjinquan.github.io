@@ -255,7 +255,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/9.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -410,14 +410,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    507
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
                 
@@ -451,6 +451,25 @@
 <li>使用JUC工具类 CountDownLatch，相当于也是维护了一个线程间共享变量state</li>
 <li>使用 ReentrantLock 结合 Condition，condition.signal和condition.await</li>
 </ol>
+<h2 id="发现打开网站很慢的原因，简述排查流程和解决方案"><a href="#发现打开网站很慢的原因，简述排查流程和解决方案" class="headerlink" title="发现打开网站很慢的原因，简述排查流程和解决方案"></a>发现打开网站很慢的原因，简述排查流程和解决方案</h2><p>一、针对这个题目我们可以简单理解成是server端出现的问题：</p>
+<p>（1）可能的原因一：服务器出口带宽不够用。这是一个很常见的瓶颈。一方面，可能是本身购买的服务器出口带宽就很小。另一个，就是跨运营商网络导致带宽缩减。</p>
+<p>（2）可能原因二：服务器负载过大忙不过来，比如说CPU和内存消耗完了。</p>
+<p>（3）可能原因三：网站的开发代码没写好，例如mysql语句没有进行优化，导致数据库的读写相当耗费时间。</p>
+<p>（4）可能原因四：数据库的瓶颈。</p>
+<p>二、针对上面可能的原因，有哪些方法和工具去检测呢：</p>
+<p>（1）某个用户反馈网站访问变慢，怎么去定位问题。首先你自己也打开下网站，看是否会出现用户反映的问题，如果你这边访问没问题，那就可能是用户那边的问题了，这块就是要先确定是用户那一方的问题还是自身比如说服务器或者网站的问题。</p>
+<p>（2）发现确实是自己服务器或者网站的问题，那么可以利用浏览器的调试功能（一般浏览器都会有），调试网络看看各种数据加载的速度，哪一项消耗了多少时间都可以看到，是哪块数据耗时过多，是图片加载太慢，还是某些数据加载老半天都查不出来。</p>
+<p>（3）然后针对服务器的负载情况，可以去查看下服务器硬件（网络带宽、CPU、内存）的消耗状况。带宽方面查看流量监控看是不是已经到了峰值，带宽不够用了，如果是公司自己买服务器搭的网站服务器的话，需要自己搭建监控环境；如果用的是阿里云腾讯云这些的，那这些平台那边会提供各方面的监控比如CPU、带宽等等，在后台就可以看到了。</p>
+<p>（4）如果发现硬件资源消耗都不高，都比较充裕，那要去看看是不是程序的问题了。这个可以通过查日志来找，比如PHP日志、Apache日志、mysql日志等等的错误日志，特别如mysql有个慢查询的日志功能，可以看到是不是某条mysql语句特别慢，如果某条语句花的时间太长，那这条语句很有可能有问题。</p>
+<p>（5）至于说到的数据库太庞大，这个直接看就看得到了，比如一个表的文件大小变得特别大了。</p>
+<p>三、针对上面的这些问题，有哪些解决和优化的办法呢：</p>
+<p>（1）出口带宽的问题，这个很简单，加带宽，有钱就多买带宽，很简单。</p>
+<p>（2）mysql语句优化，开发人员职责。</p>
+<p>（3）数据库太庞大，为了读写速度，进行“拆表”、“拆库”，就是把数据表或者数据库进行拆分。</p>
+<p>（4）上面的拆库拆表都是针对数据库实在太庞大才会这样做，一般在此之前会有其他优化方法，比如mysql的主从复制，一台主服务器专门用于写，然后其他从服务器用来读，写完之后会同步更新到其他读的服务器中。例如阿里的双十一活动，都不知道用了多少万台服务器一起在扛着。</p>
+<p>（6）用redis。</p>
+<p>（7）CDN（content-delivery-network：内容分发网络）。</p>
+<p>（8）上面都没有说到架构的优化，如果网站扛不住，是不是网站架构已经不能适应了，比如做个小博客把数据库服务器和web服务器都用同一台服务器，那所有负载都在同一台服务器上了。但是访问量上来扛不住了，就得加服务器了，就得在架构上优化了，比如在数据库上做集群，在web服务器上也做集群，比如web服务器集群，在服务器前面加一个负载均衡，负载均衡就是专门负责分发，把用户的请求均匀分布到各个服务器上。</p>
 
             </div>
             <hr />
@@ -557,7 +576,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/55.jpg" class="responsive-img" alt="堆排序">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/53.jpg" class="responsive-img" alt="堆排序">
                         
                         <span class="card-title">堆排序</span>
                     </div>
@@ -606,7 +625,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/100.jpg" class="responsive-img" alt="ReentrantLock">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/98.jpg" class="responsive-img" alt="ReentrantLock">
                         
                         <span class="card-title">ReentrantLock</span>
                     </div>
@@ -815,7 +834,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">231.1k</span>
+            <span class="white-color">238.4k</span>
             
 
             <br>

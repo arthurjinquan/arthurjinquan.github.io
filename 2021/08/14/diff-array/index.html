@@ -4,12 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="最近刷Leetcode时遇到的坑, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="差分数组, SCUT JAVA mybatis SpringBoot SpringCloud 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="double 转 intdouble a = Math.log(label)/Math.log(2);//换底公式，相当于log2()
-int level = new Double(a).intValue();//这个方法需要创建Doubl">
+    <meta name="description" content="介绍差分数组本质上也是一个数组，我们暂且定义差分数组为d，差分数组d的大小和原来arr数组大小一样，而且d[i]=arr[i]-arr[i-1]，且d[i]=0，它的含义是什么？就是原来数组i位置上的元素和i-1位置上的元素作差，得到的值就">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +16,7 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>最近刷Leetcode时遇到的坑 | 锦泉^-^</title>
+    <title>差分数组 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -254,13 +253,13 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/101.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/86.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        最近刷Leetcode时遇到的坑
+                        差分数组
                     </div>
                 </div>
             </div>
@@ -375,6 +374,10 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
                             <span class="chip bg-color">算法</span>
                         </a>
                         
+                        <a href="/tags/leetcode/" target="_blank">
+                            <span class="chip bg-color">leetcode</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
@@ -395,7 +398,7 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-30
+                    2021-08-14
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -409,14 +412,14 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    117
+                    815
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
                 
@@ -432,17 +435,51 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="double-转-int"><a href="#double-转-int" class="headerlink" title="double 转 int"></a>double 转 int</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">double</span> a <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>label<span class="token punctuation">)</span><span class="token operator">/</span>Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//换底公式，相当于log2()</span>
-<span class="token keyword">int</span> level <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Double</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">intValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//这个方法需要创建Double对象，才能调用这个方法</span>
-
-<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">intValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span>value<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>类似的转byte的方法：byteValue（）</p>
-<p>转long：longValue（）</p>
-<p>转float：floatValue（）</p>
-<h2 id="找二叉树的同一层的对称节点"><a href="#找二叉树的同一层的对称节点" class="headerlink" title="找二叉树的同一层的对称节点"></a>找二叉树的同一层的对称节点</h2><p>该层的最大值+最小值 = A节点 + A节点的对称节点</p>
-<p>=》 该层的最大值+最小值 - A节点 = A节点的对称节点</p>
+                <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>差分数组本质上也是一个数组，我们暂且定义差分数组为d，差分数组d的大小和原来arr数组大小一样，而且d[i]=arr[i]-arr[i-1]，且d[i]=0，它的含义是什么？就是原来数组i位置上的元素和i-1位置上的元素作差，得到的值就是d[i]的值。</p>
+<p>如果需要对L-R范围内所有数都进行相同的操作，我们不需要从L-R遍历arr然后在每个值上进行相同操作，只需要在差分数组d中改变L和R+1的值即可。但是在查询arr数组中某个位置的数时，却要根据差分数组从前往后递推求值。</p>
+<p>所以，该方法适用于<strong>区间频繁修改</strong>，而且这个<strong>区间范围是比较大</strong>的，<strong>离线查询</strong>的情况。</p>
+<h2 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h2><h4 id="1674-使数组互补的最少操作次数"><a href="#1674-使数组互补的最少操作次数" class="headerlink" title="1674. 使数组互补的最少操作次数"></a><a href="https://leetcode-cn.com/problems/minimum-moves-to-make-array-complementary/" target="_blank" rel="noopener">1674. 使数组互补的最少操作次数</a></h4><p>给你一个长度为 偶数 n 的整数数组 nums 和一个整数 limit 。每一次操作，你可以将 nums 中的任何整数替换为 1 到 limit 之间的另一个整数。</p>
+<p>如果对于所有下标 i（下标从 0 开始），nums[i] + nums[n - 1 - i] 都<strong>等于同一个数</strong>，则数组 nums 是 互补的 。例如，数组 [1,2,3,4] 是互补的，因为对于所有下标 i ，nums[i] + nums[n - 1 - i] = 5 。</p>
+<p>返回使数组 互补 的 最少 操作次数。</p>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>有n个数字，即n/2个数对，每个数字的取值范围是1<del>limit，所以显然一个数对的和的取值范围是2</del>2 * limit。<br>我们用一个数组arr[ ]来记录将所有数对和转化成某一个数需要的操作次数，其中arr[i]表示将所有数对和转化成i需要的次数。<br>接下来我们举几个例子寻找一下规律：<br>假设数组是1,3,4,2。limit = 5，则第一个数对为（1,2）<br>我们找出每一个数对的最大值max和最小值min。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/diff-array-1.png" alt></p>
+<p>如图中数对，将该数对和转化成3所需要的操作次数显然是0，接下来还要讨论转化次数为1和转化次数为2的情况。<br>显然转化1次能取到的最小值是min + 1，能取到的最大值是max + limit，那么在这范围之外的就是需要转化次数2次。<br>所以对于每一对数对：分如下几种情况</p>
+<ol>
+<li>在[2, min]这个区间，arr[i] += 2;</li>
+<li>在[min + 1, min + max]区间，arr[i] += 1;</li>
+<li>在min + max上，arr[i] += 0;</li>
+<li>在[min + max + 1, max + limit]区间上，arr[i] += 1;</li>
+<li>在[max + limit + 1, limit + limit]区间上，arr[i] += 2;</li>
+</ol>
+<p>对于上述的操作，是<strong>典型的区间加减</strong>，需要用到差分数组</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Solution</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">minMoves</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> nums<span class="token punctuation">,</span> <span class="token keyword">int</span> limit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> diff <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">int</span><span class="token punctuation">[</span>limit <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> nums<span class="token punctuation">.</span>length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> max <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span>nums<span class="token punctuation">.</span>length <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> min <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> nums<span class="token punctuation">[</span>nums<span class="token punctuation">.</span>length <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>min <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                diff<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span><span class="token punctuation">{</span>
+                diff<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+                diff<span class="token punctuation">[</span>min <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            diff<span class="token punctuation">[</span>max <span class="token operator">+</span> min<span class="token punctuation">]</span> <span class="token operator">-=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>max <span class="token operator">+</span> min <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> diff<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                diff<span class="token punctuation">[</span>max <span class="token operator">+</span> min <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>max <span class="token operator">+</span> limit <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;</span> diff<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                diff<span class="token punctuation">[</span>max <span class="token operator">+</span> limit <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">int</span> now <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> res <span class="token operator">=</span> nums<span class="token punctuation">.</span>length <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> diff<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            now <span class="token operator">+=</span> diff<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            res <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>res<span class="token punctuation">,</span> now<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -477,9 +514,9 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《最近刷Leetcode时遇到的坑》
+                    《差分数组》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/07/30/lectcodenote/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/08/14/diff-array/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -520,7 +557,7 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/07/30/lectcodenote/',
+        id: '2021/08/14/diff-array/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -541,16 +578,64 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/07/30/lectcodenote/">
+                <a href="/2021/08/15/meituan20210815/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/101.jpg" class="responsive-img" alt="最近刷Leetcode时遇到的坑">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/103.jpg" class="responsive-img" alt="美团笔试">
+                        
+                        <span class="card-title">美团笔试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            投的测开岗，在赛马上做的，可以用自己的ide
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-08-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/编程算法/" class="post-category" target="_blank">
+                                    编程算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/算法/" target="_blank">
+                        <span class="chip bg-color">算法</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/07/30/leetcodenote/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/99.jpg" class="responsive-img" alt="最近刷Leetcode时遇到的坑">
                         
                         <span class="card-title">最近刷Leetcode时遇到的坑</span>
                     </div>
@@ -577,7 +662,6 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -585,53 +669,8 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
                         <span class="chip bg-color">算法</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/07/15/onekey/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/6.jpg" class="responsive-img" alt="一键构建流程图">
-                        
-                        <span class="card-title">一键构建流程图</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            一键构建系统流程图~
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-15
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/项目/" class="post-category" target="_blank">
-                                    项目
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/一键构建/" target="_blank">
-                        <span class="chip bg-color">一键构建</span>
+                    <a href="/tags/leetcode/" target="_blank">
+                        <span class="chip bg-color">leetcode</span>
                     </a>
                     
                 </div>
@@ -805,7 +844,7 @@ int level = new Double(a).intValue();//这个方法需要创建Doubl">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">231.1k</span>
+            <span class="white-color">238.4k</span>
             
 
             <br>
