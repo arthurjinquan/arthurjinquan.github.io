@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://arthurjq.com/2021/08/14/diff-array/</loc>
-    <lastmod>2021-08-15</lastmod>
+    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
+    <lastmod>2021-08-18</lastmod>
   </url>
   <url>
-    <loc>https://arthurjq.com/2021/08/15/dfs/</loc>
+    <loc>https://arthurjq.com/2021/08/17/bigo20210817/</loc>
+    <lastmod>2021-08-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/08/17/graph/</loc>
+    <lastmod>2021-08-17</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/08/15/algorithm/dfs/</loc>
+    <lastmod>2021-08-16</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/04/21/web/net/</loc>
+    <lastmod>2021-08-16</lastmod>
+  </url>
+  <url>
+    <loc>https://arthurjq.com/2021/08/14/algorithm/diff-array/</loc>
     <lastmod>2021-08-15</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/08/15/meituan20210815/</loc>
     <lastmod>2021-08-15</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/04/21/web/net/</loc>
-    <lastmod>2021-08-12</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/07/30/leetcodenote/</loc>
@@ -91,10 +103,6 @@
   <url>
     <loc>https://arthurjq.com/2021/06/01/java/throw/</loc>
     <lastmod>2021-06-01</lastmod>
-  </url>
-  <url>
-    <loc>https://arthurjq.com/2021/03/08/java-basis/</loc>
-    <lastmod>2021-05-31</lastmod>
   </url>
   <url>
     <loc>https://arthurjq.com/2021/04/12/java/reentrantlock/</loc>

@@ -257,7 +257,7 @@ Java 不提供指">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/19.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,14 +412,14 @@ Java 不提供指">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.1k
+                    6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    22 分
+                    21 分
                 </div>
                 
                 
@@ -452,12 +452,7 @@ Java 不提供指">
 <h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在<strong>程序运行期间</strong>才确定。</p>
 <p>两种形式可以实现多态：<strong>继承</strong>（多个子类对同一方法的重写）和<strong>接口</strong>（实现接口并覆盖接口中同一方法）</p>
 <p>条件：1.继承 2.方法的override 3.父类引用指向子类对象</p>
-<h2 id="StringBuilder和StringBuffer"><a href="#StringBuilder和StringBuffer" class="headerlink" title="StringBuilder和StringBuffer"></a>StringBuilder和StringBuffer</h2><ol>
-<li>操作少量的数据 →String</li>
-<li>单线程操作字符串缓冲区下操作大量数据 →StringBuilder</li>
-<li>多线程操作字符串缓冲区下操作大量数据 →StringBuffer</li>
-</ol>
-<h2 id="静态方法内调用一个非静态成员"><a href="#静态方法内调用一个非静态成员" class="headerlink" title="静态方法内调用一个非静态成员"></a>静态方法内调用一个非静态成员</h2><p>由于静态方法可以不通过对象进行调用，因此在静态方法里，不能调用其他非静态变量，也不可以访问非静态变量成员。</p>
+<h2 id="静态方法内调用一个非静态成员"><a href="#静态方法内调用一个非静态成员" class="headerlink" title="静态方法内调用一个非静态成员"></a>静态方法内调用一个非静态成员</h2><p>由于<strong>静态方法可以不通过对象进行调用</strong>，因此在静态方法里，不能调用其他非静态变量，也不可以访问非静态变量成员。</p>
 <h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>一、静态方法只能访问静态方法和静态成员。</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span><span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment" spellcheck="true">//加入static关键字，变成静态方法</span>
@@ -542,13 +537,6 @@ Java 不提供指">
 <h2 id="处理不想序列化的字段"><a href="#处理不想序列化的字段" class="headerlink" title="处理不想序列化的字段"></a>处理不想序列化的字段</h2><p>使用 transient 关键字修饰。</p>
 <p>作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复。</p>
 <p>transient 只能修饰变量，不能修饰类和方法。</p>
-<h2 id="获取键盘输入"><a href="#获取键盘输入" class="headerlink" title="获取键盘输入"></a>获取键盘输入</h2><p>方法 1：通过 Scanner</p>
-<pre class="line-numbers language-java"><code class="language-java">Scanner input <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
-String s <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">nextLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-input<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>方法 2：通过 BufferedReader</p>
-<pre class="line-numbers language-java"><code class="language-java">BufferedReader input <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedReader</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InputStreamReader</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-String s <span class="token operator">=</span> input<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="Native方法"><a href="#Native方法" class="headerlink" title="Native方法"></a>Native方法</h2><p>Native Method就是一个java调用非java代码的接口。</p>
 <p>被native关键字修饰的方法叫做本地方法，本地方法和其它方法不一样，本地方法意味着和平台有关，因此使用了native的程序可移植性都不太高。另外native方法在JVM中运行时数据区也和其它方法不一样，它有专门的<strong>本地方法栈</strong>。native方法主要用于加载文件和动态链接库，由于Java语言无法访问操作系统底层信息（比如：底层硬件设备等），这时候就需要借助C语言来完成了。被native修饰的方法可以被C语言重写。</p>
 <h2 id="堆和栈"><a href="#堆和栈" class="headerlink" title="堆和栈"></a>堆和栈</h2><p><strong>堆</strong>是进程和线程共有的空间，唯一目的是<strong>存放对象实例</strong>，创建的对象和数组都保存在堆中。</p>
@@ -627,11 +615,11 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 <p>在高并发情况下，LongAdder（累加器）比AtomicLong原子操作效率更高，LongAdder累加器是java8新加入的</p>
 <p>在高度并发竞争情形下，AtomicLong每次进行add都需要flush和refresh（这一块涉及到java内存模型中的工作内存和主内存的，所有变量操作只能在工作内存中进行，然后写回主内存，其它线程再次读取新值），每次add都需要同步，在高并发时会有比较多冲突，比较耗时导致效率低；而LongAdder中每个线程会维护自己的一个计数器，在最后执行<code>LongAdder.sum()</code>方法时候才需要同步，把所有计数器全部加起来，不需要flush和refresh操作。</p>
 <p>转载：<a href="https://blog.csdn.net/fanrenxiang/article/details/80623884" target="_blank" rel="noopener">https://blog.csdn.net/fanrenxiang/article/details/80623884</a></p>
-<h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p><strong>final</strong>也保证可见性</p>
+<h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>// <strong>final</strong>也保证可见性</p>
 <p><strong>synchronized</strong>（阻塞同步）</p>
-<ol>
-<li>线程解锁前，必须把共享变量的最新值刷新到主内存中</li>
+<ol start="2">
 <li>线程加锁时，将清空工作内存中共享变量的值，从而使用共享变量时需要从主内存中重新获取最新的值（注意：加锁与解锁需要是同一把锁）</li>
+<li>线程解锁前，必须把共享变量的最新值刷新到主内存中</li>
 </ol>
 <p><strong>volatile</strong>（非阻塞同步）：在生成汇编代码时会在volatile修饰的共享变量进行写操作的时候会多出<strong>Lock前缀的指令</strong>（缓存一致性）</p>
 <ol>
@@ -817,7 +805,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/78.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/73.jpg" class="responsive-img" alt="Java的守护线程">
                         
                         <span class="card-title">Java的守护线程</span>
                     </div>
@@ -870,7 +858,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/85.jpg" class="responsive-img" alt="Helm安装ingress">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/80.jpg" class="responsive-img" alt="Helm安装ingress">
                         
                         <span class="card-title">Helm安装ingress</span>
                     </div>
@@ -1079,7 +1067,7 @@ String s <span class="token operator">=</span> input<span class="token punctuati
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">238.4k</span>
+            <span class="white-color">245k</span>
             
 
             <br>

@@ -10,7 +10,7 @@
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="输入www.taobao.com会发生什么？
 最后关闭TCP连接
-三次握手的第三个ACK包丢了如果此时ACK在网络中丢失，那么Server端该TCP连接的状态为SYN_RECV，并且依次等待3秒、6秒、12秒后重新发送SYN+ACK包，以便">
+计算机网络的各层协议及作用转载：https://www.nowcoder.com/discuss/694989?type=post&amp;amp;order=time&amp;amp;po">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -255,7 +255,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -410,14 +410,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    5.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    19 分
                 </div>
                 
                 
@@ -435,15 +435,119 @@
             <div id="articleContent">
                 <h2 id="输入www-taobao-com会发生什么？"><a href="#输入www-taobao-com会发生什么？" class="headerlink" title="输入www.taobao.com会发生什么？"></a>输入<a href="http://www.taobao.com会发生什么？" target="_blank" rel="noopener">www.taobao.com会发生什么？</a></h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-1.jpg" alt></p>
 <p>最后关闭TCP连接</p>
-<h2 id="三次握手的第三个ACK包丢了"><a href="#三次握手的第三个ACK包丢了" class="headerlink" title="三次握手的第三个ACK包丢了"></a>三次握手的第三个ACK包丢了</h2><p>如果此时ACK在网络中丢失，那么Server端该TCP连接的状态为SYN_RECV，并且依次等待3秒、6秒、12秒后重新发送SYN+ACK包，以便Client重新发送ACK包。 </p>
-<p>Server重发SYN+ACK包的次数，可以通过设置/proc/sys/net/ipv4/tcp_synack_retries修改，默认值为5。     </p>
-<p>如果重发指定次数后，仍然未收到ACK应答，那么一段时间后，Server自动关闭这个连接。</p>
-<p>但是Client认为这个连接已经建立，如果Client端向Server写数据，Server端将以RST包响应，方能感知到Server的错误。</p>
+<h2 id="计算机网络的各层协议及作用"><a href="#计算机网络的各层协议及作用" class="headerlink" title="计算机网络的各层协议及作用"></a>计算机网络的各层协议及作用</h2><p>转载：<a href="https://www.nowcoder.com/discuss/694989?type=post&amp;order=time&amp;pos=&amp;page=1&amp;ncTraceId=&amp;channel=-1&amp;source_id=search_post_nctrack" target="_blank" rel="noopener">https://www.nowcoder.com/discuss/694989?type=post&amp;order=time&amp;pos=&amp;page=1&amp;ncTraceId=&amp;channel=-1&amp;source_id=search_post_nctrack</a></p>
+<p>分为一下三种，OSI七层模型、TCP/IP四层模型和五层模型。</p>
+<ul>
+<li>OSI七层模型：大而全，但是比较复杂、而且是先有了<strong>理论</strong>模型，没有实际应用。</li>
+<li>TCP/IP四层模型：是由<strong>实际</strong>应用发展总结出来的，从实质上讲，TCP/IP只有最上面三层，最下面一层没有什么具体内容，TCP/IP参考模型没有真正描述这一层的实现。</li>
+<li>五层模型：五层模型只出现在计算机网络教学过程中，这是对七层模型和四层模型的一个<strong>折中</strong>，既简洁又能将概念阐述清楚。</li>
+</ul>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-2.png" alt></p>
+<p>七层网络体系结构各层的主要功能：</p>
+<ul>
+<li>应用层：为应用程序提供交互服务。在互联网中的应用层协议很多，如域名系统DNS，支持万维网应用的HTTP协议，支持电子邮件的SMTP协议等。</li>
+<li>表示层：主要负责数据格式的转换，如加密解密、转换翻译、压缩解压缩等。</li>
+<li>会话层：负责在网络中的两节点之间建立、维持和终止通信，如服务器验证用户登录便是由会话层完成的。</li>
+<li>运输层：有时也译为传输层，向主机进程提供通用的数据传输服务。该层主要有以下两种协议：<ul>
+<li>TCP：提供面向连接的、可靠的数据传输服务；</li>
+<li>UDP：提供无连接的、尽最大努力的数据传输服务，但不保证数据传输的可靠性。</li>
+</ul>
+</li>
+<li>网络层：选择合适的路由和交换结点，确保数据及时传送。主要包括IP协议。</li>
+<li>数据链路层：数据链路层通常简称为链路层。将网络层传下来的IP数据包组装成帧，并再相邻节点的链路上传送帧。</li>
+<li>物理层：实现相邻节点间比特流的透明传输，尽可能屏蔽传输介质和通信手段的差异。</li>
+</ul>
+<h2 id="UDP-和-TCP-对应的应用场景"><a href="#UDP-和-TCP-对应的应用场景" class="headerlink" title="UDP 和 TCP 对应的应用场景"></a>UDP 和 TCP 对应的应用场景</h2><p>TCP 是面向连接，能保证数据的可靠性交付，因此经常用于：</p>
+<ul>
+<li>FTP文件传输</li>
+<li>HTTP / HTTPS</li>
+</ul>
+<p>UDP 面向无连接，它可以随时发送数据，再加上UDP本身的处理既简单又高效，因此经常用于：</p>
+<ul>
+<li>包总量较少的通信，如 DNS 、SNMP等</li>
+<li>视频、音频等多媒体通信</li>
+<li>广播通信</li>
+</ul>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-3.jpg" alt="三次握手"></p>
+<h2 id="为什么需要三次握手，而不是两次"><a href="#为什么需要三次握手，而不是两次" class="headerlink" title="为什么需要三次握手，而不是两次"></a>为什么需要三次握手，而不是两次</h2><ol>
+<li><p>防止已过期的连接请求报文突然又传送到服务器，因而产生错误和资源浪费。</p>
+<p>在双方两次握手即可建立连接的情况下，假设客户端发送 A 报文段请求建立连接，由于网络原因造成 A 暂时无法到达服务器，服务器接收不到请求报文段就不会返回确认报文段。</p>
+<p>客户端在长时间得不到应答的情况下重新发送请求报文段 B，这次 B 顺利到达服务器，服务器随即返回确认报文并进入 ESTABLISHED 状态，客户端在收到 确认报文后也进入 ESTABLISHED 状态，双方建立连接并传输数据，之后正常断开连接。</p>
+<p>此时姗姗来迟的 A 报文段才到达服务器，服务器随即返回确认报文并进入 ESTABLISHED 状态，但是已经进入 CLOSED 状态的客户端无法再接受确认报文段，更无法进入 ESTABLISHED 状态，这将导致服务器长时间单方面等待，造成资源浪费。</p>
+</li>
+<li><p>三次握手才能让双方均确认自己和对方的发送和接收能力都正常。</p>
+<p>第一次握手：客户端只是发送处请求报文段，什么都无法确认，而服务器可以确认自己的接收能力和对方的发送能力正常；</p>
+<p>第二次握手：客户端可以确认自己发送能力和接收能力正常，对方发送能力和接收能力正常；<strong>但服务器不知道客户端接受正不正常</strong></p>
+<p>第三次握手：服务器可以确认自己发送能力和接收能力正常，对方发送能力和接收能力正常；</p>
+<p>可见三次握手才能让双方都确认自己和对方的发送和接收能力全部正常，这样就可以愉快地进行通信了。</p>
+</li>
+<li><p>告知对方自己的初始序号值，并确认收到对方的初始序号值。</p>
+<p>TCP 实现了可靠的数据传输，原因之一就是 TCP 报文段中<strong>维护了序号字段和确认序号字段</strong>，通过这两个字段双方都可以知道在自己发出的数据中，哪些是已经被对方确认接收的。这两个字段的值会在初始序号值得基础递增，如果是两次握手，只有发起方的初始序号可以得到确认，而另一方的初始序号则得不到确认。</p>
+</li>
+</ol>
+<h2 id="SYN洪泛攻击？如何防范"><a href="#SYN洪泛攻击？如何防范" class="headerlink" title="SYN洪泛攻击？如何防范"></a>SYN洪泛攻击？如何防范</h2><p>SYN洪泛攻击属于 DOS 攻击的一种，它利用 TCP 协议缺陷，通过发送大量的半连接请求，耗费 CPU 和内存资源。</p>
+<ol>
+<li>过滤网关防护。</li>
+<li>通过加固 TCP/IP 协议栈防范，如增加最大半连接数，缩短超时时间。</li>
+<li>SYN cookies技术。SYN Cookies 是对 TCP 服务器端的三次握手做一些修改，专门用来防范 SYN 洪泛攻击的一种手段。</li>
+</ol>
+<p>DDoS则是采用分布式的方法，通过在网络上占领多台“肉鸡”，用多台计算机发起攻击。</p>
+<p>DOS攻击现在基本没啥作用了，因为服务器的性能都很好，而且是多台服务器共同作用，1V1的模式黑客无法占上风。对于DDOS攻击，预防方法有：</p>
+<ul>
+<li><strong>减少SYN timeout时间</strong>。在握手的第三步，服务器会等待30秒-120秒的时间，减少这个等待时间就能释放更多的资源。 </li>
+<li><strong>限制同时打开的SYN半连接数目。</strong></li>
+</ul>
+<h2 id="XSS攻击"><a href="#XSS攻击" class="headerlink" title="XSS攻击"></a>XSS攻击</h2><p>XSS也称 cross-site scripting，跨站脚本。这种攻击是由于服务器将攻击者存储的数据原原本本地显示给其他用户所致的。比如一个存在XSS漏洞的论坛，用户发帖时就可以引入带有＜script＞标签的代码，导致恶意代码的执行。</p>
+<p>预防措施有：</p>
+<p>前端：过滤。<br>后端：转义，比如go自带的处理器就具有转义功能。</p>
+<h2 id="三次握手的第三个ACK包丢了"><a href="#三次握手的第三个ACK包丢了" class="headerlink" title="三次握手的第三个ACK包丢了"></a>三次握手的第三个ACK包丢了</h2><p>服务端：</p>
+<p>第三次的ACK在网络中丢失，那么服务端该TCP连接的状态为SYN_RECV,并且会根据 TCP的超时重传机制，会等待3秒、6秒、12秒后重新发送SYN+ACK包，以便客户端重新发送ACK包。</p>
+<p>如果重发指定次数之后，仍然未收到 客户端的ACK应答，那么一段时间后，服务端自动关闭这个连接。</p>
+<p>客户端：</p>
+<p>客户端认为这个连接已经建立，如果客户端向服务端发送数据，服务端将以RST包（Reset，标示复位，用于异常的关闭连接）响应。此时，客户端知道第三次握手失败。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-4.jpg" alt></p>
 <h2 id="为什么一定要TIME-WAIT"><a href="#为什么一定要TIME-WAIT" class="headerlink" title="为什么一定要TIME-WAIT"></a>为什么一定要TIME-WAIT</h2><ol>
-<li>可靠地实现TCP全双工连接地终止：当客户端发送最后一次ACK后，自身进入TIME-WAIT，ACK报文丢失后，客户端再次发送FIN报文给客户端，若此时客户端已关闭，则客户端发送一个RST，服务器收到后认为该连接出现异常</li>
-<li>保证让迟来地TCP报文有足够时间被识别并丢弃：如果关闭了连接又立马新建立一个连接，则上一个连接传输较慢地数据包很可能会被新连接接收</li>
+<li>确保 ACK 报文能够到达服务端，从而使服务端正常关闭连接</li>
+<li>防止已失效的连接请求报文段出现在之后的连接中</li>
 </ol>
 <h2 id="存在TIME-WAIT一定保证正常关闭么"><a href="#存在TIME-WAIT一定保证正常关闭么" class="headerlink" title="存在TIME-WAIT一定保证正常关闭么"></a>存在TIME-WAIT一定保证正常关闭么</h2><p>如果TIME-WAIT发送地ACK丢失，服务器超时重发FIN也丢失，则进入CLOSED阶段</p>
+<h2 id="如果已经建立了连接，但是客户端出现故障了怎么办"><a href="#如果已经建立了连接，但是客户端出现故障了怎么办" class="headerlink" title="如果已经建立了连接，但是客户端出现故障了怎么办"></a>如果已经建立了连接，但是客户端出现故障了怎么办</h2><p>通过<strong>定时器 + 超时重试机制</strong>，尝试获取确认，直到最后会自动断开连接</p>
+<p>具体而言，TCP 设有一个保活计时器。服务器每收到一次客户端的数据，都会重新复位这个计时器，时间通常是设置为 2 小时。若 2 小时还没有收到客户端的任何数据，服务器就开始重试：每隔 75 秒发送一个探测报文段，若一连发送 10 个探测报文后客户端依然没有回应，那么服务器就认为连接已经断开了。</p>
+<h2 id="TIME-WAIT-状态过多会产生什么后果？怎样处理"><a href="#TIME-WAIT-状态过多会产生什么后果？怎样处理" class="headerlink" title="TIME-WAIT 状态过多会产生什么后果？怎样处理"></a>TIME-WAIT 状态过多会产生什么后果？怎样处理</h2><p>从服务器来讲，短时间内关闭了大量的Client连接，就会造成服务器上出现大量的TIME_WAIT连接，严重消耗着服务器的资源，此时部分客户端就会显示连接不上。</p>
+<p>从客户端来讲，客户端TIME_WAIT过多，就会导致端口资源被占用，因为端口就65536个，被占满就会导致无法创建新的连接。</p>
+<h2 id="TCP协议如何保证可靠性"><a href="#TCP协议如何保证可靠性" class="headerlink" title="TCP协议如何保证可靠性"></a>TCP协议如何保证可靠性</h2><p>TCP主要提供了检验和、序列号/确认应答、超时重传、滑动窗口、拥塞控制和 流量控制等方法实现了可靠性传输。</p>
+<p><strong>检验和</strong>：通过检验和的方式，接收端可以<strong>检测出来数据是否有差错和异常</strong>，假如有差错就会直接丢弃TCP段，重新发送。</p>
+<p><strong>序列号/确认应答</strong>：</p>
+<p>序列号的作用不仅仅是应答的作用，有了序列号能够将接收到的数据根据序列号排序，并且去掉重复序列号的数据。</p>
+<p>TCP传输的过程中，每次接收方收到数据后，都会对传输方进行确认应答。也就是发送ACK报文，这个ACK报文当中带有对应的确认序列号，告诉发送方，接收到了哪些数据，下一次的数据从哪里发。</p>
+<p><strong>滑动窗口</strong>：滑动窗口既<strong>提高了报文传输的效率</strong>，也避免了发送方发送过多的数据而导致接收方无法正常处理的异常。</p>
+<p><strong>超时重传</strong>：超时重传是指发送出去的数据包到接收到确认包之间的时间，如果超过了这个时间会被认为是丢包了，需要重传。最大超时时间是动态计算的。</p>
+<p><strong>拥塞控制</strong>：在数据传输过程中，可能由于网络状态的问题，造成网络拥堵，此时引入拥塞控制机制，在保证TCP可靠性的同时，提高性能。</p>
+<p>流量控制：如果主机A 一直向主机B发送数据，不考虑主机B的接受能力，则可能导致主机B的接受缓冲区满了而无法再接受数据，从而会导致大量的数据丢包，引发重传机制。而在重传的过程中，若主机B的接收缓冲区情况仍未好转，则会将大量的时间浪费在重传数据上，降低传送数据的效率。所以引入流量控制机制，主机B通过告诉主机A自己接收缓冲区的大小，来使主机A控制发送的数据量。<strong>流量控制与TCP协议报头中的窗口大小有关</strong>。</p>
+<h2 id="TCP的滑动窗口"><a href="#TCP的滑动窗口" class="headerlink" title="TCP的滑动窗口"></a>TCP的滑动窗口</h2><p>传输的数据比较大，就需要拆分为多个数据包进行发送。TCP 协议需要对数据进行确认后，才可以发送下一个数据包。这样一来，就会在等待确认应答包环节浪费时间。</p>
+<p>为了避免这种情况，TCP引入了窗口概念。窗口大小指的是不需要等待确认应答包而可以继续发送数据包的最大值。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-5.png" alt></p>
+<p>从上面的图可以看到滑动窗口左边的是已发送并且被确认的分组，滑动窗口右边是还没有轮到的分组。</p>
+<p>滑动窗口里面也分为两块，一块是已经发送但是<strong>未被确认</strong>的分组，另一块是窗口内<strong>等待发送</strong>的分组。随着已发送的分组不断被确认，窗口内等待发送的分组也会不断被发送。整个窗口就会往右移动，让还没轮到的分组进入窗口内。</p>
+<p>可以看到滑动窗口起到了一个<strong>限流</strong>的作用，也就是说当前滑动窗口的大小决定了当前 TCP 发送包的速率，而<strong>滑动窗口的大小取决于拥塞控制窗口和流量控制窗口的两者间的最小值</strong>。</p>
+<h2 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h2><p><strong>慢开始</strong>：不要一开始就发送大量的数据，由小到大逐渐增加拥塞窗口的大小。</p>
+<p><strong>拥塞避免</strong>：拥塞避免算法让拥塞窗口缓慢增长，即每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1而不是加倍。这样拥塞窗口按线性规律缓慢增长。</p>
+<p><strong>快重传</strong>：我们可以剔除一些不必要的拥塞报文，提高网络吞吐量。比如接收方在收到一个失序的报文段后就立即发出重复确认，而不要等到自己发送数据时捎带确认。快重传规定：发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段，而不必继续等待设置的重传计时器时间到期。</p>
+<p><strong>快恢复：</strong>主要是配合快重传。当发送方连续收到三个重复确认时，就执行“乘法减小”<a href>算法</a>，把ssthresh门限减半（为了预防网络发生拥塞），但<strong>接下来并不执行慢开始<a href>算法</a></strong>，因为如果网络出现拥塞的话就不会收到好几个重复的确认，收到三个重复确认说明网络状况还可以。</p>
+<h2 id="HTTP常见的状态码"><a href="#HTTP常见的状态码" class="headerlink" title="HTTP常见的状态码"></a>HTTP常见的状态码</h2><p>200：服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。<br>301 ： （永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应(对 GET 或 HEAD 请求的响应)时，会自动将请求者转到新位置。<br>302：（临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。<br>400 ：客户端请求有语法错误，不能被服务器所理解。<br>403 ：服务器收到请求，但是拒绝提供服务。<br>404 ：（未找到） 服务器找不到请求的网页。<br>500：（服务器内部错误） 服务器遇到错误，无法完成请求。</p>
+<p>GET和POST最大的区别主要是GET请求是幂等性的，POST请求不是。这个是它们本质区别。</p>
+<h2 id="HTTP1-0和HTTP1-1的区别"><a href="#HTTP1-0和HTTP1-1的区别" class="headerlink" title="HTTP1.0和HTTP1.1的区别"></a>HTTP1.0和HTTP1.1的区别</h2><p>长连接：在HTTP1.1中默认开启Connection： keep-alive，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。</p>
+<p>缓存处理：在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略，可供选择的缓存头来控制缓存策略。</p>
+<p>带宽优化及网络连接的使用：HTTP1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP1.1则在请求头引入了range头域，它允许只请求资源的某个部分，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。</p>
+<p>错误通知的管理：在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</p>
+<p>Host头处理：在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。</p>
+<h2 id="如何考虑分布式-Session-问题"><a href="#如何考虑分布式-Session-问题" class="headerlink" title="如何考虑分布式 Session 问题"></a>如何考虑分布式 Session 问题</h2><p>在互联网公司为了可以支撑更大的流量，后端往往需要多台服务器共同来支撑前端用户请求，那如果用户在 A 服务器登录了，第二次请求跑到服务 B 就会出现登录失效问题。</p>
+<p>分布式 Session 一般会有以下几种解决方案：</p>
+<p>客户端存储：直接将信息存储在cookie中，cookie是存储在客户端上的一小段数据，客户端通过http协议和服务器进行cookie交互，通常用来存储一些不敏感信息</p>
+<p>Nginx ip_hash 策略：服务端使用 Nginx 代理，每个请求按访问 IP 的 hash 分配，这样来自同一 IP 固定访问一个后台服务器，避免了在服务器 A 创建 Session，第二次分发到服务器 B 的现象。</p>
+<p>Session 复制：任何一个服务器上的 Session 发生改变（增删改），该节点会把这个 Session 的所有内容序列化，然后广播给所有其它节点。</p>
+<p>共享 Session：服务端无状态话，将用户的 Session 等信息使用缓存中间件（如Redis）来统一管理，保障分发到每一个服务器的响应结果都一致。</p>
+<p>建议采用共享 Session的方案。</p>
 <h2 id="介绍下进程和线程，介绍下线程的通信方式"><a href="#介绍下进程和线程，介绍下线程的通信方式" class="headerlink" title="介绍下进程和线程，介绍下线程的通信方式"></a>介绍下进程和线程，介绍下线程的通信方式</h2><p>进程是资源分配的最小单位，线程是CPU调度的最小单位</p>
 <ol>
 <li>基于 volatile 关键字来实现线程间相互通信是使用共享内存的思想</li>
@@ -576,7 +680,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/53.jpg" class="responsive-img" alt="堆排序">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/58.jpg" class="responsive-img" alt="堆排序">
                         
                         <span class="card-title">堆排序</span>
                     </div>
@@ -625,7 +729,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/98.jpg" class="responsive-img" alt="ReentrantLock">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/103.jpg" class="responsive-img" alt="ReentrantLock">
                         
                         <span class="card-title">ReentrantLock</span>
                     </div>
@@ -834,7 +938,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">238.4k</span>
+            <span class="white-color">245k</span>
             
 
             <br>
