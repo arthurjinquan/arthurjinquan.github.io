@@ -1,7 +1,6 @@
-https://arthurjq.com/2021/08/17/bigo20210817/
-https://arthurjq.com/2021/08/17/graph/
+https://arthurjq.com/2021/08/17/algorithm/graph/
 https://arthurjq.com/2021/08/15/algorithm/dfs/
-https://arthurjq.com/2021/08/15/meituan20210815/
+https://arthurjq.com/2021/08/15/algorithm/meituan20210815/
 https://arthurjq.com/2021/08/14/algorithm/diff-array/
 https://arthurjq.com/2021/07/30/leetcodenote/
 https://arthurjq.com/2021/07/15/project/onekey/
@@ -98,3 +97,4 @@ https://arthurjq.com/2020/12/28/java/consistent-hashing/
 https://arthurjq.com/2020/12/28/web/cdn/
 https://arthurjq.com/2020/12/28/web/servlet/
 https://arthurjq.com/2020/12/26/database/index-missing/
+https://arthurjq.com/2020/12/25/database/isolation/
