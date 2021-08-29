@@ -4,13 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Interceptor, SCUT JAVA SpringBoot 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="Filter 和 Interceptor, SCUT JAVA SpringBoot 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="Filter过滤器的配置比较简单，直接实现Filter 接口即可，也可以通过@WebFilter注解实现对特定URL拦截，看到Filter 接口中定义了三个方法。
+    <meta name="description" content="Filter过滤器的配置比较简单，直接实现 javax.servlet.Filter 接口即可，也可以通过@WebFilter注解实现对特定URL拦截，看到Filter 接口中定义了三个方法。
 
-init() ：该方法在容器启动初始化过滤器时被调用，它在 Filter ">
+init(FilterConfig conf">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@ init() ：该方法在容器启动初始化过滤器时被调用，它在 Filter
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Interceptor | 锦泉^-^</title>
+    <title>Filter 和 Interceptor | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -255,13 +255,13 @@ init() ：该方法在容器启动初始化过滤器时被调用，它在 Filter
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/98.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/103.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Interceptor
+                        Filter 和 Interceptor
                     </div>
                 </div>
             </div>
@@ -433,11 +433,11 @@ init() ：该方法在容器启动初始化过滤器时被调用，它在 Filter
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><p>过滤器的配置比较简单，直接实现Filter 接口即可，也可以通过@WebFilter注解实现对特定URL拦截，看到Filter 接口中定义了三个方法。</p>
+                <h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><p>过滤器的配置比较简单，直接实现 javax.servlet.Filter 接口即可，也可以通过@WebFilter注解实现对特定URL拦截，看到Filter 接口中定义了三个方法。</p>
 <ul>
-<li><code>init()</code> ：该方法在容器启动初始化过滤器时被调用，它在 Filter 的整个生命周期只会被调用一次。注意：这个方法必须执行成功，否则过滤器会不起作用。</li>
-<li><code>doFilter()</code> ：容器中的每一次请求都会调用该方法， FilterChain 用来调用下一个过滤器 Filter。</li>
-<li><code>destroy()</code>： 当容器销毁 过滤器实例时调用该方法，一般在方法中销毁或关闭资源，在过滤器 Filter 的整个生命周期也只会被调用一次</li>
+<li><code>init(FilterConfig config)</code> ：用于完成Filter的初始化。</li>
+<li><code>doFilter(ServletRequest request,ServletResponse response,FilterChain chain)</code> ：容器中的每一次请求都会调用该方法， FilterChain 用来调用下一个过滤器 Filter。</li>
+<li><code>destroy()</code>： 用于Filter销毁前，完成某些资源的回收。</li>
 </ul>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Component</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MyFilter</span> <span class="token keyword">implements</span> <span class="token class-name">Filter</span> <span class="token punctuation">{</span>
@@ -461,7 +461,7 @@ init() ：该方法在容器启动初始化过滤器时被调用，它在 Filter
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Filter 后置"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Interceptor"><a href="#Interceptor" class="headerlink" title="Interceptor"></a>Interceptor</h2><p>拦截器它是链式调用，一个应用中可以同时存在多个拦截器Interceptor， 一个请求也可以触发多个拦截器 ，而每个拦截器的调用会依据它的声明顺序依次执行。</p>
+<h2 id="Interceptor（AOP）"><a href="#Interceptor（AOP）" class="headerlink" title="Interceptor（AOP）"></a>Interceptor（AOP）</h2><p>拦截器它是链式调用，一个应用中可以同时存在多个拦截器Interceptor， 一个请求也可以触发多个拦截器 ，而每个拦截器的调用会依据它的声明顺序依次执行。</p>
 <p>首先编写一个简单的拦截器处理类，请求的拦截是通过HandlerInterceptor 来实现，看到HandlerInterceptor 接口中也定义了三个方法。</p>
 <ul>
 <li><code>preHandle()</code> ：这个方法将在请求处理之前进行调用。注意：如果该方法的返回值为false ，将视为当前请求结束，不仅自身的拦截器会失效，还会导致其他的拦截器也不再执行。</li>
@@ -500,7 +500,7 @@ init() ：该方法在容器启动初始化过滤器时被调用，它在 Filter
         registry<span class="token punctuation">.</span><span class="token function">addInterceptor</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyInterceptor1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addPathPatterns</span><span class="token punctuation">(</span><span class="token string">"/**"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="Filter-和-Interceptor-的区别"><a href="#Filter-和-Interceptor-的区别" class="headerlink" title="Filter 和 Interceptor 的区别"></a>Filter 和 Interceptor 的区别</h2><h3 id="实现原理不同"><a href="#实现原理不同" class="headerlink" title="实现原理不同"></a>实现原理不同</h3><p>过滤器和拦截器 底层实现方式大不相同，过滤器 是基于函数回调的，拦截器 则是基于Java的反射机制（动态代理）实现的。</p>
+<h2 id="Filter-和-Interceptor-的区别"><a href="#Filter-和-Interceptor-的区别" class="headerlink" title="Filter 和 Interceptor 的区别"></a>Filter 和 Interceptor 的区别</h2><h3 id="实现原理不同"><a href="#实现原理不同" class="headerlink" title="实现原理不同"></a>实现原理不同</h3><p>过滤器和拦截器 底层实现方式大不相同，过滤器 是基于<strong>函数回调</strong>的，拦截器 则是基于Java的反射机制（<strong>动态代理</strong>）实现的。</p>
 <p>这里重点说下过滤器！</p>
 <p>在我们自定义的过滤器中都会实现一个 doFilter方法，这个方法有一个FilterChain 参数，而实际上它是一个回调接口。ApplicationFilterChain是它的实现类， 这个实现类内部也有一个 doFilter 方法就是回调方法。</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">FilterChain</span> <span class="token punctuation">{</span>
@@ -534,7 +534,11 @@ init() ：该方法在容器启动初始化过滤器时被调用，它在 Filter
     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="使用范围不同"><a href="#使用范围不同" class="headerlink" title="使用范围不同"></a>使用范围不同</h3><p>过滤器Filter 的使用要依赖于Tomcat等容器，导致它只能在web程序中使用。</p>
 <p>而拦截器Interceptor 它是一个Spring组件，并由Spring容器管理，并不依赖Tomcat等容器，是可以单独使用的。不仅能应用在web程序中，也可以用于Application、Swing等程序中。</p>
-<h3 id="触发时机不同"><a href="#触发时机不同" class="headerlink" title="触发时机不同"></a>触发时机不同</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interceptor-2.png" alt></p>
+<h3 id="触发时机不同"><a href="#触发时机不同" class="headerlink" title="触发时机不同"></a>触发时机不同</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interceptor-3.png" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interceptor-4.png" alt></p>
+<p>过滤器（Filter）：可以拿到原始的http请求，但是拿不到你请求的控制器和请求控制器中的方法的信息。</p>
+<p>拦截器（Interceptor）：可以拿到你请求的控制器和方法，却拿不到请求方法的参数。</p>
+<p>切片  （Aspect） : 可以拿到方法的参数，但是却拿不到http请求和响应的对象</p>
 <p>过滤器Filter是在请求进入容器后，但在进入servlet之前进行预处理，请求结束是在servlet处理完以后。</p>
 <p>拦截器 Interceptor 是在请求进入servlet后，在进入Controller之前进行预处理的，Controller 中渲染了对应的视图之后请求结束。</p>
 <h3 id="拦截的请求范围不同"><a href="#拦截的请求范围不同" class="headerlink" title="拦截的请求范围不同"></a>拦截的请求范围不同</h3><pre class="line-numbers language-java"><code class="language-java">Filter 处理中
@@ -620,7 +624,7 @@ logger<span class="token punctuation">.</span><span class="token function">info<
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《Interceptor》
+                    《Filter 和 Interceptor》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/05/26/java/interceptor/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -692,7 +696,7 @@ logger<span class="token punctuation">.</span><span class="token function">info<
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg" class="responsive-img" alt="highbit和lowbit函数">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg" class="responsive-img" alt="highbit和lowbit函数">
                         
                         <span class="card-title">highbit和lowbit函数</span>
                     </div>
@@ -741,7 +745,7 @@ logger<span class="token punctuation">.</span><span class="token function">info<
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/56.jpg" class="responsive-img" alt="枚举enum">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/55.jpg" class="responsive-img" alt="枚举enum">
                         
                         <span class="card-title">枚举enum</span>
                     </div>
@@ -947,7 +951,7 @@ testpublic enum
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">245.5k</span>
+            <span class="white-color">256.1k</span>
             
 
             <br>

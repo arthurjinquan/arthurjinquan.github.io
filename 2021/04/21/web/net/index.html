@@ -255,7 +255,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/9.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -410,14 +410,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.7k
+                    7.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    19 分
+                    26 分
                 </div>
                 
                 
@@ -469,6 +469,8 @@
 <li>广播通信</li>
 </ul>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-3.jpg" alt="三次握手"></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-6.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-13.jpg" alt></p>
 <h2 id="为什么需要三次握手，而不是两次"><a href="#为什么需要三次握手，而不是两次" class="headerlink" title="为什么需要三次握手，而不是两次"></a>为什么需要三次握手，而不是两次</h2><ol>
 <li><p>防止已过期的连接请求报文突然又传送到服务器，因而产生错误和资源浪费。</p>
 <p>在双方两次握手即可建立连接的情况下，假设客户端发送 A 报文段请求建立连接，由于网络原因造成 A 暂时无法到达服务器，服务器接收不到请求报文段就不会返回确认报文段。</p>
@@ -534,11 +536,33 @@
 <p><strong>拥塞避免</strong>：拥塞避免算法让拥塞窗口缓慢增长，即每经过一个往返时间RTT就把发送方的拥塞窗口cwnd加1而不是加倍。这样拥塞窗口按线性规律缓慢增长。</p>
 <p><strong>快重传</strong>：我们可以剔除一些不必要的拥塞报文，提高网络吞吐量。比如接收方在收到一个失序的报文段后就立即发出重复确认，而不要等到自己发送数据时捎带确认。快重传规定：发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段，而不必继续等待设置的重传计时器时间到期。</p>
 <p><strong>快恢复：</strong>主要是配合快重传。当发送方连续收到三个重复确认时，就执行“乘法减小”<a href>算法</a>，把ssthresh门限减半（为了预防网络发生拥塞），但<strong>接下来并不执行慢开始<a href>算法</a></strong>，因为如果网络出现拥塞的话就不会收到好几个重复的确认，收到三个重复确认说明网络状况还可以。</p>
-<h2 id="HTTP常见的状态码"><a href="#HTTP常见的状态码" class="headerlink" title="HTTP常见的状态码"></a>HTTP常见的状态码</h2><p>200：服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。<br>301 ： （永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应(对 GET 或 HEAD 请求的响应)时，会自动将请求者转到新位置。<br>302：（临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。<br>400 ：客户端请求有语法错误，不能被服务器所理解。<br>403 ：服务器收到请求，但是拒绝提供服务。<br>404 ：（未找到） 服务器找不到请求的网页。<br>500：（服务器内部错误） 服务器遇到错误，无法完成请求。</p>
+<h2 id="粘包，拆包"><a href="#粘包，拆包" class="headerlink" title="粘包，拆包"></a>粘包，拆包</h2><p>TCP是基于stream机制，其实就是一串没有边界的数据流。 这里主要面临两个问题：1：如何定义数据的边界 2：拆包和粘包的问题。HTTP协议是基于TCP，所以也会面临前面两个问题。</p>
+<h3 id="数据读取流程"><a href="#数据读取流程" class="headerlink" title="数据读取流程"></a>数据读取流程</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-11.jpg" alt></p>
+<p>  1：发送端发送数据，数据先通过网卡到服务端tcp的receive buffer中。服务端的上层应用如果需要读取数据，会申请一段业务buffer，调用JDK的IO接口，IO会将tcpreceive  buffer的数据拷贝到业务的buffer里面。上层业务再通过设定的反序列化协议将业务buffer转换成对象进行业务处理。</p>
+<p>  2：服务端读取数据时，先申请一段业务buffer（大小一般是1k），通过调用JDK的<code>channel.read(buffer)</code>IO方法，IO会将tcp buffer的数据拷贝到业务buffer里面。返回值为读取字节的个数：如果返回值大于0，说明读取到了对应大小的数据；如果是0，表示没有读到数据，数据读取完成（可能业务buffer是满的，不能往里面写数据）；如果是-1，代表tcp连接被关闭（一般处理是关闭到该连接）</p>
+<p> 3：在java里面可以设置socket的SO_RCVBUF 参数来设置buffer的大小。默认值保存在：<code>cat/proc/sys/net/core/rmem_default</code> 也可通过<code>cat /proc/sys/net/ipv4/tcp_wmem</code>查看。</p>
+<h3 id="http粘包拆包说明"><a href="#http粘包拆包说明" class="headerlink" title="http粘包拆包说明"></a>http粘包拆包说明</h3><p>假如服务端连续接收了4个包。 应用申请1k的buffer空间去读取tcp数据。读取的流程如下。</p>
+<p>  1：业务先申请1k大小的业务buffer，先调用JDK IO接口，会拷贝Receive Buffer的1k数据到业务的buffer里面。</p>
+<p>  2：每个包定义有边界。通过边界定义，读取到包1和包2分别进行反序列化的处理，转换为对象供上层应用处理。（解决粘包的问题）</p>
+<p>  3：如下图：在读取到包3的时候，由于把buffer读完还没有发现边界。便将包3（剩下的10个）的数据拷贝到buffer的最前端。然后再调用JDK IO接口，tcp receive buffer拷贝数据是从业务buffer的第10个位置进行拷贝赋值。拷贝完后再读取包3的数据，直到边界（解决拆包的问题）</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-12.jpg" alt></p>
+<p> 4：然后读取包4，发现到边界后，并且数据没有可读的，则整个流程结束。</p>
+<h3 id="http解决方案"><a href="#http解决方案" class="headerlink" title="http解决方案"></a>http解决方案</h3><p>   1：请求行的边界是CRLF，如果读取到CRLF，则意味着请求行的信息已经读取完成。</p>
+<p>   2：Header的边界是CRLF，如果连续读取两个CRLF，则意味着header的信息读取完成。</p>
+<p>   3：body的长度是有Content-Length 来进行确定。如果没有Content-Length ，则是chunked协议。</p>
+<blockquote>
+<p>netty实现：<a href="https://blog.csdn.net/u013378306/article/details/107742524" target="_blank" rel="noopener">https://blog.csdn.net/u013378306/article/details/107742524</a></p>
+</blockquote>
+<h2 id="TIME-WAIT和CLOSE-WAIT的区别在哪"><a href="#TIME-WAIT和CLOSE-WAIT的区别在哪" class="headerlink" title="TIME_WAIT和CLOSE_WAIT的区别在哪?"></a>TIME_WAIT和CLOSE_WAIT的区别在哪?</h2><p>默认客户端首先发起断开连接请求</p>
+<p>从上图可以看出，CLOSE_WAIT是被动关闭形成的，当客户端发送FIN报文，服务端返回ACK报文后进入CLOSE_WAIT。TIME_WAIT是主动关闭形成的，当第四次挥手完成后，客户端进入TIME_WAIT状态。</p>
+<h2 id="HTTP常见的状态码"><a href="#HTTP常见的状态码" class="headerlink" title="HTTP常见的状态码"></a>HTTP常见的状态码</h2><p>100 Continue：表示正常，客户端可以继续发送请求<br>101 Switching Protocols：切换协议，服务器根据客户端的请求切换协议。</p>
+<p>200：服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。<br>301 ： （永久移动） 请求的网页已永久移动到新位置。 服务器返回此响应(对 GET 或 HEAD 请求的响应)时，会自动将请求者转到新位置。<br>302：（临时移动） 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。<br>400 ：客户端请求有语法错误，不能被服务器所理解。<br>403 ：服务器收到请求，但是拒绝提供服务。<br>404 ：（未找到） 服务器找不到请求的网页。<br>500：（服务器内部错误） 服务器遇到错误，无法完成请求。</p>
+<p>GET方法提交的请求的URL中的数据做多是2048字节，POST请求没有大小限制。</p>
+<p>GET方法因为参数放在URL中，安全性相对于POST较差一些</p>
 <p>GET和POST最大的区别主要是GET请求是幂等性的，POST请求不是。这个是它们本质区别。</p>
 <h2 id="HTTP1-0和HTTP1-1的区别"><a href="#HTTP1-0和HTTP1-1的区别" class="headerlink" title="HTTP1.0和HTTP1.1的区别"></a>HTTP1.0和HTTP1.1的区别</h2><p>长连接：在HTTP1.1中默认开启Connection： keep-alive，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。</p>
 <p>缓存处理：在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，HTTP1.1则引入了更多的缓存控制策略，可供选择的缓存头来控制缓存策略。</p>
-<p>带宽优化及网络连接的使用：HTTP1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP1.1则在请求头引入了range头域，它允许只请求资源的某个部分，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。</p>
+<p>带宽优化及网络连接的使用：HTTP1.0中，存在一些浪费带宽的现象，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且不支持断点续传功能，HTTP1.1则在请求头引入了range头域，它<strong>允许只请求资源的某个部分</strong>，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。</p>
 <p>错误通知的管理：在HTTP1.1中新增了24个错误状态响应码，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</p>
 <p>Host头处理：在HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。HTTP1.1的请求消息和响应消息都应支持Host头域，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。</p>
 <h2 id="如何考虑分布式-Session-问题"><a href="#如何考虑分布式-Session-问题" class="headerlink" title="如何考虑分布式 Session 问题"></a>如何考虑分布式 Session 问题</h2><p>在互联网公司为了可以支撑更大的流量，后端往往需要多台服务器共同来支撑前端用户请求，那如果用户在 A 服务器登录了，第二次请求跑到服务 B 就会出现登录失效问题。</p>
@@ -574,6 +598,31 @@
 <p>（6）用redis。</p>
 <p>（7）CDN（content-delivery-network：内容分发网络）。</p>
 <p>（8）上面都没有说到架构的优化，如果网站扛不住，是不是网站架构已经不能适应了，比如做个小博客把数据库服务器和web服务器都用同一台服务器，那所有负载都在同一台服务器上了。但是访问量上来扛不住了，就得加服务器了，就得在架构上优化了，比如在数据库上做集群，在web服务器上也做集群，比如web服务器集群，在服务器前面加一个负载均衡，负载均衡就是专门负责分发，把用户的请求均匀分布到各个服务器上。</p>
+<h2 id="Http"><a href="#Http" class="headerlink" title="Http"></a>Http</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-9.jpg" alt="请求包"></p>
+<p>主要包含三部分：请求行line，请求头header，请求正文body</p>
+<p>请求行：主要包含三部分：Method ，URI ，协议/版本。 各部分之间使用空格(SP)分割。整个请求头使用CRLF分割。</p>
+<p>请求头： 格式为（name ：value），用于客户端请求的描述信息。header之间以CRLF进行分割。最后一个header会多加一个CRLF。</p>
+<p>请求正文 ：里面主要是Post提交的数据（可支持多种格式，格式在Content-Type定义，长度是在Content-Length里面定义）。 </p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-7.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-10.jpg" alt="响应包"></p>
+<p>主要包含三部分：状态行line,响应头header,响应正文body</p>
+<p>状态行：包含三部分：http版本，服务器返回状态码，描述信息。以CRLF进行分割。</p>
+<p>响应头 ： 格式为（name ：value），用于服务器返回的描述信息。header之间以CRLF进行分割。最后一个header会多加一个CRLF</p>
+<p>响应正文：里面主要是返回数据。 </p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-8.jpg" alt="分块编码"></p>
+<p>读取response不是用分块编码就是用content-length</p>
+<h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><p>ARP协议属于网络层的协议，主要作用是实现从IP地址转换为MAC地址。在每个主机或者路由器中都建有一个ARP缓存表，表中有IP地址及IP地址对应的MAC地址。</p>
+<p>IP地址可由用户自行更改，管理起来相对困难，而MAC地址不可更改，所以一般会把IP地址和MAC地址组合起来使用。</p>
+<p>网络层实现的是主机之间的通信，而链路层实现的是链路之间的通信，所以从下图可以看出，在数据传输过程中，IP数据报的源地址（IP1）和目的地址（IP2）是一直不变的，而MAC地址（硬件地址）却一直随着链路的改变而改变。</p>
+<p>ARP的工作流程（面试时问ARP协议主要说这个就可以了）：</p>
+<ol>
+<li>在局域网内，主机A要向主机B发送IP数据报时，首先会在主机A的ARP缓存表中查找是否有IP地址及其对应的MAC地址，如果有，则将MAC地址写入到MAC帧的首部，并通过局域网将该MAC帧发送到MAC地址所在的主机B。</li>
+<li>如果主机A的ARP缓存表中没有主机B的IP地址及所对应的MAC地址，主机A会在局域网内广播发送一个ARP请求分组。局域网内的所有主机都会收到这个ARP请求分组。</li>
+<li>主机B在看到主机A发送的ARP请求分组中有自己的IP地址，会像主机A以单播的方式发送一个带有自己MAC地址的响应分组。</li>
+<li>主机A收到主机B的ARP响应分组后，会在ARP缓存表中写入主机B的IP地址及其IP地址对应的MAC地址。</li>
+<li>如果主机A和主机B不在同一个局域网内，即使知道主机B的MAC地址也是不能直接通信的，必须通过路由器转发到主机B的局域网才可以通过主机B的MAC地址找到主机B。并且主机A和主机B已经可以通信的情况下，主机A的ARP缓存表中寸的并不是主机B的IP地址及主机B的MAC地址，而是主机B的IP地址及该通信链路上的下一跳路由器的MAC地址。这就是上图中的源IP地址和目的IP地址一直不变，而MAC地址却随着链路的不同而改变。</li>
+<li>如果主机A和主机B不在同一个局域网，参考上图中的主机H1和主机H2，这时主机H1需要先广播找到路由器R1的MAC地址，再由R1广播找到路由器R2的MAC地址，最后R2广播找到主机H2的MAC地址，建立起通信链路。</li>
+</ol>
 
             </div>
             <hr />
@@ -680,7 +729,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/54.jpg" class="responsive-img" alt="堆排序">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/53.jpg" class="responsive-img" alt="堆排序">
                         
                         <span class="card-title">堆排序</span>
                     </div>
@@ -729,7 +778,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/99.jpg" class="responsive-img" alt="ReentrantLock">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/98.jpg" class="responsive-img" alt="ReentrantLock">
                         
                         <span class="card-title">ReentrantLock</span>
                     </div>
@@ -938,7 +987,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">245.5k</span>
+            <span class="white-color">256.1k</span>
             
 
             <br>
