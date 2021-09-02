@@ -256,7 +256,7 @@ String.valueOf(char[] data, ">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/11.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -415,14 +415,14 @@ String.valueOf(char[] data, ">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    5 分
                 </div>
                 
                 
@@ -448,13 +448,26 @@ String.valueOf(char[] data, ">
 <li>使用<code>String.charAt(index)</code>（返回值为char）可以得到String中某一指定位置的char。</li>
 <li>使用<code>String.toCharArray()</code>（返回值为char[]）可以得到将包含整个String的char数组。从0开始的位置索引来访问string中的任意位置的元素。</li>
 </ol>
+<h2 id="String-join"><a href="#String-join" class="headerlink" title="String.join"></a>String.join</h2><p>String.join方法是JDK1.8之后新增的一个静态方法</p>
+<pre class="line-numbers language-java"><code class="language-java">String result <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">,</span>“a”<span class="token punctuation">,</span>“b”<span class="token punctuation">,</span>“c”<span class="token punctuation">,</span>“d”<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 输出结果如下：a-b-c-d</span>
+
+String<span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span>“a”<span class="token punctuation">,</span>“b”<span class="token punctuation">,</span>“c”<span class="token punctuation">,</span>“d”<span class="token punctuation">}</span><span class="token punctuation">;</span>
+String result <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">,</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// 输出结果如下：a-b-c-d</span>
+
+List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"StringUtils"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"join"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+String join <span class="token operator">=</span> StringUtils<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span><span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//跟上边参数反过来</span>
+<span class="token comment" spellcheck="true">// 输出结果：StringUtils-join</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="substring方法"><a href="#substring方法" class="headerlink" title="substring方法"></a>substring方法</h2><p>用于提取字符串中介于两个指定下标之间的字符。</p>
 <pre class="line-numbers language-java"><code class="language-java">stringObject<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span>stop<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>区间是 [ ）。</p>
 <h3 id="Integer的valueOf和parseInt方法（string-gt-int）"><a href="#Integer的valueOf和parseInt方法（string-gt-int）" class="headerlink" title="Integer的valueOf和parseInt方法（string -&gt; int）"></a>Integer的valueOf和parseInt方法（string -&gt; int）</h3><ol>
 <li><p><code>Integer. valueOf()</code>可以将基本类型int转换为包装类型Integer，或者将String转换成Integer，String如果为Null或””都会报错。</p>
 </li>
-<li><p><code>Integer.parseInt()</code>是把（）里的内容转换成Integer。<code>Integer.parseInt(String)</code>遇到一些不能被转换为整型的字符时，会抛出异常。</p>
+<li><p><code>Integer.parseInt()</code>是把（）里的内容转换成Integer。<code>Integer.parseInt(String)</code>遇到一些不能被转换为整型的字符时，会抛出异常。（<code>Long.parseLong(String)</code>差不多意思）</p>
 </li>
 </ol>
 <h3 id="字符串可以强转ASCII"><a href="#字符串可以强转ASCII" class="headerlink" title="字符串可以强转ASCII"></a>字符串可以强转ASCII</h3><p>数组 char[ ] 无法强转ASCII，而字符串可以强转ASCII。</p>
@@ -639,7 +652,7 @@ m<span class="token punctuation">.</span><span class="token function">group</spa
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/63.jpg" class="responsive-img" alt="十大经典排序算法整理汇总（转）">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/67.jpg" class="responsive-img" alt="十大经典排序算法整理汇总（转）">
                         
                         <span class="card-title">十大经典排序算法整理汇总（转）</span>
                     </div>
@@ -692,7 +705,7 @@ m<span class="token punctuation">.</span><span class="token function">group</spa
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg" class="responsive-img" alt="List">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/28.jpg" class="responsive-img" alt="List">
                         
                         <span class="card-title">List</span>
                     </div>
@@ -897,7 +910,7 @@ m<span class="token punctuation">.</span><span class="token function">group</spa
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">256.1k</span>
+            <span class="white-color">257.4k</span>
             
 
             <br>

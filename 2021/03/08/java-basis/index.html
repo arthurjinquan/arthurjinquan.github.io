@@ -257,7 +257,7 @@ Java 不提供指">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/20.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,14 +412,14 @@ Java 不提供指">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.1k
+                    6.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    22 分
+                    24 分
                 </div>
                 
                 
@@ -489,6 +489,31 @@ Java 不提供指">
 <li>从变量在内存中的生存时间上看，成员变量是对象的一部分，它随着对象的创建而存在，而局部变量随着方法的调用而自动消失</li>
 <li>成员变量如果没有被赋初值，则会自动以类型的默认值而赋值（一种情况例外被 final 修饰的成员变量也必须显示地赋值）；而<strong>局部变量则不会自动赋值</strong></li>
 </ol>
+<h2 id="Java获取对象的四种方式"><a href="#Java获取对象的四种方式" class="headerlink" title="Java获取对象的四种方式"></a>Java获取对象的四种方式</h2><h3 id="new-class"><a href="#new-class" class="headerlink" title="new class"></a>new class</h3><p>生成的对象置于内存中的堆空间中</p>
+<h3 id="clone"><a href="#clone" class="headerlink" title="clone"></a>clone</h3><p>最大的区别就是，有没有复制对象，在堆内存中的是否为一个</p>
+<h4 id="new-与-clone-的区别"><a href="#new-与-clone-的区别" class="headerlink" title="new 与 clone 的区别"></a>new 与 clone 的区别</h4><p><strong>复制引用</strong>：<code>Person p = new Person(23, &quot;zhang&quot;);     Person p1 = p;</code></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-8.jpg" alt></p>
+<p><strong>复制对象</strong>:<code>Person p = new Person(23, &quot;zhang&quot;);   Person p1 = (Person) p.clone();</code></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-9.jpg" alt></p>
+<p><strong>new操作符的本意是分配内存</strong>。程序执行到new操作符时， 首先去看new操作符后面的类型，因为知道了类型，才能知道要分配多大的内存空间。分配完内存之后，再调用构造函数，填充对象的各个域，这一步叫做对象的初始化，构造方法返回后，一个对象创建完毕，可以把他的引用（地址）发布到外部，在外部就可以使用这个引用操纵这个对象。</p>
+<p>而clone在第一步是和new相似的， 都是分配内存，调用clone方法时，分配的内存和源对象（即调用clone方法的对象）相同，然后再使用原对象中对应的各个域，填充新对象的域， 填充完成之后，clone方法返回，一个新的相同的对象被创建，同样可以把这个新对象的引用发布到外部。</p>
+<h4 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h4><p>仅仅复制所考虑的对象，而不复制它所引用的对象。</p>
+<h4 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h4><p>把要复制的对象所引用的对象都复制了一遍。</p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-10.jpg" alt></p>
+<p><strong>clone是浅拷贝的</strong></p>
+<h3 id="反射-获取对象"><a href="#反射-获取对象" class="headerlink" title="反射 获取对象"></a>反射 获取对象</h3><p>还有所谓的工厂创建对象都是根据反射而创建的框架产生的，而其中的原理就是利用了反射。</p>
+<h3 id="从本地文件的反序列化"><a href="#从本地文件的反序列化" class="headerlink" title="从本地文件的反序列化"></a>从本地文件的反序列化</h3><ol>
+<li>序列化 ：把对象转换为字节序列存储于磁盘或者进行网络传输的过程称为对象的序列化。</li>
+<li>反序列化：把磁盘或网络节点上的字节序列恢复到对象的过程称为对象的反序列化。</li>
+<li>综上，可以得出对象的序列化和反序列化主要有两种用途：<ul>
+<li>把对象的字节序列永久地保存到磁盘上。（持久化对象）</li>
+<li>可以将Java对象以字节序列的方式在网络中传输。（网络传输对象)</li>
+</ul>
+</li>
+</ol>
+<p>【1】、必须实现序列化接口 <em>Serializable</em>： <em>Java.io.Serializable</em> 接口。</p>
+<p>【2】、serialVersionUID：序列化的版本号，凡是实现 <em>Serializable</em> 接口的类都有一个静态的表示序列化版本标识符的变量。</p>
+<p>【3】、serialVersionUID 的取值：此值是通过 Java 运行时环境根据类的内部细节自动生成的。如果类的源代码进行了修改， 再重新编译，新生成的类文件的 serialVersionUID 的值也会发生变化。不同的编译器也可能会导致不同的 serialVersionUID。为了提高 serialVersionUID 的独立性和确定性，建议在一个序列化类中显示的定义 serialVersionUID，为它赋予明确的值。</p>
 <h2 id="静态方法和实例方法"><a href="#静态方法和实例方法" class="headerlink" title="静态方法和实例方法"></a>静态方法和实例方法</h2><ol>
 <li>在外部调用静态方法时，可以使用”类名.方法名”的方式，也可以使用”对象名.方法名”的方式。而实例方法只有后面这种方式。也就是说，<strong>调用静态方法可以无需创建对象</strong>。</li>
 <li>静态方法在访问本类的成员时，<strong>只允许访问静态成员</strong>（即静态成员变量和静态方法），而不允许访问实例成员变量和实例方法；实例方法则无此限制</li>
@@ -813,7 +838,7 @@ Java 不提供指">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/78.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/74.jpg" class="responsive-img" alt="Java的守护线程">
                         
                         <span class="card-title">Java的守护线程</span>
                     </div>
@@ -866,7 +891,7 @@ Java 不提供指">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/85.jpg" class="responsive-img" alt="Helm安装ingress">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="Helm安装ingress">
                         
                         <span class="card-title">Helm安装ingress</span>
                     </div>
@@ -1075,7 +1100,7 @@ Java 不提供指">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">256.1k</span>
+            <span class="white-color">257.4k</span>
             
 
             <br>
