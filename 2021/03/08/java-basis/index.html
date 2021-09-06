@@ -257,7 +257,7 @@ Java 不提供指">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,14 +412,14 @@ Java 不提供指">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    6.9k
+                    8.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    24 分
+                    29 分
                 </div>
                 
                 
@@ -560,12 +560,12 @@ Java 不提供指">
 <li>使用 ReentrantLock 结合 Condition，condition.signal和condition.await</li>
 </ol>
 <h3 id="进程的通信方式"><a href="#进程的通信方式" class="headerlink" title="进程的通信方式"></a>进程的通信方式</h3><ol>
-<li>匿名管道实现父进程和子进程之间的通信，匿名管道不支持跨网络之间的两个进程之间的通信，且不是任意的两个进程。通过匿名管道可以实现子进程输出的重定向。</li>
-<li>管道</li>
-<li>信号，信号量</li>
-<li>消息队列链表</li>
-<li>共享内存</li>
-<li>嵌套字</li>
+<li>匿名管道实现<strong>父进程和子进程</strong>之间的通信，半全双工，单向流动，匿名管道不支持跨网络之间的两个进程之间的通信，且不是任意的两个进程。通过匿名管道可以实现子进程输出的重定向。</li>
+<li>管道，通常在非父子进程通信，创建管道=》打开管道文件=》管道的写</li>
+<li>信号量，控制多个进程对共享资源的访问，PV操作</li>
+<li>消息队列链表，存放在内核中，克服了信号传递信息少、管道只能承载无格式字节流以及缓冲区大小受限等缺点</li>
+<li>共享内存，效率最高</li>
+<li>嵌套字，socket</li>
 </ol>
 <h2 id="处理不想序列化的字段"><a href="#处理不想序列化的字段" class="headerlink" title="处理不想序列化的字段"></a>处理不想序列化的字段</h2><p>使用 transient 关键字修饰。</p>
 <p>作用是：阻止实例中那些用此关键字修饰的的变量序列化；当对象被反序列化时，被 transient 修饰的变量值不会被持久化和恢复。</p>
@@ -717,6 +717,8 @@ Java 不提供指">
 <p>如果指令甲happens-before指令乙，那么指令甲必须排序在指令乙之前，并且指令甲的执行结果对指令乙可见。</p>
 </blockquote>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-7.jpg" alt="happen-before"></p>
+<h3 id="synchronized和ReentrantLock的区别"><a href="#synchronized和ReentrantLock的区别" class="headerlink" title="synchronized和ReentrantLock的区别"></a>synchronized和ReentrantLock的区别</h3><p>ReentrantLock的特点，<strong>synchronized只能是非公平锁</strong>，ReentrantLock可以指定；ReentrantLock有condition，condition可以唤醒指定线程；lock.interrupt方法可以等待线程中断</p>
+<p>在发生异常时，synchronized会自动释放锁，lock不会自动释放锁，需要在finally释放锁</p>
 <h2 id="ThreadPool-中-submit-和-execute"><a href="#ThreadPool-中-submit-和-execute" class="headerlink" title="ThreadPool 中 submit 和 execute"></a>ThreadPool 中 submit 和 execute</h2><p>都是用来执行线程池的，只不过使用 execute 执行线程池<strong>不能有返回方法</strong>，而使用 submit 可以使用 <strong>Future 接收线程池执行的返回值</strong>。</p>
 <h2 id="ThreadPoolExecutor-都需要哪些参数"><a href="#ThreadPoolExecutor-都需要哪些参数" class="headerlink" title="ThreadPoolExecutor 都需要哪些参数"></a>ThreadPoolExecutor 都需要哪些参数</h2><ol>
 <li>corePoolSize：线程池中的核心线程数</li>
@@ -732,6 +734,15 @@ Java 不提供指">
 <h2 id="线程池中线程复用原理"><a href="#线程池中线程复用原理" class="headerlink" title="线程池中线程复用原理"></a>线程池中线程复用原理</h2><p>线程池将线程和任务进行解耦，摆脱了之前通过Thread创建线程时一个线程必须对应一个任务的限制。</p>
 <p>同一个线程可以从阻塞队列中不对获取新任务来执行，其核心原理在于线程池对Thread封装，并<strong>不是每次执行任务都调用Thread.start（）来创建新线程</strong>，而是让每个线程执行一个“循环任务”，不断检查是否有任务需要被执行，有就<strong>调用任务中的run方法</strong>。</p>
 <h2 id="对象池对垃圾回收的影响"><a href="#对象池对垃圾回收的影响" class="headerlink" title="对象池对垃圾回收的影响"></a>对象池对垃圾回收的影响</h2><p>对象池的缺点:<br>(1)现在Java的对象分配操作不比c语言的malloc调用慢, 对于轻中量级的对象, 分配/释放对象的开销可以忽略不计;<br>(2)并发环境中, 多个线程可能(同时)需要获取池中对象, 进而需要在堆数据结构上进行同步或者因为锁竞争而产生阻塞, 这种开销要比创建销毁对象的开销高数百倍;<br>(3)由于池中对象的数量有限, 势必成为一个可伸缩性瓶颈;<br>(4)很难正确的设定对象池的大小, 如果太小则起不到作用, 如果过大, 则占用内存资源高, 可以起一个线程定期扫描分析, 将池压缩到一个合适的尺寸以节约内存,但为了获得不错的分析结果, 在扫描期间可能需要暂停复用以避免干扰(造成效率低下), 或者使用非常复杂的算法策略(增加维护难度);<br>(5)设计和使用对象池容易出错, 设计上需要注意状态同步, 这是个难点, 使用上可能存在忘记归还(就像c语言编程忘记free一样), 重复归还(可能需要做个循环判断一下是否池中存在此对象, 这也是个开销), 归还后仍旧使用对象(可能造成多个线程并发使用一个对象的情况)等问题;</p>
+<h2 id="红黑树的性质"><a href="#红黑树的性质" class="headerlink" title="红黑树的性质"></a>红黑树的性质</h2><p>二叉查找树。叶子节点都是黑色的null。根节点是黑的。不能有两个连续的红色节点，红色的子节点必须是黑的。从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。</p>
+<h2 id="jdk8的流原理"><a href="#jdk8的流原理" class="headerlink" title="jdk8的流原理"></a>jdk8的流原理</h2><p>stream流原理：中间操作与结束操作，中间操作只是对操作进行了记录，只有结束操作才会触发实际的计算（即惰性求值），这也是Stream在迭代大集合时高效的原因之一。这些Stream对象以双向链表的形式组织在一起，构成整个流水线。由于每个Stage都记录了前一个Stage和本次的操作以及回调函数，依靠这种结构就能建立起对数据源的所有操作。</p>
+<h2 id="JUC"><a href="#JUC" class="headerlink" title="JUC"></a>JUC</h2><h3 id="操作系统的阻塞，加锁怎么实现的"><a href="#操作系统的阻塞，加锁怎么实现的" class="headerlink" title="操作系统的阻塞，加锁怎么实现的"></a>操作系统的阻塞，加锁怎么实现的</h3><p><a href="https://blog.csdn.net/weixin_44367006/article/details/101637239" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44367006/article/details/101637239</a><br>阻塞：进程是有时间片调度算法的，一个进程阻塞了，会放入等待队列里面，此时调度算法就不会再调度他。等他收到信号或者等待时间过了之后，再放入执行队列里面。<br>加锁：linux底层有futex函数可以放入操作系统的等待队列，同时告诉操作系统解锁的条件。具体到底层，还是cpu指令比如xchg可以保证原子性的比较，总线mesi协议可以保证各个cpu的值都是最新的。</p>
+<h3 id="unsafe-park和unpark"><a href="#unsafe-park和unpark" class="headerlink" title="unsafe.park和unpark"></a>unsafe.park和unpark</h3><p>unpark是发放许可，park调用时会检查是否有许可，如果没有就阻塞</p>
+<h3 id="AQS-AbstractQueuedSynchronizer"><a href="#AQS-AbstractQueuedSynchronizer" class="headerlink" title="AQS-AbstractQueuedSynchronizer"></a>AQS-AbstractQueuedSynchronizer</h3><p><a href="https://segmentfault.com/a/1190000015804888" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015804888</a></p>
+<p>加锁：把线程包装成节点加入队列。其他线程加锁时会cas插入到队列尾部，并Locksupport.park。a,b,c三个竞争锁，A先获取，此时没有竞争，直接获取，不进入队列；b获取时发现竞争，需要进入队列，aqs队列的特点是前一个节点表示后一个节点的状态，所以有一个伪头节点，b放入伪头节点之后，并修改伪头节点的标志位为-1，表示后面节点被阻塞。c同理。<br>所以现在队列是-1=&gt;-1=&gt;0<br>解锁：unlock的时候，会调用release唤醒首节点。此时需要设置首节点状态为0，表示下一个节点将要被唤醒。然后把后继节点找出来，准备unpark节点。对于节点的状态还有一种情况是超时或者取消，也就是status=1的状态，此时需要从后向前查找第一个不是被取消的节点（为什么从后往前？考虑并发入队，首先node的next和prev指针都是volatile的，具体没想明白）<br>此时B节点被唤醒了，需要设置头节点是自己。<br>现在是0=&gt;-1=&gt;0<br>无论哪种状态，B都会被唤醒，然后把自己变成头节点（如果是取消节点，会在此时进行遍历，修改队列结构）。然后c唤醒，释放锁，此时后面没有节点了，所以只剩下一个伪头节点，是当前节点。</p>
+<h3 id="AQS的condition"><a href="#AQS的condition" class="headerlink" title="AQS的condition"></a>AQS的condition</h3><p><a href="https://segmentfault.com/a/1190000015807209" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015807209</a></p>
+<p>//ThreadA先调用lock方法获取到锁，然后调用<code>con.await()</code><br>//ThreadB获取锁，调用<code>con.signal()</code>唤醒ThreadA<br>//ThreadB释放锁<br>condtion复用了aqs的node节点类型，condition的队列我们称作条件队列，原来的队列称作等待队列。a先获取到锁，然后await。await释放锁，然后把线程包装成节点入条件队列。<br>b获取锁，然后signal。signal会删除条件队列的头结点，并添加到等待队列，此时等待队列是-1=&gt;0，在释放锁之后，这个等待队列的节点会被唤醒。<br>b释放锁，等待队列的a会被唤醒。</p>
+<h3 id="CountdownLatch"><a href="#CountdownLatch" class="headerlink" title="CountdownLatch"></a>CountdownLatch</h3><p>await都会加入到等待队列里面。在countdown时，如果计数器为0，会唤醒（unpark）等待队列的头结点。并且会修改当前节点的状态为0，再调用propagate，向后传播状态，来唤醒队列里面的所有节点。</p>
 
             </div>
             <hr />
@@ -838,7 +849,7 @@ Java 不提供指">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/74.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/77.jpg" class="responsive-img" alt="Java的守护线程">
                         
                         <span class="card-title">Java的守护线程</span>
                     </div>
@@ -891,7 +902,7 @@ Java 不提供指">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="Helm安装ingress">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/84.jpg" class="responsive-img" alt="Helm安装ingress">
                         
                         <span class="card-title">Helm安装ingress</span>
                     </div>
@@ -1100,7 +1111,7 @@ Java 不提供指">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">257.4k</span>
+            <span class="white-color">261.4k</span>
             
 
             <br>

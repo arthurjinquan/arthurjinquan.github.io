@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/91.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -419,7 +419,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.3k
+                    3.4k
                 </div>
                 
 
@@ -457,10 +457,14 @@
 <li>通过Cookie/Session技术</li>
 <li>HTTP/1.1持久连接（HTTP <strong>keep-alive</strong>）方法，只要任意一端没有明确提出断开连接，则保持TCP连接状态，在请求首部字段中的Connection: keep-alive即为表明使用了持久连接</li>
 </ol>
-<h4 id="中间人攻击原理"><a href="#中间人攻击原理" class="headerlink" title="中间人攻击原理"></a>中间人攻击原理</h4><h5 id="SSL劫持攻击："><a href="#SSL劫持攻击：" class="headerlink" title="SSL劫持攻击："></a>SSL劫持攻击：</h5><p>SSL劫持攻击即SSL证书欺骗攻击，攻击者为了获得HTTPS传输的明文数据，需要先将自己接入到客户端和目标网站之间；在传输过程中<strong>伪造服务器的证书</strong>，将服务器的公钥替换成自己的公钥，这样，中间人就可以得到明文传输带Key1、Key2和Pre-Master-Key，从而窃取客户端和服务端的通信数据；</p>
+<h4 id="中间人攻击原理"><a href="#中间人攻击原理" class="headerlink" title="中间人攻击原理"></a>中间人攻击原理</h4><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/https-1.jpg" alt></p>
+<h5 id="SSL劫持攻击："><a href="#SSL劫持攻击：" class="headerlink" title="SSL劫持攻击："></a>SSL劫持攻击：</h5><p>SSL劫持攻击即SSL证书欺骗攻击，攻击者为了获得HTTPS传输的明文数据，需要先将自己接入到客户端和目标网站之间；在传输过程中<strong>伪造服务器的证书</strong>，将<strong>服务器的公钥替换成自己的公钥</strong>，这样，中间人就可以得到明文传输带Key1、Key2和Pre-Master-Key，从而窃取客户端和服务端的通信数据；</p>
 <p>但是对于客户端来说，如果中间人伪造了证书，在校验证书过程中会提示证书错误，由用户选择继续操作还是返回，由于大多数用户的安全意识不强，会选择继续操作，此时，中间人就可以获取浏览器和服务器之间的通信数据</p>
 <h5 id="SSL剥离攻击："><a href="#SSL剥离攻击：" class="headerlink" title="SSL剥离攻击："></a>SSL剥离攻击：</h5><p>这种攻击方式也需要将攻击者设置为中间人，之后见HTTPS范文替换为HTTP返回给浏览器，而中间人和服务器之间仍然保持HTTPS服务器。由于<strong>HTTP是明文传输</strong>的，所以中间人可以获取客户端和服务器传输数据</p>
 <p>HTTPS中间人攻击：<a href="https://www.jianshu.com/p/fab64714157a" target="_blank" rel="noopener">https://www.jianshu.com/p/fab64714157a</a></p>
+<h3 id="如何避免中间人攻击"><a href="#如何避免中间人攻击" class="headerlink" title="如何避免中间人攻击"></a>如何避免中间人攻击</h3><p>出现安全警报界面的很多情况下（您的连接不是私密连接是否继续访问），都是遇到了中间人攻击的现象，需要对安全证书进行及时地监测。而且大名鼎鼎的github网站，也曾遭遇过中间人攻击。</p>
+<p>1、客户端不<strong>要轻易相信证书</strong>：因为这些证书极有可能是中间人。</p>
+<p>2、App 可以<strong>提前预埋证书在本地</strong>：意思是我们本地提前有一些证书，这样其他证书就不能再起作用了。</p>
 <h3 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h3><p>基于HTTP协议，通过SSL或TLS提供加密处理数据、验证对方身份以及数据完整性保护</p>
 <p>通过抓包可以看到数据<strong>不是明文传输</strong>，而且HTTPS有如下特点：</p>
 <ol>
@@ -643,7 +647,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/11.jpg" class="responsive-img" alt="Nginx简单介绍">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/14.jpg" class="responsive-img" alt="Nginx简单介绍">
                         
                         <span class="card-title">Nginx简单介绍</span>
                     </div>
@@ -692,7 +696,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/64.jpg" class="responsive-img" alt="AMQP协议">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/61.jpg" class="responsive-img" alt="AMQP协议">
                         
                         <span class="card-title">AMQP协议</span>
                     </div>
@@ -901,7 +905,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">257.4k</span>
+            <span class="white-color">261.4k</span>
             
 
             <br>

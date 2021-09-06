@@ -256,7 +256,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/115.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/118.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -415,14 +415,14 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.8k
+                    5.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    21 分
                 </div>
                 
                 
@@ -441,8 +441,8 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                 <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-9.jpg" alt="五种"></p>
 <h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>set key value时，redis会判断value能否转为int，能的话就encoding成int，不能就encoding成embstr。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-8.jpg" alt></p>
-<p>计数器：INCR article:readcount:{文章id}→GET article:readcount:{文章id}</p>
-<p>分布式系统全局序列号：INCRBY orderId 100</p>
+<p><strong>计数器</strong>：INCR article:readcount:{文章id}→GET article:readcount:{文章id}</p>
+<p><strong>分布式系统全局序列号</strong>：INCRBY orderId 100</p>
 <p>C语言，SDS（simple dynamic string）</p>
 <ol>
 <li>二进制安全的数据结构</li>
@@ -457,9 +457,9 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-12.jpg" alt></p>
 <h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-13.jpg" alt></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-14.jpg" alt></p>
-<p>应用场景：微博、微信公号消息流，用LPUSH msg:{用户-ID} 消息ID和LRANGE msg:{用户-ID} start stop实现</p>
+<p>应用场景：<strong>微博</strong>、微信公号消息流，用LPUSH msg:{用户-ID} 消息ID和LRANGE msg:{用户-ID} start stop实现</p>
 <p>ziplist底层源码：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-23.jpg" alt></p>
+<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-23.jpg" alt="ziplist底层源码"></p>
 <h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-15.jpg" alt></p>
 <p>应用场景：</p>
 <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-16.jpg" alt="a" style="zoom:80%;">
@@ -560,6 +560,8 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-24.jpg" alt="redis对象"></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-25.jpg" alt="底层结构"></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-26.jpg" alt></p>
+<p>拉链法解决的hash冲突，那么在数据过多时，hash冲突不可避免，为了避免链表太长，直接进行rehash。rehash：Redis 默认使用了两个全局哈希表：哈希表 1 和哈希表 2。一开始，当你刚插入数据时，默认使用哈希表 1，此时的哈希表 2 并没有被分配空间。随着数据逐步增多，Redis 开始执行 rehash，这个过程分为三步：给哈希表 2 分配更大的空间，例如是当前哈希表 1 大小的两倍；把哈希表 1 中的数据重新映射并拷贝到哈希表 2 中；释放哈希表 1 的空间。到此，我们就可以从哈希表 1 切换到哈希表 2，用增大的哈希表 2 保存更多数据，而原来的哈希表 1 留作下一次 rehash 扩容备用。</p>
+<p>这个过程看似简单，但是第二步涉及大量的数据拷贝，如果一次性把哈希表 1 中的数据都迁移完，会造成 Redis 线程阻塞，无法服务其他请求。此时，Redis 就无法快速访问数据了。为了避免这个问题，Redis 采用了渐进式 rehash。简单来说就是在第二步拷贝数据时，Redis 仍然正常处理客户端请求，每处理一个请求时，从哈希表 1 中的第一个索引位置开始，顺带着将这个索引位置上的所有 entries 拷贝到哈希表 2 中；等处理下一个请求时，再顺带拷贝哈希表 1 中的下一个索引位置的 entries。redis也会每秒扫描一下未迁移的数据，防止一直不被访问就无法迁移到新hash表。</p>
 <h2 id="RDB持久化机制"><a href="#RDB持久化机制" class="headerlink" title="RDB持久化机制"></a>RDB持久化机制</h2><p>Redis DataBase</p>
 <p>在指定的时间间隔内将内存中的数据集快照写入磁盘，实际操作过程是<strong>fork一个子进程</strong>，先将数据集写入临时文件，写入成功后，再替换之前的文件，用二进制压缩技术存储。</p>
 <h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
@@ -588,6 +590,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <p>AOF比RDB更安全更大</p>
 <p>RDB性能比AOF好</p>
 <p>如果两个都配优先加载AOF</p>
+<h2 id="为什么redis用跳表不用红黑树"><a href="#为什么redis用跳表不用红黑树" class="headerlink" title="为什么redis用跳表不用红黑树"></a>为什么redis用跳表不用红黑树</h2><p>跳表有五种操作，插入删除，查找，有序输出所有元素，按照范围区间查找元素，比如[100,600]的元素。<strong>红黑树范围查找效率没有跳表高</strong>。<strong>树的插入删除也比跳表实现复杂</strong>。</p>
 <h2 id="redis安装和配置文件redis-conf"><a href="#redis安装和配置文件redis-conf" class="headerlink" title="redis安装和配置文件redis.conf"></a>redis安装和配置文件redis.conf</h2><p><a href="https://www.cnblogs.com/xrq730/p/8890896.html" target="_blank" rel="noopener">https://www.cnblogs.com/xrq730/p/8890896.html</a></p>
 <h2 id="redis-key-键名称中的冒号"><a href="#redis-key-键名称中的冒号" class="headerlink" title="redis key 键名称中的冒号"></a>redis key 键名称中的冒号</h2><p>redis中key的命名，用:分隔不同的层次|命名空间，如：<code>user:id12345:contact</code><br>如果某个对象有<code>字段的字段</code>，用 . 连接。如<code>user:id12345:contact.mail</code></p>
 <h3 id="其他分隔符"><a href="#其他分隔符" class="headerlink" title="其他分隔符"></a>其他分隔符</h3><p>读过文首三个链接会发现以下格式的ID：<br><code>user:id12345:contact</code> 表示user表的ID为id12345的记录的字段contact。（那这个key的值就是对应的字段的值了）<br><code>user::id12345::contact</code>或<code>user:::id12345:::contact</code>，即多层冒号分隔。<br>user/id12345/contact<br>使用多层冒号分隔、使用/分隔，我测试过后，都可以正常获取key的值。</p>
@@ -595,10 +598,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <p>另外redis官网也是介绍的冒号:，所以<strong>key名称的层次分隔符就推荐单个冒号:</strong></p>
 <p>最后一个字段contact，如果联系方式包含三种：tel, mail, qq，怎么命名？<br>官网说可以使用<code>.</code>或<code>-</code>连接，如：<code>user:id12345:contact.mail</code>或<code>user.id12345.contact-mail</code>表示用户表中ID为id12345的记录的contact属性中的mail属性值。</p>
 <h2 id="Redis过期键的删除策略"><a href="#Redis过期键的删除策略" class="headerlink" title="Redis过期键的删除策略"></a>Redis过期键的删除策略</h2><h3 id="惰性过期"><a href="#惰性过期" class="headerlink" title="惰性过期"></a>惰性过期</h3><p>只有当访问一个key时，才会判断该key是否已经过期，过期则清除。该策略最大化节约cpu资源，但对内存非常不友好。</p>
-<h3 id="定期过期"><a href="#定期过期" class="headerlink" title="定期过期"></a>定期过期</h3><p>每隔一定的时间，会<strong>扫描一定数量的数据库的expires字典中一定数量的key</strong>，并清除其中已经过期的key。折中方案。</p>
-<blockquote>
-<p>expires字典会保存所有设置了过期时间的key的过期时间数据，其中，key是指向键空间的某个键的指针，value是该键的毫秒精度的unix时间戳表示的过期时间，键空间是指向该redis集群中保存的所有键。</p>
-</blockquote>
+<h3 id="定期过期"><a href="#定期过期" class="headerlink" title="定期过期"></a>定期过期</h3><p>每100ms扫描20个key（配置文件配置的），删除过期的，如果25%的过期了，就继续扫描删除操作。4.0之前会阻塞主进程，4.0之后可以选择异步执行。如果有大量的key同时过期了，就会阻塞住。</p>
 <h3 id="定时过期"><a href="#定时过期" class="headerlink" title="定时过期"></a>定时过期</h3><p>给每一个key设定一个定时器，当这个key过期的时候由这个定时器删掉。对内存非常友好，但对cpu不友好。</p>
 <p>redis中同时使用了惰性过期和定期过期两种过期策略</p>
 <h2 id="Redis线程模型、单线程快的原因"><a href="#Redis线程模型、单线程快的原因" class="headerlink" title="Redis线程模型、单线程快的原因"></a>Redis线程模型、单线程快的原因</h2><p>Redis基于<strong>Reactor模式</strong>开发了网络事件处理器，这个处理器叫做<strong>文件时间处理器 file event handler</strong>。这个文件事件处理器，它是单线程的，所有Redis 才叫做单线程模型，它采用IO多路复用机制来同时监听多隔Socket，根据Socket上的事件类型来选择对应的事件处理器来处理这个事件。可以实现高性能的网络通信模型，又可以根据内部其他单线程的模型进行对接，保证了简单性。</p>
@@ -608,8 +608,11 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <h3 id="单线程快的原因"><a href="#单线程快的原因" class="headerlink" title="单线程快的原因"></a>单线程快的原因</h3><ol>
 <li>纯内存操作</li>
 <li>核心是基于非阻塞的IO多路复用机制</li>
-<li>单线程反而避免了多线程频繁上下文切换带来的性能问题</li>
+<li>单线程反而<strong>避免了多线程频繁上下文切换带来的性能问题</strong></li>
 </ol>
+<h3 id="Redis为什么单线程"><a href="#Redis为什么单线程" class="headerlink" title="Redis为什么单线程"></a>Redis为什么单线程</h3><p>因为redis没有磁盘操作，一般都是在io操作时才会多线程，而redis是内存存储，切换线程反而更耗时。b+树也是磁盘操作，所以使用跳表而不是b+树。那么redis瓶颈在哪里？两个地方，内存大小，因为关系到存储的数据量，第二个是网络带宽，因为redis客户端服务端可能不在一个机器上。</p>
+<h3 id="大key问题"><a href="#大key问题" class="headerlink" title="大key问题"></a>大key问题</h3><p>如果是单个对象非常大：可以尝试将对象分拆成几个key-value， 使用multiGet获取值，这样分拆的意义在于分拆单次操作的压力，将操作压力平摊到多个redis实例中，降低对单个redis的IO影响；如果是set和list存储的元素非常多，可以根据元素类型分类，把key分散到许多集群中。</p>
+<h3 id="redis的lfu算法"><a href="#redis的lfu算法" class="headerlink" title="redis的lfu算法"></a>redis的lfu算法</h3><p>有些数据以前经常被访问到，只是最近的时间内没有被访问到，这样就导致这些数据很可能被淘汰掉，这样一来就会出现误判而淘汰热点数据。<br>所以有lfu（Least Frequently Used）：最近频繁被使用。根据key最近被访问的频率进行淘汰。</p>
 <h2 id="缓存雪崩、击穿、穿透"><a href="#缓存雪崩、击穿、穿透" class="headerlink" title="缓存雪崩、击穿、穿透"></a>缓存雪崩、击穿、穿透</h2><h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>缓存<strong>同一时间大面积失效</strong>，后面请求都落到数据库上导致数据库崩掉。（缓存重启也会）</p>
 <p>解决方案：</p>
 <ol>
@@ -627,30 +630,12 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p><strong>缓存和数据库中都没有的数据</strong>，导致所有的请求都落到数据库上</p>
 <p>解决方案：</p>
 <ol>
-<li>接口层增加校验，如用户鉴权校验，id做基础校验，id &lt;= 0 的直接拦截</li>
+<li>接口层增加违规校验，如用户鉴权校验，id做基础校验，id &lt;= 0 的直接拦截</li>
 <li>从缓存取不到的数据，再数据库中也没取到，也可以将key-value对也为key-null，缓存有效时间可以设置短点，如30秒（太长会导致正常情况也无法使用），防止攻击用户反复用同一个id暴力攻击</li>
 <li>采用布隆过滤器，将所有可能存在的数据哈希到一个足够大的bitmap中，一定不存在的数据会被这个bitmap拦截，避免对底层存储系统的查询压力</li>
 </ol>
-<h2 id="Redis事务实现"><a href="#Redis事务实现" class="headerlink" title="Redis事务实现"></a>Redis事务实现</h2><h3 id="事务开始"><a href="#事务开始" class="headerlink" title="事务开始"></a>事务开始</h3><p>MULTI命令的执行，标识着一个事务的开始。MULTI命令会将客户端状态的 <strong>flags</strong> 属性中打开 REDIS_MULTI标识来完成的。</p>
-<h3 id="命令入队"><a href="#命令入队" class="headerlink" title="命令入队"></a>命令入队</h3><p>当一个客户端切换到事务状态之后，服务器会根据这个客户端发送来的命令来执行不同的操作。如果客户端发送的命令为<strong>MULTI、EXEC、WATCH、DISCARD</strong>中的一个，立即执行这个命令，否则将命令放入一个事务队列里面，然后向客户端返回QUEUED 回复。</p>
-<p>如果客户端发送的是四个命令以外的命令，服务器并不立即执行。首先检查此命令格式是否正确，如果不正确服务器会在客户端状态（redisClient）的flags属性关闭 REDIS_MULTI 标识，并返回错误信息给客户端。如果正确将这个命令放入一个事务队列里，向客户端返回QUEUED回复。</p>
-<blockquote>
-<p> 事务队列是FIFO方式保存入队命令的</p>
-</blockquote>
-<h3 id="事务执行"><a href="#事务执行" class="headerlink" title="事务执行"></a>事务执行</h3><p>客户端发送 EXEC 命令，服务器执行 EXEC 命令逻辑。</p>
-<ol>
-<li>如果客户端状态的 flags 属性不包含 REDIS_MULTI 标识，或者包含 REDIS_DIRTY_CAS 或者 REDIS_DIRTY_EXEC 标识，直接取消事务执行。</li>
-<li>否则处于事务状态，服务器会遍历客户端的事务队列，然后执行事务队列中的所有命令，最后将返回结果全部给客户端</li>
-</ol>
-<p>redis不支持事务回滚机制，但是会检查每一个事务中的命令是否错误。</p>
-<p>redis事务不支持检查那些程序员自己逻辑错误，例如String类型的数据库键执行HashMap操作</p>
-<h3 id="命令解释"><a href="#命令解释" class="headerlink" title="命令解释"></a>命令解释</h3><ol>
-<li>WATCH 命令是一个乐观锁，可以为Redis事务提供 check-and-set（<strong>CAS</strong>）行为。可以监控一个或多个键，一旦其中一个键被修改，之后的事务就不会执行，监控一直持续到EXEC命令。</li>
-<li>MULTI命令用于<strong>开启一个事务</strong>，总是返回OK。MULTI执行之后，客户端可以继续向服务器发送任意多条命令，这些命令不会立即被执行，而是放到一个队列中，当调用EXEC才会被执行。</li>
-<li>EXEC：<strong>执行</strong>所有事务块内的命令。返回事务块内所有命令的返回值，按命令执行的先后顺序排序。当操作打断返回null。</li>
-<li>通过调用DISCARD，客户端可以<strong>清空事务队列</strong>，并放弃执行事务，并且客户端会从事务状态中退出。</li>
-<li>UNWATCH命令可以取消WATCH对所有key的监控。</li>
-</ol>
+<h2 id="pipeline和lua有什么区别"><a href="#pipeline和lua有什么区别" class="headerlink" title="pipeline和lua有什么区别"></a>pipeline和lua有什么区别</h2><p>当多个redis命令之间没有依赖、顺序关系（例如第二条命令依赖第一条命令的结果）时，建议使用pipline；如果命令之间有依赖或顺序关系时，pipline就无法使用，此时可以考虑采用lua脚本的方式来使用。pipeline不是原子的，lua是原子的，都不能回滚。</p>
+<h2 id="为什么不支持回滚"><a href="#为什么不支持回滚" class="headerlink" title="为什么不支持回滚"></a>为什么不支持回滚</h2><p>对于语法错误，事务将不会被提交。<br>对于运行时错误，只有对某个键执行不符合其类型的命令时才会发生，也就是程序代码错误，这种错误只有在开发阶段才会发生，很少在生环境中发生。<br>因此，为了保持Redis的简单性，不提供回滚功能。</p>
 <h2 id="主从复制核心原理"><a href="#主从复制核心原理" class="headerlink" title="主从复制核心原理"></a>主从复制核心原理</h2><ol>
 <li>从节点执行slaveof masterIp port保存主节点信息</li>
 <li>从节点中的定时任务发现主节点信息，建立和主节点socket连接</li>
@@ -722,6 +707,26 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <p>锁续命：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-5.jpg" alt></p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-6.jpg" alt></p>
+<h2 id="Redis事务实现"><a href="#Redis事务实现" class="headerlink" title="Redis事务实现"></a>Redis事务实现</h2><h3 id="事务开始"><a href="#事务开始" class="headerlink" title="事务开始"></a>事务开始</h3><p>MULTI命令的执行，标识着一个事务的开始。MULTI命令会将客户端状态的 <strong>flags</strong> 属性中打开 REDIS_MULTI标识来完成的。</p>
+<h3 id="命令入队"><a href="#命令入队" class="headerlink" title="命令入队"></a>命令入队</h3><p>当一个客户端切换到事务状态之后，服务器会根据这个客户端发送来的命令来执行不同的操作。如果客户端发送的命令为<strong>MULTI、EXEC、WATCH、DISCARD</strong>中的一个，立即执行这个命令，否则将命令放入一个事务队列里面，然后向客户端返回QUEUED 回复。</p>
+<p>如果客户端发送的是四个命令以外的命令，服务器并不立即执行。首先检查此命令格式是否正确，如果不正确服务器会在客户端状态（redisClient）的flags属性关闭 REDIS_MULTI 标识，并返回错误信息给客户端。如果正确将这个命令放入一个事务队列里，向客户端返回QUEUED回复。</p>
+<blockquote>
+<p> 事务队列是FIFO方式保存入队命令的</p>
+</blockquote>
+<h3 id="事务执行"><a href="#事务执行" class="headerlink" title="事务执行"></a>事务执行</h3><p>客户端发送 EXEC 命令，服务器执行 EXEC 命令逻辑。</p>
+<ol>
+<li>如果客户端状态的 flags 属性不包含 REDIS_MULTI 标识，或者包含 REDIS_DIRTY_CAS 或者 REDIS_DIRTY_EXEC 标识，直接取消事务执行。</li>
+<li>否则处于事务状态，服务器会遍历客户端的事务队列，然后执行事务队列中的所有命令，最后将返回结果全部给客户端</li>
+</ol>
+<p>redis不支持事务回滚机制，但是会检查每一个事务中的命令是否错误。</p>
+<p>redis事务不支持检查那些程序员自己逻辑错误，例如String类型的数据库键执行HashMap操作</p>
+<h3 id="命令解释"><a href="#命令解释" class="headerlink" title="命令解释"></a>命令解释</h3><ol>
+<li>WATCH 命令是一个乐观锁，可以为Redis事务提供 check-and-set（<strong>CAS</strong>）行为。可以监控一个或多个键，一旦其中一个键被修改，之后的事务就不会执行，监控一直持续到EXEC命令。</li>
+<li>MULTI命令用于<strong>开启一个事务</strong>，总是返回OK。MULTI执行之后，客户端可以继续向服务器发送任意多条命令，这些命令不会立即被执行，而是放到一个队列中，当调用EXEC才会被执行。</li>
+<li>EXEC：<strong>执行</strong>所有事务块内的命令。返回事务块内所有命令的返回值，按命令执行的先后顺序排序。当操作打断返回null。</li>
+<li>通过调用DISCARD，客户端可以<strong>清空事务队列</strong>，并放弃执行事务，并且客户端会从事务状态中退出。</li>
+<li>UNWATCH命令可以取消WATCH对所有key的监控。</li>
+</ol>
 
             </div>
             <hr />
@@ -828,7 +833,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/28.jpg" class="responsive-img" alt="2021年的学习目标">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/31.jpg" class="responsive-img" alt="2021年的学习目标">
                         
                         <span class="card-title">2021年的学习目标</span>
                     </div>
@@ -877,7 +882,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="互联网医院bug反馈">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/30.jpg" class="responsive-img" alt="互联网医院bug反馈">
                         
                         <span class="card-title">互联网医院bug反馈</span>
                     </div>
@@ -1086,7 +1091,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">257.4k</span>
+            <span class="white-color">261.4k</span>
             
 
             <br>

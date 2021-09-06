@@ -260,7 +260,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/107.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/110.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -423,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    948
+                    947
                 </div>
                 
 
@@ -463,7 +463,7 @@
 </li>
 </ol>
 <h2 id="简易操作缓存方案"><a href="#简易操作缓存方案" class="headerlink" title="简易操作缓存方案"></a>简易操作缓存方案</h2><ol>
-<li>使用饿汉模式进行管理。只有在要读的时候，才进行缓存加载，其他操作删除相关缓存。</li>
+<li>使用饿汉模式进行管理。<strong>只有在要读的时候，才进行缓存加载，其他操作删除相关缓存</strong>。</li>
 <li>缓存时间设置不宜过长，5分钟内为宜（因为现在业务没什么对数据库压力特别大、计算又很复杂的时候）</li>
 <li>不同Key的缓存失效时间尽量随机</li>
 <li>考虑缓存穿透问题</li>
@@ -482,7 +482,7 @@
 <p>就是从redis读取对应的key的值，使用100次耗费的时长，单位毫秒</p>
 <h3 id="第一版"><a href="#第一版" class="headerlink" title="第一版"></a>第一版</h3><p>属于只读缓存方案，1.就是删改直接删缓存，2.增加直接加入数据库。3.查时到缓存取，没有再从数据库中加载，再放到缓存</p>
 <p>回复：数据库那块不属于缓存工具类的职责，不用写</p>
-<h2 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h2>
+
             </div>
             <hr />
 
@@ -588,7 +588,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="事务不生效">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/91.jpg" class="responsive-img" alt="事务不生效">
                         
                         <span class="card-title">事务不生效</span>
                     </div>
@@ -641,7 +641,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/114.jpg" class="responsive-img" alt="Lucene 查询原理">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/117.jpg" class="responsive-img" alt="Lucene 查询原理">
                         
                         <span class="card-title">Lucene 查询原理</span>
                     </div>
@@ -850,7 +850,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">257.4k</span>
+            <span class="white-color">261.4k</span>
             
 
             <br>

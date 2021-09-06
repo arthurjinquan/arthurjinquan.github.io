@@ -1,5 +1,7 @@
-https://arthurjq.com/2021/08/31/scheduledthreadpoolexecutor/
+https://arthurjq.com/2021/09/07/printabc/
+https://arthurjq.com/2021/08/31/algorithm/scheduledthreadpoolexecutor/
 https://arthurjq.com/2021/08/28/os/
+https://arthurjq.com/2021/08/17/algorithm/bigo20210817/
 https://arthurjq.com/2021/08/17/algorithm/graph/
 https://arthurjq.com/2021/08/15/algorithm/dfs/
 https://arthurjq.com/2021/08/15/algorithm/meituan20210815/
@@ -29,7 +31,7 @@ https://arthurjq.com/2021/05/11/algorithm/heuristic-search/
 https://arthurjq.com/2021/05/11/web/webhook/
 https://arthurjq.com/2021/05/06/algorithm/xor/
 https://arthurjq.com/2021/04/25/algorithm/heapsort/
-https://arthurjq.com/2021/04/21/web/net/
+https://arthurjq.com/2021/04/21/net/
 https://arthurjq.com/2021/04/12/java/reentrantlock/
 https://arthurjq.com/2021/03/30/algorithm/nqueen/
 https://arthurjq.com/2021/03/30/algorithm/sumabc/
@@ -96,5 +98,3 @@ https://arthurjq.com/2020/12/30/database/sql-exists-in/
 https://arthurjq.com/2020/12/29/project/im/
 https://arthurjq.com/2020/12/29/java/spring-bean-life-cycle/
 https://arthurjq.com/2020/12/28/java/consistent-hashing/
-https://arthurjq.com/2020/12/28/web/cdn/
-https://arthurjq.com/2020/12/28/web/servlet/

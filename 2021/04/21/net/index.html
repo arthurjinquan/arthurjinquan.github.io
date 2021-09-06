@@ -255,7 +255,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -410,14 +410,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7.6k
+                    7.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    26 分
+                    27 分
                 </div>
                 
                 
@@ -459,12 +459,14 @@
 </ul>
 <h2 id="UDP-和-TCP-对应的应用场景"><a href="#UDP-和-TCP-对应的应用场景" class="headerlink" title="UDP 和 TCP 对应的应用场景"></a>UDP 和 TCP 对应的应用场景</h2><p>TCP 是面向连接，能保证数据的可靠性交付，因此经常用于：</p>
 <ul>
-<li>FTP文件传输</li>
+<li>FTP文件传输（20传数据，21连接）</li>
 <li>HTTP / HTTPS</li>
+<li>SMTP（发邮件，25端口）</li>
+<li>POP3（收邮件，110端口）</li>
 </ul>
 <p>UDP 面向无连接，它可以随时发送数据，再加上UDP本身的处理既简单又高效，因此经常用于：</p>
 <ul>
-<li>包总量较少的通信，如 DNS 、SNMP等</li>
+<li>包总量较少的通信，如 DNS（53端口） 、SNMP（管理网络，161端口）等</li>
 <li>视频、音频等多媒体通信</li>
 <li>广播通信</li>
 </ul>
@@ -514,7 +516,7 @@
 </ol>
 <h2 id="存在TIME-WAIT一定保证正常关闭么"><a href="#存在TIME-WAIT一定保证正常关闭么" class="headerlink" title="存在TIME-WAIT一定保证正常关闭么"></a>存在TIME-WAIT一定保证正常关闭么</h2><p>如果TIME-WAIT发送地ACK丢失，服务器超时重发FIN也丢失，则进入CLOSED阶段</p>
 <h2 id="如果已经建立了连接，但是客户端出现故障了怎么办"><a href="#如果已经建立了连接，但是客户端出现故障了怎么办" class="headerlink" title="如果已经建立了连接，但是客户端出现故障了怎么办"></a>如果已经建立了连接，但是客户端出现故障了怎么办</h2><p>通过<strong>定时器 + 超时重试机制</strong>，尝试获取确认，直到最后会自动断开连接</p>
-<p>具体而言，TCP 设有一个保活计时器。服务器每收到一次客户端的数据，都会重新复位这个计时器，时间通常是设置为 2 小时。若 2 小时还没有收到客户端的任何数据，服务器就开始重试：每隔 75 秒发送一个探测报文段，若一连发送 10 个探测报文后客户端依然没有回应，那么服务器就认为连接已经断开了。</p>
+<p>具体而言，TCP 设有一个保活计时器。服务器每收到一次客户端的数据，都会重新复位这个计时器，时间通常是设置为 <strong>2 小时</strong>。若 2 小时还没有收到客户端的任何数据，服务器就开始重试：每隔 75 秒发送一个探测报文段，若一连发送 10 个探测报文后客户端依然没有回应，那么服务器就认为连接已经断开了。</p>
 <h2 id="TIME-WAIT-状态过多会产生什么后果？怎样处理"><a href="#TIME-WAIT-状态过多会产生什么后果？怎样处理" class="headerlink" title="TIME-WAIT 状态过多会产生什么后果？怎样处理"></a>TIME-WAIT 状态过多会产生什么后果？怎样处理</h2><p>从服务器来讲，短时间内关闭了大量的Client连接，就会造成服务器上出现大量的TIME_WAIT连接，严重消耗着服务器的资源，此时部分客户端就会显示连接不上。</p>
 <p>从客户端来讲，客户端TIME_WAIT过多，就会导致端口资源被占用，因为端口就65536个，被占满就会导致无法创建新的连接。</p>
 <h2 id="TCP协议如何保证可靠性"><a href="#TCP协议如何保证可靠性" class="headerlink" title="TCP协议如何保证可靠性"></a>TCP协议如何保证可靠性</h2><p>TCP主要提供了检验和、序列号/确认应答、超时重传、滑动窗口、拥塞控制和 流量控制等方法实现了可靠性传输。</p>
@@ -610,6 +612,10 @@
 <p>响应正文：里面主要是返回数据。 </p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/net-8.jpg" alt="分块编码"></p>
 <p>读取response不是用分块编码就是用content-length</p>
+<h3 id="长连接"><a href="#长连接" class="headerlink" title="长连接"></a>长连接</h3><p>Client与server完成一次读写之后，它们之间的连接并不会主动关闭，后续的读写操作会继续使用这个连接。</p>
+<p>在长连接的应用场景下，client端一般不会主动关闭它们之间的连接，Client与server之间的连接如果一直不关闭的话，会存在一个问题，随着客户端连接越来越多，server早晚有扛不住的时候，这时候server端需要采取一些策略，如关闭一些长时间没有读写事件发生的连接，这样可以避免一些恶意连接导致server端服务受损；如果条件再允许就可以以客户端机器为颗粒度，限制每个客户端的最大长连接数，这样可以完全避免某个蛋疼的客户端连累后端服务。</p>
+<p>长连接和短连接的产生在于client和server采取的关闭策略，具体的应用场景采用具体的策略，没有十全十美的选择，只有合适的选择。</p>
+<h3 id="四种延迟"><a href="#四种延迟" class="headerlink" title="四种延迟"></a>四种延迟</h3><p>节点处理延迟 =》排队延迟=》发送延迟=》传播延迟</p>
 <h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><p>ARP协议属于网络层的协议，主要作用是实现从IP地址转换为MAC地址。在每个主机或者路由器中都建有一个ARP缓存表，表中有IP地址及IP地址对应的MAC地址。</p>
 <p>IP地址可由用户自行更改，管理起来相对困难，而MAC地址不可更改，所以一般会把IP地址和MAC地址组合起来使用。</p>
 <p>网络层实现的是主机之间的通信，而链路层实现的是链路之间的通信，所以从下图可以看出，在数据传输过程中，IP数据报的源地址（IP1）和目的地址（IP2）是一直不变的，而MAC地址（硬件地址）却一直随着链路的改变而改变。</p>
@@ -658,7 +664,7 @@
                   property="dct:title" rel="dct:type">
                     《计算机网络》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/04/21/web/net/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/04/21/net/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -699,7 +705,7 @@
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/04/21/web/net/',
+        id: '2021/04/21/net/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -728,7 +734,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/57.jpg" class="responsive-img" alt="堆排序">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/54.jpg" class="responsive-img" alt="堆排序">
                         
                         <span class="card-title">堆排序</span>
                     </div>
@@ -777,7 +783,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/102.jpg" class="responsive-img" alt="ReentrantLock">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/99.jpg" class="responsive-img" alt="ReentrantLock">
                         
                         <span class="card-title">ReentrantLock</span>
                     </div>
@@ -986,7 +992,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">257.4k</span>
+            <span class="white-color">261.4k</span>
             
 
             <br>

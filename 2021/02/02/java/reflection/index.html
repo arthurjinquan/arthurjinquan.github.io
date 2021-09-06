@@ -9,7 +9,7 @@
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="反射转载：https://zhuanlan.zhihu.com/p/86293659
-反射的概念是由 Smith 在 1982 年首次提出的，主要是指程序可以访问、检测和修改它本身状态或行为的一种能力。通俗地讲，一提到反射，我们就可以想到镜">
+反射的概念是由 Smith 在 1982 年首次提出的，主要是指程序可以访问、检测和修改它本身状态或行为的一种能力。反映到程序中，反射就是用来让开发者知道">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/116.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,14 +409,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    9 分
                 </div>
                 
                 
@@ -433,14 +433,14 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h2><p>转载：<a href="https://zhuanlan.zhihu.com/p/86293659" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/86293659</a></p>
-<p>反射的概念是由 Smith 在 1982 年首次提出的，主要是指程序可以访问、检测和修改它本身状态或行为的一种能力。通俗地讲，一提到反射，我们就可以想到镜子。镜子可以明明白白地照出我是谁，还可以照出别人是谁。反映到程序中，反射就是用来让开发者知道这个类中有什么成员，以及别的类中有什么成员。</p>
+<p>反射的概念是由 Smith 在 1982 年首次提出的，主要是指程序可以<strong>访问、检测和修改它本身状态或行为</strong>的一种能力。反映到程序中，反射就是用来让开发者知道这个类中有什么成员，以及别的类中有什么成员。</p>
 <p>反射主要应用在以下几方面：</p>
 <ol>
 <li>反射让开发人员可以通过外部类的全路径名创建对象，并使用这些类，实现一些扩展的功能。</li>
 <li>反射让开发人员可以枚举出类的全部成员，包括构造函数、属性、方法。以帮助开发者写出正确的代码。</li>
 <li>测试时可以利用反射 API 访问类的私有成员，以保证测试代码覆盖率。</li>
 </ol>
-<h2 id="反射-API"><a href="#反射-API" class="headerlink" title="反射 API"></a>反射 API</h2><p>Java 类的成员包括以下三类：属性字段、构造函数、方法。反射的 API 也是与这几个成员相关：</p>
+<h2 id="反射-API"><a href="#反射-API" class="headerlink" title="反射 API"></a>反射 API</h2><p>Java 类的成员包括以下三类：<strong>属性字段、构造函数、方法</strong>。反射的 API 也是与这几个成员相关：</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reflection-1.jpg" alt></p>
 <ol>
 <li>Field 类：提供有关类的属性信息，以及对它的动态访问权限。它是一个封装反射类的属性的类。</li>
@@ -477,17 +477,17 @@
 <h3 id="获取-Class-对象的三种方式"><a href="#获取-Class-对象的三种方式" class="headerlink" title="获取 Class 对象的三种方式"></a>获取 Class 对象的三种方式</h3><p>获取 Class 对象有三种方式：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 1.通过字符串获取Class对象，这个字符串必须带上完整路径名</span>
 Class <span class="token class-name">studentClass</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.test.reflection.Student"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">// 2.通过类的class属性</span>
+<span class="token comment" spellcheck="true">// 2.通过类的class属性，需要导入包</span>
 Class <span class="token class-name">studentClass2</span> <span class="token operator">=</span> Student<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">// 3.通过对象的getClass()函数</span>
 Student studentObject <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Student</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 Class <span class="token class-name">studentClass3</span> <span class="token operator">=</span> studentObject<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol>
-<li>第一种方法是通过类的全路径字符串获取 Class 对象，这也是我们平时最常用的反射获取 Class 对象的方法；</li>
+<li>第一种方法是<strong>通过类的全路径字符串</strong>获取 Class 对象，这也是我们平时最常用的反射获取 Class 对象的方法；</li>
 <li>第二种方法有限制条件：需要导入类的包；</li>
 <li>第三种方法已经有了 Student 对象，不再需要反射。</li>
 </ol>
-<p>通过这<strong>三种方式获取到的 Class 对象是同一个</strong>，也就是说 Java 运行时，每一个类只会生成一个 Class 对象。</p>
+<p>通过这<strong>三种方式获取到的 Class 对象是同一个</strong>（单例模式）。</p>
 <p>我们将其打印出来测试一下：</p>
 <pre class="line-numbers language-java"><code class="language-java">System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"class1 = "</span> <span class="token operator">+</span> studentClass <span class="token operator">+</span> <span class="token string">"\n"</span> <span class="token operator">+</span>
         <span class="token string">"class2 = "</span> <span class="token operator">+</span> studentClass2 <span class="token operator">+</span> <span class="token string">"\n"</span> <span class="token operator">+</span>
@@ -500,7 +500,7 @@ class2 = class com.test.reflection.Student
 class3 = class com.test.reflection.Student
 class1 == class2 ? true
 class2 == class3 ? true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="获取成员变量"><a href="#获取成员变量" class="headerlink" title="获取成员变量"></a>获取成员变量</h3><p>获取字段有两个 API：<code>getDeclaredFields</code>和<code>getFields</code>。他们的区别是:<code>getDeclaredFields</code>用于获取所有声明的字段，包括公有字段和私有字段，<code>getFields</code>仅用来获取公有字段：</p>
+<h3 id="获取成员变量"><a href="#获取成员变量" class="headerlink" title="获取成员变量"></a>获取成员变量</h3><p>获取字段有两个 API：<code>getDeclaredFields</code>和<code>getFields</code>。他们的区别是:<code>getDeclaredFields</code>用于获取所有声明的字段，包括公有字段和<strong>私有字段</strong>，<code>getFields</code>仅用来获取公有字段：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 1.获取所有声明的字段</span>
 Field<span class="token punctuation">[</span><span class="token punctuation">]</span> declaredFieldList <span class="token operator">=</span> studentClass<span class="token punctuation">.</span><span class="token function">getDeclaredFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">for</span> <span class="token punctuation">(</span>Field declaredField <span class="token operator">:</span> declaredFieldList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -554,7 +554,7 @@ method: public native int java.lang.Object.hashCode()
 method: public final native java.lang.Class java.lang.Object.getClass()
 method: public final native void java.lang.Object.notify()
 method: public final native void java.lang.Object.notifyAll()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>从输出中我们看到，<code>getMethods</code> 方法不仅获取到了我们声明的公有方法<code>setStudentAge</code>，还获取到了很多 Object 类中的公有方法。这是因为我们前文已说到：Object 是所有 Java 类的父类。所有对象都默认实现了 Object 类的方法。 而<code>getDeclaredMethods</code>是无法获取到父类中的方法的。</p>
+<p>从输出中我们看到，<code>getMethods</code> 方法不仅获取到了我们声明的公有方法<code>setStudentAge</code>，还获取到了很多 Object 类中的公有方法。这是因为我们前文已说到：<strong>Object 是所有 Java 类的父类</strong>。所有对象都默认实现了 Object 类的方法。 而<strong><code>getDeclaredMethods</code>是无法获取到父类中的方法的</strong>。</p>
 <h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>学以致用，让我们来一个实际的应用感受一下。还是以 Student 类为例，如果此类在其他的包中，并且我们的需求是要在程序中通过反射获取他的构造方法，构造出 Student 对象，并且通过反射访问他的私有字段和私有方法。那么我们可以这样做：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 1.通过字符串获取Class对象，这个字符串必须带上完整路径名</span>
 Class <span class="token class-name">studentClass</span> <span class="token operator">=</span> Class<span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.test.reflection.Student"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -588,6 +588,9 @@ System<span class="token punctuation">.</span>out<span class="token punctuation"
 <p>运行程序，输出如下：</p>
 <pre class="line-numbers language-text"><code class="language-text">show: NameA,10,message
 result: testReturnValue<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="反射的作用"><a href="#反射的作用" class="headerlink" title="反射的作用"></a>反射的作用</h2><p>当我们在用ide构建出一个对象的时候，去调用该对象的方法和属性的时候。一按点，编译工具就会自动的把该对象能够使用的所有的方法和属性全部都列出来，供用户进行选择。这就是利用了Java反射的原理，是对我们创建对象的探知、自审。</p>
+<p>要正确使用Java反射机制就得使用java.lang.Class这个类。它是Java反射机制的起源。当一个类被加载以后，Java虚拟机就会自动产生一个Class对象。通过这个Class对象我们就能获得加载到虚拟机当中这个Class对象对应的方法、成员以及构造方法的声明和定义等信息。</p>
+<p>利用Java反射机制我们可以很灵活的对已经加载到Java虚拟机当中的类信息进行检测。当然这种检测在对运行的性能上会有些减弱，所以什么时候使用反射，就要靠业务的需求、大小，以及经验的积累来决定。</p>
 
             </div>
             <hr />
@@ -694,7 +697,7 @@ result: testReturnValue<span aria-hidden="true" class="line-numbers-rows"><span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/116.jpg" class="responsive-img" alt="分布式事务">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg" class="responsive-img" alt="分布式事务">
                         
                         <span class="card-title">分布式事务</span>
                     </div>
@@ -751,7 +754,7 @@ result: testReturnValue<span aria-hidden="true" class="line-numbers-rows"><span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/86.jpg" class="responsive-img" alt="结构型模式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/83.jpg" class="responsive-img" alt="结构型模式">
                         
                         <span class="card-title">结构型模式</span>
                     </div>
@@ -960,7 +963,7 @@ result: testReturnValue<span aria-hidden="true" class="line-numbers-rows"><span>
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">257.4k</span>
+            <span class="white-color">261.4k</span>
             
 
             <br>
