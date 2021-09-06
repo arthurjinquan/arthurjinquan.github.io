@@ -1476,11 +1476,11 @@
       
         <tags>
             
-            <tag> sql </tag>
-            
             <tag> index </tag>
             
             <tag> 数据库优化 </tag>
+            
+            <tag> sql </tag>
             
         </tags>
       
@@ -1617,9 +1617,9 @@
             
             <tag> elasticsearch </tag>
             
-            <tag> 分布式系统 </tag>
-            
             <tag> lucene </tag>
+            
+            <tag> 分布式系统 </tag>
             
         </tags>
       
@@ -2499,11 +2499,11 @@
       
         <tags>
             
-            <tag> sql </tag>
-            
             <tag> mysql </tag>
             
             <tag> 数据库优化 </tag>
+            
+            <tag> sql </tag>
             
         </tags>
       
@@ -2744,13 +2744,13 @@
       
         <tags>
             
-            <tag> sql </tag>
-            
             <tag> index </tag>
             
             <tag> mysql </tag>
             
             <tag> 数据库优化 </tag>
+            
+            <tag> sql </tag>
             
         </tags>
       
@@ -3128,9 +3128,9 @@
             
             <tag> mybatis </tag>
             
-            <tag> sql </tag>
-            
             <tag> mysql </tag>
+            
+            <tag> sql </tag>
             
         </tags>
       
