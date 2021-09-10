@@ -411,7 +411,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    569
+                    583
                 </div>
                 
 
@@ -454,18 +454,19 @@
         return x &amp; -x;
     }</code></pre><p>我们得到lowbit的值，只需要得到最后一个1的位置，并且把除了这个位置之外的所有位置全部置成零。然后输出就可以。</p>
 <blockquote>
-<p>根据计算机补码的性质。</p>
-<p>补码就是原码的反码加一</p>
+<p>根据计算机补码的性质：补码就是原码的反码加一。</p>
+<p>比如6的二进制为110，反码为001，加一为010，110 &amp; 010 = 010。</p>
 </blockquote>
 <h2 id="用lowbit运算统计1的个数"><a href="#用lowbit运算统计1的个数" class="headerlink" title="用lowbit运算统计1的个数"></a>用lowbit运算统计1的个数</h2><p>我们可以使用lowbit运算统计一个整数的二进制形式下1的个数。</p>
-<p>实现原理很简单啦，就是：我们先用lowbit运算找出<code>lowbit(x)</code>，然后用原数减去这个数，依次循环，直到为0为止。</p>
+<p>原理：我们先用lowbit运算找出<code>lowbit(x)</code>，然后用原数减去这个数，依次循环，直到为0为止。</p>
 <p>这也是树状数组的实现原理。</p>
 <p>代码：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">while</span><span class="token punctuation">(</span>x <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     x<span class="token operator">-=</span>x<span class="token operator">&amp;</span><span class="token operator">-</span>x<span class="token punctuation">;</span>
     ans<span class="token operator">++</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h2>
+<h2 id="树状数组"><a href="#树状数组" class="headerlink" title="树状数组"></a>树状数组</h2><p>未完</p>
+
             </div>
             <hr />
 
@@ -825,7 +826,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">264k</span>
+            <span class="white-color">269.1k</span>
             
 
             <br>

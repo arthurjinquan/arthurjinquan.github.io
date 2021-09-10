@@ -415,14 +415,14 @@ String.valueOf(char[] data, ">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
                 
@@ -449,17 +449,17 @@ String.valueOf(char[] data, ">
 <li>使用<code>String.toCharArray()</code>（返回值为char[]）可以得到将包含整个String的char数组。从0开始的位置索引来访问string中的任意位置的元素。</li>
 </ol>
 <h2 id="String-join"><a href="#String-join" class="headerlink" title="String.join"></a>String.join</h2><p>String.join方法是JDK1.8之后新增的一个静态方法</p>
-<pre class="line-numbers language-java"><code class="language-java">String result <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">,</span>“a”<span class="token punctuation">,</span>“b”<span class="token punctuation">,</span>“c”<span class="token punctuation">,</span>“d”<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class="line-numbers language-java"><code class="language-java">String result <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">,</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token string">"c"</span><span class="token punctuation">,</span><span class="token string">"d"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">// 输出结果如下：a-b-c-d</span>
 
-String<span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span>“a”<span class="token punctuation">,</span>“b”<span class="token punctuation">,</span>“c”<span class="token punctuation">,</span>“d”<span class="token punctuation">}</span><span class="token punctuation">;</span>
+String<span class="token punctuation">[</span><span class="token punctuation">]</span> arr <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"a"</span><span class="token punctuation">,</span><span class="token string">"b"</span><span class="token punctuation">,</span><span class="token string">"c"</span><span class="token punctuation">,</span><span class="token string">"d"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 String result <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"-"</span><span class="token punctuation">,</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">// 输出结果如下：a-b-c-d</span>
 
 List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"StringUtils"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"join"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-String join <span class="token operator">=</span> StringUtils<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span><span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//跟上边参数反过来</span>
+String join <span class="token operator">=</span> StringUtils<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>list<span class="token punctuation">,</span><span class="token string">"-"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//跟上边参数反过来!</span>
 <span class="token comment" spellcheck="true">// 输出结果：StringUtils-join</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="substring方法"><a href="#substring方法" class="headerlink" title="substring方法"></a>substring方法</h2><p>用于提取字符串中介于两个指定下标之间的字符。</p>
 <pre class="line-numbers language-java"><code class="language-java">stringObject<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span>stop<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -470,15 +470,70 @@ String join <span class="token operator">=</span> StringUtils<span class="token 
 <li><p><code>Integer.parseInt()</code>是把（）里的内容转换成Integer。<code>Integer.parseInt(String)</code>遇到一些不能被转换为整型的字符时，会抛出异常。（<code>Long.parseLong(String)</code>差不多意思）</p>
 </li>
 </ol>
-<h3 id="字符串可以强转ASCII"><a href="#字符串可以强转ASCII" class="headerlink" title="字符串可以强转ASCII"></a>字符串可以强转ASCII</h3><p>数组 char[ ] 无法强转ASCII，而字符串可以强转ASCII。</p>
+<h3 id="字符串可以强转ASCII"><a href="#字符串可以强转ASCII" class="headerlink" title="字符串可以强转ASCII"></a>字符串可以强转ASCII</h3><p>数组 char[ ] 无法直接强转ASCII，要一个一个遍历强转ASCII，也可以转字符串转。</p>
 <pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span> chars <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">char</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'2'</span><span class="token punctuation">,</span> <span class="token string">'j'</span><span class="token punctuation">,</span> <span class="token string">'q'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
     String str <span class="token operator">=</span> String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>chars<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token comment" spellcheck="true">//String str = new String(chars);</span>
-    <span class="token keyword">int</span> ascii <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> str<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">int</span> ascii <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> str<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> ascii <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> chars<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="toLowerCase"><a href="#toLowerCase" class="headerlink" title="toLowerCase"></a>toLowerCase</h2><p>把字符串转换为小写字符串</p>
+<pre class="line-numbers language-java"><code class="language-java">String str1 <span class="token operator">=</span> <span class="token string">"ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str1<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+output<span class="token operator">:</span>abcdefghijklmnopqrstuvwxyz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="toUpperCase"><a href="#toUpperCase" class="headerlink" title="toUpperCase"></a>toUpperCase</h2><p>把字符串转换为大写字符串</p>
+<pre class="line-numbers language-java"><code class="language-java">String str1 <span class="token operator">=</span> <span class="token string">"abcdefghijklmnopqrstuvwxyz"</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str2<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+output<span class="token operator">:</span>ABCDEFGHIJKLMNOPQRSTUVWXYZ<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="equalsIgnoreCase"><a href="#equalsIgnoreCase" class="headerlink" title="equalsIgnoreCase"></a>equalsIgnoreCase</h2><p><code>equalsIgnoreCase(String anotherString)</code>:比较字符串的内容是否相同,<strong>忽略大小写</strong></p>
+<pre class="line-numbers language-java"><code class="language-java">String str <span class="token operator">=</span> <span class="token string">"adsfaxsdfas沙发"</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">equalsIgnoreCase</span><span class="token punctuation">(</span><span class="token string">"ADsfaxsdfAs沙发"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+output<span class="token operator">:</span><span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="split"><a href="#split" class="headerlink" title="split"></a>split</h2><p><code>split()</code>:去除字符串中指定的的字符，然后返回一个新的字符串</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        String str <span class="token operator">=</span> <span class="token string">"adsfaxsdfas"</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 以a为点分割字符串</span>
+        String array<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">printString</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printString</span><span class="token punctuation">(</span>String a<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>a<span class="token punctuation">.</span>length<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+             <span class="token comment" spellcheck="true">// 重新拼起来</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="截取字符串str中指定字符串-strStart、strEnd之间的字符串"><a href="#截取字符串str中指定字符串-strStart、strEnd之间的字符串" class="headerlink" title="截取字符串str中指定字符串 strStart、strEnd之间的字符串"></a>截取字符串str中指定字符串 strStart、strEnd之间的字符串</h2><pre class="line-numbers language-java"><code class="language-java">    <span class="token comment" spellcheck="true">/**
+     * 截取字符串str中指定字符 strStart、strEnd之间的字符串
+     *
+     * @param str      待截取的字符串
+     * @param strStart 起始字符或字符串
+     * @param strEnd   截止字符或字符串
+     * @return
+     */</span>
+    <span class="token keyword">public</span> String <span class="token function">subString</span><span class="token punctuation">(</span>String str<span class="token punctuation">,</span> String strStart<span class="token punctuation">,</span> String strEnd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">// 找出指定的2个字符在该字符串里面的位置 </span>
+        <span class="token keyword">int</span> strStartIndex <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>strStart<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> strEndIndex <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>strEnd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment" spellcheck="true">// index为负数，即表示该字符串中没有该字符</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>strStartIndex <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">"字符串 :---->"</span> <span class="token operator">+</span> str <span class="token operator">+</span> <span class="token string">"&lt;---- 中不存在 "</span> <span class="token operator">+</span> strStart <span class="token operator">+</span> <span class="token string">", 无法截取目标字符串"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>strEndIndex <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">"字符串 :---->"</span> <span class="token operator">+</span> str <span class="token operator">+</span> <span class="token string">"&lt;---- 中不存在 "</span> <span class="token operator">+</span> strEnd <span class="token operator">+</span> <span class="token string">", 无法截取目标字符串"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">// 开始截取</span>
+        <span class="token keyword">return</span> str<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>strStartIndex<span class="token punctuation">,</span> strEndIndex<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>strStart<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="String的replace和replaceAll方法"><a href="#String的replace和replaceAll方法" class="headerlink" title="String的replace和replaceAll方法"></a>String的replace和replaceAll方法</h2><ol>
 <li><p>replace方法：支持字符和字符串的替换。</p>
 </li>
-<li><p>replaceAll方法：基于正则表达式的字符串替换。</p>
+<li><p>replaceAll方法：基于<strong>正则表达式</strong>的字符串替换。</p>
 </li>
 </ol>
 <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>\w 的释义一般都是指包含大、小写字母数字和下划线，相当于<code>[a-zA-Z0-9_]</code>。</p>
@@ -910,7 +965,7 @@ m<span class="token punctuation">.</span><span class="token function">group</spa
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">264k</span>
+            <span class="white-color">269.1k</span>
             
 
             <br>
