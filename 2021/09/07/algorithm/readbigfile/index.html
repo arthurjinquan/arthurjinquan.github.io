@@ -4,12 +4,15 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="交替打印ABC, SCUT JAVA SpringBoot 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="Java读取大文件, SCUT JAVA SpringBoot 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="wait和notify
-wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基础类，也就是每个对象都有wait( )，notify( )，notifyAll( )的功能，因为每个对象都有锁">
+    <meta name="description" content="Java读取大文件import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+public class ReadBigFile {
+    public static void ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +20,7 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>交替打印ABC | 锦泉^-^</title>
+    <title>Java读取大文件 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -254,13 +257,13 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/45.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        交替打印ABC
+                        Java读取大文件
                     </div>
                 </div>
             </div>
@@ -371,6 +374,10 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
                     
                     <div class="article-tag">
                         
+                        <a href="/tags/java/" target="_blank">
+                            <span class="chip bg-color">java</span>
+                        </a>
+                        
                         <a href="/tags/算法/" target="_blank">
                             <span class="chip bg-color">算法</span>
                         </a>
@@ -409,14 +416,14 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    740
+                    95
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
                 
@@ -432,104 +439,25 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="wait和notify"><a href="#wait和notify" class="headerlink" title="wait和notify"></a>wait和notify</h2><ul>
-<li><code>wait( )，notify( )，notifyAll( )</code>都不属于Thread类，而是属于Object基础类，也就是每个对象都有<code>wait( )，notify( )，notifyAll( )</code>的功能，因为每个对象都有锁，锁是每个对象的基础，当然操作锁的方法也是最基础了。</li>
-<li>当需要调用以上的方法的时候，一定要对竞争资源进行加锁，<strong>如果不加锁的话，则会报 IllegalMonitorStateException 异常</strong></li>
-<li>当想要调用<code>wait( )</code>进行线程等待时，必须要取得这个锁对象的控制权（对象监视器），一般是放到<code>synchronized(obj)</code>代码中。</li>
-<li>在while循环里而不是if语句下使用wait，这样，会在线程暂停恢复后都检查wait的条件，并在条件实际上并未改变的情况下处理唤醒通知</li>
-<li>调用<code>obj.wait( )</code>释放了obj的锁，否则其他线程也无法获得obj的锁，也就无法在<code>synchronized(obj){ obj.notify() }</code>代码段内唤醒A。</li>
-<li><code>notify( )</code>方法只会通知等待队列中的第一个相关线程（不会通知优先级比较高的线程）</li>
-<li><code>notifyAll( )</code>通知所有等待该竞争资源的线程（也不会按照线程的优先级来执行）</li>
-<li>假设有三个线程执行了<code>obj.wait( )</code>，那么<code>obj.notifyAll( )</code>则能全部唤醒tread1，thread2，thread3，但是要继续执行obj.wait（）的下一条语句，必须获得obj锁，因此，tread1，thread2，thread3只有一个有机会获得锁继续执行，例如tread1，其余的需要等待thread1释放obj锁之后才能继续执行。</li>
-<li>当调用obj.notify/notifyAll后，调用线程依旧持有obj锁，因此，thread1，thread2，thread3虽被唤醒，但是仍无法获得obj锁。直到调用线程退出synchronized块，释放obj锁后，thread1，thread2，thread3中的一个才有机会获得锁继续执行。</li>
-</ul>
-<h2 id="交替打印ABC"><a href="#交替打印ABC" class="headerlink" title="交替打印ABC"></a>交替打印ABC</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PrintABC</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span><span class="token punctuation">{</span>
+                <h2 id="Java读取大文件"><a href="#Java读取大文件" class="headerlink" title="Java读取大文件"></a>Java读取大文件</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>nio<span class="token punctuation">.</span>charset<span class="token punctuation">.</span>StandardCharsets<span class="token punctuation">;</span>
 
-    <span class="token keyword">private</span> String name<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">final</span> Object pre<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">final</span> Object next<span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token function">PrintABC</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span>Object pre<span class="token punctuation">,</span>Object next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>pre <span class="token operator">=</span> pre<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>next <span class="token operator">=</span> next<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>count <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>pre<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>next<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                    count<span class="token operator">--</span><span class="token punctuation">;</span>
-                    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    next<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                <span class="token keyword">try</span> <span class="token punctuation">{</span>
-                    pre<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ReadBigFile</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>
+        String path <span class="token operator">=</span> <span class="token string">"C:\\Users\\Administrator\\Desktop\\_posts\\java-basis.md"</span><span class="token punctuation">;</span>
+        BufferedInputStream bis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedInputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        BufferedReader reader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BufferedReader</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InputStreamReader</span><span class="token punctuation">(</span>bis<span class="token punctuation">,</span> StandardCharsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token operator">*</span><span class="token number">1024</span><span class="token operator">*</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String line <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>line <span class="token operator">=</span> reader<span class="token punctuation">.</span><span class="token function">readLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>line<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token string">"java"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">;</span>
             <span class="token punctuation">}</span>
         <span class="token punctuation">}</span>
+        reader<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        bis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
-        Object a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Object b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Object c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        PrintABC pa <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrintABC</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span>c<span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        PrintABC pb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrintABC</span><span class="token punctuation">(</span><span class="token string">"B"</span><span class="token punctuation">,</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        PrintABC pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrintABC</span><span class="token punctuation">(</span><span class="token string">"C"</span><span class="token punctuation">,</span>b<span class="token punctuation">,</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>pa<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>pb<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>pc<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p><code>obj.wait()</code>之后的代码不会执行，直到其他线程t2调用了<code>obj.notify()</code>；<br>在其他线程t2调用了<code>obj.notify()</code>线程t1不会立刻开始执行，需要等待线程t2的synchronized代码块执行完毕</p>
-</blockquote>
-<h2 id="交替打印AB"><a href="#交替打印AB" class="headerlink" title="交替打印AB"></a>交替打印AB</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//这个变通好一点，上边那个不知道怎么改</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PrintAB</span><span class="token punctuation">{</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> num<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> Object LOCK <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">printAB</span><span class="token punctuation">(</span><span class="token keyword">int</span> targetNum<span class="token punctuation">)</span> <span class="token keyword">throws</span> InterruptedException <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> cnt <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>cnt <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            <span class="token keyword">synchronized</span><span class="token punctuation">(</span>LOCK<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token keyword">while</span><span class="token punctuation">(</span>num <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">!=</span> targetNum<span class="token punctuation">)</span><span class="token punctuation">{</span>
-                    LOCK<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Thread<span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                num<span class="token operator">++</span><span class="token punctuation">;</span>
-                cnt<span class="token operator">--</span><span class="token punctuation">;</span>
-                LOCK<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        PrintAB printAB <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrintAB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span>
-            <span class="token keyword">try</span> <span class="token punctuation">{</span>
-                printAB<span class="token punctuation">.</span><span class="token function">printAB</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">"A"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span>
-            <span class="token keyword">try</span> <span class="token punctuation">{</span>
-                printAB<span class="token punctuation">.</span><span class="token function">printAB</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token string">"B"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意在实例化BufferedReader时，增加一个分配缓存的参数即可</p>
 
             </div>
             <hr />
@@ -564,9 +492,9 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《交替打印ABC》
+                    《Java读取大文件》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/09/07/printabc/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/09/07/algorithm/readbigfile/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -607,7 +535,7 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/09/07/printabc/',
+        id: '2021/09/07/algorithm/readbigfile/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -633,19 +561,19 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2021/09/07/printabc/">
+                <a href="/2021/09/07/algorithm/readbigfile/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/45.jpg" class="responsive-img" alt="交替打印ABC">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/23.jpg" class="responsive-img" alt="Java读取大文件">
                         
-                        <span class="card-title">交替打印ABC</span>
+                        <span class="card-title">Java读取大文件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            笔试竟然真的考到了
+                            Java读取大文件。
                         
                     </div>
                     <div class="publish-info">
@@ -668,6 +596,10 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/java/" target="_blank">
+                        <span class="chip bg-color">java</span>
+                    </a>
+                    
                     <a href="/tags/算法/" target="_blank">
                         <span class="chip bg-color">算法</span>
                     </a>
@@ -683,24 +615,24 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/08/31/algorithm/scheduledthreadpoolexecutor/">
+                <a href="/2021/09/07/algorithm/printabc/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/8.jpg" class="responsive-img" alt="ScheduledThreadPoolExecutor实现限流算法">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/80.jpg" class="responsive-img" alt="多线程交替打印ABC">
                         
-                        <span class="card-title">ScheduledThreadPoolExecutor实现限流算法</span>
+                        <span class="card-title">多线程交替打印ABC</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            用来在给定的延迟之后运行任务，或者定期执行任务
+                            笔试竟然真的考到了。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-08-31
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-09-07
                             </span>
                         <span class="publish-author">
                             
@@ -892,7 +824,7 @@ wait( )，notify( )，notifyAll( )都不属于Thread类，而是属于Object基�
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">261.4k</span>
+            <span class="white-color">264k</span>
             
 
             <br>

@@ -257,7 +257,7 @@ Java 不提供指">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/20.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,14 +412,14 @@ Java 不提供指">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.1k
+                    8.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    29 分
+                    30 分
                 </div>
                 
                 
@@ -476,10 +476,12 @@ Java 不提供指">
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="无参构造的作用"><a href="#无参构造的作用" class="headerlink" title="无参构造的作用"></a>无参构造的作用</h2><p>Java 程序在执行子类的构造方法之前，如果没有用 super（）来调用父类特定的构造方法，则会调用父类中的无参构造。</p>
 <p>在调用子类构造方法之前会先调用父类无参构造方法，是为了帮助子类做<strong>初始化工作</strong>。</p>
-<h2 id="接口和抽象类"><a href="#接口和抽象类" class="headerlink" title="接口和抽象类"></a>接口和抽象类</h2><ol>
-<li>接口的方法默认是 public，所有方法在接口中不能有实现(Java 8 开始接口方法可以有默认实现），抽象类可以有非抽象的方法</li>
+<h2 id="接口和抽象类"><a href="#接口和抽象类" class="headerlink" title="接口和抽象类"></a>接口和抽象类</h2><p>abstract起到<strong>模板</strong>的作用，可以有属性和方法，interface起到<strong>规范方法行为</strong>的作用，只能有抽象方法存在，两者都不可以实例化，abstract单继承（视乎语言），interface可以多实现。</p>
+<p><a href="https://www.jianshu.com/p/d1acaec2299b" target="_blank" rel="noopener">https://www.jianshu.com/p/d1acaec2299b</a></p>
+<ol>
+<li>接口的方法默认是 public，所有方法在接口中不能有实现（Java 8 开始接口方法可以有默认实现），抽象类可以有非抽象的方法</li>
 <li>接口中的实例变量默认是 final 类型的，而抽象类中则不一定</li>
-<li>一个类可以实现多个接口，但最多只能实现一个抽象类</li>
+<li>一个类可以实现多个接口，但最多只能继承一个抽象类</li>
 <li>一个类实现接口的话要实现接口的所有方法，而抽象类不一定</li>
 <li>接口不能用 new 实例化，但可以声明，但是必须引用一个实现该接口的对象 从设计层面来说，抽象类是对类的抽象，是一种模板设计，接口是行为的抽象，是一种<strong>行为的规范</strong></li>
 </ol>
@@ -531,7 +533,7 @@ Java 不提供指">
 <li>sleep不依赖synchronized，而wait需要synchronized</li>
 <li>sleep不需要被唤醒，wait需要</li>
 <li>sleep一般为当前线程休眠，wait则多用于多线程之间的通信</li>
-<li>sleep会让出cpu执行事件强制上下文切换，wait不一定</li>
+<li>sleep会<strong>让出cpu执行事件强制上下文切换</strong>，wait不一定</li>
 </ol>
 <p>yield执行后线程直接进入就绪状态，马上释放cpu的执行权</p>
 <p>join执行后线程进入阻塞状态，例如线程B中调用了线程A的join方法，那线程B会进入阻塞队列，直到线程A结束或中断线程</p>
@@ -729,9 +731,18 @@ Java 不提供指">
 <li>threadFactory：为线程池提供创建新线程的<strong>线程工厂</strong></li>
 <li>rejectedExecutionHandler：线程池任务队列超过最大值之后的<strong>拒绝策略</strong></li>
 </ol>
-<h2 id="线程池的队列类型"><a href="#线程池的队列类型" class="headerlink" title="线程池的队列类型"></a>线程池的队列类型</h2><p>1、ArrayBlockingQueue<br>是一个基于数组结构的<strong>有界阻塞队列</strong>，此队列按 FIFO（先进先出）原则对元素进行排序。<br>2、LinkedBlockingQueue<br>一个基于链表结构的<strong>阻塞队列</strong>，此队列按FIFO （先进先出） 排序元素，吞吐量通常要高于ArrayBlockingQueue。静态工厂方法Executors.newFixedThreadPool（）使用了这个队列<br>3、SynchronousQueue<br>一个不存储元素的<strong>阻塞队列</strong>。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于LinkedBlockingQueue，静态工厂方法Executors.newCachedThreadPool（5）使用了这个队列。<br>4、PriorityBlockingQueue<br>一个具有优先级的<strong>无限阻塞队列</strong>。</p>
-<h2 id="线程池中为什么先入队列而不是先创建最大线程"><a href="#线程池中为什么先入队列而不是先创建最大线程" class="headerlink" title="线程池中为什么先入队列而不是先创建最大线程"></a>线程池中为什么先入队列而不是先创建最大线程</h2><p>在创建新线程时，<strong>要获取全局锁</strong>，这时其他都得阻塞，影响效率。</p>
-<h2 id="线程池中线程复用原理"><a href="#线程池中线程复用原理" class="headerlink" title="线程池中线程复用原理"></a>线程池中线程复用原理</h2><p>线程池将线程和任务进行解耦，摆脱了之前通过Thread创建线程时一个线程必须对应一个任务的限制。</p>
+<h3 id="线程池有哪些"><a href="#线程池有哪些" class="headerlink" title="线程池有哪些"></a>线程池有哪些</h3><p>1.newCachedThreadPool创建一个可缓存线程池程，线程数量不定的线程池，并且其最大线程数为Integer.MAX_VALUE，适合执行大量的耗时较少的任务</p>
+<p>2.newFixedThreadPool 创建一个定长线程池，只有核心线程并且这些核心线程不会被回收，这样它更加快速底相应外界的请求</p>
+<p>3.newScheduledThreadPool 创建一个周期性执行任务的线程池，核心线程数量是固定的，而非核心线程数是没有限制的，主要用于执行定时任务和具有固定周期的重复任务</p>
+<p>4.newSingleThreadExecutor 创建一个单线程化的线程池，只有一个核心线程</p>
+<h3 id="线程池的队列类型"><a href="#线程池的队列类型" class="headerlink" title="线程池的队列类型"></a>线程池的队列类型</h3><p>1、ArrayBlockingQueue<br>是一个基于数组结构的<strong>有界阻塞队列</strong>，此队列按 FIFO（先进先出）原则对元素进行排序。<br>2、LinkedBlockingQueue<br>一个基于链表结构的<strong>阻塞队列</strong>，此队列按FIFO （先进先出） 排序元素，吞吐量通常要高于ArrayBlockingQueue。静态工厂方法Executors.newFixedThreadPool（）使用了这个队列<br>3、SynchronousQueue<br>一个不存储元素的<strong>阻塞队列</strong>。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于LinkedBlockingQueue，静态工厂方法Executors.newCachedThreadPool（5）使用了这个队列。<br>4、PriorityBlockingQueue<br>一个具有优先级的<strong>无限阻塞队列</strong>。</p>
+<h3 id="线程池中为什么先入队列而不是先创建最大线程"><a href="#线程池中为什么先入队列而不是先创建最大线程" class="headerlink" title="线程池中为什么先入队列而不是先创建最大线程"></a>线程池中为什么先入队列而不是先创建最大线程</h3><p>在创建新线程时，<strong>要获取全局锁</strong>，这时其他都得阻塞，影响效率。</p>
+<h3 id="线程池的作用"><a href="#线程池的作用" class="headerlink" title="线程池的作用"></a>线程池的作用</h3><ol>
+<li><strong>降低资源消耗</strong>。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 </li>
+<li><strong>提高响应速度</strong>。当任务到达时，任务可以不需要等到线程创建就能立即执行。 </li>
+<li>提高线程的可管理性。 </li>
+</ol>
+<h3 id="线程池中线程复用原理"><a href="#线程池中线程复用原理" class="headerlink" title="线程池中线程复用原理"></a>线程池中线程复用原理</h3><p>线程池将线程和任务进行解耦，摆脱了之前通过Thread创建线程时一个线程必须对应一个任务的限制。</p>
 <p>同一个线程可以从阻塞队列中不对获取新任务来执行，其核心原理在于线程池对Thread封装，并<strong>不是每次执行任务都调用Thread.start（）来创建新线程</strong>，而是让每个线程执行一个“循环任务”，不断检查是否有任务需要被执行，有就<strong>调用任务中的run方法</strong>。</p>
 <h2 id="对象池对垃圾回收的影响"><a href="#对象池对垃圾回收的影响" class="headerlink" title="对象池对垃圾回收的影响"></a>对象池对垃圾回收的影响</h2><p>对象池的缺点:<br>(1)现在Java的对象分配操作不比c语言的malloc调用慢, 对于轻中量级的对象, 分配/释放对象的开销可以忽略不计;<br>(2)并发环境中, 多个线程可能(同时)需要获取池中对象, 进而需要在堆数据结构上进行同步或者因为锁竞争而产生阻塞, 这种开销要比创建销毁对象的开销高数百倍;<br>(3)由于池中对象的数量有限, 势必成为一个可伸缩性瓶颈;<br>(4)很难正确的设定对象池的大小, 如果太小则起不到作用, 如果过大, 则占用内存资源高, 可以起一个线程定期扫描分析, 将池压缩到一个合适的尺寸以节约内存,但为了获得不错的分析结果, 在扫描期间可能需要暂停复用以避免干扰(造成效率低下), 或者使用非常复杂的算法策略(增加维护难度);<br>(5)设计和使用对象池容易出错, 设计上需要注意状态同步, 这是个难点, 使用上可能存在忘记归还(就像c语言编程忘记free一样), 重复归还(可能需要做个循环判断一下是否池中存在此对象, 这也是个开销), 归还后仍旧使用对象(可能造成多个线程并发使用一个对象的情况)等问题;</p>
 <h2 id="红黑树的性质"><a href="#红黑树的性质" class="headerlink" title="红黑树的性质"></a>红黑树的性质</h2><p>二叉查找树。叶子节点都是黑色的null。根节点是黑的。不能有两个连续的红色节点，红色的子节点必须是黑的。从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点。</p>
@@ -743,6 +754,9 @@ Java 不提供指">
 <h3 id="AQS的condition"><a href="#AQS的condition" class="headerlink" title="AQS的condition"></a>AQS的condition</h3><p><a href="https://segmentfault.com/a/1190000015807209" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015807209</a></p>
 <p>//ThreadA先调用lock方法获取到锁，然后调用<code>con.await()</code><br>//ThreadB获取锁，调用<code>con.signal()</code>唤醒ThreadA<br>//ThreadB释放锁<br>condtion复用了aqs的node节点类型，condition的队列我们称作条件队列，原来的队列称作等待队列。a先获取到锁，然后await。await释放锁，然后把线程包装成节点入条件队列。<br>b获取锁，然后signal。signal会删除条件队列的头结点，并添加到等待队列，此时等待队列是-1=&gt;0，在释放锁之后，这个等待队列的节点会被唤醒。<br>b释放锁，等待队列的a会被唤醒。</p>
 <h3 id="CountdownLatch"><a href="#CountdownLatch" class="headerlink" title="CountdownLatch"></a>CountdownLatch</h3><p>await都会加入到等待队列里面。在countdown时，如果计数器为0，会唤醒（unpark）等待队列的头结点。并且会修改当前节点的状态为0，再调用propagate，向后传播状态，来唤醒队列里面的所有节点。</p>
+<h2 id="数据库数据"><a href="#数据库数据" class="headerlink" title="数据库数据"></a>数据库数据</h2><p>数值，int，float，double</p>
+<p>字符，char，varchar，text</p>
+<p>时间，date，datetime，timestamp</p>
 
             </div>
             <hr />
@@ -849,7 +863,7 @@ Java 不提供指">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/77.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/74.jpg" class="responsive-img" alt="Java的守护线程">
                         
                         <span class="card-title">Java的守护线程</span>
                     </div>
@@ -902,7 +916,7 @@ Java 不提供指">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/84.jpg" class="responsive-img" alt="Helm安装ingress">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="Helm安装ingress">
                         
                         <span class="card-title">Helm安装ingress</span>
                     </div>
@@ -1111,7 +1125,7 @@ Java 不提供指">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">261.4k</span>
+            <span class="white-color">264k</span>
             
 
             <br>
