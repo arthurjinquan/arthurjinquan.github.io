@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/78.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -411,14 +411,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.1k
+                    10.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    31 分
+                    34 分
                 </div>
                 
                 
@@ -460,7 +460,7 @@
 </ul>
 <h3 id="什么是用户态和内核态"><a href="#什么是用户态和内核态" class="headerlink" title="什么是用户态和内核态"></a>什么是用户态和内核态</h3><p>用户态和内核态是操作系统的两种运行状态。</p>
 <ul>
-<li><code>内核态</code>：处于内核态的 CPU 可以访问任意的数据，包括外围设备，比如网卡、硬盘等，处于内核态的 CPU 可以从一个程序切换到另外一个程序，并且占用 CPU 不会发生抢占情况，一般处于特权级 0 的状态我们称之为内核态。</li>
+<li><code>内核态</code>：处于内核态的 <strong>CPU 可以访问任意的数据</strong>，包括外围设备，比如网卡、硬盘等，处于内核态的 CPU 可以从一个程序切换到另外一个程序，并且占用 CPU 不会发生抢占情况，一般处于特权级 0 的状态我们称之为内核态。</li>
 <li><code>用户态</code>：处于用户态的 CPU 只能受限的访问内存，并且不允许访问外围设备，用户态下的 <strong>CPU 不允许独占</strong>，也就是说 CPU 能够被其他程序获取。</li>
 </ul>
 <blockquote>
@@ -480,15 +480,29 @@
 <h2 id="进程和线程篇"><a href="#进程和线程篇" class="headerlink" title="进程和线程篇"></a>进程和线程篇</h2><h3 id="什么是线程，线程和进程的区别"><a href="#什么是线程，线程和进程的区别" class="headerlink" title="什么是线程，线程和进程的区别"></a>什么是线程，线程和进程的区别</h3><p>我们上面说到进程是正在运行的程序的实例，而线程其实就是进程中的单条流向，因为线程具有进程中的某些属性，所以线程又被称为轻量级的进程。浏览器如果是一个进程的话，那么浏览器下面的每个 tab 页可以看作是一个个的线程。</p>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-2.jpg" alt="线程和进程持有资源的区别"></p>
 <p>创建线程的开销要比进程小很多，因为创建线程仅仅需要<code>堆栈指针</code>和<code>程序计数器</code>就可以了，而创建进程需要操作系统分配新的地址空间，数据资源等，这个开销比较大。</p>
+<h3 id="多进程和多线程的区别"><a href="#多进程和多线程的区别" class="headerlink" title="多进程和多线程的区别"></a>多进程和多线程的区别</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-13.jpg" alt></p>
 <h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><p>对于单核单线程 CPU 而言，在某一时刻只能执行一条 CPU 指令。上下文切换（Context Switch） 是一种 <strong>将 CPU 资源从一个进程分配给另一个进程的机制</strong>。从用户角度看，计算机能够并行运行多个进程，这恰恰是操作系统通过快速上下文切换造成的结果。在切换的过程中，操作系统需要先存储当前进程的状态（包括内存空间的指针，当前执行完的指令等等），再读入下一个进程的状态，然后执行此进程。</p>
 <h3 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-3.jpg" alt></p>
-<p><code>消息传递</code>：消息传递是进程间实现通信和同步等待的机制，使用消息传递，进程间的交流不需要共享变量，直接就可以进行通信；消息传递分为发送方和接收方</p>
-<p><code>先进先出队列</code>：先进先出队列指的是两个不相关联进程间的通信，两个进程之间可以彼此相互进程通信，这是一种全双工通信方式</p>
-<p><code>管道</code>：管道用于两个相关进程之间的通信，这是一种半双工的通信方式，如果需要全双工，需要另外一个管道。</p>
-<p><code>直接通信</code>：在这种进程通信的方式中，进程与进程之间只存在一条链接，进程间要明确通信双方的命名。</p>
-<p><code>间接通信</code>：间接通信是通信双方不会直接建立连接，而是找到一个中介者，这个中介者可能是个对象等等，进程可以在其中放置消息，并且可以从中删除消息，以此达到进程间通信的目的。</p>
-<p><code>消息队列</code>：消息队列是内核中存储消息的链表，它由消息队列标识符进行标识，这种方式能够在不同的进程之间提供全双工的通信连接。</p>
-<p><code>共享内存</code>：共享内存是使用所有进程之间的内存来建立连接，这种类型需要同步进程访问来相互保护。</p>
+<p><strong>管道（pipe）</strong></p>
+<p>管道包括三种：</p>
+<ol>
+<li>普通管道：通常有两种限制,一是单工,只能单向传输;二是只能在父子或者兄弟进程间使用</li>
+<li>流管道：去除了第一种限制,为半双工，只能在父子或兄弟进程间使用，可以双向传输</li>
+<li>命名管道：可以在许多并不相关的进程之间进行通讯</li>
+</ol>
+<p><strong>信号量（semophore）</strong></p>
+<p>信号量是一个计数器，可以用来控制多个进程对共享资源的访问，它常作为一种锁机制，防止某进程正在访问共享资源时，其他进程也访问该资源。因此，主要作为进程间以及同一进程内不同进程之间的同步手段。</p>
+<p><strong>消息队列（message queue）</strong></p>
+<p>消息队列是消息的链表，存放在内核中并由消息队列标识符标识。消息队列克服了信号传递信号少，管道只能承载无格式字节流以及缓冲区大小受限等缺点。</p>
+<p><strong>共享内存（shared memory）</strong></p>
+<p>共享内存就是映射一段能被其他进程锁访问的内存。共享内存是最快的IPC方式，它是针对其他进程间通信方式运行效率低而专门设计的。它往往与其他通信机制如信号量配合使用。</p>
+<p><strong>套接字（socket）</strong></p>
+<p>可以用于不同机器间的进程通信。</p>
+<h3 id="各进程通信方式的原理"><a href="#各进程通信方式的原理" class="headerlink" title="各进程通信方式的原理"></a>各进程通信方式的原理</h3><p>管道：管道是由内核管理的一个缓冲区，相当于我们放入内存中的一个纸条。管道的一端连接一个进程的输出。这个进程会向管道中放入信息。管道的另一端连接一个进程的输入，这个进程取出被放入管道的信息。一个缓冲区不需要很大，它被设计成为环形的数据结构，以便管道可以被循环利用。当管道中没有信息的话，从管道中读取的进程会等待，直到另一端的进程放入信息。当管道被放满信息的时候，尝试放入信息的进程会等待，直到另一端的进程取出信息。当两个进程都终结的时候，管道也自动消失。</p>
+<p>信号量：临界区域是指执行数据更新的代码需要独占式地执行。而信号量就可以提供这样的一种访问机制，让一个临界区同一时间只有一个线程在访问它，也就是说信号量是用来调协进程对共享资源的访问的。信号量是一个特殊的变量，程序对其访问都是原子操作，且只允许对它进行等待（即P）和发送（即V）信息操作。最简单的信号量是只能取0和1的变量，这也是信号量最常见的一种形式，叫做二进制信号量。而可以取多个正整数的信号量被称为通用信号量。</p>
+<p>消息队列：消息队列是消息的链表，包括Posix消息队列system V消息队列。有足够权限的进程可以向队列中添加消息，被赋予读权限的进程则可以读走队列中的消息。消息队列<strong>克服了信号承载信息量少</strong>，管道只能承载无格式字节流以及缓冲区大小受限等缺点。消息队列是随内核持续的。</p>
+<p>共享内存：两个不同进程A、B共享内存的意思是，同一块物理内存被映射到进程A、B各自的进程地址空间。进程A可以即时看到进程B对共享内存中数据的更新，反之亦然。由于多个进程共享同一块内存区域，必然需要某种同步机制，互斥锁和信号量都可以。</p>
+<p>套接字：两个基本概念：客户方和服务方。当两个应用之间需要采用SOCKET通信时，首先需要在两个应用之间（可能位于同一台机器，也可能位于不同的机器）建立SOCKET连接。</p>
 <h3 id="进程的三态模型"><a href="#进程的三态模型" class="headerlink" title="进程的三态模型"></a>进程的三态模型</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-4.jpg" alt></p>
 <ol>
 <li><code>运行态</code>：运行态指的就是进程实际占用 CPU 时间片运行时</li>
@@ -668,6 +682,13 @@
 <p>假如路由器 A 的所有数据需要发送到 B ，B 的所有数据包需要发送到 D，然后 D 的所有数据包需要发送到 A 。没有数据包可以移动，因为在另一端没有缓冲区可用，这就是一个典型的资源死锁。</p>
 <h4 id="活锁"><a href="#活锁" class="headerlink" title="活锁"></a>活锁</h4><p>某些情况下，当进程意识到它不能获取所需要的下一个锁时，就会尝试礼貌的释放已经获得的锁，然后等待非常短的时间再次尝试获取。可以想像一下这个场景：当两个人在狭路相逢的时候，都想给对方让路，相同的步调会导致双方都无法前进。</p>
 <p>现在假想有一对并行的进程用到了两个资源。它们分别尝试获取另一个锁失败后，两个进程都会释放自己持有的锁，再次进行尝试，这个过程会一直进行重复。很明显，这个过程中没有进程阻塞，但是进程仍然不会向下执行，这种状况我们称之为 <code>活锁(livelock)</code>。</p>
+<h2 id="收集的题目"><a href="#收集的题目" class="headerlink" title="收集的题目"></a>收集的题目</h2><h3 id="page-fault"><a href="#page-fault" class="headerlink" title="page fault"></a>page fault</h3><p>内存映射，其实就是将虚拟内存地址映射到物理内存地址。为了完成内存映射，内核为每个进程都维护了一张页表，记录虚拟地址与物理地址的映射关系。页表实际上存储在 CPU 的内存管理单元 MMU 中。而当进程访问的虚拟地址在页表中查不到时，系统会产生一个缺页异常，进入内核空间分配物理内存、更新进程页表，最后再返回用户空间，恢复进程的运行，这是一个次缺页异常（minor page fault）。minor page fault 也称为 soft page fault, 指需要访问的内存不在虚拟地址空间，但是在物理内存中，只需要MMU建立物理内存和虚拟地址空间的映射关系即可。</p>
+<p>major page fault指需要访问的内存不在虚拟地址空间，也不在物理内存中，进入内核空间分配物理内存，更新进程页表，还需要swap从磁盘中读取数据换入物理内存中。</p>
+<ol>
+<li>当一个进程在调用 malloc 获取虚拟空间地址后，首次访问该地址会发生一次soft page fault。</li>
+<li>通常是多个进程访问同一个共享内存中的数据，可能某些进程还没有建立起映射关系，所以访问时会出现soft page fault</li>
+</ol>
+<p>invalid fault 也称为 segment fault，指进程需要访问的内存地址不在它的虚拟地址空间范围内，属于越界访问，内核会报 segment fault错误。</p>
 
             </div>
             <hr />
@@ -774,7 +795,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/5.jpg" class="responsive-img" alt="ScheduledThreadPoolExecutor实现限流算法">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/8.jpg" class="responsive-img" alt="ScheduledThreadPoolExecutor实现限流算法">
                         
                         <span class="card-title">ScheduledThreadPoolExecutor实现限流算法</span>
                     </div>
@@ -823,7 +844,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/64.jpg" class="responsive-img" alt="泛型实现">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/61.jpg" class="responsive-img" alt="泛型实现">
                         
                         <span class="card-title">泛型实现</span>
                     </div>
@@ -1028,7 +1049,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">269.1k</span>
+            <span class="white-color">290.9k</span>
             
 
             <br>

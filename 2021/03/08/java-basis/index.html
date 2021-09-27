@@ -257,7 +257,7 @@ Java 不提供指">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/23.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -412,14 +412,14 @@ Java 不提供指">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.4k
+                    8.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    30 分
+                    31 分
                 </div>
                 
                 
@@ -435,7 +435,7 @@ Java 不提供指">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>优点： 易维护、易复用、易扩展，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统更加灵活、更加易于维护</p>
+                <h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>优点： <strong>易维护、易复用、易扩展</strong>，由于面向对象有封装、继承、多态性的特性，可以设计出低耦合的系统，使系统更加灵活、更加易于维护</p>
 <p>缺点： 性能比面向过程低</p>
 <h2 id="Java和C"><a href="#Java和C" class="headerlink" title="Java和C++"></a>Java和C++</h2><ol>
 <li>都是面向对象的语言，都支持封装、继承和多态</li>
@@ -482,7 +482,7 @@ Java 不提供指">
 <li>接口的方法默认是 public，所有方法在接口中不能有实现（Java 8 开始接口方法可以有默认实现），抽象类可以有非抽象的方法</li>
 <li>接口中的实例变量默认是 final 类型的，而抽象类中则不一定</li>
 <li>一个类可以实现多个接口，但最多只能继承一个抽象类</li>
-<li>一个类实现接口的话要实现接口的所有方法，而抽象类不一定</li>
+<li>一个类实现接口的话<strong>要实现接口的所有方法</strong>，而抽象类不一定</li>
 <li>接口不能用 new 实例化，但可以声明，但是必须引用一个实现该接口的对象 从设计层面来说，抽象类是对类的抽象，是一种模板设计，接口是行为的抽象，是一种<strong>行为的规范</strong></li>
 </ol>
 <h2 id="成员变量和局部变量"><a href="#成员变量和局部变量" class="headerlink" title="成员变量和局部变量"></a>成员变量和局部变量</h2><ol>
@@ -529,11 +529,11 @@ Java 不提供指">
 <p>等待池：当调用wait方法后线程会放到等待池中，等待池不会竞争同步锁。只有调用了notify或notifyAll方法后才开始竞争。</p>
 <ol>
 <li>sleep是<strong>Thread类</strong>的静态本地方法，wait是<strong>Object类</strong>的本地方法。</li>
-<li>sleep方法不会释放lock，而wait会释放后加入等待队列。</li>
+<li><strong>sleep方法不会释放lock</strong>，而wait会释放后加入等待队列。</li>
 <li>sleep不依赖synchronized，而wait需要synchronized</li>
 <li>sleep不需要被唤醒，wait需要</li>
 <li>sleep一般为当前线程休眠，wait则多用于多线程之间的通信</li>
-<li>sleep会<strong>让出cpu执行事件强制上下文切换</strong>，wait不一定</li>
+<li>sleep会让出cpu执行事件<strong>强制上下文切换</strong>，wait不一定</li>
 </ol>
 <p>yield执行后线程直接进入就绪状态，马上释放cpu的执行权</p>
 <p>join执行后线程进入阻塞状态，例如线程B中调用了线程A的join方法，那线程B会进入阻塞队列，直到线程A结束或中断线程</p>
@@ -546,12 +546,12 @@ Java 不提供指">
     TERMINATED<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ol>
-<li>NEW(初始)：线程被创建后尚未启动</li>
-<li>RUNNABLE(运行)：包括了操作系统线程状态中的Running和Ready，也就是处于此状态的线程可能正在运行，也可能正在等待系统资源，如等待CPU为它分配时间片</li>
-<li>BLOCKED(阻塞)：线程阻塞于锁</li>
-<li>WAITING(等待)：线程需要等待其他线程做出一些特定动作（通知或中断）</li>
-<li>TIME_WAITING(超时等待)：该状态不同于WAITING，它可以在指定的时间内自行返回</li>
-<li>TERMINATED(终止)：该线程已经执行完毕</li>
+<li>NEW（初始）：线程被创建后尚未启动</li>
+<li>RUNNABLE（运行）：包括了操作系统线程状态中的Running和Ready，也就是处于此状态的线程可能正在运行，也可能正在等待系统资源，如等待CPU为它分配时间片</li>
+<li>BLOCKED（阻塞）：线程阻塞于锁</li>
+<li>WAITING（等待）：线程需要等待其他线程做出一些特定动作（通知或中断）</li>
+<li>TIME_WAITING（超时等待）：该状态不同于WAITING，它可以在指定的时间内自行返回</li>
+<li>TERMINATED（终止）：该线程已经执行完毕</li>
 </ol>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-5.jpg" alt></p>
 <h2 id="进程和线程，线程的通信方式"><a href="#进程和线程，线程的通信方式" class="headerlink" title="进程和线程，线程的通信方式"></a>进程和线程，线程的通信方式</h2><p>进程是资源分配的最小单位，线程是CPU调度的最小单位</p>
@@ -719,8 +719,12 @@ Java 不提供指">
 <p>如果指令甲happens-before指令乙，那么指令甲必须排序在指令乙之前，并且指令甲的执行结果对指令乙可见。</p>
 </blockquote>
 <p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-7.jpg" alt="happen-before"></p>
-<h3 id="synchronized和ReentrantLock的区别"><a href="#synchronized和ReentrantLock的区别" class="headerlink" title="synchronized和ReentrantLock的区别"></a>synchronized和ReentrantLock的区别</h3><p>ReentrantLock的特点，<strong>synchronized只能是非公平锁</strong>，ReentrantLock可以指定；ReentrantLock有condition，condition可以唤醒指定线程；lock.interrupt方法可以等待线程中断</p>
+<h3 id="synchronized和ReentrantLock的区别"><a href="#synchronized和ReentrantLock的区别" class="headerlink" title="synchronized和ReentrantLock的区别"></a>synchronized和ReentrantLock的区别</h3><p>synchronized是Java关键字，在jvm层面上，lock是一个类，juc，在jdk上</p>
+<p>lock可以获得锁的状态</p>
+<p>ReentrantLock的特点，<strong>synchronized只能是非公平锁</strong>，ReentrantLock可以指定；ReentrantLock有condition，condition可以唤醒指定线程；lock.interrupt方法可以等待线程中断</p>
 <p>在发生异常时，synchronized会自动释放锁，lock不会自动释放锁，需要在finally释放锁</p>
+<p>synchronized：假设A线程获得锁，B线程等待。如果A线程阻塞，B线程会一直等待</p>
+<p>ReentrantLock就提供了2种机制：可中断/可不中断<br>第一，B线程中断自己（或者别的线程中断它），但是ReentrantLock不去响应，继续让B线程等待，你再怎么中断，我全当耳边风（synchronized原语就是如此）；<br>第二，B线程中断自己（或者别的线程中断它），ReentrantLock处理了这个中断，并且不再等待这个锁的到来，完全放弃。</p>
 <h2 id="ThreadPool-中-submit-和-execute"><a href="#ThreadPool-中-submit-和-execute" class="headerlink" title="ThreadPool 中 submit 和 execute"></a>ThreadPool 中 submit 和 execute</h2><p>都是用来执行线程池的，只不过使用 execute 执行线程池<strong>不能有返回方法</strong>，而使用 submit 可以使用 <strong>Future 接收线程池执行的返回值</strong>。</p>
 <h2 id="ThreadPoolExecutor-都需要哪些参数"><a href="#ThreadPoolExecutor-都需要哪些参数" class="headerlink" title="ThreadPoolExecutor 都需要哪些参数"></a>ThreadPoolExecutor 都需要哪些参数</h2><ol>
 <li>corePoolSize：线程池中的核心线程数</li>
@@ -731,11 +735,15 @@ Java 不提供指">
 <li>threadFactory：为线程池提供创建新线程的<strong>线程工厂</strong></li>
 <li>rejectedExecutionHandler：线程池任务队列超过最大值之后的<strong>拒绝策略</strong></li>
 </ol>
-<h3 id="线程池有哪些"><a href="#线程池有哪些" class="headerlink" title="线程池有哪些"></a>线程池有哪些</h3><p>1.newCachedThreadPool创建一个可缓存线程池程，线程数量不定的线程池，并且其最大线程数为Integer.MAX_VALUE，适合执行大量的耗时较少的任务</p>
-<p>2.newFixedThreadPool 创建一个定长线程池，只有核心线程并且这些核心线程不会被回收，这样它更加快速底相应外界的请求</p>
-<p>3.newScheduledThreadPool 创建一个周期性执行任务的线程池，核心线程数量是固定的，而非核心线程数是没有限制的，主要用于执行定时任务和具有固定周期的重复任务</p>
-<p>4.newSingleThreadExecutor 创建一个单线程化的线程池，只有一个核心线程</p>
+<h3 id="线程池有哪些"><a href="#线程池有哪些" class="headerlink" title="线程池有哪些"></a>线程池有哪些</h3><p>1.new<strong>Cached</strong>ThreadPool创建一个可缓存线程池程，线程数量不定的线程池，并且其最大线程数为Integer.MAX_VALUE，适合执行大量的耗时较少的任务</p>
+<p>2.new<strong>Fixed</strong>ThreadPool 创建一个定长线程池，<strong>只有核心线程</strong>并且这些核心线程不会被回收，这样它更加快速地相应外界的请求</p>
+<p>3.new<strong>Scheduled</strong>ThreadPool 创建一个周期性执行任务的线程池，<strong>核心线程数量是固定的</strong>，而非核心线程数是没有限制的，主要用于执行定时任务和具有固定周期的重复任务</p>
+<p>4.new<strong>Single</strong>ThreadExecutor 创建一个单线程化的线程池，<strong>只有一个核心线程</strong></p>
 <h3 id="线程池的队列类型"><a href="#线程池的队列类型" class="headerlink" title="线程池的队列类型"></a>线程池的队列类型</h3><p>1、ArrayBlockingQueue<br>是一个基于数组结构的<strong>有界阻塞队列</strong>，此队列按 FIFO（先进先出）原则对元素进行排序。<br>2、LinkedBlockingQueue<br>一个基于链表结构的<strong>阻塞队列</strong>，此队列按FIFO （先进先出） 排序元素，吞吐量通常要高于ArrayBlockingQueue。静态工厂方法Executors.newFixedThreadPool（）使用了这个队列<br>3、SynchronousQueue<br>一个不存储元素的<strong>阻塞队列</strong>。每个插入操作必须等到另一个线程调用移除操作，否则插入操作一直处于阻塞状态，吞吐量通常要高于LinkedBlockingQueue，静态工厂方法Executors.newCachedThreadPool（5）使用了这个队列。<br>4、PriorityBlockingQueue<br>一个具有优先级的<strong>无限阻塞队列</strong>。</p>
+<h3 id="拒绝策略"><a href="#拒绝策略" class="headerlink" title="拒绝策略"></a>拒绝策略</h3><p>CallerRunsPolicy - 当触发拒绝策略，只要线程池没有关闭的话，则<strong>使用调用线程直接运行任务</strong>。一般并发比较小，性能要求不高，不允许失败。但是，由于调用者自己运行任务，如果任务提交速度过快，可能导致程序阻塞，性能效率上必然的损失较大</p>
+<p>AbortPolicy - 丢弃任务，并抛出拒绝执行 RejectedExecutionException 异常信息。线程池默认的拒绝策略。必须处理好抛出的异常，否则会打断当前的执行流程，影响后续的任务执行。</p>
+<p>DiscardPolicy - 直接丢弃，其他啥都没有</p>
+<p> DiscardOldestPolicy - 当触发拒绝策略，只要线程池没有关闭的话，丢弃阻塞队列 workQueue 中最老的一个任务，并将新任务加入</p>
 <h3 id="线程池中为什么先入队列而不是先创建最大线程"><a href="#线程池中为什么先入队列而不是先创建最大线程" class="headerlink" title="线程池中为什么先入队列而不是先创建最大线程"></a>线程池中为什么先入队列而不是先创建最大线程</h3><p>在创建新线程时，<strong>要获取全局锁</strong>，这时其他都得阻塞，影响效率。</p>
 <h3 id="线程池的作用"><a href="#线程池的作用" class="headerlink" title="线程池的作用"></a>线程池的作用</h3><ol>
 <li><strong>降低资源消耗</strong>。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。 </li>
@@ -859,19 +867,19 @@ Java 不提供指">
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/09/java/daemon-thread/">
+                <a href="/2021/03/09/interview/">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/74.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="面试">
                         
-                        <span class="card-title">Java的守护线程</span>
+                        <span class="card-title">面试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java中有两类线程：User Thread（用户线程）、Daemon Thread（守护线程）
+                            面试准备
                         
                     </div>
                     <div class="publish-info">
@@ -897,10 +905,6 @@ Java 不提供指">
                         <span class="chip bg-color">java</span>
                     </a>
                     
-                    <a href="/tags/thread/" target="_blank">
-                        <span class="chip bg-color">thread</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -916,7 +920,7 @@ Java 不提供指">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="Helm安装ingress">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/84.jpg" class="responsive-img" alt="Helm安装ingress">
                         
                         <span class="card-title">Helm安装ingress</span>
                     </div>
@@ -1125,7 +1129,7 @@ Java 不提供指">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">269.1k</span>
+            <span class="white-color">290.9k</span>
             
 
             <br>

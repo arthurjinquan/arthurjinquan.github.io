@@ -256,7 +256,7 @@ cd ~         ">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/73.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/70.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -411,14 +411,14 @@ cd ~         ">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    850
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    5 分
                 </div>
                 
                 
@@ -452,14 +452,17 @@ cd ~         ">
 <span class="token function">find</span> 目录 -name 文件名 <span class="token comment" spellcheck="true"># 查找文件</span>
 <span class="token function">vi</span>                    <span class="token comment" spellcheck="true"># 字母i进入编辑模式，esc退出编辑模式，wq是保存修改，q!是强制退出</span>
 <span class="token function">wc</span>                    <span class="token comment" spellcheck="true"># 计算指定文件的行数、字数，以及字节数</span>
-3 92 598 testfile     <span class="token comment" spellcheck="true"># testfile文件的行数为3、单词数92、字节数598</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+3 92 598 testfile     <span class="token comment" spellcheck="true"># testfile文件的行数为3、单词数92、字节数598</span>
+
+<span class="token function">du</span> -sh <span class="token keyword">.</span>              <span class="token comment" spellcheck="true"># 对当前目录下所有的目录和文件的大小进行汇总,-s表示汇总,-h人性化显示</span>
+<span class="token function">du</span> -sh *              <span class="token comment" spellcheck="true"># 对当前目录下每一个目录和文件的大小分别进行汇总</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ifconfig</span>              <span class="token comment" spellcheck="true"># 查看网络接口的状态，ip地址，物理地址等等</span>
 <span class="token function">ping</span>  ip              <span class="token comment" spellcheck="true"># 网络试探</span>
 <span class="token function">netstat</span>               <span class="token comment" spellcheck="true"># 显示当前应用的网络使用情况</span>
-<span class="token function">netstat</span> -an <span class="token operator">|</span> <span class="token function">grep</span> -w 21 <span class="token comment" spellcheck="true"># 21端口是否已经被占用</span>
+<span class="token function">netstat</span> -an <span class="token operator">|</span> <span class="token function">grep</span> 21 <span class="token comment" spellcheck="true"># 21端口是否已经被占用</span>
 <span class="token function">lsof</span>                  <span class="token comment" spellcheck="true"># 查看某个端口是否被占用 lsof -i:21</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="netstat-an"><a href="#netstat-an" class="headerlink" title="netstat -an"></a>netstat -an</h3><p>“-a”选项意在显示所有连接，当不附加”-n”选项时，它显示的是本地计算机的netbios名字+端口号。而加了”-n”选项后，它显示的是本地IP地址+端口号。</p>
-<p>grep -w（-w用于字符串精确匹配）</p>
+<p>grep -w（-w用于字符串精确匹配，默认匹配一个单词）例如我想匹配 “like”， 不加 -w 就会匹配到 “liker”， 加 -w 就不会匹配到</p>
 <h2 id="系统操作命令"><a href="#系统操作命令" class="headerlink" title="系统操作命令"></a>系统操作命令</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">shutdown</span>             <span class="token comment" spellcheck="true"># 关机</span>
 <span class="token function">uname</span>                <span class="token comment" spellcheck="true"># 获取当前系统信息</span>
 <span class="token function">kill</span> -9 进程         <span class="token comment" spellcheck="true"># 杀死进程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
@@ -482,9 +485,74 @@ cd ~         ">
 3.将所有的awk命令插入一个单独文件，然后调用：
 <span class="token function">awk</span> -f awk-script-file input-file<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
 其中，-f选项加载awk-script-file中的awk脚本，input-file<span class="token punctuation">(</span>s<span class="token punctuation">)</span>跟上面的是一样的。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p>vim的全局替换</p>
+<pre class="line-numbers language-bash"><code class="language-bash">:s / old / new / g                    <span class="token comment" spellcheck="true"># 把当前行old的每次出现改为new，而不只是该行的第一个old</span>
+:1, <span class="token variable">$s</span> / old / new / g                <span class="token comment" spellcheck="true"># 把整个文件中的old的每次出现都改为new</span>
+:% s / old / new / g                  <span class="token comment" spellcheck="true"># % 等价于1，$</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>! 是强制的意思</p>
+<p>按键 Esc 可编辑命令 ， Esc ：wq 之后回车就能强制保存修改内容</p>
+<h2 id="查看某个进程"><a href="#查看某个进程" class="headerlink" title="查看某个进程"></a>查看某个进程</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">top</span> -p 10997                          <span class="token comment" spellcheck="true"># 查看某个进程占用的CPU、内存</span>
+<span class="token function">ps</span> -a                                 <span class="token comment" spellcheck="true"># 列出所有运行中/激活进程</span>
+<span class="token function">ps</span> -ef<span class="token operator">|</span><span class="token function">grep</span>                           <span class="token comment" spellcheck="true"># 列出需要的进程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="top参数"><a href="#top参数" class="headerlink" title="top参数"></a>top参数</h2><p>平均负载（Load Average）是一段时间内系统的平均负载，这个一段时间一般取1分钟、5分钟、15分钟。</p>
+<p>第七行以下：各进程（任务）的状态监控<br>PID — 进程id</p>
+<p>USER — 进程所有者</p>
+<p>PR — 进程优先级</p>
+<p>NI — nice值。负值表示高优先级，正值表示低优先级</p>
+<p>VIRT — 进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES</p>
+<p>RES — 进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA</p>
+<p>SHR — 共享内存大小，单位kb</p>
+<p>S — 进程状态。D=不可中断的睡眠状态 R=运行 S=睡眠 T=跟踪/停止 Z=僵尸进程</p>
+<p>%CPU — 上次更新到现在的CPU时间占用百分比</p>
+<p>%MEM — 进程使用的物理内存百分比</p>
+<p>TIME+ — 进程使用的CPU时间总计，单位1/100秒</p>
+<p>COMMAND — 进程名称（命令名/命令行）</p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>统计一个文件中某一个字段的次数</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">grep</span> -c <span class="token string">'object'</span> fileName
 <span class="token function">grep</span> <span class="token string">'object'</span> fileName <span class="token operator">|</span> <span class="token function">wc</span> -l        <span class="token comment" spellcheck="true"># wc -l里-l显示行数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>liunx远程复制</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">scp</span> output.txt root@2g.CentOS.com:/opt/backup 
+<span class="token comment" spellcheck="true"># 把 output.txt 文件从本地系统复制到 2g.CentOS.com 远程系统的 /opt/backup 文件夹下</span>
+<span class="token function">scp</span> -r /home/daygeek/2g/shell-script/ root@:/opt/backup/
+<span class="token comment" spellcheck="true"># 同shell-script 文件夹下所有的文件一同复制到/opt/back 下</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>安装软件</p>
+<pre class="line-numbers language-bash"><code class="language-bash">rpm -ivh 软件包
+yum <span class="token function">install</span> package<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>打包</p>
+<p>常用参数：</p>
+<table>
+<thead>
+<tr>
+<th align="left">参数</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">-c</td>
+<td align="left">生成档案文件，创建打包文件</td>
+</tr>
+<tr>
+<td align="left">-v</td>
+<td align="left">列出归档解档的详细过程，显示进度</td>
+</tr>
+<tr>
+<td align="left">-f</td>
+<td align="left">指定档案文件名称，f后面一定是.tar文件，所以必须放选项最后</td>
+</tr>
+<tr>
+<td align="left">-t</td>
+<td align="left">列出档案中包含的文件</td>
+</tr>
+<tr>
+<td align="left">-x</td>
+<td align="left">解开档案文件</td>
+</tr>
+</tbody></table>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">tar</span> -cvf xxx.tar *                   <span class="token comment" spellcheck="true"># 当前目录所有文件</span>
+<span class="token function">tar</span> -cvf xxx.tar *.txt               <span class="token comment" spellcheck="true"># 以.txt结尾的文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>解包</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">tar</span> -xvf xxx.tar                     <span class="token comment" spellcheck="true"># 解包到当前目录</span>
+<span class="token function">tar</span> -xvf xxx.tar -C my-dir           <span class="token comment" spellcheck="true"># 解包到指定目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -591,7 +659,7 @@ cd ~         ">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/93.jpg" class="responsive-img" alt="sql的三值逻辑">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/90.jpg" class="responsive-img" alt="sql的三值逻辑">
                         
                         <span class="card-title">sql的三值逻辑</span>
                     </div>
@@ -640,7 +708,7 @@ cd ~         ">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/105.jpg" class="responsive-img" alt="最大公约数算法gcd">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/108.jpg" class="responsive-img" alt="最大公约数算法gcd">
                         
                         <span class="card-title">最大公约数算法gcd</span>
                     </div>
@@ -845,7 +913,7 @@ cd ~         ">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">269.1k</span>
+            <span class="white-color">290.9k</span>
             
 
             <br>

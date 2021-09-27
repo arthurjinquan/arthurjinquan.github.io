@@ -8,8 +8,8 @@
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
-    <meta name="description" content="前言支付模块是事务操作，如果在支付逻辑执行的过程中有异常，需要做回滚。比如你支付—订单表里插入了订单数据—成功—-然后调起支付失败，此时需要回滚订单表数据。
-transactional注解不生效transactional注解什么时候不生效？">
+    <meta name="description" content="前言支付模块是事务操作，如果在支付逻辑执行的过程中有异常，需要做回滚。比如你支付=&amp;gt;订单表里插入了订单数据=&amp;gt;成功=&amp;gt;然后调起支付失败，此时需要回滚订单表数据。
+transactional注解不生效的原因1、检查你的方法是">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -254,7 +254,7 @@ transactional注解不生效transactional注解什么时候不生效？">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/91.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -436,13 +436,12 @@ transactional注解不生效transactional注解什么时候不生效？">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>支付模块是事务操作，如果在支付逻辑执行的过程中有异常，需要做回滚。比如你支付—订单表里插入了订单数据—成功—-然后调起支付失败，此时需要回滚订单表数据。</p>
-<h2 id="transactional注解不生效"><a href="#transactional注解不生效" class="headerlink" title="transactional注解不生效"></a>transactional注解不生效</h2><p>transactional注解什么时候不生效？</p>
-<p>1、检查你的方法是不是public的。@Transactional注解只能应用到public可见度的方法上，如果应用在protected、private或者package可见度的方法上，也不会报错，不过事务设置不会起作用。</p>
-<p>2、检查你的异常类型是不是unchecked异常。默认情况下，Spring会对unchecked异常进行事务回滚，如果是checked异常则不回滚。如空指针异常、算术异常等，会被回滚；文件读写、网络出问题，spring就没法回滚了。如果你想check异常也回滚怎么办，注解上面写明异常类型即可：</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>支付模块是事务操作，如果在支付逻辑执行的过程中有异常，需要做回滚。比如你支付=&gt;订单表里插入了订单数据=&gt;成功=&gt;然后调起支付失败，此时需要回滚订单表数据。</p>
+<h2 id="transactional注解不生效的原因"><a href="#transactional注解不生效的原因" class="headerlink" title="transactional注解不生效的原因"></a>transactional注解不生效的原因</h2><p>1、<strong>检查你的方法是不是public的</strong>。@Transactional注解只能应用到public可见度的方法上，如果应用在protected、private或者package可见度的方法上，也不会报错，不过事务设置不会起作用。</p>
+<p>2、<strong>检查你的异常类型是不是unchecked异常</strong>。默认情况下，Spring会对unchecked异常进行事务回滚，如果是checked异常则不回滚。如空指针异常、算术异常等，会被回滚；文件读写、网络出问题，spring就没法回滚了。如果你想check异常也回滚怎么办，注解上面写明异常类型即可：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>rollbackFor <span class="token operator">=</span> Exception<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>类型的还有norollbackFor，自定义不回滚的异常。</p>
-<p>3、是否在service中进行了try…catch的操作，由于已经被捕获异常，故事务也不会回滚。如果非要在service中try…catch异常，又想要事务回滚，可在catch块中抛出运行时异常：</p>
+<p>3、是否在service中进行了<strong>try…catch</strong>的操作，由于已经被捕获异常，故事务也不会回滚。如果非要在service中try…catch异常，又想要事务回滚，可在catch块中抛出运行时异常：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">try</span><span class="token punctuation">{</span>
     <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>  
 <span class="token punctuation">}</span><span class="token keyword">catch</span><span class="token punctuation">(</span>Exception e<span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -490,7 +489,7 @@ transactional注解不生效transactional注解什么时候不生效？">
 </ol>
 <p>这些场景都会导致@Transactional失效</p>
 <h2 id="Transactional注解的使用场景和注意点"><a href="#Transactional注解的使用场景和注意点" class="headerlink" title="Transactional注解的使用场景和注意点"></a>Transactional注解的使用场景和注意点</h2><h3 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h3><p>分布式事务，能避免尽量避免，使用分布式事务中间件不是变慢这么简单，比如你用了事务包围里的一个函数是有一个数据库的写操作，spring会通过jdbc进行锁表的，而此时你又要RPC去调用其他服务，其他服务同样又要都这个表进行写入操作，此时就会死锁。所以如果是分布式事务的话，能避免就避免，因为不同的service是不同的人做，设计到的数据读写，你不是很清楚的情况下，很容易这样的。</p>
-<h3 id="单一表写操作"><a href="#单一表写操作" class="headerlink" title="单一表写操作"></a>单一表写操作</h3><p>单一表的写操作，就没必要加事务了，会降低性能，多表才需要加事务。</p>
+<h3 id="单一表写操作"><a href="#单一表写操作" class="headerlink" title="单一表写操作"></a>单一表写操作</h3><p><strong>单一表的写操作，就没必要加事务了，会降低性能，多表才需要加事务</strong>。</p>
 <p>mysql会帮你做好并发处理的，单表操作，对于程序逻辑而言是原子性的，不用加事务处理。</p>
 <blockquote>
 <p>pagehelper github上有给这个中间件，分页用的，很好用，SQL拦截的</p>
@@ -602,7 +601,7 @@ transactional注解不生效transactional注解什么时候不生效？">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/77.jpg" class="responsive-img" alt="timestamp时间格式">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/80.jpg" class="responsive-img" alt="timestamp时间格式">
                         
                         <span class="card-title">timestamp时间格式</span>
                     </div>
@@ -655,7 +654,7 @@ transactional注解不生效transactional注解什么时候不生效？">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/107.jpg" class="responsive-img" alt="Redis的cache">
+                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/110.jpg" class="responsive-img" alt="Redis的cache">
                         
                         <span class="card-title">Redis的cache</span>
                     </div>
@@ -868,7 +867,7 @@ transactional注解不生效transactional注解什么时候不生效？">
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">269.1k</span>
+            <span class="white-color">290.9k</span>
             
 
             <br>
