@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Servlet生命周期和PostConstruct、PreDestroy | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/52.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/52.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -439,7 +439,7 @@
                 <h2 id="Servlet-是什么"><a href="#Servlet-是什么" class="headerlink" title="Servlet 是什么"></a>Servlet 是什么</h2><p>Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的<strong>中间层</strong>。</p>
 <p>使用 Servlet，您可以收集来自网页表单的用户输入，呈现来自数据库或者其他源的记录，还可以动态创建网页。</p>
 <p>参考整理：<a href="https://www.zhihu.com/question/21416727" target="_blank" rel="noopener">https://www.zhihu.com/question/21416727</a></p>
-<h2 id="servlet就是一个Java接口"><a href="#servlet就是一个Java接口" class="headerlink" title="servlet就是一个Java接口"></a>servlet就是一个Java接口</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/servlet-idea.jpg" alt></p>
+<h2 id="servlet就是一个Java接口"><a href="#servlet就是一个Java接口" class="headerlink" title="servlet就是一个Java接口"></a>servlet就是一个Java接口</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/servlet-idea.jpg" alt></p>
 <p><strong>所以说网络协议、http什么的，servlet根本不管！也管不着！</strong></p>
 <p>那servlet是干嘛的？很简单，接口的作用是什么？规范呗！</p>
 <p>servlet接口定义的是一套处理网络请求的规范，所有实现servlet的类，都需要实现它那五个方法，其中最主要的是两个生命周期方法 <strong>init（）</strong>和<strong>destroy（）</strong>，还有一个处理请求的<strong>service（）</strong>，也就是说，所有实现servlet接口的类，或者说，所有想要处理网络请求的类，都需要回答这三个问题：</p>
@@ -463,7 +463,7 @@ Public <span class="token keyword">void</span> <span class="token function">some
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>其实就是初始化的顺序问题：</p>
 <p>执行顺序： <strong>父类静态变量或静态语句块–&gt;子类静态变量或静态语句块-&gt;父类实例变量或初始化语句块–&gt;父类构造方法-&gt;子类实例变量或初始化语句块-&gt;子类构造方法–&gt; @Autowired -&gt; @PostConstruct….-&gt; destroy -&gt; @PreDestroy</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/servlet-postconstruct.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/servlet-postconstruct.png" alt></p>
 <h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><h4 id="1-Spring项目加载数据字典"><a href="#1-Spring项目加载数据字典" class="headerlink" title="1.Spring项目加载数据字典"></a>1.Spring项目加载数据字典</h4><p>@PostConstruct注解的方法在项目启动的时候执行这个方法，也可以理解为在spring容器启动的时候执行，可作为一些<strong>数据的常规化加载</strong>，比如<strong>数据字典</strong>之类的。</p>
 <h4 id="2-Spring项目的定时任务"><a href="#2-Spring项目的定时任务" class="headerlink" title="2.Spring项目的定时任务"></a>2.Spring项目的定时任务</h4><p>spring自带的<strong>@schedule</strong>，没有开关，项目启动总会启动一个线程；做项目的时候就使用Java的timer，这个<strong>设置开关即可自由的控制</strong>，关闭的时候，<strong>不会启动线程</strong>；</p>
 <p>Java的timer也需要找到一个启动类，可以放到main函数里面启动，这样的话，代码的耦合性太高了，而使用PostConstruct是很干净的。</p>
@@ -589,7 +589,7 @@ Public <span class="token keyword">void</span> <span class="token function">some
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/70.jpg" class="responsive-img" alt="CDN（Content Delivery Network）">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/70.jpg" class="responsive-img" alt="CDN（Content Delivery Network）">
                         
                         <span class="card-title">CDN（Content Delivery Network）</span>
                     </div>
@@ -638,7 +638,7 @@ Public <span class="token keyword">void</span> <span class="token function">some
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/100.jpg" class="responsive-img" alt="索引失效的十大杂症">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/100.jpg" class="responsive-img" alt="索引失效的十大杂症">
                         
                         <span class="card-title">索引失效的十大杂症</span>
                     </div>

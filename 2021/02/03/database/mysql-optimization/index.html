@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>MySQL数据库优化方法 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/68.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/68.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -523,7 +523,7 @@ FOREIGNKEY<span class="token punctuation">(</span>CustomerID<span class="token p
 </blockquote>
 <p>索引失效的十大情况：<a href="http://arthurjq.com/2020/12/26/index-missing/">http://arthurjq.com/2020/12/26/index-missing/</a></p>
 <h2 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h2><p>就是将数据库分为主从库，一个主库（<strong>Master</strong>）用于写数据，多个从库（<strong>Slaver</strong>）进行轮询读取数据的过程，主从库之间通过某种通讯机制进行数据的同步，是一种常见的数据库架构。下面这张图就展示了 “一主二从” 的结构：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mysql-optimization-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mysql-optimization-1.png" alt></p>
 <h3 id="为什么要读写分离"><a href="#为什么要读写分离" class="headerlink" title="为什么要读写分离"></a>为什么要读写分离</h3><p>大多数互联网数据操作往往都是读多写少，随着数据的增长，数据库的“读”会首先成为瓶颈。如果我们希望能线性地提升数据库的读性能和写性能，就需要让读 写尽可能的不相互影响，各自为政。<strong>在使用读写分离之前我们应该考虑使用缓存能不能解决问题</strong>。然后再考虑对数据库按照 “读” 和 “写” 进行分组。读写分离意味着将一体的结构的进行分散，在数据量大、高并发的情景中要考虑以下这些问题：</p>
 <ol>
 <li>如何保证 <strong>Master</strong> 的高可用，故障转移，熔断限流等。</li>
@@ -533,7 +533,7 @@ FOREIGNKEY<span class="token punctuation">(</span>CustomerID<span class="token p
 <h2 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h2><p><strong>数据库垂直拆分、数据库水平拆分</strong> 统称 <strong>分库</strong>。是指按照特定的条条件和维度，将同一个数据库中的数据拆分到多个数据库（主机）上面以达到分散单库（主机）负载的效果。这样我们变相地降低了数据集的大小，以空间换时间来提升性能。</p>
 <h3 id="数据库垂直拆分"><a href="#数据库垂直拆分" class="headerlink" title="数据库垂直拆分"></a>数据库垂直拆分</h3><p><strong>数据库垂直拆分</strong> 指的是按照业务对数据库中的表进行分组，同组的放到一个新的数据库（逻辑上，并非实例）中。需要从实际业务出发将大业务分割成小业务。</p>
 <p>比如商城的整个业务中的 <strong>用户相关表，订单相关表，物流相关表</strong> 各自独立分类形成 <strong>用户系统数据库，订单系统数据库，物流系统数据库</strong> 如下图：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mysql-optimization-2.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mysql-optimization-2.png" alt></p>
 <p><strong>垂直分库是指按照业务将表进行分类，分布到不同的数据库上面，每个库可以放在不同的服务器上，它的核心理念是专库专用。</strong></p>
 <p>这样带来了一些好处： （a）业务清晰，职责单一 （b）易维护，易扩展 （c）数据服务化 </p>
 <p>同时也有一些负面的作用：</p>
@@ -544,7 +544,7 @@ FOREIGNKEY<span class="token punctuation">(</span>CustomerID<span class="token p
 <h3 id="数据库水平拆分"><a href="#数据库水平拆分" class="headerlink" title="数据库水平拆分"></a>数据库水平拆分</h3><p>在数据库垂直拆分后遇到单机数据库性能瓶颈之后，就可以考虑数据库水平拆分了。 </p>
 <p>之所以先垂直拆分才水平拆分，是因为垂直拆分后数据业务清晰而且单一，更加方便指定水平的标准。比如我们对商城业务垂直拆分后的 用户系统 进行水平拆分就比对整个商城业务进行水平拆分好找维度，我们可以根据用户注册时间的区间、用户的区域或者用户 ID 的范围、 hash 等条件，然后关联相关表的记录将数据进行拆分，如果放在整个商城业务上你是以用户为准还是以订单为准都不太好考虑。</p>
 <p>我们按照每100万为区间对用户系统水平拆分如下（按照 id % 2 分也可以）：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mysql-optimization-3.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mysql-optimization-3.png" alt></p>
 <p><strong>水平分库是把同一个表的数据按一定规则拆到不同的数据库中，每个库可以放在不同的服务器上。</strong></p>
 <p>这种拆分的好处在于： （a）单个库的容量可控 （b）单条记录保证了数据完整性 （c）数据关系可以通过 join 维持 （d） 避免了跨库事务 （e）稳定性体现在IO冲突减少，锁定减少，可用性指某个库出问题，部分可用；</p>
 <p>缺点同样存在：（a）拆分规则对编码有一定的影响 （b）不同业务的分区交互需要统筹设计</p>
@@ -556,7 +556,7 @@ FOREIGNKEY<span class="token punctuation">(</span>CustomerID<span class="token p
 <li>关联关系的列紧密的放在一起</li>
 </ol>
 <p>我们把用户表中常用的和不常用的而且大字段分离成两张表：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mysql-optimization-4.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mysql-optimization-4.png" alt></p>
 <p><strong>垂直分表定义：将一个表按照字段分成多表，每个表存储其中一部分字段。</strong></p>
 <p>它带来的提升是：</p>
 <ol>
@@ -570,18 +570,18 @@ FOREIGNKEY<span class="token punctuation">(</span>CustomerID<span class="token p
 <p><strong>水平分表是在同一个数据库内，把同一个表的数据按一定规则拆到多个表中。</strong></p>
 <p>这里简单阐述了几个数据库优化概念，在实际操作中往往会组合使用。我们在实际操作之前要做好数据量的预估，这样能够根据预测未来数据的增量来进行选型。业务数据增长较小，常用于表的拆分。增长特别大达到上万级别则可以选择分库，比如一些资金积分流水，历史记录之类的。有些时候并不是拆分完就万事大吉了，比如我们按照地区拆分后，A地区业务增长很快业绩很好，而B地区推广不力竞争激烈业绩萧条，造成了数据倾斜。也会影响分库分表的期望效果。这需要建立长效的监控预测机制来应对，甚至根据实际情况及时调整策略。数据拆分还面临分布式的很多问题，分布式事务，高可用，数据一致性，全局唯一性都是应该考虑的问题。</p>
 <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>分库分表神器 Sharding-JDBC，几千万的数据你不搞一下？：<a href="https://zhuanlan.zhihu.com/p/301031380" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/301031380</a></p>
-<h2 id="分库分表后sql的执行流程"><a href="#分库分表后sql的执行流程" class="headerlink" title="分库分表后sql的执行流程"></a>分库分表后sql的执行流程</h2><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-18.jpg" alt="解析流程" style="zoom:80%;">
+<h2 id="分库分表后sql的执行流程"><a href="#分库分表后sql的执行流程" class="headerlink" title="分库分表后sql的执行流程"></a>分库分表后sql的执行流程</h2><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-18.jpg" alt="解析流程" style="zoom:80%;">
 
 <p>解析过程分为词法解析和语法解析。词法接卸器用于将SQL拆解为不可再分的原子符号，称为Token，并根据不同数据库方言所提供的字典，将其归类为关键字，表达式，字面量和操作符。再使用语法解析器将SQL转换为抽象语法树（Abstract Syntax Tree）</p>
 <p>例如：SELECT id,name FROM t_user WHERE status = ‘ACTIVE’ AND age &gt; 18</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-19.jpg" alt="抽象语法树"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-19.jpg" alt="抽象语法树"></p>
 <p>关键字Token用绿色表示，变量Token用红色标识。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-20.jpg" alt="查询优化"></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-21.jpg" alt="SQL路由引擎"></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-22.jpg" alt="SQL改写"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-20.jpg" alt="查询优化"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-21.jpg" alt="SQL路由引擎"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-22.jpg" alt="SQL改写"></p>
 <p>将基于逻辑表的sql语句改写成真正到数据库执行的sql</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-23.jpg" alt="执行"></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-24.jpg" alt="结果归并"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-23.jpg" alt="执行"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-24.jpg" alt="结果归并"></p>
 
             </div>
             <hr />
@@ -688,7 +688,7 @@ FOREIGNKEY<span class="token punctuation">(</span>CustomerID<span class="token p
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/45.jpg" class="responsive-img" alt="Seata">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/45.jpg" class="responsive-img" alt="Seata">
                         
                         <span class="card-title">Seata</span>
                     </div>
@@ -745,7 +745,7 @@ FOREIGNKEY<span class="token punctuation">(</span>CustomerID<span class="token p
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/1.jpg" class="responsive-img" alt="分布式事务">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/1.jpg" class="responsive-img" alt="分布式事务">
                         
                         <span class="card-title">分布式事务</span>
                     </div>

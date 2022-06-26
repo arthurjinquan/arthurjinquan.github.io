@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>SQL的各种连接Join详解 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/44.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/44.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -493,7 +493,7 @@
 <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> <span class="token keyword">table</span> <span class="token number">2</span>
 <span class="token keyword">ON</span> <span class="token keyword">table</span> <span class="token number">1</span><span class="token punctuation">.</span>column_name<span class="token operator">=</span><span class="token keyword">table</span> <span class="token number">2</span><span class="token punctuation">.</span>column_name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注释：<strong>INNER JOIN与JOIN是相同</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-inner%20join.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-inner%20join.png" alt></p>
 <p>INNER JOIN产生的结果集中，是1和2的交集。</p>
 <p>用上边的Table A和Table B举个栗子：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> <span class="token keyword">Table</span> A <span class="token keyword">inner</span> <span class="token keyword">join</span> <span class="token keyword">Table</span> B
@@ -527,7 +527,7 @@
 <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> <span class="token keyword">table</span> <span class="token number">2</span>
 <span class="token keyword">ON</span> <span class="token keyword">table</span> <span class="token number">1</span><span class="token punctuation">.</span>column_name<span class="token operator">=</span><span class="token keyword">table</span> <span class="token number">2</span><span class="token punctuation">.</span>column_name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注释：在某些数据库中，LEFT JOIN 称为LEFT OUTER JOIN</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-left%20join.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-left%20join.png" alt></p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> <span class="token keyword">Table</span> A <span class="token keyword">left</span> <span class="token keyword">join</span> <span class="token keyword">Table</span> B
 <span class="token keyword">on</span> <span class="token keyword">Table</span> A<span class="token punctuation">.</span>id<span class="token operator">=</span><span class="token keyword">Table</span> B<span class="token punctuation">.</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>执行以上SQL输出结果如下：</p>
@@ -569,7 +569,7 @@
 <span class="token keyword">from</span> <span class="token keyword">table</span> <span class="token number">1</span>
 <span class="token keyword">FULL</span> <span class="token keyword">OUTER</span> <span class="token keyword">JOIN</span> <span class="token keyword">table</span> <span class="token number">2</span>
 <span class="token keyword">ON</span> <span class="token keyword">table</span> <span class="token number">1</span><span class="token punctuation">.</span>column_name<span class="token operator">=</span><span class="token keyword">table</span> <span class="token number">2</span><span class="token punctuation">.</span>column_name<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-full%20outer%20join.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-full%20outer%20join.png" alt></p>
 <p>FULL OUTER JOIN产生1和2的并集。但是需要注意的是，对于没有匹配的记录，则会以null做为值。</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> <span class="token keyword">Table</span> A <span class="token keyword">full</span> <span class="token keyword">outer</span> <span class="token keyword">join</span> <span class="token keyword">Table</span> B
 <span class="token keyword">on</span> <span class="token keyword">Table</span> A<span class="token punctuation">.</span>id<span class="token operator">=</span><span class="token keyword">Table</span> B<span class="token punctuation">.</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -619,23 +619,23 @@
 <p>UNION 操作符用于合并两个或多个 SELECT 语句的结果集。</p>
 <p>请注意，<strong>UNION 内部的 SELECT 语句必须拥有相同数量的列</strong>。列也必须拥有相似的数据类型。同时，<strong>每条 SELECT 语句中的列的顺序必须相同</strong>。UNION 只选取记录，而UNION ALL会列出所有记录。</p>
 <p>举个栗子，左边为TableA，右边为TableB：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-table.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-table.jpg" alt></p>
 <h3 id="UNION"><a href="#UNION" class="headerlink" title="UNION"></a>UNION</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> TableA <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> TableB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>结果为：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-union.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-union.jpg" alt></p>
 <p><strong>UNION选取不同值</strong>，会合并相同的字段</p>
 <h3 id="UNION-ALL"><a href="#UNION-ALL" class="headerlink" title="UNION ALL"></a>UNION ALL</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> TableA <span class="token keyword">UNION</span> <span class="token keyword">ALL</span> <span class="token keyword">SELECT</span> name <span class="token keyword">FROM</span> TableB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>结果为：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-union%20all.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-union%20all.jpg" alt></p>
 <p><strong>UNION ALL把所有记录全部列出来</strong>，重复的也会</p>
 <h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> TableA <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> TableB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>结果为：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-union2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-union2.jpg" alt></p>
 <p><strong>由于 id 1 Pirate 与 id 2 Pirate 并不相同，不合并</strong></p>
 <h2 id="笛卡尔积（cross-join）"><a href="#笛卡尔积（cross-join）" class="headerlink" title="笛卡尔积（cross join）"></a>笛卡尔积（cross join）</h2><p>还需要注册的是我们还有一个是“交差集” cross join, 这种Join没有办法用文式图表示，因为其就是把表A和表B的数据进行一个N*M的组合，即笛卡尔积。表达式如下：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> TableA <span class="token keyword">CROSS</span> <span class="token keyword">JOIN</span> TableB<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>这个笛卡尔乘积会产生 4 x 4 = 16 条记录，一般来说，我们很少用到这个语法。但是我们得小心，<strong>如果不是使用嵌套的select语句，一般系统都会产生笛卡尔乘积然再做过滤</strong>。这是对于性能来说是非常危险的，尤其是表很大的时候。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-sql%20join.png" alt></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-sql%20join.png" alt></p>
 <h2 id="Hash-Join"><a href="#Hash-Join" class="headerlink" title="Hash Join"></a>Hash Join</h2><p>这是join底层实现，有兴趣的话可以跳转学习：</p>
 <p>MySQL 8.0 新特性之哈希连接：<a href="https://zhuanlan.zhihu.com/p/88900956" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/88900956</a></p>
 
@@ -744,7 +744,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/65.jpg" class="responsive-img" alt="MySQL 的Join及底层实现原理">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/65.jpg" class="responsive-img" alt="MySQL 的Join及底层实现原理">
                         
                         <span class="card-title">MySQL 的Join及底层实现原理</span>
                     </div>
@@ -793,7 +793,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/103.jpg" class="responsive-img" alt="in和exists的区别">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/103.jpg" class="responsive-img" alt="in和exists的区别">
                         
                         <span class="card-title">in和exists的区别</span>
                     </div>

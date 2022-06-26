@@ -19,7 +19,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>debug流程 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -79,7 +79,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -163,7 +163,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -255,7 +255,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/86.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/86.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -445,7 +445,7 @@
 <li>如果按4这样粗略地排查看不出来的话就要看日志了，连接上本地服务器，命令行输入  tail  -300f   log日志文件  ，然后复现报bug的操作，拿到日志信息看具体是哪里有问题了，然后用swagger或者postman发送信息在本地环境debug一步一步排查，这种这么仔细一般都能解决大部分bug了。</li>
 </ol>
 <h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h2><p>比如我遇到了一个事务无限回滚的问题，这就的的确确是个大问题，先在本地环境尝试着能不能复现，在谷歌浏览器中按F12，查看回滚那一个操作到底干了些啥</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/debug-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/debug-1.jpg" alt></p>
 <blockquote>
 <p>比如上图url为：<code>http://10.0.1.117:10079/ssd/v1.0/flow/sterilize/batch/qt</code></p>
 <p><code>http://10.0.1.117:10079</code> 是服务器，本地就是localhost</p>
@@ -453,8 +453,8 @@
 <p><code>/flow/sterilize/batch/qt</code> 才是我们在源码要找的部分</p>
 </blockquote>
 <p>然后就去源码rest里找啦，一步一步找到rest.java文件，例如：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/debug-2.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/debug-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/debug-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/debug-3.jpg" alt></p>
 <p>如果找的过程中卡住了或者找不到的话就直接<strong>快捷键 ctrl + shift + f 全局搜索</strong>。</p>
 <p>找到@RequestMapping，发现value跟我们要找的url末尾部分完全一致，就是找对地方啦（有些目录要分两三段找，反正就是跟文件夹差不多）</p>
 <p>然后从rest-&gt;service-&gt;mapper的顺序过一过流程看看有没有什么错误，嗯，说实话一般都看不出来，这时候就要靠强大的log日志帮我们精确定位问题所在了。</p>
@@ -507,9 +507,9 @@ SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@43c921b8] was n
 <p>Bug：更新实例时会刷新出该实例对应的多条数据。</p>
 <p>目标：我们想让实例展示唯一一条数据，而且还是最新的一条数据。</p>
 <p>跟上一个栗子操作差不多，先去F12看后台到底调用了哪个接口</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/debug-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/debug-4.jpg" alt></p>
 <p>然后找到对应的rest：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/debug-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/debug-5.jpg" alt></p>
 <p>对应的接口代码：</p>
 <p>rest层（FlowStorageRest）</p>
 <pre class="line-numbers language-java"><code class="language-java">  <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/s"</span><span class="token punctuation">)</span>
@@ -645,7 +645,7 @@ SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@43c921b8] was n
 <p>然后把修改的部分粘贴到mapper里，install，重新发布新jar包就可以了。</p>
 <p>到这就把坑给填了，果然处理了一个bug就会诞生更多的bug。</p>
 <p>附送一张BUG处理流程（Boss画的）：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/debug%E6%B5%81%E7%A8%8B.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/debug%E6%B5%81%E7%A8%8B.png" alt></p>
 
             </div>
             <hr />
@@ -752,7 +752,7 @@ SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@43c921b8] was n
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/19.jpg" class="responsive-img" alt="REST和RESTful设计风格">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/19.jpg" class="responsive-img" alt="REST和RESTful设计风格">
                         
                         <span class="card-title">REST和RESTful设计风格</span>
                     </div>
@@ -801,7 +801,7 @@ SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@43c921b8] was n
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/30.jpg" class="responsive-img" alt="JDBC与Druid简单介绍及Druid与MyBatis连接数据库">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/30.jpg" class="responsive-img" alt="JDBC与Druid简单介绍及Druid与MyBatis连接数据库">
                         
                         <span class="card-title">JDBC与Druid简单介绍及Druid与MyBatis连接数据库</span>
                     </div>

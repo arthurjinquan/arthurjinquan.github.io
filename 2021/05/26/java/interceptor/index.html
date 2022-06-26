@@ -19,7 +19,7 @@ init(FilterConfig conf">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Filter 和 Interceptor | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -79,7 +79,7 @@ init(FilterConfig conf">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -163,7 +163,7 @@ init(FilterConfig conf">
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -255,7 +255,7 @@ init(FilterConfig conf">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/104.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/104.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -506,7 +506,7 @@ init(FilterConfig conf">
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">FilterChain</span> <span class="token punctuation">{</span>
     <span class="token keyword">void</span> <span class="token function">doFilter</span><span class="token punctuation">(</span>ServletRequest var1<span class="token punctuation">,</span> ServletResponse var2<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException<span class="token punctuation">,</span> ServletException<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interceptor-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interceptor-1.png" alt></p>
 <p>ApplicationFilterChain里面能拿到我们自定义的xxxFilter类，在其内部回调方法doFilter里调用各个自定义xxxFilter过滤器，并执行 doFilter 方法。</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">ApplicationFilterChain</span> <span class="token keyword">implements</span> <span class="token class-name">FilterChain</span> <span class="token punctuation">{</span>
     <span class="token annotation punctuation">@Override</span>
@@ -534,8 +534,8 @@ init(FilterConfig conf">
     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="使用范围不同"><a href="#使用范围不同" class="headerlink" title="使用范围不同"></a>使用范围不同</h3><p>过滤器Filter 的使用要依赖于Tomcat等容器，导致它只能在web程序中使用。</p>
 <p>而拦截器Interceptor 它是一个Spring组件，并由Spring容器管理，并不依赖Tomcat等容器，是可以单独使用的。不仅能应用在web程序中，也可以用于Application、Swing等程序中。</p>
-<h3 id="触发时机不同"><a href="#触发时机不同" class="headerlink" title="触发时机不同"></a>触发时机不同</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interceptor-3.png" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interceptor-4.png" alt></p>
+<h3 id="触发时机不同"><a href="#触发时机不同" class="headerlink" title="触发时机不同"></a>触发时机不同</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interceptor-3.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interceptor-4.png" alt></p>
 <p>过滤器（Filter）：可以拿到原始的http请求，但是拿不到你请求的控制器和请求控制器中的方法的信息。</p>
 <p>拦截器（Interceptor）：可以拿到你请求的控制器和方法，却拿不到请求方法的参数。</p>
 <p>切片  （Aspect） : 可以拿到方法的参数，但是却拿不到http请求和响应的对象</p>
@@ -696,7 +696,7 @@ logger<span class="token punctuation">.</span><span class="token function">info<
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/118.jpg" class="responsive-img" alt="highbit和lowbit函数">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/118.jpg" class="responsive-img" alt="highbit和lowbit函数">
                         
                         <span class="card-title">highbit和lowbit函数</span>
                     </div>
@@ -745,7 +745,7 @@ logger<span class="token punctuation">.</span><span class="token function">info<
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/54.jpg" class="responsive-img" alt="枚举enum">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/54.jpg" class="responsive-img" alt="枚举enum">
                         
                         <span class="card-title">枚举enum</span>
                     </div>

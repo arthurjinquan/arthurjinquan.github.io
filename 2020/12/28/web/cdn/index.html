@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>CDN（Content Delivery Network） | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/70.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/70.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -446,8 +446,8 @@
 <li>全局负载均衡设备把服务器的IP地址返回给用户。</li>
 <li>用户向缓存服务器发起请求，缓存服务器响应用户请求，将用户所需内容传送到用户终端。如果这台缓存服务器上并没有用户想要的内容，而区域均衡设备依然将它分配给了用户，那么这台服务器就要向它的上一级缓存服务器请求内容，直至追溯到网站的源服务器将内容拉到本地。</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-example2.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-example.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-example2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-example.jpg" alt></p>
 <p>借用阿里云官网的例子，来简单介绍CDN的工作原理。</p>
 <p>假设通过CDN加速的域名为<code>www.a.com</code>，接入CDN网络，开始使用加速服务后，当终端用户（北京）发起HTTP请求时，处理流程如下：</p>
 <ol>
@@ -495,9 +495,9 @@
 </li>
 </ul>
 <p><strong>CDN基础架构</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-infrastructure.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-infrastructure.jpg" alt></p>
 <p><strong>CDN部署架构</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-deployment%20architecture.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-deployment%20architecture.jpg" alt></p>
 <h3 id="为什么要使用CDN"><a href="#为什么要使用CDN" class="headerlink" title="为什么要使用CDN"></a>为什么要使用CDN</h3><p>使用CDN的第一个也是最重要的原因：<strong>为了加速网站的访问</strong><br>除此之外，CDN还有一些作用：</p>
 <ol>
 <li><strong>为了实现跨运营商、跨地域的全网覆盖</strong><br>互联不互通、区域ISP地域局限、出口带宽受限制等种种因素都造成了网站的区域性无法访问。CDN加速可以覆盖全球的线路，通过和运营商合作，部署IDC资源，在全国骨干节点商，合理部署CDN边缘分发存储节点，充分利用带宽资源，平衡源站流量。阿里云在国内有500+节点，海外300+节点，覆盖主流国家和地区不是问题，可以确保CDN服务的稳定和快速。</li>
@@ -518,7 +518,7 @@
 <p>这就意味着，大促高峰期，有上千万的图片刚生成就会被用户访问。那这个情况会产生什么问题呢，让我们先了解下淘宝的图片空间和CDN的架构，就清楚了。</p>
 <h2 id="淘宝图片空间和CDN的架构"><a href="#淘宝图片空间和CDN的架构" class="headerlink" title="淘宝图片空间和CDN的架构"></a>淘宝图片空间和CDN的架构</h2><p>淘宝整个图片的访问链路有三级缓存（客户端本地、CDN L1、CDN L2），所有图片都持久化的存储到OSS中。真正处理图片的是img-picasso系统，它的功能比较复杂，包括从OSS读取文件，对图片尺寸进行缩放，编解码，所以机器成本比较高。</p>
 <p>CDN的缓存分成2级，合理的分配L1和L2的比例，一方面，可以通过<strong>一致性hash</strong>的手段，在同等资源的情况下，缓存更多内容，提升整体缓存命中率；另一方面，可以平衡计算和IO，充分利用不同配置的机器的能力。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-cache.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-cache.jpg" alt></p>
 <p>用户访问图片的过程如下：</p>
 <ol>
 <li>用户通过手机淘宝来搜索商品或者查看宝贝详情。</li>
@@ -528,7 +528,7 @@
 <li>从CDN L2回源图片，如果L2有该图片的缓存，则客户端渲染图片，<strong>同时CDN L1及客户端缓存图片内容</strong>，如果CDN L2没有缓存该图片，则执行下一步。</li>
 <li>从图片空间回源图片，图片空间会从OSS拉取图片源文件，按要求进行尺寸缩放，然后执行编解码，返回客户端能够支持的图片内容，之后客户端就可以渲染图片，同时CDN的L1、L2以及客户端<strong>都</strong>会缓存图片内容。</li>
 </ol>
-<h2 id="频繁换图带来的技术挑战"><a href="#频繁换图带来的技术挑战" class="headerlink" title="频繁换图带来的技术挑战"></a>频繁换图带来的技术挑战</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-cachemiss.jpg" alt></p>
+<h2 id="频繁换图带来的技术挑战"><a href="#频繁换图带来的技术挑战" class="headerlink" title="频繁换图带来的技术挑战"></a>频繁换图带来的技术挑战</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-cachemiss.jpg" alt></p>
 <p>当商品的价格发生变化时，我们会使用新的价格重新合成图片，更新商品中心中存储的图片URL。</p>
 <p>这样会带来2个问题：</p>
 <ol>
@@ -543,7 +543,7 @@
 <li>在访问高峰到来之前，提前预热图片到CDN，可以避免CDN缓存失效对源站的压力。</li>
 </ol>
 <p>下面，介绍下我们具体是怎么做到这2点的。</p>
-<h2 id="频繁换图的应对方案"><a href="#频繁换图的应对方案" class="headerlink" title="频繁换图的应对方案"></a>频繁换图的应对方案</h2><p><strong>改图保持图片URL不变</strong><br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-cachemiss2.jpg" alt></p>
+<h2 id="频繁换图的应对方案"><a href="#频繁换图的应对方案" class="headerlink" title="频繁换图的应对方案"></a>频繁换图的应对方案</h2><p><strong>改图保持图片URL不变</strong><br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-cachemiss2.jpg" alt></p>
 <p>图片内容发生变化时，执行下面2个操作：</p>
 <ol>
 <li>更新OSS内容：使用新的图片内容替换OSS中老的图片内容</li>
@@ -555,7 +555,7 @@
 <h3 id="OSS三地同步"><a href="#OSS三地同步" class="headerlink" title="OSS三地同步"></a>OSS三地同步</h3><p>淘宝的图片空间，承载了淘系所有图片的上下行稳定性保障，为了保障高可用，<strong>一份资源会存储到三地OSS</strong>。图片上传时，默认只上传一地，利用OSS的能力，自动同步到另外两地。</p>
 <p>但是使用URL不变方案，CDN缓存已经清除完成后，如果另外2地的OSS还未同步完成，用户访问后，就会回源到旧的图片内容，发现图片内容没有变化。</p>
 <p>针对该问题，我们<strong>将异步同步OSS软链的模式，改成三地同步建软链，三地都返回成功后，再去清除CDN缓存</strong>，这就保证了用户访问的图片一定是最新的内容。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-cachemiss3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-cachemiss3.jpg" alt></p>
 <h3 id="图片尺寸收敛"><a href="#图片尺寸收敛" class="headerlink" title="图片尺寸收敛"></a>图片尺寸收敛</h3><p>同一张商品图片会用于不同的场景坑位展现，不同的坑位对图片的尺寸有不同的要求。为此，图片空间提供了一项功能，可以方便的生成不同尺寸的缩率图。只需要访问图片时，给图片增加不同的后缀，img-picasso源站就可以按要求进行图片进行缩放。</p>
 <p>由于历史原因，之前对缩放的尺寸种类没有限制，导致CDN上的图片后缀格式多达2400种+，TOP6格式覆盖率46%，TOP15格式覆盖率64%。这意味着，一张图片，在cdn上最多可能有2400+个不同的url，当图片内容变化后，要把这些缓存全部清掉，才能保证所有用户看到的图片都是新内容。</p>
 <p>为了解决这个问题，我们对域名格式进行了收敛。</p>
@@ -567,7 +567,7 @@
 <p>我们重新将图片质量定义为高质量图片和低质量图片，收敛格式为 q90 和 p50s150<br>这样，就可以把2000多种格式收敛到6种主要格式，CDN清除缓存才变得可行。</p>
 <h3 id="多副本清除CDN缓存"><a href="#多副本清除CDN缓存" class="headerlink" title="多副本清除CDN缓存"></a>多副本清除CDN缓存</h3><p>通过图片尺寸收敛，每张图片只需要清除6个不同的url就可以了，那能不能进一步提升刷新效率呢？</p>
 <p>为此，阿里云CDN为我们提供了多副本刷新的解决方案：每种不同后缀的图片，作为图片的一个副本，<strong>在CDN的swift层增加一层KV结构，存储url和不同副本的映射关系</strong>，清除缓存时，可以通过该结构找到所有副本，实现快速清除所有副本。这样，每张图片，我们只需要调用一次CDN清除缓存接口就可以了，极大提升了CDN缓存刷新效率。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-cachemiss4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-cachemiss4.jpg" alt></p>
 <h3 id="图片域名收敛"><a href="#图片域名收敛" class="headerlink" title="图片域名收敛"></a>图片域名收敛</h3><p>淘系的图片域名有300多种，主要有下面2个原因：</p>
 <ol>
 <li>图片完整的链接太长，所以存储时经常只存最后一段，业务自己来拼域名，很多业务就自己申请了一个图片域名来拼。</li>
@@ -580,13 +580,13 @@
 <li>对于手淘和猫客客户端，图片访问都收口在图片库，我们推进图片库进行改造，符合一定规则的url，统一收敛到<code>http://picasso.alicdn.com</code>，实现了域名的一刀切。</li>
 <li>对于PC浏览器端，就比较麻烦了，没有统一收口的地方。我们只能退而求其次，针对访问最多的6大域名，在cdn上配置域名转发规则，重定向到picasso域名。</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-cachemiss5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-cachemiss5.jpg" alt></p>
 <p>通过这种方式，我们实现了全网99%以上的图片访问流量都路由到picasso域名，图片内容发生变化时，通过清除picasso域名的cdn缓存，就能保证基本所有的场景都能看到新的图片内容。</p>
 <h2 id="客户端及浏览器缓存"><a href="#客户端及浏览器缓存" class="headerlink" title="客户端及浏览器缓存"></a>客户端及浏览器缓存</h2><p>通过多副本和图片域名收敛，cdn的缓存问题得到了解决。但在cdn之上，用户图片访问首先是来自客户端或者浏览器，这里也会有一层缓存。</p>
 <p>大家知道，浏览器的缓存都遵循标准的http max-age协议，指定该header后，到了时间图片就会失效，访问到新的图片。所以我们可以在源站img-picasso回源给cdn时，添加max-age协议头，值为1分钟，cdn会原封不动的透给浏览器，这样浏览器就可以实现1分钟内图片缓存失效，重新到cdn拉新的图片资源。</p>
 <p>对于手机淘宝客户端，我们在原有的LRU缓存机制之上，另外支持标准的http协议。这样，手机淘宝也实现了1分钟内图片缓存失效。</p>
 <h3 id="提前预热CDN图片"><a href="#提前预热CDN图片" class="headerlink" title="提前预热CDN图片"></a>提前预热CDN图片</h3><p>通过改图保持图片URL不变，我们解决了改图对商品链路缓存的影响。但是，图片变化时，虽然URL没有变，但我们清除了CDN缓存，导致用户访问时还是会回源到img-picasso源站，所以对图片源站的压力依然存在。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/cdn-cachemiss6.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/cdn-cachemiss6.jpg" alt></p>
 <p>我们发现，商品的价格变化大部分发生在大促节奏变化的时刻，基于这个特点，我们通过提前合成图片，提前预热到CDN，可以实现图片切换瞬间生效，同时对源站没有压力。</p>
 <p>具体方案如下：</p>
 <ol>
@@ -709,7 +709,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/17.jpg" class="responsive-img" alt="一致性Hash原理与实现">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/17.jpg" class="responsive-img" alt="一致性Hash原理与实现">
                         
                         <span class="card-title">一致性Hash原理与实现</span>
                     </div>
@@ -766,7 +766,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/52.jpg" class="responsive-img" alt="Servlet生命周期和PostConstruct、PreDestroy">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/52.jpg" class="responsive-img" alt="Servlet生命周期和PostConstruct、PreDestroy">
                         
                         <span class="card-title">Servlet生命周期和PostConstruct、PreDestroy</span>
                     </div>

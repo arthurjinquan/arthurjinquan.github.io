@@ -18,7 +18,7 @@ IOCIO">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Java进阶 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@ IOCIO">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@ IOCIO">
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@ IOCIO">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/100.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/100.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -460,7 +460,7 @@ IOCIO">
 <p>再是初始化的具体操作，有 Aware 接口的依赖注入、BeanPostProcessor 在初始化前后的处理以及 InitializingBean 和 init-method 的初始化操作；</p>
 <p>销毁的具体操作，有注册相关销毁回调接口，最后通过DisposableBean 和 destory-method 进行销毁。</p>
 <p><a href="https://arthurjq.com/2020/12/29/java/spring-bean-life-cycle/">https://arthurjq.com/2020/12/29/java/spring-bean-life-cycle/</a></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-7.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-advance-7.jpg" alt></p>
 <p>三级缓存（解决循环依赖）：</p>
 <p>一级：singletonObjects map&lt;beanName，Object&gt; （单例池）</p>
 <p>二级：earlySingletonObjects map&lt;beanName，Object&gt; （提前AOP）</p>
@@ -485,7 +485,7 @@ IOCIO">
 <li>creatingSet.remove（Aservice）</li>
 <li>将对象放入单例池</li>
 </ol>
-<h2 id="Spring-Bean作用域"><a href="#Spring-Bean作用域" class="headerlink" title="Spring Bean作用域"></a>Spring Bean作用域</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-1.jpg" alt></p>
+<h2 id="Spring-Bean作用域"><a href="#Spring-Bean作用域" class="headerlink" title="Spring Bean作用域"></a>Spring Bean作用域</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-advance-1.jpg" alt></p>
 <h2 id="Spring框架中的设计模式"><a href="#Spring框架中的设计模式" class="headerlink" title="Spring框架中的设计模式"></a>Spring框架中的设计模式</h2><h3 id="简单工厂"><a href="#简单工厂" class="headerlink" title="简单工厂"></a>简单工厂</h3><p>由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类</p>
 <p>BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得Bean对象，但是否是在传入参数后创建还是传入参数前创建根据具体情况来定。</p>
 <h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>实现了FactoryBean接口的bean，spring会在使用getBean（）调用获得该bea n时，会自动调用该bean的getObject（）方法，所以返回的不是factory这个bean，而是这个bean.getObject（）方法的返回值。</p>
@@ -541,7 +541,7 @@ String <span class="token function">getDescription</span><span class="token punc
 <li>DispatcherServlet响应用户</li>
 </ol>
 <h2 id="SpringBoot自动装配"><a href="#SpringBoot自动装配" class="headerlink" title="SpringBoot自动装配"></a>SpringBoot自动装配</h2><p>从主启动的SpringBootApplication注解里可以看出Spring的配置类也是Spring的一个Component。EnableAutoConfiguration注解开启自动装配功能，使用import注解获取扫描的包路径，将主配置类的所在包及子包里面的所有组件加载到Spring容器。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-advance-2.jpg" alt></p>
 <h2 id="和"><a href="#和" class="headerlink" title="#{ }和${ }"></a>#{ }和${ }</h2><p>#{ }是预编译处理，是占位符，${ }是字符串替换，是拼接符</p>
 <ol>
 <li>Mybatis在处理#{ }时，会将sql中的#{ }替换为 ？号，调用PreparedStatement来赋值（会自动加单引号）；</li>
@@ -582,8 +582,8 @@ String <span class="token function">getDescription</span><span class="token punc
 <li><strong>trx_id</strong>：用来存储每次对某条聚簇索引记录进行修改的时候的事务id</li>
 <li><strong>roll_pointer</strong>：每次对聚簇索引修改的时候，都会把老版本写入undo日志中。这个roll_pointer就是存了个<strong>指针</strong>，指向<strong>索引记录的上一个版本</strong>的位置。（注意插入操作的undo日志没有这个属性，因为它没有老版本）</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-3.jpg" alt></p>
-<h2 id="mysql主从同步原理"><a href="#mysql主从同步原理" class="headerlink" title="mysql主从同步原理"></a>mysql主从同步原理</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-2.png" alt="mysql主从复制"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-advance-3.jpg" alt></p>
+<h2 id="mysql主从同步原理"><a href="#mysql主从同步原理" class="headerlink" title="mysql主从同步原理"></a>mysql主从同步原理</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-2.png" alt="mysql主从复制"></p>
 <p>主要由三个线程：master（binlog dump thread）、slave（I / O thread、SQL thread）</p>
 <ol>
 <li>主节点binlog，主从复制的基础是<strong>主库记录数据库的所有变更记录到binlog</strong>。binlog是数据库服务器启动的那一刻起，保存所有修改数据库结构或内容的一个文件。</li>
@@ -611,7 +611,7 @@ String <span class="token function">getDescription</span><span class="token punc
 <li>ip_hash法，解决session共享问题</li>
 <li>最小连接数法，看谁最空闲</li>
 </ol>
-<h2 id="分布式下Session共享方案"><a href="#分布式下Session共享方案" class="headerlink" title="分布式下Session共享方案"></a>分布式下Session共享方案</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-4.jpg" alt></p>
+<h2 id="分布式下Session共享方案"><a href="#分布式下Session共享方案" class="headerlink" title="分布式下Session共享方案"></a>分布式下Session共享方案</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-advance-4.jpg" alt></p>
 <h2 id="分布式锁解决方案"><a href="#分布式锁解决方案" class="headerlink" title="分布式锁解决方案"></a>分布式锁解决方案</h2><p>需要这个锁独立于每一个服务之外，而不是在服务里面。</p>
 <h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>利用<strong>主键冲突</strong>控制一次只有一个线程能获取锁，非阻塞（要自己写阻塞代码）、不可重入（递归不支持，要自己实现AQS）、单点、不支持失效时间（要自己写定时器）</p>
 <p>比如在数据库中建张表，采用唯一约束，要获得锁就往数据库中插入同一个key的记录放到唯一键上面，如果放进去了就是拿到锁了。</p>
@@ -660,8 +660,8 @@ String <span class="token function">getDescription</span><span class="token punc
 <p>如果noAck = false，消费者接受每一条消息后都必须确认，只有消费者确认了消息，RabbitMQ才能安全地把消息从队列中删除。</p>
 <p>RabbitMQ不会为未ack的消息设置超时时间，它判断此消息是否需要重新投递给消费者的唯一依据是消费该消息的消费者连接是否已经断开。这样设计的原因是RabbitMQ允许消费者消费一条消息的时间可以很长（也起到<strong>限流</strong>的作用），保证数据的最终一致性。<strong>因为如果消费者不返回ack的话，RabbitMQ也不知道消费者是否处理完了没有，擅自把消息发给其他消费者或者删除都会导致数据不一致</strong>。</p>
 <p>如果消费者返回ack之前断开了链接。RabbitMQ会重新发送给下一个订阅的消费者。（可能存在消息重复消费的隐患，需要业务方保持数据一致，幂等性）</p>
-<h2 id="RabbitMQ事务消息"><a href="#RabbitMQ事务消息" class="headerlink" title="RabbitMQ事务消息"></a>RabbitMQ事务消息</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-5.jpg" alt></p>
-<h2 id="RabbitMQ死信队列和延时队列"><a href="#RabbitMQ死信队列和延时队列" class="headerlink" title="RabbitMQ死信队列和延时队列"></a>RabbitMQ死信队列和延时队列</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-6.jpg" alt></p>
+<h2 id="RabbitMQ事务消息"><a href="#RabbitMQ事务消息" class="headerlink" title="RabbitMQ事务消息"></a>RabbitMQ事务消息</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-advance-5.jpg" alt></p>
+<h2 id="RabbitMQ死信队列和延时队列"><a href="#RabbitMQ死信队列和延时队列" class="headerlink" title="RabbitMQ死信队列和延时队列"></a>RabbitMQ死信队列和延时队列</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-advance-6.jpg" alt></p>
 
             </div>
             <hr />
@@ -768,7 +768,7 @@ String <span class="token function">getDescription</span><span class="token punc
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/81.jpg" class="responsive-img" alt="Dubbo的整体架构设计及分层">
                         
                         <span class="card-title">Dubbo的整体架构设计及分层</span>
                     </div>
@@ -817,7 +817,7 @@ String <span class="token function">getDescription</span><span class="token punc
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/79.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/79.jpg" class="responsive-img" alt="Java的守护线程">
                         
                         <span class="card-title">Java的守护线程</span>
                     </div>

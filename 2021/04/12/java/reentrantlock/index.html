@@ -17,7 +17,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>ReentrantLock | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -77,7 +77,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -161,7 +161,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -253,7 +253,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/97.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/97.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -465,7 +465,7 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
     <span class="token comment" spellcheck="true">//唤醒等待线程</span>
     <span class="token function">unpark</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="ReentrantLock结构组成"><a href="#ReentrantLock结构组成" class="headerlink" title="ReentrantLock结构组成"></a>ReentrantLock结构组成</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrantlock-1.png" alt></p>
+<h2 id="ReentrantLock结构组成"><a href="#ReentrantLock结构组成" class="headerlink" title="ReentrantLock结构组成"></a>ReentrantLock结构组成</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrantlock-1.png" alt></p>
 <p>首先<code>ReentrantLock</code>实现了<code>Lock</code>接口，<code>Lock</code>接口是<code>Java</code>中对锁操作行为的统一规范，<code>Lock</code>接口的定义如下</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Lock</span> <span class="token punctuation">{</span>
 
@@ -500,9 +500,9 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
     Condition <span class="token function">newCondition</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>Lock</code>接口定义的函数不多，接下来<code>ReentrantLock</code>要去实现这些函数，遵循着解耦可扩展设计，<code>ReentrantLock</code>内部定义了专门的组件<code>Sync</code>， <code>Sync</code>继承<code>AbstractQueuedSynchronizer</code>提供释放资源的实现，<code>NonfairSync</code>和<code>FairSync</code>是基于<code>Sync</code>扩展的子类，即<code>ReentrantLock</code>的非公平模式与公平模式，它们作为<code>Lock</code>接口功能的基本实现。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrantlock-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrantlock-2.jpg" alt></p>
 <p>大白话来说，企业的老板，为了响应政府的政策，需要对企业内部做调整，但是政府每年政策都不一样，每次都要自己去亲力亲为，索性长痛不如短痛，专门成立一个政策应对部门，以后这些事情都交予这个部门去做，老板只需要指挥它们就好了。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrantlock-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrantlock-3.jpg" alt></p>
 <h2 id="Sync"><a href="#Sync" class="headerlink" title="Sync"></a>Sync</h2><p><code>Sync</code>可以说是<code>ReentrantLock</code>的亲儿子，它寄托了全村的希望，完美的继承了<code>AbstractQueuedSynchronizer</code>，是<code>ReentrantLock</code>的核心，后面的<code>NonfairSync</code>与<code>FairSync</code>都是基于<code>Sync</code>扩展出来的子类。</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">abstract</span> <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Sync</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractQueuedSynchronizer</span> <span class="token punctuation">{</span>
         <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> <span class="token operator">-</span>5179523762034025860L<span class="token punctuation">;</span>
@@ -565,9 +565,9 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
         <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>Sync</code>逻辑都比较简单，实现了<code>A Q S</code>类的释放资源（<strong>tryRelease</strong>），然后抽象了一个获取锁的函数让子类自行实现（<strong>lock</strong>），再加一个偏心的函数<code>nonfairTryAcquire</code>，</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrantlock-4.jpg" alt="tryRelease流程图"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrantlock-4.jpg" alt="tryRelease流程图"></p>
 <h2 id="NonfairSync"><a href="#NonfairSync" class="headerlink" title="NonfairSync"></a>NonfairSync</h2><p>简单的说下<code>A Q S（AbstractQueuedSynchronizer）</code>流程，<code>A Q S</code>为加锁和解锁过程提供了统一的模板函数，加锁与解锁的模板流程是，获取锁失败的线程，会进入<code>CLH</code>队列阻塞，其他线程解锁会唤醒<code>CLH</code>队列线程</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrantlock-5.jpg" alt="aqs简化流程"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrantlock-5.jpg" alt="aqs简化流程"></p>
 <p>上图中，线程释放锁时，会唤醒<code>CLH</code>队列阻塞的线程，重新竞争锁，要注意，此时可能还有非<code>CLH</code>队列的线程参与竞争，所以非公平就体现在这里，非<code>CLH</code>队列线程与<code>CLH</code>队列线程竞争，各凭本事，不会因为你是<code>CLH</code>队列的线程，排了很久的队，就把锁让给你。</p>
 <pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">NonfairSync</span> <span class="token keyword">extends</span> <span class="token class-name">Sync</span> <span class="token punctuation">{</span>
         <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> 7316153563782823691L<span class="token punctuation">;</span>
@@ -603,10 +603,10 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
             <span class="token function">acquireQueued</span><span class="token punctuation">(</span><span class="token function">addWaiter</span><span class="token punctuation">(</span>Node<span class="token punctuation">.</span>EXCLUSIVE<span class="token punctuation">)</span><span class="token punctuation">,</span> arg<span class="token punctuation">)</span><span class="token punctuation">)</span>
             <span class="token function">selfInterrupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrantlock-6.jpg" alt="流程"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrantlock-6.jpg" alt="流程"></p>
 <p>首先<code>A Q S</code>的<code>acquire</code>函数是获取锁的流程模板，模板流程会先执行<code>tryAcquire</code>函数获取资源，<code>tryAcquire</code>函数要子类实现，<code>NonfairSync</code>作为子类，实现了<code>tryAcquire</code>函数，具体实现是调用了<code>Sync</code>的<code>nonfairTryAcquire</code>函数。</p>
 <h2 id="FairSync"><a href="#FairSync" class="headerlink" title="FairSync"></a>FairSync</h2><p>所谓公平策略就是，严格按照<code>CLH</code>队列顺序获取锁，线程释放锁时，会唤醒<code>CLH</code>队列阻塞的线程，重新竞争锁，要注意，此时可能还有非<code>CLH</code>队列的线程参与竞争，为了保证公平，一定会让<code>CLH</code>队列线程竞争成功，如果非<code>CLH</code>队列线程一直占用时间片，那就一直失败（<strong>构建成节点插入到<code>CLH</code>队尾，由<code>A S Q</code>模板流程执行</strong>），直到时间片轮到<code>CLH</code>队列线程为止，所以公平策略的性能会更差。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrantlock-7.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrantlock-7.jpg" alt></p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name">FairSync</span> <span class="token keyword">extends</span> <span class="token class-name">Sync</span> <span class="token punctuation">{</span>
         <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">long</span> serialVersionUID <span class="token operator">=</span> <span class="token operator">-</span>3000897897090466540L<span class="token punctuation">;</span>
 
@@ -758,7 +758,7 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
 <span class="token keyword">int</span> CONDITION <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//waitStatus为-2时，表示该线程在condition队列中阻塞（Condition有使用）</span>
  <span class="token keyword">int</span> PROPAGATE <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//waitStatus为-3时，表示该线程以及后续线程进行无条件传播（CountDownLatch中有使用）共享模式下， PROPAGATE 状态的线程处于可运行状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>waitStatus：仅仅是一个状态而已；ws是一个过渡状态，在不同方法里面判断ws的状态做不同的处理，所以ws=0有其存在的必要性</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrylock-1.png" alt></p>
 <h2 id="acquire方法"><a href="#acquire方法" class="headerlink" title="acquire方法"></a>acquire方法</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">acquire</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">//tryAcquire(arg)尝试加锁，如果加锁失败则会调用acquireQueued方法加入队列去排队，如果加锁成功则不会调用</span>
     <span class="token comment" spellcheck="true">//加入队列之后线程会立马park，等到解锁之后会被unpark，醒来之后判断自己是否被打断了；被打断下次分析</span>
@@ -1002,7 +1002,7 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/10.jpg" class="responsive-img" alt="计算机网络">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/10.jpg" class="responsive-img" alt="计算机网络">
                         
                         <span class="card-title">计算机网络</span>
                     </div>
@@ -1051,7 +1051,7 @@ Queue parkQueue<span class="token punctuation">;</span><span class="token commen
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/58.jpg" class="responsive-img" alt="回溯算法-N皇后">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/58.jpg" class="responsive-img" alt="回溯算法-N皇后">
                         
                         <span class="card-title">回溯算法-N皇后</span>
                     </div>

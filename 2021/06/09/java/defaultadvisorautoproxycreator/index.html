@@ -21,7 +21,7 @@ S">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>DefaultAdvisorAutoProxyCreator | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -81,7 +81,7 @@ S">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -165,7 +165,7 @@ S">
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -257,7 +257,7 @@ S">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/77.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/77.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -438,7 +438,7 @@ S">
                 <blockquote>
 <p>这个类的设计，和Spring ioc的结合，简直是吊炸天，实现了根据配置把spring ioc里面的bean替换为相应的代理对象，也为AspectJ的整合提供了支持，让我们来看看Spring是如何做到这种更高级的声明式Aop</p>
 </blockquote>
-<h2 id="类结构"><a href="#类结构" class="headerlink" title="类结构"></a>类结构</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/DefaultAdvisorAutoProxyCreator-1.png" alt="DefaultAdvisorAutoProxyCreator类结构"></p>
+<h2 id="类结构"><a href="#类结构" class="headerlink" title="类结构"></a>类结构</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/DefaultAdvisorAutoProxyCreator-1.png" alt="DefaultAdvisorAutoProxyCreator类结构"></p>
 <h2 id="Spring-Bean后处理器"><a href="#Spring-Bean后处理器" class="headerlink" title="Spring Bean后处理器"></a>Spring Bean后处理器</h2><p>阅读AbstractAutowireCapableBeanFactory的doCreateBean和destroyBean方法，我们能清楚看到Spring bean创建的整个生命周期，具体如下：</p>
 <ol>
 <li>调用<code>InstantiationAwareBeanPostProcessor的postProcessBeforeInstantiation(Class&lt;?&gt; beanClass, String beanName)</code></li>
@@ -490,7 +490,7 @@ S">
 <p>getEarlyBeanReference用于解决循环依赖的问题</p>
 </blockquote>
 <p>这三个bean后处理器讲解好了 ，现在我们开始讲DefaultAdvisorAutoProxyCreator是怎么实现自动配置代理对象的</p>
-<h2 id="DefaultAdvisorAutoProxyCreator"><a href="#DefaultAdvisorAutoProxyCreator" class="headerlink" title="DefaultAdvisorAutoProxyCreator"></a>DefaultAdvisorAutoProxyCreator</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/DefaultAdvisorAutoProxyCreator-1.png" alt></p>
+<h2 id="DefaultAdvisorAutoProxyCreator"><a href="#DefaultAdvisorAutoProxyCreator" class="headerlink" title="DefaultAdvisorAutoProxyCreator"></a>DefaultAdvisorAutoProxyCreator</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/DefaultAdvisorAutoProxyCreator-1.png" alt></p>
 <p>从类结构图中可以看到主要的继承链，DefaultAdvisorAutoProxyCreator-&gt;AbstractAdivisorAutoProxyCreator-&gt;AbstractAutoProxyCreator-&gt;ProxyProcessorSupport-&gt;ProxyConfig</p>
 <h3 id="ProxyConfig"><a href="#ProxyConfig" class="headerlink" title="ProxyConfig"></a>ProxyConfig</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProxyConfig</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
 
@@ -705,7 +705,7 @@ S">
         <span class="token keyword">return</span> <span class="token punctuation">(</span>prefix <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> beanName<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span>prefix<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>通过配置的prefix来过滤adivisor bean</p>
-<h2 id="InfrastructureAdvisorAutoProxyCreator"><a href="#InfrastructureAdvisorAutoProxyCreator" class="headerlink" title="InfrastructureAdvisorAutoProxyCreator"></a>InfrastructureAdvisorAutoProxyCreator</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/DefaultAdvisorAutoProxyCreator-2.png" alt></p>
+<h2 id="InfrastructureAdvisorAutoProxyCreator"><a href="#InfrastructureAdvisorAutoProxyCreator" class="headerlink" title="InfrastructureAdvisorAutoProxyCreator"></a>InfrastructureAdvisorAutoProxyCreator</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/DefaultAdvisorAutoProxyCreator-2.png" alt></p>
 <p>InfrastructureAdvisorAutoProxyCreator也实现了AbstractAdivisorAutoProxyCreator开放的扩展点isEligibleAdvisorBean</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">isEligibleAdvisorBean</span><span class="token punctuation">(</span>String beanName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>beanFactory <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>beanFactory<span class="token punctuation">.</span><span class="token function">containsBeanDefinition</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
@@ -820,7 +820,7 @@ S">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/63.jpg" class="responsive-img" alt="Shiro框架subject和跨域问题">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/63.jpg" class="responsive-img" alt="Shiro框架subject和跨域问题">
                         
                         <span class="card-title">Shiro框架subject和跨域问题</span>
                     </div>
@@ -871,7 +871,7 @@ SecurityUtils.getSubject()这个方法是从线程获取的数据。但是线程
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/107.jpg" class="responsive-img" alt="Shiro框架搭建">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/107.jpg" class="responsive-img" alt="Shiro框架搭建">
                         
                         <span class="card-title">Shiro框架搭建</span>
                     </div>

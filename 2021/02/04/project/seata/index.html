@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Seata | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/45.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/45.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -443,7 +443,7 @@
                 <h2 id="Seata-介绍"><a href="#Seata-介绍" class="headerlink" title="Seata 介绍"></a>Seata 介绍</h2><p>Seata 是从两段提交演变而来的一种分布式事务解决方案，提供了 <code>AT</code>、<code>TCC</code>、<code>SAGA</code> 和 <code>XA</code> 等事务模式，这里重点介绍 AT模式。</p>
 <p>既然 Seata 是两段提交，那我们看看它在每个阶段都做了点啥？下边我们还以下单扣库存、扣余额举例。</p>
 <p>部分介绍转载于seata官方文档等：<a href="http://seata.io/zh-cn/docs/overview/what-is-seata.html" target="_blank" rel="noopener">http://seata.io/zh-cn/docs/overview/what-is-seata.html</a>   |  <a href="https://zhuanlan.zhihu.com/p/344184343" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/344184343</a>   |    <a href="https://zhuanlan.zhihu.com/p/315164700" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/315164700</a></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-1.jpg" alt></p>
 <p>先介绍Seata分布式事务的几种角色：</p>
 <ol>
 <li>Transaction Coordinator（TC）: 全局事务协调者，用来协调全局事务和各个分支事务（不同服务）的状态， 驱动全局事务和各个分支事务的回滚或提交。</li>
@@ -456,7 +456,7 @@
 <h3 id="第一个阶段"><a href="#第一个阶段" class="headerlink" title="第一个阶段"></a>第一个阶段</h3><p>比如：下边我们更新 <code>user</code> 表的 <code>name</code> 字段。</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">update</span> <span class="token keyword">user</span> <span class="token keyword">set</span> name <span class="token operator">=</span> <span class="token string">'锦泉'</span> <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'ArthurJQ'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>首先 Seata 的 <code>JDBC</code> 数据源代理通过对业务 SQL 解析，提取 SQL 的元数据，也就是得到 SQL 的类型（UPDATE），表（user），条件（<code>where name = &#39;ArthurJQ&#39;</code>）等相关的信息。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-2.jpg" alt></p>
 <p>先查询数据前镜像，根据解析得到的条件信息，生成查询语句，定位一条数据。</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">select</span>  name <span class="token keyword">from</span> <span class="token keyword">user</span> <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'ArthurJQ'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <table>
@@ -536,16 +536,16 @@
 <p>最后本地事务提交，业务数据的更新和前面生成的 UNDO LOG 数据一并提交，并将本地事务提交的结果上报给全局事务协调者 TC。</p>
 <h3 id="第二个阶段"><a href="#第二个阶段" class="headerlink" title="第二个阶段"></a>第二个阶段</h3><p>第二阶段是根据各分支的决议做提交或回滚：</p>
 <p>如果决议是全局提交，此时各分支事务已提交并成功，这时 全局事务协调者（TC） 会向分支发送第二阶段的请求。收到 TC 的分支提交请求，该<strong>请求会被放入一个异步任务队列</strong>中，并马上返回提交成功结果给 TC。异步队列中会异步和批量地根据 <code>Branch ID</code> 查找并删除相应 <code>UNDO LOG</code> 回滚记录。并把相关事务信息如：<strong>行锁删除</strong>，之后让因为在竞争锁被阻塞的事务顺利进行。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-3.jpg" alt></p>
 <p>如果二阶段是回滚，过程比全局提交麻烦一点，</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-12.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jta-12.jpg" alt></p>
 <p>首先在 Client 端收到 TC 告知的二阶段是回滚时，会去查到对应的事务的 undolog，取出后镜像，对比当前的数据（因为 SeataAT 是从业务应用层面进行保护分布式事务，如果此时在数据库层面直接修改了库内信息，这个时候 SeataAT 的行锁不起隔离性作用），如果出现了在全局事务以外的数据修改，此时判定为脏写，而 Seata 因为无法感知这个脏写如何发生，此时只能打印日志和触发异常通知，告知用户需要人工介入（规范修改数据入口可避免脏写）。</p>
 <p>而如果没有发生脏写就比较简单了，拿出前镜像，众所皆知事务是需要有原子性的，要么一起发生，要么都不发生，此时前镜像记录了发生之前的数据，进行回滚后，就达到了类似本地事务那样的原子性效果。回滚后，再把事务相关信息，如 undolog，行锁进行删除。二阶段回滚算是告一段落了。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-4.jpg" alt></p>
 <blockquote>
 <p>注意：这里删除回滚日志记录操作，一定是在本地业务事务执行之后</p>
 </blockquote>
-<h3 id="AT-在-Seata-的分布式事务框架"><a href="#AT-在-Seata-的分布式事务框架" class="headerlink" title="AT 在 Seata 的分布式事务框架"></a>AT 在 Seata 的分布式事务框架</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jta-13.png" alt></p>
+<h3 id="AT-在-Seata-的分布式事务框架"><a href="#AT-在-Seata-的分布式事务框架" class="headerlink" title="AT 在 Seata 的分布式事务框架"></a>AT 在 Seata 的分布式事务框架</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jta-13.png" alt></p>
 <p>可以看到，AT 与其它事务模式在 Seata 事务框架中，会多出一个 undolog 的表（相对其它模式的入侵点），但是除此之外，对业务来说，几乎是零入侵性，这也就是为什么 AT 模式在 Seata 中受众广泛的原因。</p>
 <h3 id="写隔离"><a href="#写隔离" class="headerlink" title="写隔离"></a>写隔离</h3><ul>
 <li>一阶段本地事务提交前，需要确保先拿到 <strong>全局锁</strong> 。</li>
@@ -555,21 +555,21 @@
 <p>以一个示例来说明：</p>
 <p>两个全局事务 tx1 和 tx2，分别对 a 表的 m 字段进行更新操作，m 的初始值 1000。</p>
 <p>tx1 先开始，开启本地事务，拿到本地锁，更新操作 m = 1000 - 100 = 900。本地事务提交前，先拿到该记录的 <strong>全局锁</strong> ，本地提交释放本地锁。 tx2 后开始，开启本地事务，拿到本地锁，更新操作 m = 900 - 100 = 800。本地事务提交前，尝试拿该记录的 <strong>全局锁</strong> ，tx1 全局提交前，该记录的全局锁被 tx1 持有，tx2 需要重试等待 <strong>全局锁</strong> 。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-5.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-5.png" alt></p>
 <p>tx1 二阶段全局提交，释放 <strong>全局锁</strong> 。tx2 拿到 <strong>全局锁</strong> 提交本地事务。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-6.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-6.png" alt></p>
 <p>如果 tx1 的二阶段全局回滚，则 tx1 需要重新获取该数据的本地锁，进行反向补偿的更新操作，实现分支的回滚。</p>
 <p>此时，如果 tx2 仍在等待该数据的 <strong>全局锁</strong>，同时持有本地锁，则 tx1 的分支回滚会失败。分支的回滚会一直重试，直到 tx2 的 <strong>全局锁</strong> 等锁超时，放弃 <strong>全局锁</strong> 并回滚本地事务释放本地锁，tx1 的分支回滚最终成功。</p>
 <p>因为整个过程 <strong>全局锁</strong> 在 tx1 结束前一直是被 tx1 持有的，所以不会发生 <strong>脏写</strong> 的问题。</p>
 <h3 id="读隔离"><a href="#读隔离" class="headerlink" title="读隔离"></a>读隔离</h3><p>在数据库本地事务隔离级别 <strong>读已提交（Read Committed）</strong> 或以上的基础上，Seata（AT 模式）的默认全局隔离级别是 <strong>读未提交（Read Uncommitted）</strong> 。</p>
 <p>如果应用在特定场景下，必需要求全局的 <strong>读已提交</strong> ，目前 Seata 的方式是通过 SELECT FOR UPDATE 语句的代理。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-7.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-7.png" alt></p>
 <p>SELECT FOR UPDATE 语句的执行会申请 <strong>全局锁</strong> ，如果 <strong>全局锁</strong> 被其他事务持有，则释放本地锁（回滚 SELECT FOR UPDATE 语句的本地执行）并重试。这个过程中，查询是被 block 住的，直到 <strong>全局锁</strong> 拿到，即读取的相关数据是 <strong>已提交</strong> 的，才返回。</p>
 <p>出于总体性能上的考虑，Seata 目前的方案并没有对所有 SELECT 语句都进行代理，仅针对 FOR UPDATE 的 SELECT 语句。</p>
 <h2 id="Seata-Server-搭建"><a href="#Seata-Server-搭建" class="headerlink" title="Seata Server 搭建"></a>Seata Server 搭建</h2><p>Seata 是一个需独立部署的中间件，所以先搭 Seata Server</p>
 <p>seata下载：<a href="https://seata.io/zh-cn/blog/download.html" target="_blank" rel="noopener">https://seata.io/zh-cn/blog/download.html</a></p>
 <p>seata源码和seata server两个都要下载，分别解压，如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-9.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-9.jpg" alt></p>
 <h3 id="file-conf"><a href="#file-conf" class="headerlink" title="file.conf"></a>file.conf</h3><p><code>seata\conf\</code>目录下的file.conf 文件用于配置持久化事务日志的模式，目前提供 <code>file</code>、<code>db</code>、<code>redis</code> 三种方式。例如使用 db 方式修改file.conf如下：</p>
 <pre class="line-numbers language-shell"><code class="language-shell">## transaction log store, only used in seata-server
 store {
@@ -597,7 +597,7 @@ store {
 
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>注意</strong>：在选择 <code>db</code> 方式后，需要在对应数据库创建 globalTable（持久化全局事务）、branchTable（持久化各提交分支的事务）、 lockTable（持久化各分支锁定资源事务）三张表。</p>
-<h3 id="seata-server数据库创建"><a href="#seata-server数据库创建" class="headerlink" title="seata server数据库创建"></a>seata server数据库创建</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-8.jpg" alt></p>
+<h3 id="seata-server数据库创建"><a href="#seata-server数据库创建" class="headerlink" title="seata server数据库创建"></a>seata server数据库创建</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-8.jpg" alt></p>
 <p>里边有对应的 globalTable（持久化全局事务）、branchTable（持久化各提交分支的事务）、 lockTable（持久化各分支锁定资源事务）三张表，粘出来去对应的数据库创建就行了。比如mysql.sql：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- the table to store GlobalSession data</span>
 <span class="token comment" spellcheck="true">-- 持久化全局事务</span>
@@ -658,7 +658,7 @@ store {
 <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span> <span class="token operator">=</span> <span class="token keyword">InnoDB</span>
   <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span> <span class="token operator">=</span> utf8<span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="seata-server配置文件推送到nacos"><a href="#seata-server配置文件推送到nacos" class="headerlink" title="seata server配置文件推送到nacos"></a>seata server配置文件推送到nacos</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-10.jpg" alt></p>
+<h3 id="seata-server配置文件推送到nacos"><a href="#seata-server配置文件推送到nacos" class="headerlink" title="seata server配置文件推送到nacos"></a>seata server配置文件推送到nacos</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-10.jpg" alt></p>
 <p>打开config.txt文件，因为要推送到nacos（方便统一配置），把需要配置的参数保留就好，修改配置如下：</p>
 <pre class="line-numbers language-text"><code class="language-text">service.vgroupMapping.my_test_tx_group=default
 store.mode=db
@@ -678,7 +678,7 @@ store.db.maxWait=5000<span aria-hidden="true" class="line-numbers-rows"><span></
 <p>进入nacos目录，git执行命令</p>
 <pre class="line-numbers language-shell"><code class="language-shell">sh nacos-config.sh -h 10.0.1.104 -p 8848 -g SEATA_GROUP -t 6e802a92-d7a4-498f-8f14-5625988e1608 -u nacos -w nacos<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上面指令执行成功后nacos配置中心能看到推送过去的配置，如下</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-11.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-11.jpg" alt></p>
 <h3 id="registry-conf"><a href="#registry-conf" class="headerlink" title="registry.conf"></a>registry.conf</h3><p>registry.conf 文件设置 注册中心 和 配置中心：</p>
 <p>目前注册中心支持 <code>nacos</code> 、<code>eureka</code>、<code>redis</code>、<code>zk</code>、<code>consul</code>、<code>etcd3</code>、<code>sofa</code> 七种，这里我使用的 <code>nacos</code>作为注册中心 ； 配置中心支持 <code>nacos</code> 、<code>apollo</code>、<code>zk</code>、<code>consul</code>、<code>etcd3</code> 五种方式。</p>
 <p>将seata server注册到nacos，打开<code>\seata\conf</code>目录下的<strong>registry.conf</strong>，修改部分配置如下：</p>
@@ -801,7 +801,7 @@ config {
     LOGGER<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"全局事务 xid： {}"</span><span class="token punctuation">,</span> xid<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="seata-client-表创建"><a href="#seata-client-表创建" class="headerlink" title="seata client 表创建"></a>seata client 表创建</h3><p>进入都seata源码里，选择客户端，再选择at模式：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/seata-12.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/seata-12.jpg" alt></p>
 <p>打开mysql.sql（选择自己对应的数据库，我是用的mysql），前边说过 Seata AT 模式实现分布式事务，<strong>必须在相关的业务库中创建 undo_log 表来存数据回滚日志</strong>，表结构如下：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true">-- for AT mode you must to init this sql for you business database. the seata server not need it.</span>
 <span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">`</span>undo_log<span class="token punctuation">`</span>
@@ -936,7 +936,7 @@ config {
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/17.jpg" class="responsive-img" alt="OLTP vs OLAP">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/17.jpg" class="responsive-img" alt="OLTP vs OLAP">
                         
                         <span class="card-title">OLTP vs OLAP</span>
                     </div>
@@ -985,7 +985,7 @@ config {
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/68.jpg" class="responsive-img" alt="MySQL数据库优化方法">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/68.jpg" class="responsive-img" alt="MySQL数据库优化方法">
                         
                         <span class="card-title">MySQL数据库优化方法</span>
                     </div>

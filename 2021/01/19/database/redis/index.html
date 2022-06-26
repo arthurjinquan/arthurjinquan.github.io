@@ -20,7 +20,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Redis基础 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/120.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -438,9 +438,9 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-9.jpg" alt="五种"></p>
+                <h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-9.jpg" alt="五种"></p>
 <h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>set key value时，redis会判断value能否转为int，能的话就encoding成int，不能就encoding成embstr。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-8.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-8.jpg" alt></p>
 <p><strong>计数器</strong>：INCR article:readcount:{文章id}→GET article:readcount:{文章id}</p>
 <p><strong>分布式系统全局序列号</strong>：INCRBY orderId 100</p>
 <p>C语言，SDS（simple dynamic string）</p>
@@ -449,27 +449,27 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <li>内存预分配机制，避免频繁的内存分配</li>
 <li>兼容C函数库</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-21.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-21.jpg" alt></p>
 <h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>value又是一个map结构，也就是 &lt;key1,&lt;key2,value&gt;&gt;</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-10.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-11.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-10.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-11.jpg" alt></p>
 <p>一行数据只有一个字段经常变动的话推荐用hash。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-12.jpg" alt></p>
-<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-13.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-14.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-12.jpg" alt></p>
+<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-13.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-14.jpg" alt></p>
 <p>应用场景：<strong>微博</strong>、微信公号消息流，用LPUSH msg:{用户-ID} 消息ID和LRANGE msg:{用户-ID} start stop实现</p>
 <p>ziplist底层源码：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-23.jpg" alt="ziplist底层源码"></p>
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-15.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-23.jpg" alt="ziplist底层源码"></p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-15.jpg" alt></p>
 <p>应用场景：</p>
-<img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-16.jpg" alt="a" style="zoom:80%;">
+<img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-16.jpg" alt="a" style="zoom:80%;">
 
-<img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-17.jpg" style="zoom:80%;">
+<img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-17.jpg" style="zoom:80%;">
 
 <p>集合操作实现微博微信关注模型</p>
-<h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-18.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-19.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-20.jpg" alt></p>
+<h3 id="zset"><a href="#zset" class="headerlink" title="zset"></a>zset</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-18.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-19.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-20.jpg" alt></p>
 <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">typedef</span> <span class="token keyword">struct</span> redisDb <span class="token punctuation">{</span>
     dict <span class="token operator">*</span>dict<span class="token punctuation">;</span>                 <span class="token comment" spellcheck="true">/* The keyspace for this DB */</span>
     dict <span class="token operator">*</span>expires<span class="token punctuation">;</span>              <span class="token comment" spellcheck="true">/* Timeout of keys with a timeout set */</span>
@@ -480,7 +480,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
     <span class="token keyword">long</span> <span class="token keyword">long</span> avg_ttl<span class="token punctuation">;</span>          <span class="token comment" spellcheck="true">/* Average TTL, just for stats */</span>
 <span class="token punctuation">}</span> redisDb<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>底层是以<strong>dict</strong>存储键值对的，键空间的键也就是数据库键，都是字符串对象，值可以是字符串对象、列表对象、哈希表对象、集合对象和有序集合对象中的任意一种。键的增加、删除、更新、读取都是对键空间的操作，不同的命令会执行不通的代码，最终都是在键空间上进行一系列操作。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-22.jpg" alt="dict结构"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-22.jpg" alt="dict结构"></p>
 <pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">/* Expand or create the hash table */</span>
 <span class="token keyword">int</span> <span class="token function">dictExpand</span><span class="token punctuation">(</span>dict <span class="token operator">*</span>d<span class="token punctuation">,</span> <span class="token keyword">unsigned</span> <span class="token keyword">long</span> size<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
@@ -557,9 +557,9 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
     <span class="token keyword">if</span> <span class="token punctuation">(</span>d<span class="token operator">-</span><span class="token operator">></span>iterators <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token function">dictRehash</span><span class="token punctuation">(</span>d<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>在“合适”的地方渐进地调用这个<code>_dictRehashStep</code>，就实现了渐进式Rehash！就是实际对hashtable的数据有操作的地方，lookup or update operation。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-24.jpg" alt="redis对象"></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-25.jpg" alt="底层结构"></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-26.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-24.jpg" alt="redis对象"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-25.jpg" alt="底层结构"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-26.jpg" alt></p>
 <p>拉链法解决的hash冲突，那么在数据过多时，hash冲突不可避免，为了避免链表太长，直接进行rehash。rehash：Redis 默认使用了两个全局哈希表：哈希表 1 和哈希表 2。一开始，当你刚插入数据时，默认使用哈希表 1，此时的哈希表 2 并没有被分配空间。随着数据逐步增多，Redis 开始执行 rehash，这个过程分为三步：给哈希表 2 分配更大的空间，例如是当前哈希表 1 大小的两倍；把哈希表 1 中的数据重新映射并拷贝到哈希表 2 中；释放哈希表 1 的空间。到此，我们就可以从哈希表 1 切换到哈希表 2，用增大的哈希表 2 保存更多数据，而原来的哈希表 1 留作下一次 rehash 扩容备用。</p>
 <p>这个过程看似简单，但是第二步涉及大量的数据拷贝，如果一次性把哈希表 1 中的数据都迁移完，会造成 Redis 线程阻塞，无法服务其他请求。此时，Redis 就无法快速访问数据了。为了避免这个问题，Redis 采用了渐进式 rehash。简单来说就是在第二步拷贝数据时，Redis 仍然正常处理客户端请求，每处理一个请求时，从哈希表 1 中的第一个索引位置开始，顺带着将这个索引位置上的所有 entries 拷贝到哈希表 2 中；等处理下一个请求时，再顺带拷贝哈希表 1 中的下一个索引位置的 entries。redis也会每秒扫描一下未迁移的数据，防止一直不被访问就无法迁移到新hash表。</p>
 <h2 id="RDB持久化机制"><a href="#RDB持久化机制" class="headerlink" title="RDB持久化机制"></a>RDB持久化机制</h2><p>Redis DataBase</p>
@@ -658,10 +658,10 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 </ol>
 </li>
 </ol>
-<h3 id="过程原理图"><a href="#过程原理图" class="headerlink" title="过程原理图"></a>过程原理图</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-2.jpg" alt></p>
-<h2 id="Redis高可用集群方案"><a href="#Redis高可用集群方案" class="headerlink" title="Redis高可用集群方案"></a>Redis高可用集群方案</h2><h3 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-27.jpg" alt></p>
+<h3 id="过程原理图"><a href="#过程原理图" class="headerlink" title="过程原理图"></a>过程原理图</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-2.jpg" alt></p>
+<h2 id="Redis高可用集群方案"><a href="#Redis高可用集群方案" class="headerlink" title="Redis高可用集群方案"></a>Redis高可用集群方案</h2><h3 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-27.jpg" alt></p>
 <p>弊端：1、单点写故障。2、选主时访问瞬断。3、单机redis容易达到性能瓶颈，数据量大持久化时间长。4、写瓶颈，顶多10w并发</p>
-<h3 id="Redis-Cluster"><a href="#Redis-Cluster" class="headerlink" title="Redis Cluster"></a>Redis Cluster</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-28.jpg" alt></p>
+<h3 id="Redis-Cluster"><a href="#Redis-Cluster" class="headerlink" title="Redis Cluster"></a>Redis Cluster</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-28.jpg" alt></p>
 <p>Redis Cluster时一种服务端Sharding技术，3.0版本开始正式提供。利用了slot（槽）的概念，一共分成<strong>16384</strong>个槽。将请求发送到任意节点，<strong>接收到请求的节点会将查询请求发送到正确的节点上执行</strong></p>
 <p>方案说明：</p>
 <ol>
@@ -698,15 +698,15 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
 <li>一致性hash：将整个hash值的区间组织成闭合圆环，计算每台服务器的hasnh映射到圆环中。使用hash算法计算数据的hash值顺时针寻找，找到的第一个服务器就是数据存储的服务。新增或减少节点只影响逆时针最近的一个服务器；数据倾斜用虚拟节点解决</li>
 <li>hash slot：将数据与服务器隔离开，<strong>数据与slot映射，slot与服务器映射</strong>，数据进行hash决定存放的slot新增及删除节点时，将slot进行迁移即可</li>
 </ol>
-<h2 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-9.jpg" alt></p>
+<h2 id="Redisson"><a href="#Redisson" class="headerlink" title="Redisson"></a>Redisson</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-9.jpg" alt></p>
 <p>redisson核心代码：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-3.jpg" alt></p>
 <p>lua原子命令，看门狗的默认超时时间是30s</p>
 <p>回到上一层：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-4.jpg" alt></p>
 <p>锁续命：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-5.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-6.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-6.jpg" alt></p>
 <h2 id="Redis事务实现"><a href="#Redis事务实现" class="headerlink" title="Redis事务实现"></a>Redis事务实现</h2><h3 id="事务开始"><a href="#事务开始" class="headerlink" title="事务开始"></a>事务开始</h3><p>MULTI命令的执行，标识着一个事务的开始。MULTI命令会将客户端状态的 <strong>flags</strong> 属性中打开 REDIS_MULTI标识来完成的。</p>
 <h3 id="命令入队"><a href="#命令入队" class="headerlink" title="命令入队"></a>命令入队</h3><p>当一个客户端切换到事务状态之后，服务器会根据这个客户端发送来的命令来执行不同的操作。如果客户端发送的命令为<strong>MULTI、EXEC、WATCH、DISCARD</strong>中的一个，立即执行这个命令，否则将命令放入一个事务队列里面，然后向客户端返回QUEUED 回复。</p>
 <p>如果客户端发送的是四个命令以外的命令，服务器并不立即执行。首先检查此命令格式是否正确，如果不正确服务器会在客户端状态（redisClient）的flags属性关闭 REDIS_MULTI 标识，并返回错误信息给客户端。如果正确将这个命令放入一个事务队列里，向客户端返回QUEUED回复。</p>
@@ -833,7 +833,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/33.jpg" class="responsive-img" alt="2021年的学习目标">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/33.jpg" class="responsive-img" alt="2021年的学习目标">
                         
                         <span class="card-title">2021年的学习目标</span>
                     </div>
@@ -882,7 +882,7 @@ stringset key value时，redis会判断value能否转为int，能的话就encodi
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/32.jpg" class="responsive-img" alt="互联网医院bug反馈">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/32.jpg" class="responsive-img" alt="互联网医院bug反馈">
                         
                         <span class="card-title">互联网医院bug反馈</span>
                     </div>

@@ -17,7 +17,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Lucene 查询原理 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -77,7 +77,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -161,7 +161,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -253,7 +253,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/119.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -479,7 +479,7 @@
 <li>DirectoryReader需要对应写入时候的Directory实现。</li>
 <li>QueryParser主要用来解析你的查询语句，例如你想查 “A and B”，lucene内部会有机制解析出是term A和term B的交集查询。</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-8.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-8.png" alt></p>
 <ul>
 <li>虚线箭头（a、b、c、d）表示<strong>写索引</strong>的主要过程</li>
 <li>实线箭头（1-9）表示<strong>查询</strong>的主要过程</li>
@@ -495,19 +495,19 @@
 </ol>
 <h2 id="Lucene-查询过程"><a href="#Lucene-查询过程" class="headerlink" title="Lucene 查询过程"></a>Lucene 查询过程</h2><p>在lucene中查询是基于segment。每个segment可以看做是一个独立的subindex，在建立索引的过程中，lucene会不断的flush内存中的数据持久化形成新的segment。多个segment也会不断的被merge成一个大的segment，在老的segment还有查询在读取的时候，不会被删除，没有被读取且被merge的segement会被删除。这个过程类似于LSM数据库的merge过程。下面我们主要看在一个segment内部如何实现高效的查询。</p>
 <p>为了方便大家理解，我们以人名字，年龄，学号为例，如何实现查某个名字（有重名）的列表。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-1.jpg" alt></p>
 <p>在lucene中为了查询 name=XXX 的这样一个条件，会建立基于name的倒排链。以上面的数据为例，倒排链如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-2.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-2.png" alt></p>
 <p>如果我们还希望按照年龄查询，例如想查 年龄=18 的列表，我们还可以建立另一个倒排链：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-3.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-3.png" alt></p>
 <p>在这里，Alice，Alan，18，这些都是term。所以<strong>倒排本质上就是基于term的反向列表</strong>，方便进行属性查找。到这里我们有个很自然的问题，如果term非常多，如何快速拿到这个倒排链呢？在lucene里面就引入了term dictonary的概念，也就是term的字典。term字典里我们可以按照term进行排序，那么用一个二分查找就可以定为这个term所在的地址。这样的复杂度是logN，在term很多，内存放不下的时候，效率还是需要进一步提升。可以用一个hashmap，当有一个term进入，hash继续查找倒排链。这里hashmap的方式可以看做是term dictionary的一个index。 从lucene4开始，为了方便实现rangequery或者前缀，后缀等复杂的查询语句，lucene使用FST数据结构来存储term字典，下面就详细介绍下FST的存储结构。</p>
 <h2 id="FST"><a href="#FST" class="headerlink" title="FST"></a>FST</h2><p>我们就用Alice和Alan这两个单词为例，来看下FST的构造过程。首先对所有的单词做一下排序为“Alice”，“Alan”。</p>
 <ol>
 <li><p>插入“Alan”</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-4.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-4.png" alt></p>
 </li>
 <li><p>插入“Alice”</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-5.jpg" alt></p>
 </li>
 </ol>
 <p>这样你就得到了一个<strong>有向无环图</strong>，有这样一个数据结构，就可以很快查找某个人名是否存在。FST在单term查询上可能相比hashmap并没有明显优势，甚至会慢一些。但是在范围，前缀搜索以及压缩率上都有明显的优势。</p>
@@ -518,7 +518,7 @@
 <li>跳跃有一个固定的间隔，这个是需要建立SkipList的时候指定好，例如下图以间隔是3</li>
 <li>SkipList的层次，这个是指整个SkipList有几层</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-6.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-6.jpg" alt></p>
 <p>有了这个SkipList以后比如我们要查找docid=12，原来可能需要一个个扫原始链表，1，2，3，5，7，8，10，12。有了SkipList以后先访问第一层看到是然后大于12，进入第0层走到3，8，发现15大于12，然后进入原链表的8继续向下经过10和12。</p>
 <p>SkipList本质上是在有序的链表上实现实现二分查找，它能有效的提升链表的查找效率，其时间复杂度为O(logn)（其中n为链表长度）。简单说SkipList优化了Postings的随机查找的性能问题。</p>
 <p>SkipList的节点存储了三部分数据：</p>
@@ -531,12 +531,12 @@
 <p>如果此索引节点中最大的Impact都小于Scorer的水位线，那么此节点的范围内的所有节点都不需要再进入Scorer评分程序，在TOP_SCORE模式下。</p>
 <p>实际上SkipList的性能提升是通过在链表上加上多级索引获得的，所以说它属于<strong>空间换时间</strong>的做法，在索引时牺牲小量空间换取在搜索时的性能提升。而层级越高，索引的步长越短，构建索引的空间代价也会越高。这也解释了Lucene为什么要采用8个Block作为步长，虽然它的查询性能相比会差一些，但是需要的空间也缩减少n/8，是一种存储空间和性能的折中方案。</p>
 <h2 id="倒排结构图解"><a href="#倒排结构图解" class="headerlink" title="倒排结构图解"></a>倒排结构图解</h2><p>有了FST和SkipList的介绍以后，我们大体上可以画一个下面的图来说明lucene是如何实现整个倒排结构的：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-7.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-7.jpg" alt></p>
 <p>有了这张图，我们可以理解为什么基于lucene可以快速进行倒排链的查找和docid查找，下面就来看一下有了这些后如何进行倒排链合并返回最后的结果。</p>
 <h2 id="倒排合并"><a href="#倒排合并" class="headerlink" title="倒排合并"></a>倒排合并</h2><p>假如我们的查询条件是name = “Alice”，那么按照之前的介绍，首先在term字典中定位是否存在这个term，如果存在的话进入这个term的倒排链，并根据参数设定返回分页返回结果即可。这类查询，在数据库中使用二级索引也是可以满足，那lucene的优势在哪呢。</p>
 <p>假如我们有多个条件，例如我们需要按名字或者年龄单独查询，也需要进行组合 name = “Alice” and age = “18”的查询，那么使用传统二级索引方案，你可能需要建立两张索引表，然后分别查询结果后进行合并，这样如果age = 18的结果过多的话，查询合并会很耗时。那么在lucene这两个倒排链是怎么合并呢。</p>
 <p>假如我们有下面三个倒排链需要进行合并。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-9.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-9.png" alt></p>
 <p>在lucene中会采用下列顺序进行合并：</p>
 <ol>
 <li>在termA开始遍历，得到第一个元素docId=1</li>
@@ -660,7 +660,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/112.jpg" class="responsive-img" alt="Redis的cache">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/112.jpg" class="responsive-img" alt="Redis的cache">
                         
                         <span class="card-title">Redis的cache</span>
                     </div>
@@ -717,7 +717,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/34.jpg" class="responsive-img" alt="Elasticsearch 集群架构学习">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/34.jpg" class="responsive-img" alt="Elasticsearch 集群架构学习">
                         
                         <span class="card-title">Elasticsearch 集群架构学习</span>
                     </div>

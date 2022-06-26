@@ -25,7 +25,7 @@ epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Netty | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -85,7 +85,7 @@ epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -169,7 +169,7 @@ epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时">
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -261,7 +261,7 @@ epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/83.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/83.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -443,17 +443,17 @@ epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-7.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-1.jpg" alt="NIO流程"></p>
-<h3 id="Epoll函数详解"><a href="#Epoll函数详解" class="headerlink" title="Epoll函数详解"></a>Epoll函数详解</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-2.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-4.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-5.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-6.jpg" alt></p>
+                <h2 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-7.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-nio-1.jpg" alt="NIO流程"></p>
+<h3 id="Epoll函数详解"><a href="#Epoll函数详解" class="headerlink" title="Epoll函数详解"></a>Epoll函数详解</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-nio-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-nio-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-nio-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-nio-6.jpg" alt></p>
 <p>epoll_create：创建epoll实例</p>
 <p>epoll_ctl：添加socketchannel到epoll实例并关联事件</p>
 <p>epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时服务器的OS中断处理响应，添加到就绪事件rdlist并跳出阻塞处理事件</p>
 <p>可以在liunx通过man命令查看手册说明，比如man epoll_ctl：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-nio-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-nio-3.jpg" alt></p>
 <h2 id="Netty的零拷贝"><a href="#Netty的零拷贝" class="headerlink" title="Netty的零拷贝"></a>Netty的零拷贝</h2><p>在操作系统层面上的零拷贝是指避免在用户态与内核态之间来回拷贝数据的技术。 Netty中的零拷贝与操作系统层面上的零拷贝不完全一样, Netty的零拷贝完全是在用户态（Java层面）的，更多是数据操作的优化。</p>
 <ol>
 <li><p>Netty的接收和发送ByteBuffer使用<strong>直接内存</strong>（NIO中ByteBuffer.allocateDirect方法，返回一个地址。netty中通过byteBuf = allocHandle.allocate（allocator）→ ioBuffer中return directBuffer（initialCapactiy））进行Socket读写，不需要进行字节缓冲区的二次拷贝。如果使用JVM的堆内存进行Socket读写，JVM会将堆内存Buffer拷贝一份到直接内存中，然后才写入Socket中。相比于使用直接内存，消息在发送过程中多了一次缓冲区的内存拷贝。</p>
@@ -467,8 +467,8 @@ epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时">
 <li><p>ByteBuf支持slice操作，可以将ByteBuf分解为多个共享同一个存储区域的ByteBuf, 避免内存的拷贝。</p>
 </li>
 </ol>
-<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-1.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-2.jpg" alt></p>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-2.jpg" alt></p>
 <h3 id="通过FileRegion实现零拷贝"><a href="#通过FileRegion实现零拷贝" class="headerlink" title="通过FileRegion实现零拷贝"></a>通过FileRegion实现零拷贝</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">channelRead0</span><span class="token punctuation">(</span>ChannelHandlerContext ctx<span class="token punctuation">,</span> String msg<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
     RandomAccessFile raf <span class="token operator">=</span> null<span class="token punctuation">;</span>
@@ -604,7 +604,7 @@ epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg" class="responsive-img" alt="三数和为k">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/119.jpg" class="responsive-img" alt="三数和为k">
                         
                         <span class="card-title">三数和为k</span>
                     </div>
@@ -653,7 +653,7 @@ epoll_wait：socketchannel没有事件发生就阻塞，有事件发生时">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/27.jpg" class="responsive-img" alt="线程池源码理解">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/27.jpg" class="responsive-img" alt="线程池源码理解">
                         
                         <span class="card-title">线程池源码理解</span>
                     </div>

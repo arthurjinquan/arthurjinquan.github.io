@@ -18,7 +18,7 @@ Zookeeper主要用来解决分布式集群中应用">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Zookeeper的原理和分布式锁 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@ Zookeeper主要用来解决分布式集群中应用">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@ Zookeeper主要用来解决分布式集群中应用">
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@ Zookeeper主要用来解决分布式集群中应用">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -467,11 +467,11 @@ Zookeeper主要用来解决分布式集群中应用">
 <li><p><strong>分布式锁</strong>：Zookeeper能<strong>保证数据的强一致性</strong>，用户任何时候都可以相信集群中每个节点的数据都是相同的。一个用户创建一个节点作为锁，另一个用户检测该节点，如果存在，代表别的用户已经锁住，如果不存在，则可以创建一个节点，代表拥有一个锁。</p>
 </li>
 <li><p><strong>集群管理</strong>：包括集群监控和集群控制，就是监控集群机器状态，剔除集群和加入机器。zookeeper可以方便集群机器的管理，它可以实时监控znode节点的变化，一旦发现有机器挂了，该机器就会与zk断开连接，对应的临时目录节点会被删除，其他所有机器都收到通知。新机器加入类似，如图：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/zookeeper-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/zookeeper-1.jpg" alt></p>
 </li>
 <li><p><strong>配置管理</strong>：在分布式应用环境中很常见，例如同一个应用系统需要多台节点运行，但是它们运行的应用系统的某些配置项是相同的，如果要修改这些相同的配置项，那么就必须同时修改每台运行这个应用系统的.properties或者xml配置，这样非常麻烦而且容易出错。</p>
 <p>像这样的配置信息完全可以交给 Zookeeper 来管理，<strong>将配置信息保存在 Zookeeper 的某个目录节点</strong>中，然后将所有需要修改的应用机器监控配置信息的状态，一旦配置信息发生变化，利用watcher通知给各个客户端，从而修改配置。如图：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/zookeeper-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/zookeeper-2.jpg" alt></p>
 </li>
 </ol>
 <h2 id="ZK的数据模型和节点类型"><a href="#ZK的数据模型和节点类型" class="headerlink" title="ZK的数据模型和节点类型"></a>ZK的数据模型和节点类型</h2><p>zk采用事务日志及快照文件的方案来落盘数据，保障数据在不丢失的情况下能快速恢复。</p>
@@ -696,7 +696,7 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/34.jpg" class="responsive-img" alt="Elasticsearch 集群架构学习">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/34.jpg" class="responsive-img" alt="Elasticsearch 集群架构学习">
                         
                         <span class="card-title">Elasticsearch 集群架构学习</span>
                     </div>
@@ -753,7 +753,7 @@ bin/zkServer.sh status<span aria-hidden="true" class="line-numbers-rows"><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg" class="responsive-img" alt="RefreshScope注解和Spring bean scope">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/24.jpg" class="responsive-img" alt="RefreshScope注解和Spring bean scope">
                         
                         <span class="card-title">RefreshScope注解和Spring bean scope</span>
                     </div>

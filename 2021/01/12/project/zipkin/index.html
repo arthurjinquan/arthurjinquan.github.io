@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Zipkin的安装和配置 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/93.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/93.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -442,7 +442,7 @@
             <div id="articleContent">
                 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Zipkin是一个分布式跟踪系统。它有助于收集解决服务体系结构中的延迟问题所需的时序数据。功能包括该数据的收集和查找。</p>
 <p>如果日志文件中有trace ID，则可以直接跳至该trace ID。否则，您可以基于属性进行查询，例如服务，操作名称，标签和持续时间。将为您总结一些有趣的数据，例如在服务中花费的时间百分比以及操作是否失败。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/zipkin-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/zipkin-1.png" alt></p>
 <h2 id="Zipkin安装"><a href="#Zipkin安装" class="headerlink" title="Zipkin安装"></a>Zipkin安装</h2><p>zipkin2.0后官网强烈建议用jar或者docker搭建zipkin server，不建议自己搭建zipkin server，并且zipkin server最高只支持到spring boot 2.0.9，后续的高版本服务是启动不了的。</p>
 <h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>docker pull openzipkin/zipkin</p>
 <h3 id="启动镜像"><a href="#启动镜像" class="headerlink" title="启动镜像"></a>启动镜像</h3><pre class="line-numbers language-sh"><code class="language-sh">           docker run
@@ -461,7 +461,7 @@
              -idt openzipkin/zipkin #镜像名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h3><p><a href="http://10.0.1.104:9411/zipkin" target="_blank" rel="noopener">http://10.0.1.104:9411/zipkin</a></p>
 <p>（公司内网，外网进不去）</p>
-<h2 id="Zipkin引入"><a href="#Zipkin引入" class="headerlink" title="Zipkin引入"></a>Zipkin引入</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/zipkin-2.png" alt></p>
+<h2 id="Zipkin引入"><a href="#Zipkin引入" class="headerlink" title="Zipkin引入"></a>Zipkin引入</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/zipkin-2.png" alt></p>
 <p>pom文件中添加，包含了链路追踪sleuth与链路展示zipkin</p>
 <h2 id="应用连接Zipkin"><a href="#应用连接Zipkin" class="headerlink" title="应用连接Zipkin"></a>应用连接Zipkin</h2><pre class="line-numbers language-yaml"><code class="language-yaml"> <span class="token key atrule">spring</span><span class="token punctuation">:</span>
        <span class="token comment" spellcheck="true"># zipkin配置</span>
@@ -472,7 +472,7 @@
        <span class="token key atrule">sleuth</span><span class="token punctuation">:</span>
          <span class="token key atrule">sampler</span><span class="token punctuation">:</span>
             <span class="token key atrule">robability</span><span class="token punctuation">:</span> <span class="token number">1.0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="应用通过kafka传数据到Zipkin"><a href="#应用通过kafka传数据到Zipkin" class="headerlink" title="应用通过kafka传数据到Zipkin"></a>应用通过kafka传数据到Zipkin</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/zipkin-3.png" alt></p>
+<h2 id="应用通过kafka传数据到Zipkin"><a href="#应用通过kafka传数据到Zipkin" class="headerlink" title="应用通过kafka传数据到Zipkin"></a>应用通过kafka传数据到Zipkin</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/zipkin-3.png" alt></p>
 <p>pom中添加两个包，配置文件中添加以下配置</p>
 <pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token comment" spellcheck="true"># kafka配置</span>
@@ -589,7 +589,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="ELK介绍和部署">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/81.jpg" class="responsive-img" alt="ELK介绍和部署">
                         
                         <span class="card-title">ELK介绍和部署</span>
                     </div>
@@ -646,7 +646,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/57.jpg" class="responsive-img" alt="实现一个返回数组的接口">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/57.jpg" class="responsive-img" alt="实现一个返回数组的接口">
                         
                         <span class="card-title">实现一个返回数组的接口</span>
                     </div>

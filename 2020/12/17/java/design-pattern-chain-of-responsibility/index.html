@@ -17,7 +17,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>责任链模式 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -77,7 +77,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -161,7 +161,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -253,7 +253,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/53.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/53.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -460,8 +460,8 @@
 <li>客户类（Client）角色：<strong>创建处理链</strong>，并向链头的具体处理者对象提交请求，它不关心处理细节和请求的传递过程。</li>
 </ol>
 <p>责任链模式的本质是解耦请求与处理，让请求在处理链中能进行传递与被处理；责任链模式的独到之处是<strong>将其节点处理者组合成了链式结构</strong>，并<strong>允许节点自身决定是否进行请求处理或转发</strong>，相当于让请求流动起来。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/chain-of-responsibility-framework.gif" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/chain-of-responsibility.gif" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/chain-of-responsibility-framework.gif" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/chain-of-responsibility.gif" alt></p>
 <h2 id="模式的实现"><a href="#模式的实现" class="headerlink" title="模式的实现"></a>模式的实现</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> chainOfResponsibility<span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ChainOfResponsibilityPattern</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -517,7 +517,7 @@
 <p>在上面代码中，我们把消息硬编码为 String 类型，而在真实业务中，消息是具备多样性的，可以是 int、String 或者自定义类型。因此，在上面代码的基础上，可以对消息类型进行抽象 Request，增强了消息的兼容性。</p>
 <h2 id="模式的应用实例"><a href="#模式的应用实例" class="headerlink" title="模式的应用实例"></a>模式的应用实例</h2><p>分析：假如规定学生请假小于或等于 2 天，班主任可以批准；小于或等于 7 天，系主任可以批准；小于或等于 10 天，院长可以批准；其他情况不予批准；这个实例适合使用职责链模式实现。</p>
 <p>首先，定义一个领导类（Leader），它是抽象处理者，包含了一个指向下一位领导的指针 next 和一个处理假条的抽象处理方法<code>handleRequest (int LeaveDays)</code> ；然后，定义班主任类（ClassAdviser）、系主任类（DepartmentHead）和院长类（Dean），它们是抽象处理者的子类，是具体处理者，必须根据自己的权力去实现父类的 <code>handleRequest (int LeaveDays)</code>方法，如果无权处理就将假条交给下一位具体处理者，直到最后；客户类负责创建处理链，并将假条交给链头的具体处理者（班主任）。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/chain-of-responsibility-instance.gif" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/chain-of-responsibility-instance.gif" alt></p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">package</span> chainOfResponsibility<span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LeaveApprovalTest</span> <span class="token punctuation">{</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -718,7 +718,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/118.jpg" class="responsive-img" alt="Mysql的索引总结">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/118.jpg" class="responsive-img" alt="Mysql的索引总结">
                         
                         <span class="card-title">Mysql的索引总结</span>
                     </div>
@@ -775,7 +775,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/85.jpg" class="responsive-img" alt="validationQuery检查语句">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/85.jpg" class="responsive-img" alt="validationQuery检查语句">
                         
                         <span class="card-title">validationQuery检查语句</span>
                     </div>

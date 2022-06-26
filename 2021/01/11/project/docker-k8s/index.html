@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Docker和K8S简介和安装部署 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/30.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/30.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -447,13 +447,13 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h2><p>虚拟机，就是在你的操作系统里面，装一个软件，然后通过这个软件，再模拟一台甚至多台“子电脑”出来。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/docker-1.jpg" alt></p>
 <p>虚拟机，类似于<strong>子电脑</strong></p>
 <p>在“子电脑”里，你可以和正常电脑一样运行程序，例如开QQ。如果你愿意，你可以变出好几个“子电脑”，里面都开上QQ。“子电脑”和“子电脑”之间，是<strong>相互隔离</strong>的，互不影响。</p>
 <p>虚拟机属于虚拟化技术。而Docker这样的容器技术，也是虚拟化技术，属于<strong>轻量级的虚拟化</strong>。</p>
 <p>虚拟机虽然可以隔离出很多“子电脑”，但占用空间更大，启动更慢，虚拟机软件可能还要花钱（例如VMWare）。</p>
 <p>而容器技术恰好没有这些缺点。它不需要虚拟出整个操作系统，只需要虚拟一个小规模的环境（类似<strong>沙箱</strong>）。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-2.jpg" alt="容器和虚拟机的对比"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/docker-2.jpg" alt="容器和虚拟机的对比"></p>
 <p>大家需要注意，<strong>Docker本身并不是容器</strong>，它是创建容器的工具，是应用容器引擎。</p>
 <p>想要搞懂Docker，其实看它的两句口号就行。</p>
 <p>第一句，是“<strong>Build, Ship and Run</strong>”。</p>
@@ -471,7 +471,7 @@
 <h2 id="K8S简介"><a href="#K8S简介" class="headerlink" title="K8S简介"></a>K8S简介</h2><p>就在Docker容器技术被炒得热火朝天之时，大家发现，如果想要将Docker应用于具体的业务实现，是存在困难的——编排、管理和调度等各个方面，都不容易。于是，人们迫切需要一套管理系统，对Docker及容器进行更高级更灵活的管理。</p>
 <p>就在这个时候，K8S出现了。</p>
 <p><strong>K8S，就是基于容器的集群管理平台，它的全称，是kubernetes。</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/k8s-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/k8s-1.jpg" alt></p>
 <p>Kubernetes这个单词来自于希腊语，含义是舵手或领航员。K8S是它的缩写，用“8”字替代了“ubernete”这8个字符。</p>
 <p>K8S并不是一件全新的发明。它的前身，是Google自己捣鼓了十多年的<strong>Borg系统</strong>。</p>
 <p>一个K8S系统，通常称为一个<strong>K8S集群（Cluster）</strong>。</p>
@@ -480,16 +480,16 @@
 <li><strong>一个Master节点（主节点）</strong></li>
 <li><strong>一群Node节点（计算节点）</strong></li>
 </ul>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/k8s-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/k8s-2.jpg" alt></p>
 <p>一看就明白：Master节点主要还是<strong>负责管理和控制</strong>。Node节点是工作负载节点，里面是具体的容器。</p>
 <p><strong>Master节点</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/k8s-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/k8s-3.jpg" alt></p>
 <p>Master节点包括API Server、Scheduler、Controller manager、etcd。</p>
 <p>API Server是整个系统的对外接口，供客户端和其它组件调用，相当于“营业厅”。</p>
 <p>Scheduler负责对集群内部的资源进行调度，相当于“调度室”。</p>
 <p>Controller manager负责管理控制器，相当于“大总管”。</p>
 <p>然后是<strong>Node节点</strong>。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/k8s-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/k8s-4.jpg" alt></p>
 <p>Node节点包括Docker、kubelet、kube-proxy、Fluentd、kube-dns（可选），还有就是<strong>Pod</strong>。</p>
 <blockquote>
 <p>Pod是Kubernetes最基本的操作单元。一个Pod代表着集群中运行的一个进程，它内部封装了一个或多个紧密相关的容器。除了Pod之外，K8S还有一个Service的概念，一个Service可以看作一组提供相同服务的Pod的对外访问接口。</p>
@@ -518,7 +518,7 @@ RestartSec=2
 Restart=always<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>验证2376端口</p>
 <pre class="line-numbers language-shell"><code class="language-shell">netstat -nap|grep 2376<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/docker-3.jpg" alt></p>
 <blockquote>
 <p>netstat命令是一个监控TCP/IP网络的非常有用的工具，它可以显示路由表、实际的网络连接以及每一个网络接口设备的状态信息。</p>
 <ol>
@@ -596,14 +596,14 @@ Restart=always<span aria-hidden="true" class="line-numbers-rows"><span></span><s
 <p>2、执行</p>
 <pre class="line-numbers language-shell"><code class="language-shell">mvn clean package -DskipTests docker:build<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="验证镜像是否上传成功"><a href="#验证镜像是否上传成功" class="headerlink" title="验证镜像是否上传成功"></a>验证镜像是否上传成功</h2><p>执行 docker images 指令，查看镜像</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/docker-4.jpg" alt></p>
 <h2 id="启动镜像，生成容器"><a href="#启动镜像，生成容器" class="headerlink" title="启动镜像，生成容器"></a>启动镜像，生成容器</h2><p>1、启动脚本文件上传，找到工程中的docker-compose文件夹，找到需要启动镜像的文件（文件名中会有项目名）。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/docker-5.jpg" alt></p>
 <p>2、上传到服务器，目前104测试服务器都放在/home/wisefly/compose</p>
 <p>3、执行docker-compose指定运行文件</p>
 <pre class="line-numbers language-shell"><code class="language-shell">docker-compose -f business-file-compose.yaml up -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p> 4、验证镜像是否启动成功</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/docker-6.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/docker-6.jpg" alt></p>
 <p>执行3步骤的指令返回done表示执行成功，通过 <strong>docker ps</strong> 也能查看容器是否启动成功</p>
 <h2 id="docker常用指令"><a href="#docker常用指令" class="headerlink" title="docker常用指令"></a>docker常用指令</h2><pre class="line-numbers language-bash"><code class="language-bash">        docker images 查看镜像
 
@@ -897,7 +897,7 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/57.jpg" class="responsive-img" alt="实现一个返回数组的接口">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/57.jpg" class="responsive-img" alt="实现一个返回数组的接口">
                         
                         <span class="card-title">实现一个返回数组的接口</span>
                     </div>
@@ -950,7 +950,7 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/89.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface实现RPC">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/89.jpg" class="responsive-img" alt="SpringCloud使用Feign暴露Interface实现RPC">
                         
                         <span class="card-title">SpringCloud使用Feign暴露Interface实现RPC</span>
                     </div>
@@ -984,12 +984,12 @@ kubectl apply -f kube-flannel.yaml<span aria-hidden="true" class="line-numbers-r
                         <span class="chip bg-color">springcloud</span>
                     </a>
                     
-                    <a href="/tags/feign/" target="_blank">
-                        <span class="chip bg-color">feign</span>
-                    </a>
-                    
                     <a href="/tags/interface/" target="_blank">
                         <span class="chip bg-color">interface</span>
+                    </a>
+                    
+                    <a href="/tags/feign/" target="_blank">
+                        <span class="chip bg-color">feign</span>
                     </a>
                     
                 </div>

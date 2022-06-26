@@ -20,7 +20,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Elasticsearch 集群架构学习 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/34.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/34.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -451,7 +451,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 <li><strong>副本</strong>（Replica）：同一个分片（Shard）的备份数据，一个分片可能会有0个或多个副本，这些副本中的数据保证强一致或最终一致。</li>
 </ol>
 <p>用图形表示出来可能是这样子的：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-1.png" alt></p>
 <ol>
 <li>Index 1：蓝色部分，有3个shard，分别是P1，P2，P3，位于3个不同的Node中，这里<strong>没有Replica</strong>。</li>
 <li>Index 2：绿色部分，有2个shard，分别是P1，P2，位于2个不同的Node中。并且每个shard有一个replica，分别是R1和R2。<strong>基于系统可用性的考虑，同一个shard的 primary 和 replica 不能位于同一个Node中。</strong>这里Shard1的P1和R1分别位于Node3和Node2中，如果某一刻Node2发生宕机，服务基本不会受影响，因为还有一个P1和R2都还是可用的。因为是主备架构，当主分片发生故障时，需要切换，这时候需要选举一个副本作为新主，这里除了会耗费一点点时间外，也会有丢失数据的风险。</li>
@@ -460,7 +460,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 <p>在这种架构中，索引数据全部位于Shard中，主Shard和副本Shard各存储一份。当某个副本Shard或者主Shard丢失（比如机器宕机，网络中断等）时，需要将丢失的Shard在其他Node中恢复回来，这时候就需要从其他副本（Replica）全量拷贝这个Shard的所有数据到新Node上构造新Shard。这个拷贝过程需要一段时间，这段时间内只能由剩余主副本来承载流量，在恢复完成之前，整个系统会处于一个比较危险的状态，直到failover结束。</p>
 <p>这里就体现了副本（Replica）存在的一个理由，<strong>避免数据丢失，提高数据可靠性</strong>。副本（Replica）存在的另一个理由是读请求量很大的时候，一个Node无法承载所有流量，这个时候就需要一个副本来分流查询压力，目的就是<strong>扩展查询能力</strong>。</p>
 <h2 id="角色部署方式"><a href="#角色部署方式" class="headerlink" title="角色部署方式"></a>角色部署方式</h2><p>看看角色分工的两种不同方式：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-2.jpg" alt></p>
 <p>Elasticsearch支持上述两种方式：</p>
 <p><strong>混合部署</strong>（左图）：</p>
 <ul>
@@ -505,14 +505,14 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 <li>当出现热点或者需要紧急扩容的时候<strong>动态增加Replica慢</strong>。新Shard的数据需要完全从其他Shard拷贝，拷贝时间较长。</li>
 </ol>
 <p>上面介绍了Elasticsearch数据层的架构，以及副本策略带来的优势和不足，下面简单介绍了几种不同形式的分布式数据系统架构。</p>
-<h2 id="分布式系统"><a href="#分布式系统" class="headerlink" title="分布式系统"></a>分布式系统</h2><h3 id="第一种：基于本地文件系统的分布式系统"><a href="#第一种：基于本地文件系统的分布式系统" class="headerlink" title="第一种：基于本地文件系统的分布式系统"></a>第一种：基于本地文件系统的分布式系统</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-3.jpg" alt></p>
+<h2 id="分布式系统"><a href="#分布式系统" class="headerlink" title="分布式系统"></a>分布式系统</h2><h3 id="第一种：基于本地文件系统的分布式系统"><a href="#第一种：基于本地文件系统的分布式系统" class="headerlink" title="第一种：基于本地文件系统的分布式系统"></a>第一种：基于本地文件系统的分布式系统</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-3.jpg" alt></p>
 <p>上图中是一个基于本地磁盘存储数据的分布式系统。Index一共有3个Shard，每个Shard除了Primary Shard外，还有一个Replica Shard。当Node 3机器宕机或磁盘损坏的时候，首先确认P3已经不可用，重新选举R3位Primary Shard，此Shard发生主备切换。然后重新找一台机器Node 7，在Node7 上重新启动P3的新Replica。由于数据都会存在本地磁盘，此时需要将Shard 3的数据从Node 6上拷贝到Node7上。如果有200G数据，千兆网络，拷贝完需要1600秒。如果没有replica，则这1600秒内这些Shard就不能服务。</p>
 <p>为了保证可靠性，就需要冗余Shard，会导致更多的物理资源消耗。</p>
 <p>这种思想的另外一种表现形式是<strong>使用双集群</strong>，集群级别做备份。</p>
 <p>在这种架构中，如果你的数据是在其他存储系统中生成的，比如HDFS/HBase，那么你还需要一个数据传输系统，将准备好的数据分发到相应的机器上。</p>
 <p>这种架构中为了保证可用性和可靠性，需要双集群或者Replica才能用于生产环境，优势和副作用在上面介绍Elasticsearch的时候已经介绍过了，这里就就不赘述了。</p>
 <p>Elasticsearch使用的就是这种架构方式。</p>
-<h3 id="第二种：基于分布式文件系统的分布式系统（共享存储）"><a href="#第二种：基于分布式文件系统的分布式系统（共享存储）" class="headerlink" title="第二种：基于分布式文件系统的分布式系统（共享存储）"></a>第二种：基于分布式文件系统的分布式系统（共享存储）</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-4.png" alt></p>
+<h3 id="第二种：基于分布式文件系统的分布式系统（共享存储）"><a href="#第二种：基于分布式文件系统的分布式系统（共享存储）" class="headerlink" title="第二种：基于分布式文件系统的分布式系统（共享存储）"></a>第二种：基于分布式文件系统的分布式系统（共享存储）</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-4.png" alt></p>
 <p>针对第一种架构中的问题，另一种思路是：<strong>存储和计算分离</strong>。</p>
 <p>第一种思路的问题根源是数据量大，拷贝数据耗时多，那么有没有办法可以不拷贝数据？为了实现这个目的，一种思路是底层存储层使用共享存储，每个Shard只需要连接到一个分布式文件系统中的一个目录/文件即可，Shard中不含有数据，只含有计算部分。相当于每个Node中只负责计算部分，存储部分放在底层的另一个分布式文件系统中，比如<strong>HDFS</strong>。</p>
 <p>上图中，Node 1 连接到第一个文件；Node 2连接到第二个文件；Node3连接到第三个文件。当Node 3机器宕机后，只需要在Node 4机器上新建一个空的Shard，然后构造一个新连接，连接到底层分布式文件系统的第三个文件即可，创建连接的速度是很快的，总耗时会非常短。</p>
@@ -556,7 +556,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 <p>从上面介绍来看，Lucene只是提供了一个索引和查询的最基本的功能，距离一个完全可用的完整搜索引擎还有一些距离</p>
 <h2 id="Lucene-gt-Elasticsearch"><a href="#Lucene-gt-Elasticsearch" class="headerlink" title="Lucene =&gt; Elasticsearch"></a>Lucene =&gt; Elasticsearch</h2><p>在Elasticsearch中，为了支持分布式，增加了一个系统字段<code>_routing</code>（路由），通过<code>_routing</code>将Doc分发到不同的Shard，不同的Shard可以位于不同的机器上，这样就能实现简单的分布式了。</p>
 <p>采用类似的方式，Elasticsearch增加了<code>_id、_version、_source和_seq_no</code>等等多个系统字段，通过这些Elasticsearch中特有的系统字段可以有效解决上述的几个问题，新增的系统字段主要是下列几个：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-5.jpg" alt></p>
 <h3 id="1-id"><a href="#1-id" class="headerlink" title="1. _id"></a>1. _id</h3><p><strong>Doc的主键</strong>，在写入的时候，可以指定该Doc的ID值，<strong>如果不指定，则系统自动生成一个唯一的UUID</strong>值。</p>
 <p>Lucene中没有主键索引，要保证系统中同一个Doc不会重复，Elasticsearch引入了<code>_id</code>字段来实现主键。每次写入的时候都会先查询id，如果有，则说明已经有相同Doc存在了。</p>
 <p>通过<code>_id</code>值（ES内部转换成_uid）可以唯一在Elasticsearch中确定一个Doc。</p>
@@ -565,18 +565,18 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 <h3 id="2-uid"><a href="#2-uid" class="headerlink" title="2. _uid"></a>2. _uid</h3><p>_uid的格式是：<code>type + &#39;#&#39; + id</code>。</p>
 <p>_uid会存储在Lucene中，在Lucene中的映射关系如下：dex下可能存在多个id值相同的Doc，而6.0.0之后只支持单Type，同Index下id值是唯一的。</p>
 <p>uid会存储在Lucene中，在Lucene中的映射关系如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-6.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-6.png" alt></p>
 <p><code>_uid</code> <strong>只是存储了倒排Index和原文store</strong>：倒排Index的目的是可以通过<code>_id</code>快速查询到文档；原文store用来在返回的Response里面填充完整的<code>_id</code>值。</p>
 <p>在Lucene中存储<code>_uid</code>，而不是<code>_id</code>的原因是，在6.0.0之前版本里面，<code>_uid</code>可以比<code>_id</code>表示更多的信息，比如Type。在6.0.0版本之后，同一个Index只能有一个Type，这时候Type就没多大意义了，后面Type应该会消失，那时候<code>_id</code>就会和<code>_uid</code>概念一样，到时候两者会合二为一，也能简化大家的理解。</p>
 <h3 id="3-version"><a href="#3-version" class="headerlink" title="3. _version"></a>3. _version</h3><p>Elasticsearch中每个Doc都会有一个Version，该Version可以由用户指定，也可以由系统自动生成。如果是系统自动生成，那么每次Version都是递增1。</p>
 <p><code>_version</code>是实时的，不受搜索的近实时性影响，原因是可以通过<code>_uid</code>从内存中versionMap或者TransLog中读取到。</p>
 <p>Version在Lucene中也是映射为一个特殊的Field存在。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-7.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-7.png" alt></p>
 <p>Elasticsearch中Version字段的主要目的是<strong>通过doc_id读取Version</strong>，所以Version只要存储为DocValues就可以了，类似于KeyValue存储。</p>
 <p>Elasticsearch通过使用version来<strong>保证对文档的变更能以正确的顺序执行</strong>，避免乱序造成的数据丢失。</p>
 <h3 id="4-source"><a href="#4-source" class="headerlink" title="4. _source"></a>4. _source</h3><p>Elasticsearch中有一个重要的概念是source，<strong>存储原始文档</strong>，也可以通过过滤设置只存储特定Field。</p>
 <p>Source在Lucene中也是映射为了一个特殊的Field存在：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-8.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-8.png" alt></p>
 <p>Elasticsearch中_source字段的主要目的是通过doc_id读取该文档的原始内容，所以只需要存储Store即可。</p>
 <p><code>_source</code>其实是名为<code>_source</code>的虚拟Store Field。</p>
 <p>Elasticsearch中使用_source字段可以实现以下功能：</p>
@@ -604,7 +604,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 <p>每个文档在使用Lucene的document操作接口之前，会获取到一个<code>_seq_no</code>，这个<code>_seq_no</code>会以系统保留Field的名义存储到Lucene中，文档写入Lucene成功后，会标记该seq_no为完成状态，这时候会使用当前seq_no更新local_checkpoint。</p>
 <p>checkpoint分为 local_checkpoint 和 global_checkpoint ，主要是用于保证有序性，以及减少Shard恢复时数据拷贝的数据拷贝量，更详细的介绍可以看这篇文章：<a href="https://link.zhihu.com/?target=https%3A//www.elastic.co/blog/elasticsearch-sequence-ids-6-0" target="_blank" rel="noopener">Sequence IDs: Coming Soon to an Elasticsearch Cluster Near You</a>。</p>
 <p><code>_seq_no</code>在Lucene中的映射：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-9.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-9.png" alt></p>
 <p>Elasticsearch中<code>_seq_no</code>的作用有两个：</p>
 <ol>
 <li>通过doc_id查询到该文档的seq_no，</li>
@@ -615,12 +615,12 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 <p>另外，<code>_seq_no</code>的索引应该仅需要支持存储DocId就可以了，不需要FREQS、POSITIONS和分词。如果多存储了这些，对功能也没影响，就是多占了一点资源而已。</p>
 <h3 id="6-primary-term"><a href="#6-primary-term" class="headerlink" title="6. _primary_term"></a>6. _primary_term</h3><p><code>_primary_term</code>也和<code>_seq_no</code>一样是一个整数，每当Primary Shard发生重新分配时，比如重启，Primary选举等，<code>_primary_term</code>会递增1。</p>
 <p><code>_primary_term</code>主要是用来恢复数据时处理当多个文档的<code>_seq_no</code>一样时的冲突，避免Primary Shard上的写入被覆盖。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-10.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-10.png" alt></p>
 <p>Elasticsearch中<code>_primary_term</code>只需要通过doc_id读取到即可，所以只需要保存为DocValues就可以了</p>
 <h3 id="7-routing"><a href="#7-routing" class="headerlink" title="7. _routing"></a>7. _routing</h3><p><strong>路由规则</strong>，写入和查询的routing需要一致，否则会出现写入的文档没法被查到情况。</p>
 <p>在mapping中，或者Request中可以指定按某个字段路由。默认是按照<code>_Id</code>值路由。</p>
 <p><code>_routing</code>在Lucene中映射为：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-11.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-11.png" alt></p>
 <p>Elasticsearch中文档级别的<code>_routing</code>主要有两个目的：</p>
 <ol>
 <li>可以查询到使用某种<code>_routing</code>的文档有哪些，当发生<code>_routing</code>变化时，可以对历史<code>_routing</code>的文档重新读取再Index，这个需要倒排Index。</li>
@@ -628,7 +628,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
 </ol>
 <h3 id="8-field-names"><a href="#8-field-names" class="headerlink" title="8. _field_names"></a>8. _field_names</h3><p>该字段会索引某个Field的名称，用来<strong>判断某个Doc中是否存在某个Field</strong>，用于exists或者missing请求。</p>
 <p><code>_field_names</code>在Lucene中的映射：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/es-12.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/es-12.png" alt></p>
 <p>Elasticsearch中<code>_field_names</code>的目的是查询哪些Doc的这个Field是否存在，所以<strong>只需要倒排Index</strong>即可。</p>
 
             </div>
@@ -736,7 +736,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg" class="responsive-img" alt="Lucene 查询原理">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/119.jpg" class="responsive-img" alt="Lucene 查询原理">
                         
                         <span class="card-title">Lucene 查询原理</span>
                     </div>
@@ -789,7 +789,7 @@ Elasticsearch的详细介绍可以到官网查看。我们先来看一下Elastic
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/5.jpg" class="responsive-img" alt="Zookeeper的原理和分布式锁">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/5.jpg" class="responsive-img" alt="Zookeeper的原理和分布式锁">
                         
                         <span class="card-title">Zookeeper的原理和分布式锁</span>
                     </div>

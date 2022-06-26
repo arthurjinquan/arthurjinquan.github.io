@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>ThreadLocal | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/120.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/120.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -461,9 +461,9 @@
 <li>initialValue（钩子方法需要子类实现）：懒加载形式初始化线程本地变量，执行get时，发现线程本地变量为null，就会执行initialValue的内容</li>
 <li>remove：清空当前线程的ThreadLocal索引与映射的元素</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/threadlocal-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/threadlocal-1.png" alt></p>
 <p><strong>一个 Thread可以拥有多个 ThreadLocal键值对</strong>（存储在ThreadLocalMap结构），又因为 ThreadLocalMap 依赖当前Thread，Thread销毁时 ThreadLocalMap 也会随之销毁，所以 <strong>ThreadLocalMap 的生命周期与 Thread 绑定</strong>。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/threadlocal-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/threadlocal-2.jpg" alt></p>
 <p>现在总结出「本地线程变量的作用域，属于当前线程整个范围，一个线程可以跨越多个方法使用本地线程变量」，当你希望某些变量在某 Thread 的多个方法中共享 并保证线程安全，那就大胆的使用ThreadLocal。</p>
 <p>（ps：<strong>一定要想清楚，是某个变量被Thread生命周期内多个方法共享，还是多个Thread共享这个变量</strong>！）</p>
 <h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><h3 id="ThreadLocalMap结构"><a href="#ThreadLocalMap结构" class="headerlink" title="ThreadLocalMap结构"></a>ThreadLocalMap结构</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">ThreadLocalMap</span> <span class="token punctuation">{</span>
@@ -570,7 +570,7 @@
 
         <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>核心就三样：ThreadLocal线程本地变量工具类（同时作为索引）、Entry基本元素（由弱引用包装类ThreadLocal与value组成），Entry数组容器，到这里流程很清晰了，ThreadLocal计算出数组索引，用 ThreadLocal 与 value 构建出 Entry 元素，最终放入 Entry 容器中。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/threadlocal-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/threadlocal-3.jpg" alt></p>
 <h2 id="remove背后的意义"><a href="#remove背后的意义" class="headerlink" title="remove背后的意义"></a>remove背后的意义</h2><p>大伙都知道 Entry 中对 ThreadLocal 使用弱引用，但value是强引用，如果消除 ThreadLocal 强引用，value值无法清理，最终内存溢出。</p>
 <p>其实value作为强引用设计属于合理，如果用软或弱引用，就出大问题了，程序跑着跑着突然get到了一个null，估计都得骂娘了，所以为解决内存溢出问题 J D K提供remove方法，使开发人员可以选择手动清理整个Entry元素，防止内存溢出。</p>
 <p>还记的之前说过吗？线程本地变量的生命周期与线程绑定，一般线程的生命周期比较短，线程结束时，线程本地变量自然就销毁了，软引用与 remove 会不会有点多余了？</p>
@@ -687,7 +687,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/94.jpg" class="responsive-img" alt="Spring中Bean的三种注入方式">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/94.jpg" class="responsive-img" alt="Spring中Bean的三种注入方式">
                         
                         <span class="card-title">Spring中Bean的三种注入方式</span>
                     </div>
@@ -740,7 +740,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/113.jpg" class="responsive-img" alt="Optional">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/113.jpg" class="responsive-img" alt="Optional">
                         
                         <span class="card-title">Optional</span>
                     </div>

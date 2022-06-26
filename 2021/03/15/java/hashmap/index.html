@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>HashMap | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/3.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -490,27 +490,27 @@
         <span class="token punctuation">}</span>  
     <span class="token punctuation">}</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="jdk1-7多线程出现循环链表的栗子"><a href="#jdk1-7多线程出现循环链表的栗子" class="headerlink" title="jdk1.7多线程出现循环链表的栗子"></a>jdk1.7多线程出现循环链表的栗子</h2><p>要扩容的旧的hashmap：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/hashmap-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/hashmap-1.jpg" alt></p>
 <p>根据resize方法中的<code>Entry[] newTable = new Entry[newCapacity];</code>，多线程的情况下有多少线程就生成多少个新表，假设有线程A和线程B分别生成了newTableA和newTableB。</p>
 <p>又假设两个线程同时走到了transfer方法，线程A的参数为e1、next1，线程B的参数为e2、next2。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/hashmap-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/hashmap-2.jpg" alt></p>
 <p>然后线程B在if（rehash）判断上阻塞了，线程A用头插法走完了三个元素的转移，就变成了这样：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/hashmap-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/hashmap-3.jpg" alt></p>
 <p>这时候就发现问题了，因为插入用的是头插法，元素的顺序颠倒了，之前e2.next=next2的，现在变成了next2.next = e2了。</p>
 <p>然后线程B不阻塞了，开始执行：</p>
 <pre class="line-numbers language-java"><code class="language-java">e<span class="token punctuation">.</span>next <span class="token operator">=</span> newTable<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
 newTable<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> e<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//头插法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/hashmap-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/hashmap-4.jpg" alt></p>
 <p>然后执行<code>e = next;</code>，就是说e2指向2，和next2指向一个元素。然后开始第二次循环：</p>
 <pre class="line-numbers language-java"><code class="language-java">Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> next <span class="token operator">=</span> e<span class="token punctuation">.</span>next<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//next2指向3</span>
 e<span class="token punctuation">.</span>next <span class="token operator">=</span> newTable<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//本来就指向3，不变</span>
 newTable<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> e<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//头插法</span>
 e <span class="token operator">=</span> next<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//e2和next2都指向3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/hashmap-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/hashmap-5.jpg" alt></p>
 <p>然后开始第三次循环：</p>
 <pre class="line-numbers language-java"><code class="language-java">Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> next <span class="token operator">=</span> e<span class="token punctuation">.</span>next<span class="token punctuation">;</span><span class="token comment" spellcheck="true">//next2指向null</span>
 e<span class="token punctuation">.</span>next <span class="token operator">=</span> newTable<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//3的next指向2，形成循环链表</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/hashmap-6.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/hashmap-6.jpg" alt></p>
 <h2 id="jdk8扩容源码（尾插法）"><a href="#jdk8扩容源码（尾插法）" class="headerlink" title="jdk8扩容源码（尾插法）"></a>jdk8扩容源码（尾插法）</h2><p>jdk1.6中，HashMap中有个内置Entry类，它实现了Map.Entry接口；</p>
 <p>jdk1.8中，这个Entry类不见了，变成了Node类，也实现了Map.Entry接口，与jdk1.6中的Entry是等价的。</p>
 <p>结构：Node数组+链表+红黑树</p>
@@ -719,7 +719,7 @@ e<span class="token punctuation">.</span>next <span class="token operator">=</sp
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/21.jpg" class="responsive-img" alt="单例模式">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/21.jpg" class="responsive-img" alt="单例模式">
                         
                         <span class="card-title">单例模式</span>
                     </div>
@@ -772,7 +772,7 @@ e<span class="token punctuation">.</span>next <span class="token operator">=</sp
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/41.jpg" class="responsive-img" alt="Java中的集合类">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/41.jpg" class="responsive-img" alt="Java中的集合类">
                         
                         <span class="card-title">Java中的集合类</span>
                     </div>

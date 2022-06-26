@@ -18,7 +18,7 @@ Channel都有且仅有一个ChannelPipeline与之对应，Channel包含了Channe
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Netty的Pipeline之源码分析 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@ Channel都有且仅有一个ChannelPipeline与之对应，Channel包含了Channe
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@ Channel都有且仅有一个ChannelPipeline与之对应，Channel包含了Channe
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@ Channel都有且仅有一个ChannelPipeline与之对应，Channel包含了Channe
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/75.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/75.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -443,7 +443,7 @@ Channel都有且仅有一个ChannelPipeline与之对应，Channel包含了Channe
                 <h2 id="ChannelPipeline"><a href="#ChannelPipeline" class="headerlink" title="ChannelPipeline"></a>ChannelPipeline</h2><p><strong>架构设计</strong>：</p>
 <p>Channel都<strong>有且仅有一个</strong>ChannelPipeline与之对应，Channel包含了ChannelPipeline，ChannelPipeline内部<strong>包含了N个handler</strong>，每一个handler都是由一个线程去执行；</p>
 <p>ChannelPipeline内部维护了一个由ChannelHandlerContext组成的<strong>双向链表</strong>，<strong>头为HeadContext，尾为TailHandler</strong>（双向链表为自己写的，而<strong>不是使用JDK的</strong>链表，为了轻量级），并且每个ChannelHandlerContext中又关联着一个ChannelHandler，下图提供参考：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-pipeline-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-pipeline-1.png" alt></p>
 <h2 id="传播inbound事件"><a href="#传播inbound事件" class="headerlink" title="传播inbound事件"></a>传播inbound事件</h2><p>在业务代码中, 我们自己的handler往往会通过重写channelRead方法来处理对方发来的数据, 那么对方发来的数据是如何走到channelRead方法中了呢？</p>
 <p>在业务代码中, 传递channelRead事件方式是通过fireChannelRead方法进行传播的</p>
 <p><strong>两种写法:</strong></p>
@@ -594,7 +594,7 @@ Channel都有且仅有一个ChannelPipeline与之对应，Channel包含了Channe
 <p>这里做了释放资源的相关的操作</p>
 <p>至此, channelRead事件传输相关罗辑剖析完整, 对于inbound事件的传输流程都会遵循这一逻辑。</p>
 <h2 id="pipeline的addLast方法"><a href="#pipeline的addLast方法" class="headerlink" title="pipeline的addLast方法"></a>pipeline的addLast方法</h2><p>简单来说，pipeline.addLast（）添加handler节点后，回调callHandlerAdded（）方法，最终调用ChannelInitializer的initChannel方法。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/netty-pipeline-addLast1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/netty-pipeline-addLast1.jpg" alt></p>
 <p>细节部分转载于：<a href="https://blog.csdn.net/qq_16192007/article/details/92752048" target="_blank" rel="noopener">https://blog.csdn.net/qq_16192007/article/details/92752048</a></p>
 <p>跟踪到DefaultChannelPipeline # ChannelPipeline addLast（EventExecutorGroup group, String name, ChannelHandler handler）</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">final</span> ChannelPipeline <span class="token function">addLast</span><span class="token punctuation">(</span>EventExecutorGroup group<span class="token punctuation">,</span> String name<span class="token punctuation">,</span> ChannelHandler handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -969,7 +969,7 @@ Channel都有且仅有一个ChannelPipeline与之对应，Channel包含了Channe
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/84.jpg" class="responsive-img" alt="Spring Cloud的gateway网关配置">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/84.jpg" class="responsive-img" alt="Spring Cloud的gateway网关配置">
                         
                         <span class="card-title">Spring Cloud的gateway网关配置</span>
                     </div>
@@ -1026,7 +1026,7 @@ Channel都有且仅有一个ChannelPipeline与之对应，Channel包含了Channe
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/33.jpg" class="responsive-img" alt="2021年的学习目标">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/33.jpg" class="responsive-img" alt="2021年的学习目标">
                         
                         <span class="card-title">2021年的学习目标</span>
                     </div>

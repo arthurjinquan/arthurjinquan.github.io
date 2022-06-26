@@ -20,7 +20,7 @@ CREATE TABLE `user` (
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>索引失效的十大杂症 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@ CREATE TABLE `user` (
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@ CREATE TABLE `user` (
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@ CREATE TABLE `user` (
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/100.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/100.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -457,9 +457,9 @@ CREATE TABLE `user` (
 <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>转载参考：<a href="https://juejin.cn/post/6844904015872917517" target="_blank" rel="noopener">https://juejin.cn/post/6844904015872917517</a></p>
 <ol>
-<li><p>执行一条查询sql，它是会走索引的，如下图所示：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-or.jpg" alt></p>
+<li><p>执行一条查询sql，它是会走索引的，如下图所示：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-or.jpg" alt></p>
 </li>
-<li><p>把or条件+没有索引的age加上，并不会走索引，如图：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-or2.jpg" alt></p>
+<li><p>把or条件+没有索引的age加上，并不会走索引，如图：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-or2.jpg" alt></p>
 </li>
 </ol>
 <blockquote>
@@ -481,8 +481,8 @@ CREATE TABLE `user` (
   <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_userId<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>userId<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
 <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">2</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>userId为字符串类型，是B+树的普通索引，<strong>如果查询条件传了一个数字过去，它是不走索引的</strong>，如图所示：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-str-digit.jpg" alt></p>
-<p>如果给数字加上’ ‘,也就是传一个字符串呢，当然是走索引，如下图：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-str-digit2.jpg" alt></p>
+<p>userId为字符串类型，是B+树的普通索引，<strong>如果查询条件传了一个数字过去，它是不走索引的</strong>，如图所示：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-str-digit.jpg" alt></p>
+<p>如果给数字加上’ ‘,也就是传一个字符串呢，当然是走索引，如下图：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-str-digit2.jpg" alt></p>
 <h3 id="分析与结论"><a href="#分析与结论" class="headerlink" title="分析与结论"></a>分析与结论</h3><p>为什么第一条语句未加单引号就不走索引了呢？ 这是<strong>因为不加单引号时，是字符串跟数字的比较</strong>，它们类型不匹配，<strong>MySQL会做隐式的类型转换，把它们转换为浮点数再做比较</strong>。</p>
 <h2 id="三、like通配符可能导致索引失效"><a href="#三、like通配符可能导致索引失效" class="headerlink" title="三、like通配符可能导致索引失效"></a>三、like通配符可能导致索引失效</h2><p>并不是用了like通配符，索引一定失效，而是<strong>like查询是以%开头</strong>，才会导致索引失效。</p>
 <p>表结构：</p>
@@ -493,9 +493,9 @@ CREATE TABLE `user` (
   <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_userId<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>userId<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
 <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">2</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>like查询以%开头，索引失效，如图：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-like.jpg" alt></p>
-<p>把%放后面，发现索引还是正常走的，如下：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-like2.jpg" alt></p>
-<p>把%加回来，改为只查索引的字段（<strong>覆盖索引</strong>），发现还是走索引，惊不惊喜，意不意外<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-like3.jpg" alt></p>
+<p>like查询以%开头，索引失效，如图：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-like.jpg" alt></p>
+<p>把%放后面，发现索引还是正常走的，如下：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-like2.jpg" alt></p>
+<p>把%加回来，改为只查索引的字段（<strong>覆盖索引</strong>），发现还是走索引，惊不惊喜，意不意外<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-like3.jpg" alt></p>
 <h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>like查询以%开头，会导致索引失效。可以有两种方式优化：</p>
 <ol>
 <li>使用<strong>覆盖索引</strong>，覆盖索引包含所有满足查询需要的数据的索引</li>
@@ -510,9 +510,9 @@ CREATE TABLE `user` (
   <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_userid_age<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>userId<span class="token punctuation">`</span><span class="token punctuation">,</span><span class="token punctuation">`</span>age<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
 <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">2</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在联合索引中，查询条件满足<strong>最左匹配原则</strong>时，索引是正常生效的。请看demo：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-composite%20index.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-compositeindex2.jpg" alt></p>
-<p>如果条件列不是联合索引中的第一个列，索引失效，如下：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-composite%20index3.jpg" alt></p>
+<p>在联合索引中，查询条件满足<strong>最左匹配原则</strong>时，索引是正常生效的。请看demo：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-composite%20index.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-compositeindex2.jpg" alt></p>
+<p>如果条件列不是联合索引中的第一个列，索引失效，如下：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-composite%20index3.jpg" alt></p>
 <p>复合索引，尽量使用<strong>全索引匹配</strong></p>
 <h2 id="五、在索引列上使用mysql的内置函数，索引失效"><a href="#五、在索引列上使用mysql的内置函数，索引失效" class="headerlink" title="五、在索引列上使用mysql的内置函数，索引失效"></a>五、在索引列上使用mysql的内置函数，索引失效</h2><p>表结构：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span><span class="token keyword">user</span><span class="token punctuation">`</span> <span class="token punctuation">(</span>
@@ -523,7 +523,7 @@ CREATE TABLE `user` (
   <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_userId<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>userId<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span><span class="token punctuation">,</span>
   <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_login_time<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>loginTime<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
 <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">2</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>虽然loginTime加了索引，但是因为使用了mysql的内置函数Date_ADD（），索引直接GG，如图：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-mysqlfunction.jpg" alt></p>
+<p>虽然loginTime加了索引，但是因为使用了mysql的内置函数Date_ADD（），索引直接GG，如图：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-mysqlfunction.jpg" alt></p>
 <h2 id="六、对索引列运算（如，-、-、-、-），索引失效"><a href="#六、对索引列运算（如，-、-、-、-），索引失效" class="headerlink" title="六、对索引列运算（如，+、-、*、/ ），索引失效"></a>六、对索引列运算（如，+、-、*、/ ），索引失效</h2><p>表结构：</p>
 <pre class="line-numbers language-java"><code class="language-java">CREATE TABLE `user` <span class="token punctuation">(</span>
   `id` <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> NOT NULL AUTO_INCREMENT<span class="token punctuation">,</span>
@@ -532,7 +532,7 @@ CREATE TABLE `user` (
   PRIMARY <span class="token function">KEY</span> <span class="token punctuation">(</span>`id`<span class="token punctuation">)</span><span class="token punctuation">,</span>
   KEY `idx_age` <span class="token punctuation">(</span>`age`<span class="token punctuation">)</span> USING BTREE
 <span class="token punctuation">)</span> ENGINE<span class="token operator">=</span>InnoDB AUTO_INCREMENT<span class="token operator">=</span><span class="token number">2</span> DEFAULT CHARSET<span class="token operator">=</span>utf8<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>虽然age加了索引，但是<strong>因为它进行运算，索引直接迷路了</strong>。。。 如图：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-compute.jpg" alt></p>
+<p>虽然age加了索引，但是<strong>因为它进行运算，索引直接迷路了</strong>。。。 如图：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-compute.jpg" alt></p>
 <h2 id="七、索引字段上使用（！-或者-lt-gt-，not-in）时，可能会导致索引失效"><a href="#七、索引字段上使用（！-或者-lt-gt-，not-in）时，可能会导致索引失效" class="headerlink" title="七、索引字段上使用（！= 或者 &lt; &gt;，not in）时，可能会导致索引失效"></a>七、索引字段上使用（！= 或者 &lt; &gt;，not in）时，可能会导致索引失效</h2><p>表结构：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span><span class="token keyword">user</span><span class="token punctuation">`</span> <span class="token punctuation">(</span>
   <span class="token punctuation">`</span>id<span class="token punctuation">`</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token punctuation">,</span>
@@ -542,8 +542,8 @@ CREATE TABLE `user` (
   <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_age<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>age<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
 <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">2</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>虽然age加了索引，但是使用了！= 或者 &lt; &gt;，not in这些时，索引如同虚设。如下：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-compute2.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-compute3.jpg" alt></p>
+<p>虽然age加了索引，但是使用了！= 或者 &lt; &gt;，not in这些时，索引如同虚设。如下：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-compute2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-compute3.jpg" alt></p>
 <blockquote>
 <p>！= 和 &lt; &gt;两者都是不等于的意思，查阅网上资料说是！=是以前sql标准，&lt;&gt;是现在使用的sql标准，推荐使用&lt;&gt;。</p>
 <p>复合索引不能使用不等于（!=  &lt;&gt;）或is null （is not null），否则自身以及右侧所有全部失效。复合索引中如果有&gt;，则自身和右侧索引全部失效。</p>
@@ -557,9 +557,9 @@ CREATE TABLE `user` (
   <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_name<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span><span class="token punctuation">,</span>
   <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_card<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>card<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
 <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">AUTO_INCREMENT</span><span class="token operator">=</span><span class="token number">2</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>单个name字段加上索引，并查询name为非空的语句，其实会走索引的，如下:<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-isnotnull.jpg" alt></p>
-<p>单个card字段加上索引，并查询name为非空的语句，其实会走索引的，如下:<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-isnotnull2.jpg" alt></p>
-<p>但是<strong>它两用or连接起来，索引就失效了</strong>，如下：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-isnotnull3.jpg" alt></p>
+<p>单个name字段加上索引，并查询name为非空的语句，其实会走索引的，如下:<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-isnotnull.jpg" alt></p>
+<p>单个card字段加上索引，并查询name为非空的语句，其实会走索引的，如下:<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-isnotnull2.jpg" alt></p>
+<p>但是<strong>它两用or连接起来，索引就失效了</strong>，如下：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-isnotnull3.jpg" alt></p>
 <h2 id="九、左连接查询或者右连接查询查询关联的字段编码格式不一样"><a href="#九、左连接查询或者右连接查询查询关联的字段编码格式不一样" class="headerlink" title="九、左连接查询或者右连接查询查询关联的字段编码格式不一样"></a>九、左连接查询或者右连接查询查询关联的字段编码格式不一样</h2><p>可能导致索引失效。</p>
 <p>新建两个表，一个user，一个user_job：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span><span class="token keyword">user</span><span class="token punctuation">`</span> <span class="token punctuation">(</span>
@@ -578,17 +578,17 @@ CREATE TABLE `user` (
   <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>id<span class="token punctuation">`</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token keyword">KEY</span> <span class="token punctuation">`</span>idx_name<span class="token punctuation">`</span> <span class="token punctuation">(</span><span class="token punctuation">`</span>name<span class="token punctuation">`</span><span class="token punctuation">)</span> <span class="token keyword">USING</span> <span class="token keyword">BTREE</span>
 <span class="token punctuation">)</span> <span class="token keyword">ENGINE</span><span class="token operator">=</span><span class="token keyword">InnoDB</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CHARSET</span><span class="token operator">=</span>utf8<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>user 表的name字段编码是utf8mb4，而user_job表的name字段编码为utf8。<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-leftrightformat.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-leftrightformat2.jpg" alt></p>
-<p>执行左外连接查询,user_job表还是走全表扫描，如下：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-leftrightformat3.jpg" alt></p>
-<p>如果把它们改为name字段编码一致，还是会走索引。<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-leftrightformat4.jpg" alt></p>
+<p>user 表的name字段编码是utf8mb4，而user_job表的name字段编码为utf8。<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-leftrightformat.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-leftrightformat2.jpg" alt></p>
+<p>执行左外连接查询,user_job表还是走全表扫描，如下：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-leftrightformat3.jpg" alt></p>
+<p>如果把它们改为name字段编码一致，还是会走索引。<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-leftrightformat4.jpg" alt></p>
 <h2 id="十、mysql估计使用全表扫描要比使用索引快-则不使用索引"><a href="#十、mysql估计使用全表扫描要比使用索引快-则不使用索引" class="headerlink" title="十、mysql估计使用全表扫描要比使用索引快,则不使用索引"></a>十、mysql估计使用全表扫描要比使用索引快,则不使用索引</h2><ol>
 <li><p>当表的索引被查询，会使用最好的索引，除非优化器使用全表扫描更有效。优化器优化成全表扫描取决与使用最好索引查出来的数据是否超过表的30%的数据。</p>
 </li>
 <li><p>不要给’性别’等增加索引。如果某个数据列里包含了均是”0/1”或“Y/N”等值，即包含着许多重复的值，就算为它建立了索引，索引效果不会太好，还可能导致全表扫描。</p>
 </li>
 </ol>
-<p>Mysql出于效率与成本考虑，估算全表扫描与使用索引，哪个执行快。这跟它的优化器有关，来看一下它的逻辑架构图吧（图片来源网上）<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/indexmissing-optimizer.jpg" alt></p>
+<p>Mysql出于效率与成本考虑，估算全表扫描与使用索引，哪个执行快。这跟它的优化器有关，来看一下它的逻辑架构图吧（图片来源网上）<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/indexmissing-optimizer.jpg" alt></p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>模拟的表结构与肇事sql如下：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token punctuation">`</span>user_session<span class="token punctuation">`</span> <span class="token punctuation">(</span>
   <span class="token punctuation">`</span>user_id<span class="token punctuation">`</span> <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span> <span class="token keyword">CHARACTER SET</span> utf8mb4 <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
@@ -715,7 +715,7 @@ CREATE TABLE `user` (
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/52.jpg" class="responsive-img" alt="Servlet生命周期和PostConstruct、PreDestroy">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/52.jpg" class="responsive-img" alt="Servlet生命周期和PostConstruct、PreDestroy">
                         
                         <span class="card-title">Servlet生命周期和PostConstruct、PreDestroy</span>
                     </div>
@@ -768,7 +768,7 @@ CREATE TABLE `user` (
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/7.jpg" class="responsive-img" alt="Isolation：隔离级别和脏读、脏写、不可重复读、更新丢失和幻读">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/7.jpg" class="responsive-img" alt="Isolation：隔离级别和脏读、脏写、不可重复读、更新丢失和幻读">
                         
                         <span class="card-title">Isolation：隔离级别和脏读、脏写、不可重复读、更新丢失和幻读</span>
                     </div>

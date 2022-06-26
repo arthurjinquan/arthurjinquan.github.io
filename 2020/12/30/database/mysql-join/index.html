@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>MySQL 的Join及底层实现原理 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/65.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/65.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -435,15 +435,15 @@
                 <p>Mysql只支持一种join算法：Nested-Loop Join（嵌套循环连接），但Nested-Loop Join有三种变种：</p>
 <p>转载：<a href="https://blog.csdn.net/qq_37050329/article/details/88777937" target="_blank" rel="noopener">https://blog.csdn.net/qq_37050329/article/details/88777937</a></p>
 <h2 id="一、Simple-Nested-Loop-Join"><a href="#一、Simple-Nested-Loop-Join" class="headerlink" title="一、Simple Nested-Loop Join"></a>一、Simple Nested-Loop Join</h2><p>如下图，r为驱动表，s为匹配表，可以看到从r中分别取出r1、r2、……、rn去匹配s表的左右列，然后再合并数据，<strong>对s表进行了rn次访问</strong>，对数据库开销大</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-nestedloop1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-nestedloop1.png" alt></p>
 <h2 id="二、Index-Nested-Loop-Join（索引嵌套）"><a href="#二、Index-Nested-Loop-Join（索引嵌套）" class="headerlink" title="二、Index Nested-Loop Join（索引嵌套）"></a>二、Index Nested-Loop Join（索引嵌套）</h2><p>这个要求<strong>非驱动表</strong>（匹配表s）<strong>上有索引</strong>，可以通过索引来减少比较，加速查询。</p>
 <p>在查询时，驱动表（r）会根据关联字段的索引进行查找，挡在索引上找到符合的值，再回表进行查询，也就是只有当匹配到索引以后才会进行回表查询。</p>
 <p>如果非驱动表（s）的关联健是主键的话，性能会非常高，如果不是主键，要进行多次回表查询，先关联索引，然后根据二级索引的主键ID进行回表操作，性能上比索引是主键要慢。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-nestedloop2.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-nestedloop2.png" alt></p>
 <h2 id="三、Block-Nested-Loop-Join"><a href="#三、Block-Nested-Loop-Join" class="headerlink" title="三、Block Nested-Loop Join"></a>三、Block Nested-Loop Join</h2><p>如果有索引，会选取第二种方式进行join，但如果join列没有索引，就会采用Block Nested-Loop Join。</p>
 <p>可以看到中间有个<strong>join buffer缓冲区</strong>，是将驱动表的所有join相关的列都先缓存到join buffer中，然后批量与匹配表进行匹配，将<strong>第一种多次比较合并为一次</strong>，<strong>降低了非驱动表（s）的访问频率</strong>。</p>
 <p>默认情况下join_buffer_size=256K，在查找的时候MySQL会将所有的需要的列缓存到 join buffer 当中，包括select的列，而不是仅仅只缓存关联列。在一个有N个JOIN关联的SQL当中会在执行时候分配N-1个join buffer。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/join-nestedloop3.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/join-nestedloop3.png" alt></p>
 <h2 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h2><p>假设两张表a 和 b</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token comment" spellcheck="true"># a表结构</span>
 comments_id      <span class="token keyword">bigInt</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>  P
@@ -581,7 +581,7 @@ product_id       <span class="token keyword">int</span><span class="token punctu
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/60.jpg" class="responsive-img" alt="Mysql的explain">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/60.jpg" class="responsive-img" alt="Mysql的explain">
                         
                         <span class="card-title">Mysql的explain</span>
                     </div>
@@ -638,7 +638,7 @@ product_id       <span class="token keyword">int</span><span class="token punctu
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/44.jpg" class="responsive-img" alt="SQL的各种连接Join详解">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/44.jpg" class="responsive-img" alt="SQL的各种连接Join详解">
                         
                         <span class="card-title">SQL的各种连接Join详解</span>
                     </div>

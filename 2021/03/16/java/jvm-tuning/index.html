@@ -27,7 +27,7 @@ JVM
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>JVM 调优 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -87,7 +87,7 @@ JVM
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -171,7 +171,7 @@ JVM
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -263,7 +263,7 @@ JVM
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/117.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/117.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -445,16 +445,16 @@ JVM
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-jmm-1.jpg" alt="3级缓存"></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-jmm-2.jpg" alt="JMM数据原子操作"></p>
+                <h2 id="JMM"><a href="#JMM" class="headerlink" title="JMM"></a>JMM</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-jmm-1.jpg" alt="3级缓存"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-jmm-2.jpg" alt="JMM数据原子操作"></p>
 <p>其实就是工作内存和主内存之间的交互</p>
-<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-4.jpg" alt="JMM"></p>
-<h3 id="线程栈"><a href="#线程栈" class="headerlink" title="线程栈"></a>线程栈</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-1.jpg" alt="栈结构"></p>
-<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-3.jpg" alt></p>
-<h3 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-9.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-2.jpg" alt="32位对象头"></p>
+<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-basis-4.jpg" alt="JMM"></p>
+<h3 id="线程栈"><a href="#线程栈" class="headerlink" title="线程栈"></a>线程栈</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-1.jpg" alt="栈结构"></p>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-3.jpg" alt></p>
+<h3 id="对象头"><a href="#对象头" class="headerlink" title="对象头"></a>对象头</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-9.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-2.jpg" alt="32位对象头"></p>
 <p>64位的话：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-10.jpg" alt="64位对象头"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-10.jpg" alt="64位对象头"></p>
 <h3 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h3><p>jvm默认延时4s自动开启偏向锁，可通过 <code>-XX:BiasedLockingStartupDelay=0</code> 取消延时，如果不要偏向锁，可通过<code>-XX:-UserBiasedLocking = false</code> 来设置</p>
 <p>重量级锁的指针指向monitor</p>
 <h2 id="jvisualvm"><a href="#jvisualvm" class="headerlink" title="jvisualvm"></a>jvisualvm</h2><p>在cmd输入jvisualvm回车就会打开可视化界面。</p>
@@ -462,20 +462,20 @@ JVM
 <pre class="line-numbers language-shell"><code class="language-shell">java -jar arthas-boot.jar
 //会看到存在的java进程，输入序号进入进程
 dashboard<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-4.jpg" alt></p>
 <p>看到线程0占用了90%的cpu，明显有问题。输入thread+id号进入线程：</p>
 <pre class="line-numbers language-shell"><code class="language-shell">thread 8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-5.jpg" alt></p>
 <p>然后去代码里找第39行：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-6.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-6.jpg" alt></p>
 <p>反编译：</p>
 <pre class="line-numbers language-shell"><code class="language-shell">jad XXX.ArthasTest<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="调优案例"><a href="#调优案例" class="headerlink" title="调优案例"></a>调优案例</h2><h3 id="动态对象年龄判定"><a href="#动态对象年龄判定" class="headerlink" title="动态对象年龄判定"></a>动态对象年龄判定</h3><p>虚拟机并不是永远地要求对象的年龄必须达到了MaxTenuringThreshold才能晋升老年代，如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到MaxTenuringThreshold中要求的年龄。</p>
 <p>比如如下设置：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-7.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-7.jpg" alt></p>
 <p>60MB对象放入幸存者区触发动态对象年龄判定，直接进入老年代，导致频繁full gc。</p>
 <p>解决方法如下，把年轻代调大：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/jvm-tuning-8.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/jvm-tuning-8.jpg" alt></p>
 
             </div>
             <hr />
@@ -582,7 +582,7 @@ dashboard<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/73.jpg" class="responsive-img" alt="JVM垃圾回收机制">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/73.jpg" class="responsive-img" alt="JVM垃圾回收机制">
                         
                         <span class="card-title">JVM垃圾回收机制</span>
                     </div>
@@ -635,7 +635,7 @@ dashboard<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/21.jpg" class="responsive-img" alt="单例模式">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/21.jpg" class="responsive-img" alt="单例模式">
                         
                         <span class="card-title">单例模式</span>
                     </div>

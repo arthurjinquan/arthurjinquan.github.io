@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="微服务保证高可用的方式, SCUT JAVA SpringBoot 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="微服务保证高可用, SCUT JAVA SpringBoot 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
@@ -18,8 +18,8 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>微服务保证高可用的方式 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <title>微服务保证高可用 | 锦泉^-^</title>
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -79,7 +79,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -163,7 +163,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -255,13 +255,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/32.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/20.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        微服务保证高可用的方式
+                        微服务保证高可用
                     </div>
                 </div>
             </div>
@@ -461,19 +461,19 @@
 <ul>
 <li>服务端接收到请求后，创建新的线程处理业务逻辑，服务端先回应答给客户端。</li>
 </ul>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/springcloud-available-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/springcloud-available-1.jpg" alt></p>
 <ul>
 <li>服务端接收到请求后，服务端先回应答给客户端，再继续处理业务逻辑。</li>
 </ul>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/springcloud-available-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/springcloud-available-2.jpg" alt></p>
 <ul>
 <li>服务端接收到请求后，服务端把信息保存在消息队列或者数据库，回应答给客户端，服务端业务处理进程再从消息队列或者数据库上读取信息处理业务逻辑。</li>
 </ul>
 <h3 id="柔性化"><a href="#柔性化" class="headerlink" title="柔性化"></a>柔性化</h3><p>在电商订单的场景中，下单，扣库存，支付是一定要执行的步骤，如果失败则订单失败，但是<strong>加积分，发货，售后是可以柔性处理，就算出错也可以通过日志报警让人工去检查</strong>，没必要为加积分损失整个下单的可用性。</p>
-<h3 id="兜底-容错"><a href="#兜底-容错" class="headerlink" title="兜底/容错"></a>兜底/容错</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/springcloud-available-3.jpg" alt></p>
+<h3 id="兜底-容错"><a href="#兜底-容错" class="headerlink" title="兜底/容错"></a>兜底/容错</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/springcloud-available-3.jpg" alt></p>
 <p>兜底是可能我们经常谈论的是一种降级的方案，方案是用来实施，但是这里兜底可能更多是一种思想，更多的是一种预案，每个操作都可以犯错，我们也可以接受犯错，但是每个犯错我们都必须有一个兜底的预案，这个兜底的预案其实就是我们的容错或者说最大程度避免更大伤害的措施，实际上也是一个不断降级的过程。</p>
 <h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>负载均衡的实现有硬件和软件，硬件有F5，A10等机器，软件有LVS，nginx，HAProxy等等，负载均衡的算法有 random ， RoundRobin ， ConsistentHash等等。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/springcloud-available-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/springcloud-available-4.jpg" alt></p>
 <p>转移流程：Nginx 根据给定好的负载均衡算法进行调度，当请求到 Tomcat1，Nginx 发现 Tomcat1 出现连接错误（节点失效），Nginx 会根据一定的机制将 Tomcat1 从调用的负载列表中清除。</p>
 <p>在下一次请求，Nginx 不会分配请求到有问题的 Tomcat1 上面，会将请求转移到其他的 Tomcat 之上。</p>
 <p>节点失效：Nginx 默认判断节点失效是以 connect refuse 和 timeout 为标准，在对某个节点进行 fails 累加，当 fails 大于 max_fails 时，该节点失效。</p>
@@ -533,7 +533,7 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《微服务保证高可用的方式》
+                    《微服务保证高可用》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/09/10/project/springcloud-available/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -605,7 +605,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/24.jpg" class="responsive-img" alt="sql的时间格式">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/24.jpg" class="responsive-img" alt="sql的时间格式">
                         
                         <span class="card-title">sql的时间格式</span>
                     </div>
@@ -654,7 +654,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/20.jpg" class="responsive-img" alt="工厂模式">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/20.jpg" class="responsive-img" alt="工厂模式">
                         
                         <span class="card-title">工厂模式</span>
                     </div>

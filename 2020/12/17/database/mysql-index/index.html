@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Mysql的索引总结 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/118.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/118.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -507,7 +507,7 @@
 <h2 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h2><p>InnoDB使用的是聚簇索引，MyISam使用的是<strong>非聚簇索引</strong>。MyISAM索引文件和数据文件是<strong>分离</strong>的，索引文件仅保存数据记录的地址。</p>
 <p>MyISAM引擎使用B+Tree作为索引结构，叶节点的data域存放的是<strong>数据记录的地址</strong>。</p>
 <p>在MyISAM中，主索引和辅助索引（Secondary key）在结构上没有任何区别，只是<strong>主索引要求key是唯一的，而辅助索引的key可以重复</strong>。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/InnoDB-MyISAM.PNG" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/InnoDB-MyISAM.PNG" alt></p>
 <p>MyISAM使用的是非聚簇索引，非聚簇索引的两棵B+树看上去没什么不同，节点的结构完全一致只是存储的内容不同而已，主键索引B+树的节点存储了主键，辅助键索引B+树存储了辅助键。<strong>表数据存储在独立的地方</strong>，这两颗B+树的叶子节点都使用一个地址指向真正的表数据，对于表数据来说，这两个键没有任何差别。<strong>由于索引树是独立的，通过辅助键检索无需访问主键的索引树</strong>。</p>
 <h2 id="MyISAM和InnoDB的区别"><a href="#MyISAM和InnoDB的区别" class="headerlink" title="MyISAM和InnoDB的区别"></a>MyISAM和InnoDB的区别</h2><p>MyISAM：</p>
 <ol>
@@ -536,7 +536,7 @@
 </ol>
 <p>不是所有类型的索引都可以成为覆盖索引。覆盖索引必须要存储索引的列，而哈希索引、空间索引和全文索引等都不存储索引列的值，所以MySQL<strong>只能使用B-Tree索引做覆盖索引</strong>。</p>
 <p>当发起一个被索引覆盖的查询时，在EXPLAIN的Extra列可以看到“<strong>Using index</strong>”的信息：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/%E8%A6%86%E7%9B%96%E7%B4%A2%E5%BC%95.png" alt></p>
 <p>从执行结果上看，这个SQL语句只通过索引，就取到了所需要的数据，这个过程就叫做索引覆盖。</p>
 <p>只扫描索引而无需回表的优点：</p>
 <ol>
@@ -655,7 +655,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/30.jpg" class="responsive-img" alt="JDBC与Druid简单介绍及Druid与MyBatis连接数据库">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/30.jpg" class="responsive-img" alt="JDBC与Druid简单介绍及Druid与MyBatis连接数据库">
                         
                         <span class="card-title">JDBC与Druid简单介绍及Druid与MyBatis连接数据库</span>
                     </div>
@@ -712,7 +712,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/53.jpg" class="responsive-img" alt="责任链模式">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/53.jpg" class="responsive-img" alt="责任链模式">
                         
                         <span class="card-title">责任链模式</span>
                     </div>

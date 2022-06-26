@@ -20,7 +20,7 @@ https://zhuanlan.zhihu.com/p/41252484
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Skywalking初涉猎 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@ https://zhuanlan.zhihu.com/p/41252484
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@ https://zhuanlan.zhihu.com/p/41252484
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@ https://zhuanlan.zhihu.com/p/41252484
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/107.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/107.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -447,7 +447,7 @@ https://zhuanlan.zhihu.com/p/41252484
 <p><a href="https://zhuanlan.zhihu.com/p/41252484" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/41252484</a></p>
 <p><a href="https://www.cnblogs.com/javastack/p/14349662.html" target="_blank" rel="noopener">https://www.cnblogs.com/javastack/p/14349662.html</a></p>
 <h2 id="什么是APM系统"><a href="#什么是APM系统" class="headerlink" title="什么是APM系统"></a><strong>什么是APM系统</strong></h2><p>APM（Application Performance Management）即<strong>应用性能管理系统</strong>，是对企业系统即时监控以实现对应用程序性能管理和故障管理的系统化的解决方案。应用性能管理，主要指对企业的<strong>关键业务应用进行监测、优化</strong>，提高企业应用的可靠性和质量，保证用户得到良好的服务，降低IT总拥有成本。<br>APM系统是可以<strong>帮助理解系统行为、用于分析性能问题</strong>的工具，以便发生故障的时候，能够<strong>快速定位和解决问题</strong>。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/skywalking-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/skywalking-1.png" alt></p>
 <p>说白了就是随着微服务的的兴起，传统的单体应用拆分为不同功能的小应用，用户的一次请求会经过多个系统，不同服务之间的调用非常复杂，其中任何一个系统出错都可能影响整个请求的处理结果。为了解决这个问题，Google 推出了一个分布式链路跟踪系统 Dapper ，之后各个互联网公司都参照Dapper 的思想推出了自己的分布式链路跟踪系统，而这些系统就是分布式系统下的APM系统。</p>
 <p>目前市面上的APM系统有很多，比如skywalking、pinpoint、zipkin等。其中</p>
 <ul>
@@ -466,7 +466,7 @@ https://zhuanlan.zhihu.com/p/41252484
 <li>优秀的可视化效果。</li>
 </ol>
 <p>Skywalking整体架构如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/skywalking-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/skywalking-2.jpg" alt></p>
 <p>整体架构包含如下三个组成部分：</p>
 <ol>
 <li><p>探针（agent）负责进行<strong>数据的收集</strong>，包含了Tracing和Metrics的数据，agent会被安装到服务所在的服务器上，以方便数据的获取。</p>
@@ -479,7 +479,7 @@ https://zhuanlan.zhihu.com/p/41252484
 <h2 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h2><p>上文提到skywalking的后端数据存储的介质可以是Elasticsearch、MySQL数据库、H2数据库等，我这里使用Elasticsearch作为数据存储，而且为了便与扩展和收集其他应用日志，我将单独搭建Elasticsearch。</p>
 <h2 id="搭建Elasticsearch"><a href="#搭建Elasticsearch" class="headerlink" title="搭建Elasticsearch"></a><strong>搭建Elasticsearch</strong></h2><p><strong>前置条件：安装kubernetes</strong>，因为要部署集群，如果不部署集群的话不需要安装k8s，可以参考：<a href="http://arthurjq.com/2021/01/13/elk/">http://arthurjq.com/2021/01/13/elk/</a></p>
 <p>为了增加es的扩展性，按<strong>角色功能</strong>分为master节点、data数据节点、client客户端节点。其整体架构如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/skywalking-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/skywalking-3.jpg" alt></p>
 <p>其中：</p>
 <ul>
 <li>Elasticsearch数据节点Pods被部署为一个有状态集（StatefulSet）</li>
@@ -979,7 +979,7 @@ PASSWORD elastic = n816QscHORFQMQWQfs4U
 <p>然后执行<code>kubectl apply -f kibana.yaml</code>创建kibana，查看pod的状态是否为running。</p>
 <p>使用上面我们创建的 Secret 对象的 elastic 用户和生成的密码即可登录。</p>
 <p>登录后界面如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/skywalking-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/skywalking-4.jpg" alt></p>
 <h2 id="搭建Skywalking-Server"><a href="#搭建Skywalking-Server" class="headerlink" title="搭建Skywalking Server"></a><strong>搭建Skywalking Server</strong></h2><p>使用helm安装</p>
 <h3 id="安装helm，这里是使用的helm3"><a href="#安装helm，这里是使用的helm3" class="headerlink" title="安装helm，这里是使用的helm3"></a>安装helm，这里是使用的helm3</h3><pre class="line-numbers language-shell"><code class="language-shell">wget https://get.helm.sh/helm-v3.0.0-linux-amd64.tar.gz
 tar zxvf helm-v3.0.0-linux-amd64.tar.gz
@@ -1209,7 +1209,7 @@ WORKDIR /<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/83.jpg" class="responsive-img" alt="使用kubectl的Deployment实践练习创建App">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/83.jpg" class="responsive-img" alt="使用kubectl的Deployment实践练习创建App">
                         
                         <span class="card-title">使用kubectl的Deployment实践练习创建App</span>
                     </div>
@@ -1262,7 +1262,7 @@ WORKDIR /<span aria-hidden="true" class="line-numbers-rows"><span></span><span><
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg" class="responsive-img" alt="ELK介绍和部署">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/81.jpg" class="responsive-img" alt="ELK介绍和部署">
                         
                         <span class="card-title">ELK介绍和部署</span>
                     </div>

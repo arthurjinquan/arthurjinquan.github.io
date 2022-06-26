@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>ELK介绍和部署 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/81.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/81.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -476,14 +476,14 @@
 <p><a href="https://www.elastic.co/guide/en/kibana/5.5/index.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/kibana/5.5/index.html</a></p>
 <p>Filebeat：</p>
 <p><a href="https://www.elastic.co/cn/products/beats/filebeat" target="_blank" rel="noopener">https://www.elastic.co/cn/products/beats/filebeat</a><br><a href="https://www.elastic.co/guide/en/beats/filebeat/5.6/index.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/beats/filebeat/5.6/index.html</a></p>
-<h2 id="ELK架构图"><a href="#ELK架构图" class="headerlink" title="ELK架构图"></a>ELK架构图</h2><h3 id="架构图一"><a href="#架构图一" class="headerlink" title="架构图一"></a>架构图一</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-1.png" alt></p>
+<h2 id="ELK架构图"><a href="#ELK架构图" class="headerlink" title="ELK架构图"></a>ELK架构图</h2><h3 id="架构图一"><a href="#架构图一" class="headerlink" title="架构图一"></a>架构图一</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/elk-1.png" alt></p>
 <p>这是最简单的一种ELK架构方式。优点是搭建简单，易于上手。缺点是<strong>Logstash耗资源较大</strong>，运行占用CPU和内存高。另外<strong>没有消息队列缓存，存在数据丢失隐患</strong>。</p>
-<h3 id="架构图二"><a href="#架构图二" class="headerlink" title="架构图二"></a>架构图二</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-2.png" alt></p>
+<h3 id="架构图二"><a href="#架构图二" class="headerlink" title="架构图二"></a>架构图二</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/elk-2.png" alt></p>
 <p>此种架构引入了消息队列机制，位于各个节点上的Logstash Agent先将数据/日志传递给Kafka（或者Redis），并将队列中消息或数据间接传递给Logstash，Logstash过滤、分析后将数据传递给Elasticsearch存储。最后由Kibana将日志和数据呈现给用户。<strong>因为引入了Kafka（或者Redis）,所以即使远端Logstash server因故障停止运行，数据将会先被存储下来</strong>，从而避免数据丢失。</p>
-<h3 id="架构图三"><a href="#架构图三" class="headerlink" title="架构图三"></a>架构图三</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-3.png" alt></p>
+<h3 id="架构图三"><a href="#架构图三" class="headerlink" title="架构图三"></a>架构图三</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/elk-3.png" alt></p>
 <p>此种架构<strong>将收集端logstash替换为beats</strong>，更灵活，消耗资源更少，扩展性更强。同时可配置Logstash 和Elasticsearch 集群用于支持大集群系统的运维日志数据监控和查询。</p>
 <h2 id="Filebeat工作原理"><a href="#Filebeat工作原理" class="headerlink" title="Filebeat工作原理"></a>Filebeat工作原理</h2><p>Filebeat由两个主要组件组成：prospectors 和 harvesters。这两个组件协同工作将文件变动发送到指定的输出中。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-4.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/elk-4.png" alt></p>
 <p><strong>Harvester（收割机）：</strong>负责<strong>读取单个文件内容</strong>。每个文件会启动一个Harvester，每个Harvester会逐行读取各个文件，并将文件内容发送到制定输出中。</p>
 <p>Harvester负责打开和关闭文件，意味在Harvester运行的时候，文件描述符处于打开状态，如果文件在收集中被重命名或者被删除，Filebeat会继续读取此文件。所以在Harvester关闭之前，磁盘不会被释放。默认情况filebeat会保持文件打开的状态，直到达到<a href="https://www.elastic.co/guide/en/beats/filebeat/5.5/configuration-filebeat-options.html#close-inactive" target="_blank" rel="noopener"><code>close_inactive</code></a>（如果此选项开启，filebeat会在指定时间内将不再更新的文件句柄关闭，时间从harvester读取最后一行的时间开始计时。若文件句柄被关闭后，文件发生变化，则会启动一个新的harvester。关闭文件句柄的时间不取决于文件的修改时间，若此参数配置不当，则可能发生日志不实时的情况，由scan_frequency参数决定，默认10s。Harvester使用内部时间戳来记录文件最后被收集的时间。例如：设置5m，则在Harvester读取文件的最后一行之后，开始倒计时5分钟，若5分钟内文件无变化，则关闭文件句柄。默认5m）。</p>
 <p><strong>Prospector（勘测者）：</strong>负责<strong>管理Harvester并找到所有读取源</strong>。</p>
@@ -497,7 +497,7 @@
 <p><strong>Filebeat如何保证事件至少被输出一次：</strong></p>
 <p>Filebeat之所以能保证事件至少被传递到配置的输出一次，没有数据丢失，是因为filebeat将每个事件的传递状态保存在文件中。在未得到输出方确认时，filebeat会尝试一直发送，直到得到回应。若filebeat在传输过程中被关闭，则不会再关闭之前确认所有时事件。任何在filebeat关闭之前为确认的时间，都会在filebeat重启之后重新发送。这可确保至少发送一次，但有可能会重复。可通过设置<a href="https://www.elastic.co/guide/en/beats/filebeat/5.5/configuration-global-options.html#shutdown-timeout" target="_blank" rel="noopener"><code>shutdown_timeout</code></a> 参数来设置关闭之前的等待事件回应的时间（默认禁用）。</p>
 <h2 id="Logstash工作原理"><a href="#Logstash工作原理" class="headerlink" title="Logstash工作原理"></a>Logstash工作原理</h2><p>Logstash事件处理有三个阶段：inputs → filters → outputs。是一个接收，处理，转发日志的工具。支持系统日志，webserver日志，错误日志，应用日志，总之包括所有可以抛出来的日志类型。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-5.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/elk-5.png" alt></p>
 <p><strong>Input：输入数据到logstash。</strong></p>
 <p>一些常用的输入为：</p>
 <p>file：从文件系统的文件中读取，类似于tail -f命令</p>
@@ -571,9 +571,9 @@
 <p>如果配置完重启es报错的话，重启Kibana</p>
 </blockquote>
 <h3 id="启动命令-d表示后台运行"><a href="#启动命令-d表示后台运行" class="headerlink" title="启动命令,-d表示后台运行"></a>启动命令,-d表示后台运行</h3><pre class="line-numbers language-bash"><code class="language-bash">bin/elasticsearch -d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><h4 id="普通用户打开文件的最大数限制"><a href="#普通用户打开文件的最大数限制" class="headerlink" title="普通用户打开文件的最大数限制"></a>普通用户打开文件的最大数限制</h4><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-6.jpg" alt></p>
-<h4 id="普通用户启动线程数限制"><a href="#普通用户启动线程数限制" class="headerlink" title="普通用户启动线程数限制"></a>普通用户启动线程数限制</h4><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-7.jpg" alt></p>
-<h4 id="普通用户调大虚拟内存"><a href="#普通用户调大虚拟内存" class="headerlink" title="普通用户调大虚拟内存"></a>普通用户调大虚拟内存</h4><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/elk-8.jpg" alt></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><h4 id="普通用户打开文件的最大数限制"><a href="#普通用户打开文件的最大数限制" class="headerlink" title="普通用户打开文件的最大数限制"></a>普通用户打开文件的最大数限制</h4><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/elk-6.jpg" alt></p>
+<h4 id="普通用户启动线程数限制"><a href="#普通用户启动线程数限制" class="headerlink" title="普通用户启动线程数限制"></a>普通用户启动线程数限制</h4><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/elk-7.jpg" alt></p>
+<h4 id="普通用户调大虚拟内存"><a href="#普通用户调大虚拟内存" class="headerlink" title="普通用户调大虚拟内存"></a>普通用户调大虚拟内存</h4><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/elk-8.jpg" alt></p>
 <h3 id="查看es集群相关信息"><a href="#查看es集群相关信息" class="headerlink" title="查看es集群相关信息"></a>查看es集群相关信息</h3><p>查看集群健康状态<br><a href="http://10.0.1.104:9200/_cluster/health?pretty=true" target="_blank" rel="noopener">http://10.0.1.104:9200/_cluster/health?pretty=true</a></p>
 <p>查看集群状态<br><a href="http://10.0.1.104:9200/_cluster/stats?pretty" target="_blank" rel="noopener">http://10.0.1.104:9200/_cluster/stats?pretty</a></p>
 <p>查看节点总体情况<br><a href="http://10.0.1.104:9200/_nodes/process?pretty" target="_blank" rel="noopener">http://10.0.1.104:9200/_nodes/process?pretty</a></p>
@@ -952,7 +952,7 @@ output <span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/107.jpg" class="responsive-img" alt="Skywalking初涉猎">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/107.jpg" class="responsive-img" alt="Skywalking初涉猎">
                         
                         <span class="card-title">Skywalking初涉猎</span>
                     </div>
@@ -1009,7 +1009,7 @@ output <span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/93.jpg" class="responsive-img" alt="Zipkin的安装和配置">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/93.jpg" class="responsive-img" alt="Zipkin的安装和配置">
                         
                         <span class="card-title">Zipkin的安装和配置</span>
                     </div>

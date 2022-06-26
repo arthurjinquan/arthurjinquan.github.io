@@ -17,7 +17,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>aqs | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -77,7 +77,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -161,7 +161,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -253,7 +253,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/116.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/116.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -436,7 +436,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p><code>AbstractQueuedSynchronizer</code>抽象同步队列简称<code>A Q S</code>，它是实现同步器的基础组件，如常用的<code>ReentrantLock、Semaphore、CountDownLatch</code>等。<code>A Q S</code>定义了一套多线程访问共享资源的同步模板，解决了实现同步器时涉及的大量细节问题，能够极大地减少实现工作</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-1.png" alt="AQS组成结构"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/aqs-1.png" alt="AQS组成结构"></p>
 <p>三部分组成，<code>state</code>同步状态、<code>Node</code>组成的<code>CLH</code>队列、<code>ConditionObject</code>条件变量（<strong>包含<code>Node</code>组成的条件单向队列</strong>），下面会分别对这三部分做介绍。</p>
 <p><strong>状态</strong></p>
 <ul>
@@ -473,14 +473,14 @@
 <li>采用了自旋锁思想，所以<code>CLH</code>也是一种基于链表的可扩展、高性能、公平的自旋锁</li>
 </ul>
 <h4 id="Node内部类"><a href="#Node内部类" class="headerlink" title="Node内部类"></a>Node内部类</h4><p><code>Node</code>是<code>A Q S</code>的内部类，每个等待资源的线程都会封装成<code>Node</code>节点组成<code>C L H</code>队列、等待队列，所以说<code>Node</code>是非常重要的部分，理解它是理解<code>A Q S</code>的第一步。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-3.png" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-4.png" alt="waitStatus等待状态"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/aqs-3.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/aqs-4.png" alt="waitStatus等待状态"></p>
 <p><strong>nextWaiter特殊标记</strong></p>
 <ul>
 <li><code>Node</code>在<code>CLH</code>队列时，<code>nextWaiter</code>表示共享式或独占式标记</li>
 <li><code>Node</code>在条件队列时，<code>nextWaiter</code>表示下个<code>Node</code>节点指针</li>
 </ul>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-2.png" alt="node过程"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/aqs-2.png" alt="node过程"></p>
 <p>注意：队头head节点的thread一定为null，用于表示正在执行的线程对象，且用于唤醒后续线程</p>
 <h4 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h4><pre class="line-numbers language-java"><code class="language-java">
     <span class="token keyword">private</span> AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node <span class="token function">addWaiter</span><span class="token punctuation">(</span>AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -499,15 +499,15 @@
         <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">enq</span><span class="token punctuation">(</span>var2<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> var2<span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-2.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrylock-2.png" alt></p>
 <p>我们在第一次进入这个方法的时候，上面图一所示，tail和head都指向null；</p>
 <p>第一次循环，首先会到图二，然后判断t所指向的节点是不是null，如果是的话，就用CAS更新节点，这个CAS我们可以看作：头节点head为null，我们把head节点更新为一个哨兵节点（哨兵节点就是<code>new Node()</code>），再将tail也指向head，就是图三了</p>
 <p>第二次for循环：走到上面的else语句，将新节点的前一个节点设置为哨兵节点；</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-3.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrylock-3.png" alt></p>
 <p>然后就是CAS更新节点，这里CAS的意思：<strong>如果最后的节点tail指向的和t是一样的，那么就将tail指向node节点</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-4.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrylock-4.png" alt></p>
 <p>最后再将t的下一个节点设置为node，下图所示，就ok了</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/reentrylock-5.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/reentrylock-5.png" alt></p>
 <h4 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h4><pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">acquireQueued</span><span class="token punctuation">(</span>AbstractQueuedSynchronizer<span class="token punctuation">.</span>Node var1<span class="token punctuation">,</span> <span class="token keyword">int</span> var2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">boolean</span> var3 <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
         <span class="token keyword">try</span> <span class="token punctuation">{</span>
@@ -549,10 +549,10 @@
 <p>假设获取资源成功，更换头部节点，并把头部节点的信息清除变成哨兵节点，注意这个过程是不需要使用<code>C A S</code>来保证，因为只有一个线程能够成功获取到资源。</p>
 <h3 id="条件变量"><a href="#条件变量" class="headerlink" title="条件变量"></a>条件变量</h3><p><code>Object</code>的<code>wait、notify</code>函数是配合<code>Synchronized</code>锁实现线程间同步协作的功能，<code>A Q S</code>的<code>ConditionObject</code>条件变量也提供这样的功能，通过<code>ConditionObject</code>的<code>await</code>和<code>signal</code>两类函数完成。</p>
 <p>不同于<code>Synchronized</code>锁，一个<code>A Q S</code>可以对应多个条件变量，而<code>Synchronized</code>只有一个。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-5.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/aqs-5.png" alt></p>
 <p>如上图所示，<code>ConditionObject</code>内部维护着一个单向条件队列，不同于<code>C H L</code>队列，条件队列只入队执行<code>await</code>的线程节点，并且加入条件队列的节点，不能在<code>C H L</code>队列， 条件队列出队的节点，会入队到<code>C H L</code>队列。</p>
 <p>当某个线程执行了<code>ConditionObject</code>的<code>await</code>函数，阻塞当前线程，线程会被封装成<code>Node</code>节点添加到条件队列的末端，其他线程执行<code>ConditionObject</code>的<code>signal</code>函数，会将条件队列头部线程节点转移到<code>C H L</code>队列参与竞争资源，具体流程如下图</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-6.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/aqs-6.png" alt></p>
 <p>最后补充下，条件队列<code>Node</code>类是使用<code>nextWaiter</code>变量指向下个节点，并且因为是单向队列，所以<code>prev</code>与<code>next</code>变量都是<code>null</code></p>
 <h2 id="模板方法"><a href="#模板方法" class="headerlink" title="模板方法"></a>模板方法</h2><p><code>A Q S</code>采用了模板方法设计模式，提供了两类模板，一类是独占式模板，另一类是共享形模式，对应的模板函数如下</p>
 <ol>
@@ -593,7 +593,7 @@
 <li>执行<code>acquireQueued</code>函数，自旋阻塞等待获取资源</li>
 <li>如果<code>acquireQueued</code>函数中获取资源成功，根据线程是否被中断状态，来决定执行线程中断逻辑</li>
 </ul>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-7.png" alt="acquire方法"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/aqs-7.png" alt="acquire方法"></p>
 <p>分析下<code>acquireQueued</code>函数，线程封装成节点后，是如何自旋阻塞等待获取资源的，代码如下</p>
 <pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">acquireQueued</span><span class="token punctuation">(</span><span class="token keyword">final</span> Node node<span class="token punctuation">,</span> <span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">//异常状态，默认是</span>
@@ -634,7 +634,7 @@
             <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-8.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/aqs-8.png" alt></p>
 <h3 id="独占式释放资源"><a href="#独占式释放资源" class="headerlink" title="独占式释放资源"></a>独占式释放资源</h3><p><code>A Q S</code>中提供了<code>release</code>模板函数来释放资源，模板流程就是线程释放资源成功，唤醒<code>CLH</code>队列的第二个线程节点（<strong>首节点的下个节点</strong>），代码如下</p>
 <pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">boolean</span> <span class="token function">release</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
@@ -670,7 +670,7 @@
             LockSupport<span class="token punctuation">.</span><span class="token function">unpark</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>thread<span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/aqs-9.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/aqs-9.png" alt></p>
 <h3 id="共享式获取资源"><a href="#共享式获取资源" class="headerlink" title="共享式获取资源"></a>共享式获取资源</h3><p><code>acquireShared</code>是个模板函数，模板流程就是线程获取共享资源，如果获取到资源，线程直接返回，否则进入<code>CLH</code>队列，直到获取到资源为止，且整个过程忽略中断的影响，<code>acquireShared</code>函数代码如下</p>
 <pre class="line-numbers language-java"><code class="language-java">    <span class="token keyword">public</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">acquireShared</span><span class="token punctuation">(</span><span class="token keyword">int</span> arg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token comment" spellcheck="true">/**
@@ -870,7 +870,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/54.jpg" class="responsive-img" alt="枚举enum">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/54.jpg" class="responsive-img" alt="枚举enum">
                         
                         <span class="card-title">枚举enum</span>
                     </div>
@@ -920,7 +920,7 @@ testpublic enum
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/91.jpg" class="responsive-img" alt="Java关键字——instanceof">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/91.jpg" class="responsive-img" alt="Java关键字——instanceof">
                         
                         <span class="card-title">Java关键字——instanceof</span>
                     </div>

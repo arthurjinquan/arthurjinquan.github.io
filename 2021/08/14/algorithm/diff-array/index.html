@@ -17,7 +17,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>差分数组 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -77,7 +77,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -161,7 +161,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -253,7 +253,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/85.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/85.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -442,7 +442,7 @@
 <p>如果对于所有下标 i（下标从 0 开始），nums[i] + nums[n - 1 - i] 都<strong>等于同一个数</strong>，则数组 nums 是 互补的 。例如，数组 [1,2,3,4] 是互补的，因为对于所有下标 i ，nums[i] + nums[n - 1 - i] = 5 。</p>
 <p>返回使数组 互补 的 最少 操作次数。</p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>有n个数字，即n/2个数对，每个数字的取值范围是1<del>limit，所以显然一个数对的和的取值范围是2</del>2 * limit。<br>我们用一个数组arr[ ]来记录将所有数对和转化成某一个数需要的操作次数，其中arr[i]表示将所有数对和转化成i需要的次数。<br>接下来我们举几个例子寻找一下规律：<br>假设数组是1,3,4,2。limit = 5，则第一个数对为（1,2）<br>我们找出每一个数对的最大值max和最小值min。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/diff-array-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/diff-array-1.png" alt></p>
 <p>如图中数对，将该数对和转化成3所需要的操作次数显然是0，接下来还要讨论转化次数为1和转化次数为2的情况。<br>显然转化1次能取到的最小值是min + 1，能取到的最大值是max + limit，那么在这范围之外的就是需要转化次数2次。<br>所以对于每一对数对：分如下几种情况</p>
 <ol>
 <li>在[2, min]这个区间，arr[i] += 2;</li>
@@ -586,7 +586,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/102.jpg" class="responsive-img" alt="美团笔试">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/102.jpg" class="responsive-img" alt="美团笔试">
                         
                         <span class="card-title">美团笔试</span>
                     </div>
@@ -635,7 +635,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/41.jpg" class="responsive-img" alt="测试用例七大设计方法">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/41.jpg" class="responsive-img" alt="测试用例七大设计方法">
                         
                         <span class="card-title">测试用例七大设计方法</span>
                     </div>

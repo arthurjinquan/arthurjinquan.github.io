@@ -18,7 +18,7 @@ MQTT">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>MQTT协议 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@ MQTT">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@ MQTT">
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@ MQTT">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/86.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/86.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -440,7 +440,7 @@ MQTT">
 <p>MQTT协议运行于TCP之上，属于应用层协议，因此只要是支持TCP/IP协议栈的地方，都可以使用MQTT。</p>
 <p>MQTT最大的优点在于可以<strong>以极少的代码和有限的带宽，为远程设备提供实时可靠的消息服务</strong>。做为一种低开销、低带宽占用的即时通讯协议，MQTT在物联网、小型设备、移动应用等方面有广泛的应用。在物联网开发中，MQTT不是唯一的选择，与MQTT互相竞争的协议有XMPP和CoAP协议等。</p>
 <p>MQTT协议的中心是MQTT服务器或代理 （broker）：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-broker.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-broker.png" alt></p>
 <p>每条MQTT命令消息的消息头都包含一个固定的报头，有些消息会携带一个可变报文头和一个负荷。消息格式如下：</p>
 <blockquote>
 <p>1.Fixed header 固定报头，所有报文都包含</p>
@@ -448,18 +448,18 @@ MQTT">
 <p>3.Payload 有效载荷，部分报文包含</p>
 </blockquote>
 <p>参考整理：<a href="https://blog.csdn.net/weixin_44060108/article/details/103629375" target="_blank" rel="noopener">https://blog.csdn.net/weixin_44060108/article/details/103629375</a> | <a href="https://blog.csdn.net/anxianfeng55555/article/details/80908795" target="_blank" rel="noopener">https://blog.csdn.net/anxianfeng55555/article/details/80908795</a></p>
-<h2 id="固定报文头（Fixed-Header）"><a href="#固定报文头（Fixed-Header）" class="headerlink" title="固定报文头（Fixed Header）"></a>固定报文头（Fixed Header）</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%9B%BA%E5%AE%9A%E6%8A%A5%E5%A4%B4.png" alt></p>
+<h2 id="固定报文头（Fixed-Header）"><a href="#固定报文头（Fixed-Header）" class="headerlink" title="固定报文头（Fixed Header）"></a>固定报文头（Fixed Header）</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-%E5%9B%BA%E5%AE%9A%E6%8A%A5%E5%A4%B4.png" alt></p>
 <p>MQTT固定报文头最少有两个字节:</p>
 <ol>
 <li>第一字节前4bit表示<strong>报文类型</strong>（Message Type），后4bit是QoS级别等报文类型的标志位。</li>
 <li>第二字节开始是剩余长度字段，该长度是后面的<strong>可变报文头加消息负载的总长度</strong>，该字段最多允许四个字节。</li>
 </ol>
-<h3 id="报文类型Message-Type"><a href="#报文类型Message-Type" class="headerlink" title="报文类型Message Type:"></a>报文类型Message Type:</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-message%20type.png" alt><br>比如建立连接的前四位报文为0001,则转换成十进制=1,刚好对应上表中的CONNECT,也就是客户端请求连接服务端的意思。</p>
-<h3 id="报文标志"><a href="#报文标志" class="headerlink" title="报文标志"></a>报文标志</h3><p>继续上面那个图,紧跟着Message Type为0001的 CONNECT 后面的后四位报文标志为0000,表示缺省（Reserved）,一般这四位用于标示发送重复数（DUP） （1字节） 、服务质量 （QoS） （2字节）、保留标志（RETAIN）（1字节）<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E6%8A%A5%E6%96%87%E6%A0%87%E5%BF%97.png" alt></p>
+<h3 id="报文类型Message-Type"><a href="#报文类型Message-Type" class="headerlink" title="报文类型Message Type:"></a>报文类型Message Type:</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-message%20type.png" alt><br>比如建立连接的前四位报文为0001,则转换成十进制=1,刚好对应上表中的CONNECT,也就是客户端请求连接服务端的意思。</p>
+<h3 id="报文标志"><a href="#报文标志" class="headerlink" title="报文标志"></a>报文标志</h3><p>继续上面那个图,紧跟着Message Type为0001的 CONNECT 后面的后四位报文标志为0000,表示缺省（Reserved）,一般这四位用于标示发送重复数（DUP） （1字节） 、服务质量 （QoS） （2字节）、保留标志（RETAIN）（1字节）<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-%E6%8A%A5%E6%96%87%E6%A0%87%E5%BF%97.png" alt></p>
 <p>DUP：发布消息的副本。用来在保证消息的可靠传输，如果设置为 1，则在下面的变长中增加MessageId，并且需要回复确认，以保证消息传输完成，但不能用于检测消息重复发送。</p>
 <p>QoS看下一模块。</p>
 <p>RETAIN：发布保留标识，表示服务器要保留这次推送的信息，如果有新的订阅者出现，就把这消息推送给它，如果设有那么推送至当前订阅者后释放。</p>
-<p>举个例子，当发送一条(消息安全等级)QoS=2的消息时,固定报头的第一个字节为:<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-fixedheader.png" alt></p>
+<p>举个例子，当发送一条(消息安全等级)QoS=2的消息时,固定报头的第一个字节为:<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-fixedheader.png" alt></p>
 <p>这里可以看到,前四位0011转换成10进制就是3也就是对应报文类型的3 PUBLISH也就是发布消息类型的报文<br>后四位0100,这里就不能转十进制了 ,可以直接对应报文标志图的四个(3210)比特位,这里很明显0100对应的是QoS2,<br>同理如果后四位是0010,那么对应就表示是一条QoS1的消息。</p>
 <h3 id="MQTT-中的-QoS-等级"><a href="#MQTT-中的-QoS-等级" class="headerlink" title="MQTT 中的 QoS 等级"></a>MQTT 中的 QoS 等级</h3><p>作为最初用来在网络带宽窄、信号不稳定的环境下传输数据的协议，MQTT 设计了一套保证消息稳定传输的机制，包括消息应答、存储和重传。在这套机制下，提供了三种不同层次 QoS：</p>
 <ol>
@@ -467,35 +467,35 @@ MQTT">
 <li>QoS1，At least once，<strong>至少一次</strong>。Sender 发送的一条消息，Receiver 至少能收到一次，也就是说 Sender 向 Receiver 发送消息，如果发送失败，会继续重试，直到 Receiver 收到消息为止，但是因为重传的原因，Receiver 有可能会收到重复的消息</li>
 <li>QoS2，Exactly once，<strong>确保只有一次</strong>。Sender 发送的一条消息，Receiver 确保能收到而且只收到一次，也就是说 Sender 尽力向 Receiver 发送消息，如果发送失败，会继续重试，直到 Receiver 收到消息为止，同时<strong>保证 Receiver 不会因为消息重传而收到重复的消息</strong></li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-Qos.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-Qos.png" alt></p>
 <p>要注意的是，<strong>QoS 是 Sender 和 Receiver 之间达成的协议</strong>，不是 Publisher 和 Subscriber 之间达成的协议。也就是说 <strong>Publisher 发布一条 QoS1 的消息，只能保证 Broker 能至少收到一次这个消息</strong>；至于对应的 Subscriber 能否至少收到一次这个消息，还要取决于 Subscriber 在 Subscribe 的时候和 Broker 协商的 QoS 等级。</p>
-<h3 id="剩余报文长度"><a href="#剩余报文长度" class="headerlink" title="剩余报文长度"></a>剩余报文长度</h3><p>表示本次报文的剩余长度（字节位数）<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%89%A9%E4%BD%99%E6%8A%A5%E6%96%87%E9%95%BF%E5%BA%A6.png" alt></p>
+<h3 id="剩余报文长度"><a href="#剩余报文长度" class="headerlink" title="剩余报文长度"></a>剩余报文长度</h3><p>表示本次报文的剩余长度（字节位数）<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-%E5%89%A9%E4%BD%99%E6%8A%A5%E6%96%87%E9%95%BF%E5%BA%A6.png" alt></p>
 <p>比如这个红色框的报文转换成十进制是29,则表示还有29个字节是本次报文的,绿色框则就是剩余的报文了,刚好是29个,不信你数数</p>
 <p>剩余长度字段单个字节最大值为二进制0b0111 1111，16进制0x7F。也就是说，单个字节可以描述的最大长度是127字节。为什么不是256字节呢？因为MQTT协议规定，单个字节第八位（最高位）若为1，则表示后续还有字节存在，第八位起“延续位”的作用。</p>
 <p>例如，数字64，编码为一个字节，十进制表示为64，十六进制表示为0×40。数字321（65+2*128）编码为两个字节，重要性最低的放在前面，第一个字节为65+128=193（0xC1），第二个字节是2（0x02），表示2×128。</p>
 <p>由于MQTT协议最多只允许使用四个字节表示剩余长度（如下图），并且最后一字节最大值只能是0x7F不能是0xFF，所以能发送的最大消息长度是256MB，而不是512MB。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%89%A9%E4%BD%99%E9%95%BF%E5%BA%A6.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-%E5%89%A9%E4%BD%99%E9%95%BF%E5%BA%A6.png" alt></p>
 <h2 id="可变报文头（Variable-Header）"><a href="#可变报文头（Variable-Header）" class="headerlink" title="可变报文头（Variable Header）"></a>可变报文头（Variable Header）</h2><p>可变报文头主要包含协议名、协议版本、连接标志（Connect Flags）、心跳间隔时间（Keep Alive timer）、连接返回码（Connect Return Code）、主题名（Topic Name）等。</p>
 <p>根据MQTT文档说明，把所有相关的信息列出来。如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%8F%AF%E5%8F%98%E6%8A%A5%E5%A4%B4.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-%E5%8F%AF%E5%8F%98%E6%8A%A5%E5%A4%B4.png" alt></p>
 <p><strong>绿色的为用到的。红色表示没有用到的。</strong></p>
 <h3 id="协议名"><a href="#协议名" class="headerlink" title="协议名"></a>协议名</h3><p>协议名是表示协议名 MQTT 的UTF-8编码的字符串。MQTT规范的后续版本不会改变这个字符串的偏移和长度。如果协议名不正确，服务端需要断开客户端的连接。</p>
 <p>协议名格式如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-%E5%8D%8F%E8%AE%AE%E5%90%8D.png" alt><br>CONNECT中的协议名</p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-%E5%8D%8F%E8%AE%AE%E5%90%8D.png" alt><br>CONNECT中的协议名</p>
 <h3 id="协议级别"><a href="#协议级别" class="headerlink" title="协议级别"></a>协议级别</h3><p>协议级别通俗来讲就是协议的版本。</p>
 <p>客户端用8位的无符号值表示协议的修订版本。对于3.1.1版协议，协议级别字段的值是4(0x04)。如果发现不支持的协议级别，服务端必须给发送一个返回码为0x01（不支持的协议级别）的CONNACK报文响应CONNECT报文，然后断开客户端的连接。</p>
 <p>MQTT3.1.1的协议级别格式如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-protocolLevel.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-protocolLevel.png" alt></p>
 <h3 id="连接标志"><a href="#连接标志" class="headerlink" title="连接标志"></a>连接标志</h3><p>连接标志字节包含一些用于指定MQTT连接行为的参数。它还指出payload字段是否存在。</p>
 <p>连接标志的结构：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-connectflag.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-connectflag.png" alt></p>
 <blockquote>
 <p>1.有效负载（playload）字段的存在与否并不是reserved字段来指定，而是will flag、user Name等字段。<br>比如：如果will flag为1，则负载中需要包含will topic、will message等字段。如果需要用户名密码，则负载中需要包含这些信息。</p>
 <p>2.服务端必须验证CONNECT控制报文的保留标志位（第0位reserved）是否为0，如果不为0必须断开客户端连接</p>
 </blockquote>
 <p>所有连接标志的意义：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-connection-flag-mean.jpg" alt></p>
-<h3 id="Keep-alive"><a href="#Keep-alive" class="headerlink" title="Keep alive"></a>Keep alive</h3><p>其格式如下：<br><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-keep-alive.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-connection-flag-mean.jpg" alt></p>
+<h3 id="Keep-alive"><a href="#Keep-alive" class="headerlink" title="Keep alive"></a>Keep alive</h3><p>其格式如下：<br><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-keep-alive.jpg" alt></p>
 <p>MSB表示最大有效位，LSB表示最小有效位。这里没有什么特殊含义，这里只是表示两个字节来描述Keep alive。至于官方文档中说明Keep Alive允许的最大值是18小时12分15秒，这是从2^16/3600=18.2044得出的。</p>
 <p>Keep Alive说明：</p>
 <ol>
@@ -512,7 +512,7 @@ MQTT">
 <p>不管保持连接的值是多少，任何时候，只要服务端认为客户端是不活跃或无响应的，可以断开客户端的连接。</p>
 </blockquote>
 <p>至此，CONNECT报文的所有内容已经学习，最后用官方文档的CONNECT结构图来总结：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/mqtt-connection.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/mqtt-connection.png" alt></p>
 <h2 id="有效负荷（Payload）"><a href="#有效负荷（Payload）" class="headerlink" title="有效负荷（Payload）"></a>有效负荷（Payload）</h2><p>Payload直译为负荷，可能让人摸不着头脑，实际上可以理解为<strong>消息主体（body）</strong>。</p>
 <p>当MQTT发送的消息类型是CONNECT（连接）、PUBLISH（发布）、SUBSCRIBE（订阅）、SUBACK（订阅确认）、UNSUBSCRIBE（取消订阅）时，则会带有负荷。</p>
 <h2 id="MQTT其他特点"><a href="#MQTT其他特点" class="headerlink" title="MQTT其他特点"></a>MQTT其他特点</h2><h3 id="异步发布-订阅实现"><a href="#异步发布-订阅实现" class="headerlink" title="异步发布/订阅实现"></a>异步发布/订阅实现</h3><p>发布/订阅模式解耦了发布消息的客户（发布者）与订阅消息的客户（订阅者）之间的关系，这意味着发布者和订阅者之间并不需要直接建立联系。 </p>
@@ -671,7 +671,7 @@ MQTT">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/87.jpg" class="responsive-img" alt="Jenkins持续集成工具">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/87.jpg" class="responsive-img" alt="Jenkins持续集成工具">
                         
                         <span class="card-title">Jenkins持续集成工具</span>
                     </div>
@@ -724,7 +724,7 @@ MQTT">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/16.jpg" class="responsive-img" alt="Nginx简单介绍">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/16.jpg" class="responsive-img" alt="Nginx简单介绍">
                         
                         <span class="card-title">Nginx简单介绍</span>
                     </div>

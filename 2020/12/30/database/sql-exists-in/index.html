@@ -23,7 +23,7 @@ in确定给定的">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>in和exists的区别 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -83,7 +83,7 @@ in确定给定的">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -167,7 +167,7 @@ in确定给定的">
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -259,7 +259,7 @@ in确定给定的">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/103.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/103.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -439,9 +439,9 @@ in确定给定的">
             <div id="articleContent">
                 <h2 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h2><p>查询中涉及到的两个表，一个user和一个order表，具体表的内容如下：</p>
 <p>user表：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/exists-table.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/exists-table.png" alt></p>
 <p>order表：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/exists-table2.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/exists-table2.png" alt></p>
 <p>转载： <a href="https://www.cnblogs.com/zhuyeshen/p/10955417.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhuyeshen/p/10955417.html</a></p>
 <h2 id="in"><a href="#in" class="headerlink" title="in"></a>in</h2><p>确定给定的值是否与子查询或列表中的值相匹配。in在查询的时候，<strong>首先查询子查询的表</strong>，然后<strong>将内表和外表做一个笛卡尔积</strong>，然后<strong>按照条件进行筛选</strong>。所以相对内表比较小的时候，in的速度较快。</p>
 <p>具体sql语句如下：</p>
@@ -457,7 +457,7 @@ in确定给定的">
             <span class="token punctuation">`</span><span class="token keyword">order</span><span class="token punctuation">`</span>
     <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这条语句很简单，通过子查询查到的user_id 的数据，去匹配user表中的id然后得到结果。该语句执行结果如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/exists-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/exists-1.png" alt></p>
 <p>它的执行流程是什么样子的呢？让我们一起来看一下。</p>
 <p>首先，在数据库内部，查询子查询，执行如下代码：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span>
@@ -465,11 +465,11 @@ in确定给定的">
 <span class="token keyword">FROM</span>
     <span class="token punctuation">`</span><span class="token keyword">order</span><span class="token punctuation">`</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>执行完毕后，得到结果如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/exists-2.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/exists-2.png" alt></p>
 <p>此时，将查询到的结果和原有的user表<strong>做一个笛卡尔积</strong>，结果如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/exists-3.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/exists-3.png" alt></p>
 <p>此时，再根据我们的<code>user.id IN order.user_id</code>的条件，将结果进行筛选（既比较id列和user_id 列的值是否相等，将不相等的删除）。最后，得到两条符合条件的数据。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/exists-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/exists-1.png" alt></p>
 <h2 id="exists"><a href="#exists" class="headerlink" title="exists"></a>exists</h2><p>将主查询的结果，放到子查需结果中进行条件校验， 如果符合校验，则保留数据。</p>
 <p>具体sql语句如下：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span>
@@ -486,14 +486,14 @@ in确定给定的">
             <span class="token punctuation">`</span><span class="token keyword">user</span><span class="token punctuation">`</span><span class="token punctuation">.</span>id <span class="token operator">=</span> <span class="token punctuation">`</span><span class="token keyword">order</span><span class="token punctuation">`</span><span class="token punctuation">.</span>user_id
     <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这条sql语句的执行结果和上面的in的执行结果是一样的。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/exists-1.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/exists-1.png" alt></p>
 <p>但是，不一样的是<strong>它们的执行流程完全不一样</strong>：使用exists关键字进行查询的时候，首先，我们先查询的不是子查询的内容，而是<strong>查我们的主查询的表</strong>，也就是说，我们先执行的sql语句是：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     <span class="token punctuation">`</span><span class="token keyword">user</span><span class="token punctuation">`</span><span class="token punctuation">.</span><span class="token operator">*</span>
 <span class="token keyword">FROM</span>
     <span class="token punctuation">`</span><span class="token keyword">user</span><span class="token punctuation">`</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>得到的结果如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/exists-4.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/exists-4.png" alt></p>
 <p>然后，根据表的每一条记录，执行以下语句，依次去判断where后面的条件是否成立：</p>
 <pre class="line-numbers language-sql"><code class="language-sql"><span class="token keyword">EXISTS</span> <span class="token punctuation">(</span>
         <span class="token keyword">SELECT</span>
@@ -617,7 +617,7 @@ in确定给定的">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/44.jpg" class="responsive-img" alt="SQL的各种连接Join详解">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/44.jpg" class="responsive-img" alt="SQL的各种连接Join详解">
                         
                         <span class="card-title">SQL的各种连接Join详解</span>
                     </div>
@@ -666,7 +666,7 @@ in确定给定的">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/90.jpg" class="responsive-img" alt="IM项目">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/90.jpg" class="responsive-img" alt="IM项目">
                         
                         <span class="card-title">IM项目</span>
                     </div>

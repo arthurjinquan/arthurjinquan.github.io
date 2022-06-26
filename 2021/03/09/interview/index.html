@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>面试 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/92.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/92.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -498,7 +498,7 @@
 <h2 id="网络通信篇"><a href="#网络通信篇" class="headerlink" title="网络通信篇"></a>网络通信篇</h2><p><strong>一、TCP和UDP</strong></p>
 <p>Transfer Control Protocol 面向连接，可靠的传输层协议</p>
 <p>close_wait，time_wait 2MSL最长报文段寿命</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-6.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-6.jpg" alt></p>
 <p>User Datagram Protocol 无连接，不可靠的传输层协议</p>
 <p>Ø 同步：客户端在发送请求之后必须等到服务器回应之后才可以发送下一条请求。串行运行</p>
 <p>Ø 异步：客户端请求之后，不必等到服务器回应之后就可以发送下一条请求。并行运行</p>
@@ -507,7 +507,7 @@
 <blockquote>
 <p><strong>异步是针对请求，阻塞、非阻塞是针对客户端</strong></p>
 </blockquote>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-7.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-7.jpg" alt></p>
 <p>AIO：后端有一个异步请求队列，服务端处理完之后放入队列，通过队列把响应推给客户端，解决了服务端一直守着线程的问题</p>
 <p>然而异步通知的过程服务是没法做的，需要操作系统的支持，因为服务是不稳定的。</p>
 <p><strong>三、NIO的组件</strong></p>
@@ -523,7 +523,7 @@
 <li>Poll机制：和select机制差不多，把fd_set结构进行优化换成了<strong>链表</strong>实现，FD集合的大小突破了OS的限制</li>
 <li>EPoll（<strong>红黑树</strong>）：Event Poll，epoll不再扫描所有的FD，只将用户关心的FD事件放到内核的一个事件表中。减少用户空间和内核空间之间需要拷贝的数据</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-8.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-8.jpg" alt></p>
 <p><strong>五、http和https</strong></p>
 <ol>
 <li>https要<strong>ca证书</strong>，要钱</li>
@@ -531,7 +531,7 @@
 <li>http的连接是简单无状态的，https的数据传输时经过证书加密的</li>
 </ol>
 <h2 id="JVM篇"><a href="#JVM篇" class="headerlink" title="JVM篇"></a>JVM篇</h2><p><strong>一、JVM内存模型</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-basis-4.jpg" alt="JMM"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-basis-4.jpg" alt="JMM"></p>
 <p><strong>二、类加载过程，双亲委派，一个对象从加载到JVM，到被GC清除经历了什么过程？</strong></p>
 <p><strong>类加载过程</strong>：加载→验证→准备→解析→初始化</p>
 <p>加载：把Java的字节码数据加载到JVM内存（方法区）中，并映射成JVM认可的数据结构。</p>
@@ -571,7 +571,7 @@
 <p>Serial 串行：只有一个线程在GC</p>
 <p>Parallel 并行：多线程GC，PS+PO是JDK1.8默认的垃圾回收器</p>
 <p>Concurrent Mark Sweep：将STW打散， 让一部分GC线程和用户线程并发执行。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-1.jpg" alt="CMS"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-1.jpg" alt="CMS"></p>
 <ol>
 <li>初始标记：STW，只标记出GC Roots直接引用的对象。</li>
 <li>并发标记：继续标记其他对象，并发执行。</li>
@@ -619,9 +619,9 @@
 <li>后期版本提供加锁和设置时间原子操作（set（NX，timeout）），但是存在任务超时，锁自动释放，导致<strong>并发问题</strong>，加锁和释放锁不是同一线程问题（假如T1获得锁要执行15s，锁失效时间为10s，在这5s内T2获得了锁，T1执行完了要把锁释放掉，结果把T2的锁释放了，解决方法可以在value中存上线程的唯一标识或者uuid，删除锁：<strong>判断线程唯一标识再删除</strong>）</li>
 </ol>
 <p>可重入性及<strong>锁续期</strong>没有实现，通过redisson解决（类似AQS实现（count计数），看门狗监听机制（设置一个监听器监听任务，任务没有执行完就延长过期时间））</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-9.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-9.jpg" alt></p>
 <p><strong>redlock</strong>：以上的机制都只操作单节点，即使Redis通过Sentinel保证高可用，如果这个master节点由于某些发生了主从切换，那么就会出现锁丢失的情况（主从节点间是异步通信，Redis同步设置可能数据丢失）。redlock从多个节点申请锁，当一半以上节点获取成功才算成功，redisson有相应的实现</p>
-<img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-7.jpg" style="zoom:50%;">
+<img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-7.jpg" style="zoom:50%;">
 
 <p><strong>五、redis如何配置key的过期时间？实现原理</strong></p>
 <p>1、EXPIRE 。2、SETEX</p>
@@ -655,8 +655,8 @@
 <p>去中心化，独立数据库</p>
 <p>建module→改pom→写yml→主启动→业务类</p>
 <p><strong>二、SpringCloud和SpringCloudAlibaba组件？都解决了什么问题</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-10.jpg" alt="Netflix"></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-11.jpg" alt="Alibaba"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-10.jpg" alt="Netflix"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-11.jpg" alt="Alibaba"></p>
 <p>SpringCloud提供了构建微服务系统所需要的一组通用开发模式以及一系列</p>
 <p>gateway：统一服务对外入口，鉴权，过滤拦截（Gateway Handler Mapping→Gateway Web Handler， http请求断言，发送代理请求前后的Filter链），webflux→Reactor模式的netty</p>
 <p>hystrix：熔断：防止异常扩散，降级：断路器打开，调用失败的补救，只是服务水平下降，监控</p>
@@ -678,13 +678,13 @@
 <p>1、HTTP连接：最大努力通知。本质上通过定期校对（事后补偿），实现数据一致性</p>
 <p>2、MQ：事务消息机制。</p>
 <p>3、Redis：除了下图外，还有很多细节需要处理，分布式事务时长，幂等性问题</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-12.jpg" alt="Redis实现分布式事务"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-12.jpg" alt="Redis实现分布式事务"></p>
 <p>4、Seata：通过TC在多个事务之间建立联系</p>
 <p>2PC：1、准备阶段，协调者向参与者发送pre，询问参与者是否能够提交事务；参与者收到pre后进行本地事务的预处理但不提交。2、提交阶段，如果协调者收到参与者失败就rollback，所有的参与者都返回ready就都发送commit回去。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-13.jpg" alt="两阶段"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-13.jpg" alt="两阶段"></p>
 <p>2PC问题：单点故障，事务管理器一旦故障参与者就被阻塞。同步阻塞，需要锁资源，所以XA和AT前提需要连接数据库来保障，数据不一致</p>
 <p>3PC：把2PC的准备阶段再次拆分，第一个阶段不锁资源，引入参与者超时机制，解决了协调者故障后参与者阻塞问题。解决了单点故障问题。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-14.jpg" alt="3阶段"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-14.jpg" alt="3阶段"></p>
 <ol>
 <li>canCommit：协调者问参与者，是否具备执行事务的条件</li>
 <li>preCommit：协调者通知参与者进行事务的预提交</li>
@@ -709,10 +709,10 @@
 <p>Domain-Driven-Design在2004年有Eric Evans提出，面向软件复杂之道</p>
 <p>Maritin Fowler 贫血模型，贫血失忆症→充血模型</p>
 <p>MVC架构→领域优先的四层架构</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-15.jpg" alt="充血模型"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-15.jpg" alt="充血模型"></p>
 <p>大泥团：不利于微服务的拆分。大泥团结构拆分出来的微服务依然是泥团结构，当服务业务逐渐复杂，这个妮团又会膨胀成大泥团（比如下单微服务和物流微服务公用一个DB）</p>
 <p>所以采用领域拆分：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-16.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-16.jpg" alt></p>
 <p>DDD只是一种方法论，没有一个稳定的技术框架。DDD要求领域跟技术、存储、通信无关。</p>
 <p>中台：将各个业务线中可以复用的一些功能抽取出来，剥离个性，提取共性，形成一些可复用的组件。大体上分为三类：业务中台（抽象出来的在各个业务线都能公用的组件，如用户的权限管理，用户支付）、数据中台（对整个系统的数据进行统一的存储建模与计算，为各个系统的分析与利用提供支持，如芝麻信用，大数据杀熟）和技术中台（封装各个系统需要的技术框架，对上层业务开发的门槛降低，提高交互的速度）。</p>
 <p>中台和DDD结合：DDD会通过限界上下文将系统拆分成一个一个的领域，而这种限界上下文，天然就成为了中台的逻辑屏障。设计不再凭个人，而是整个团队的力量。DDD在技术与资源调度方面都能够给中台建设提供不错的指导。</p>
@@ -745,7 +745,7 @@
 <p>首先是实例化、属性赋值、初始化、销毁这 4 个大阶段；</p>
 <p>再是初始化的具体操作，有 Aware 接口的依赖注入、BeanPostProcessor 在初始化前后的处理以及 InitializingBean 和 init-method 的初始化操作；</p>
 <p>销毁的具体操作，有注册相关销毁回调接口，最后通过DisposableBean 和 destory-method 进行销毁。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-advance-7.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-advance-7.jpg" alt></p>
 <p><strong>四、Spring中Bean是线程安全的么？如何处理</strong></p>
 <p>单例无状态Bean是线程安全的，有状态的Bean通过<strong>ThreadLocal</strong>解决，因为ThreadLocal每个线程私有</p>
 <p><strong>五、Spring如何处理循环依赖</strong></p>
@@ -776,7 +776,7 @@
 <p><strong>六、Spring如何处理事务</strong></p>
 <p>编程式事务：通过编码方式实现事务，使用TransactionTemplate或PlatformTrasactionManager</p>
 <p>声明式事务：注解，AOP，本质就是在目标方法执行前后进行拦截</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-9.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/spring%20transaction-9.png" alt></p>
 <p><strong>七、SpringMVC中控制器如何保证线程安全</strong></p>
 <p>SpringMVC中控制器默认单例，在Controller中使用ThreadLocal变量或scope=”prototype”</p>
 <p>最好的方式是将控制器设计成无状态模式，在控制器中不要携带数据，但可以引用无状态的service和dao。</p>
@@ -800,7 +800,7 @@
 <li>主键索引采用聚簇索引，辅索引的数据域存储主键的值；最好使用自增主键，防止插入数据时，为维持B+树结构，文件的大调整。</li>
 </ol>
 <p><strong>二、脏读，不可重复读，幻读，如何处理</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-7.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/spring%20transaction-7.png" alt></p>
 <p>为了防止脏读，每次写入前，数据库都会记住旧值，当前事务尚未提交时，其他事务的读取都会拿到旧值。当前事务提交后，其他事务才能读取到新值。</p>
 <p>原子写，for update锁行，CAS</p>
 <p>加锁：1、脏读和不可重复读：在修改时加排他锁，直到事务提交才释放。读取时加共享锁。2、幻读：加范围锁。</p>
@@ -818,7 +818,7 @@
 <p>让master来响应事务性操作，让slave来响应select非事务性操作，然后再采用主从复制来把master上的事务性操作同步到slave数据库中。实现简单的负载均衡。</p>
 <p>show master status查看binlog文件和Position</p>
 <p>show slave status查看Slave_io_State,Master_Host,Master_Log_File,Read_Master_Log_Position等</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-2.png" alt="mysql主从复制"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-2.png" alt="mysql主从复制"></p>
 <p>主要由三个线程：master（binlog dump thread）、slave（I / O thread、SQL thread）</p>
 <ol>
 <li>主节点binlog，主从复制的基础是<strong>主库记录数据库的所有变更记录到binlog</strong>。binlog是数据库服务器启动的那一刻起，保存所有修改数据库结构或内容的一个文件。</li>
@@ -826,7 +826,7 @@
 <li>从节点I /O 线程接受binlog 内容，并将其写入到relay log 文件中。（relay log在从节点）</li>
 <li>从节点的SQL线程读取 relay log 文件内容对数据更新进行重放，最终保证主从数据库一致性。</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-17.jpg" alt="半同步复制"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-17.jpg" alt="半同步复制"></p>
 <p><strong>七、分库分表，多大数据量需要分库分表，分库分表方式和分片策略</strong></p>
 <p>1，阿里开发手册建议一个表的数据量超过500w或数据文件超过2G</p>
 <p>分库分表最常用组件：Mycat / ShardingSphere（Sharding-JDBC）</p>
@@ -841,7 +841,7 @@
 <p>倒排本质上就是基于term的反向列表，基于FST形成一个有向无环图，FST定位到倒排链后，然后倒排链的合并</p>
 <p>为了能够快速查找docid，SkipList本质上是在有序的链表上实现实现二分查找，空间换时间</p>
 <p>文章→term→排序term dictionary→term index（维护了字典的前缀和偏移范围）→Posting List→[文章ID，[在文章中出现的偏移量]，权重] TFIDF</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/lucene-7.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/lucene-7.jpg" alt></p>
 <p><strong>二、ES？说说你们公司的es集群架构</strong></p>
 <ol>
 <li>index：mysql中的table。</li>
@@ -963,7 +963,7 @@
 <li>主节点将RDB文件发送给从节点，到从节点加载数据完成之前，写命令写入缓存区</li>
 <li>从节点清理本地数据并加载RDB，如果开启AOF会重新AOF</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/redis-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/redis-2.jpg" alt></p>
 <h3 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h3><p>哨兵模式监控redis集群中Master的工作的状态。在Master主服务器宕机时，从slave中选择新机器当作master，保证系统高可用。</p>
 <p>每个哨兵每10秒向主服务器，slave和其他哨兵发送ping。</p>
 <p>客户端通过哨兵，由哨兵提供可供服务的redis master节点。</p>
@@ -974,7 +974,7 @@
 <h3 id="Redis的save命令"><a href="#Redis的save命令" class="headerlink" title="Redis的save命令"></a>Redis的save命令</h3><p>save命令是redis手动触发RDB过程的命令。使用该命令后，服务器阻塞，直到RDB过程完成后终止。该过程占用内存较多。</p>
 <h3 id="Redis的bgsave命令"><a href="#Redis的bgsave命令" class="headerlink" title="Redis的bgsave命令"></a>Redis的bgsave命令</h3><p>bgsave命令不阻塞主进程（严格意义上也不是完全不阻塞，详看下面过程），该命令fork一个子进程用于执行RDB过程。其具体过程为：</p>
 <p>判断此时有没有子进程用于RDB，有的话直接返回。<br>redis进行fork子进程过程，此时父进程处于阻塞状态。<br>子进程创建RDB文件，完成后返回给父进程</p>
-<h2 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-3.jpg" alt></p>
+<h2 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-3.jpg" alt></p>
 <ol>
 <li>Netty抽象出两组线程池BossGroup专门负责接收客户端连接，WorkerGroup专门负责网络的读写</li>
 <li>BossGroup和WorkerGroup类型都是NioEventLoopGroup</li>
@@ -998,10 +998,10 @@
 <p>ChannelInboundHandler / ChannelOutboundHandler 入站（server→client） / 出站io</p>
 <p>ChannelPipeline是一个ChannelHandler集合链，负责处理和拦截inbound或者outbound事件和操作</p>
 <p>ChannelHandlerContext：上下文对象，含具体的事件管理器ChannelHandler，含pipeline，channel，地址</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-4.jpg" alt></p>
 <p>每添加一个handler都会创建一个关联的Context，调用addLast方法将Context追加到链表</p>
 <p>tail是inbound类型的handler，head既是inbound又是outbound类型的handler。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/interview-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/interview-5.jpg" alt></p>
 <ol>
 <li>pipeline首先调用ctx的pipeline的静态方法fireXXX（如fireChannelRead），并传入head</li>
 <li>静态方法调用ctx的invoke方法，invoke方法内部调用该ctx所包含的Handler的真正方法，调用结束传递给下一个ctx</li>
@@ -1209,7 +1209,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/79.jpg" class="responsive-img" alt="Java的守护线程">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/79.jpg" class="responsive-img" alt="Java的守护线程">
                         
                         <span class="card-title">Java的守护线程</span>
                     </div>
@@ -1262,7 +1262,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/25.jpg" class="responsive-img" alt="Java基础">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/25.jpg" class="responsive-img" alt="Java基础">
                         
                         <span class="card-title">Java基础</span>
                     </div>

@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>https、ssl和ssh协议 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/96.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -457,7 +457,7 @@
 <li>通过Cookie/Session技术</li>
 <li>HTTP/1.1持久连接（HTTP <strong>keep-alive</strong>）方法，只要任意一端没有明确提出断开连接，则保持TCP连接状态，在请求首部字段中的Connection: keep-alive即为表明使用了持久连接</li>
 </ol>
-<h4 id="中间人攻击原理"><a href="#中间人攻击原理" class="headerlink" title="中间人攻击原理"></a>中间人攻击原理</h4><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/https-1.jpg" alt></p>
+<h4 id="中间人攻击原理"><a href="#中间人攻击原理" class="headerlink" title="中间人攻击原理"></a>中间人攻击原理</h4><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/https-1.jpg" alt></p>
 <h5 id="SSL劫持攻击："><a href="#SSL劫持攻击：" class="headerlink" title="SSL劫持攻击："></a>SSL劫持攻击：</h5><p>SSL劫持攻击即SSL证书欺骗攻击，攻击者为了获得HTTPS传输的明文数据，需要先将自己接入到客户端和目标网站之间；在传输过程中<strong>伪造服务器的证书</strong>，将<strong>服务器的公钥替换成自己的公钥</strong>，这样，中间人就可以得到明文传输带Key1、Key2和Pre-Master-Key，从而窃取客户端和服务端的通信数据；</p>
 <p>但是对于客户端来说，如果中间人伪造了证书，在校验证书过程中会提示证书错误，由用户选择继续操作还是返回，由于大多数用户的安全意识不强，会选择继续操作，此时，中间人就可以获取浏览器和服务器之间的通信数据</p>
 <h5 id="SSL剥离攻击："><a href="#SSL剥离攻击：" class="headerlink" title="SSL剥离攻击："></a>SSL剥离攻击：</h5><p>这种攻击方式也需要将攻击者设置为中间人，之后见HTTPS范文替换为HTTP返回给浏览器，而中间人和服务器之间仍然保持HTTPS服务器。由于<strong>HTTP是明文传输</strong>的，所以中间人可以获取客户端和服务器传输数据</p>
@@ -483,11 +483,11 @@
 <li>http的连接是简单无状态的，https的数据传输时经过证书加密的</li>
 </ol>
 <h2 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a>对称加密算法</h2><p>对称加密算法的特点是加密密钥和解密密钥是<strong>同一把密钥</strong>K，且加解密速度快，典型的对称加密算法有DES、AES等</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95.png" alt></p>
 <h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p>既然把密钥传输给别人不安全，那我们就要避免这个问题，首先计算机A和计算机B，分别拥有两个东西，叫做公钥和私钥，这两个东西有什么用呢，简单来说这两个东西是配套来使用的，一段文字通过公钥加密后，需要通过私钥解密才能看到，公钥就像锁，而私钥就像钥匙，现在计算机A拥有一把锁和钥匙，计算机B也拥有一把锁和钥匙，需要注意的是这两个东西是配套使用的，也就是只有自己的钥匙能开自己的锁。然后我们需要怎么做呢，原理很简单，计算机A和计算机B把自己的公钥复制一份，发送给对对方，也就是交换公钥，需要加密数据的时候就用对方的公钥解密，然后发送给对方，然后对方就用自己的密钥解密。如下图：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86.png" alt></p>
 <p>注：梯形为客户端公钥和私钥，长方形为服务器端公钥和私钥</p>
-<h2 id="公钥交换过程"><a href="#公钥交换过程" class="headerlink" title="公钥交换过程"></a>公钥交换过程</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/%E5%85%AC%E9%92%A5%E4%BA%A4%E6%8D%A2%E8%BF%87%E7%A8%8B.jpg" alt></p>
+<h2 id="公钥交换过程"><a href="#公钥交换过程" class="headerlink" title="公钥交换过程"></a>公钥交换过程</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/%E5%85%AC%E9%92%A5%E4%BA%A4%E6%8D%A2%E8%BF%87%E7%A8%8B.jpg" alt></p>
 <p>简单来讲一下这个过程</p>
 <ol>
 <li>首先客户端<strong>建立一个连接</strong></li>
@@ -501,7 +501,7 @@
 <h3 id="SSL协议的三个特性"><a href="#SSL协议的三个特性" class="headerlink" title="SSL协议的三个特性"></a>SSL协议的三个特性</h3><p>① 保密：在握手协议中定义了会话密钥后，所有的消息都被加密。</p>
 <p>② 鉴别：可选的客户端认证，和强制的服务器端认证。</p>
 <p>③ 完整性：传送的消息包括消息完整性检查（使用MAC）。</p>
-<h3 id="SSL协议结构"><a href="#SSL协议结构" class="headerlink" title="SSL协议结构"></a>SSL协议结构</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssl%E5%8D%8F%E8%AE%AE%E7%BB%93%E6%9E%84.png" alt></p>
+<h3 id="SSL协议结构"><a href="#SSL协议结构" class="headerlink" title="SSL协议结构"></a>SSL协议结构</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/ssl%E5%8D%8F%E8%AE%AE%E7%BB%93%E6%9E%84.png" alt></p>
 <p>SSL的体系结构中包含两个协议子层，其中底层是<strong>SSL记录协议层</strong>（SSL Record Protocol Layer）；高层是<strong>SSL握手协议层</strong>（SSL HandShake Protocol Layer）。</p>
 <p>SSL协议主要分为两层：</p>
 <ol>
@@ -520,12 +520,12 @@
 <h4 id="记录协议"><a href="#记录协议" class="headerlink" title="记录协议"></a>记录协议</h4><p>记录协议在客户机和服务器握手成功后使用，即客户机和服务器鉴别对方和确定安全信息交换使用的算法后，进入SSL记录协议，记录协议向SSL连接提供两个服务：</p>
 <p>　　（1）保密性：使用握手协议定义的秘密密钥实现</p>
 <p>　　（2）完整性：握手协议定义了MAC，用于保证消息完整性</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssl%E8%AE%B0%E5%BD%95%E5%8D%8F%E8%AE%AE.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/ssl%E8%AE%B0%E5%BD%95%E5%8D%8F%E8%AE%AE.png" alt></p>
 <h4 id="警报协议"><a href="#警报协议" class="headerlink" title="警报协议"></a>警报协议</h4><p>客户机和服务器发现错误时，向对方发送一个警报消息。如果是致命错误，则<strong>算法立即关闭SSL连接，双方还会先删除相关的会话号，秘密和密钥</strong>。每个警报消息共2个字节，第1个字节表示错误类型，如果是警报，则值为1，如果是致命错误，则值为2；第2个字节制定实际错误类型。</p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>SSL中，使用记录协议<strong>协商加密和MAC算法以及保密密钥</strong> ，使用握手协议<strong>对交换的数据进行加密和签名</strong>，使用警报协议定义数据传输过程中，出现问题如何去解决。</p>
 <h2 id="SSH协议"><a href="#SSH协议" class="headerlink" title="SSH协议"></a>SSH协议</h2><p>SSH 为 <strong>Secure Shell</strong> 的缩写，由 IETF 的网络小组（Network Working Group）所制定；SSH 为建立在<strong>应用层</strong>基础上的安全协议。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。简单来说ssh是一种加密的用于远程登录的协议。</p>
 <h2 id="基于口令的远程登录"><a href="#基于口令的远程登录" class="headerlink" title="基于口令的远程登录"></a>基于口令的远程登录</h2><p>利用ssh远程登录，一般有两种方式，一种是需要密码的，一种是不需要输入密码的</p>
-<h3 id="需要密码的ssh远程登录"><a href="#需要密码的ssh远程登录" class="headerlink" title="需要密码的ssh远程登录"></a>需要密码的ssh远程登录</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssh%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95.png" alt></p>
+<h3 id="需要密码的ssh远程登录"><a href="#需要密码的ssh远程登录" class="headerlink" title="需要密码的ssh远程登录"></a>需要密码的ssh远程登录</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/ssh%E5%AF%86%E7%A0%81%E7%99%BB%E5%BD%95.png" alt></p>
 <p>如上图所示，客户端想登录到服务器端怎么办呢</p>
 <ol>
 <li>先做一个公钥交换，具体过程像上面那样</li>
@@ -533,7 +533,7 @@
 <li>服务器端得到加密后的密码后用自己的私钥（服务器私钥）解密一波就知道是不是正确了，然后密码正不正确得搞个反馈回去，这个反馈呢服务器端用客户端的公钥加密一波，再发回去给客户端</li>
 <li>客户端拿到这个加密后的反馈，就直接用自己的私钥（客户端私钥）解密一下就完事</li>
 </ol>
-<h3 id="ssh的免密登录"><a href="#ssh的免密登录" class="headerlink" title="ssh的免密登录"></a>ssh的免密登录</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95.jpg" alt></p>
+<h3 id="ssh的免密登录"><a href="#ssh的免密登录" class="headerlink" title="ssh的免密登录"></a>ssh的免密登录</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/ssh%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95.jpg" alt></p>
 <ol>
 <li>首先不必做公钥交换了，在登录请求之前我需要将客户端的公钥发给服务器端</li>
 <li>现在客户端发起一个登录请求</li>
@@ -647,7 +647,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/16.jpg" class="responsive-img" alt="Nginx简单介绍">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/16.jpg" class="responsive-img" alt="Nginx简单介绍">
                         
                         <span class="card-title">Nginx简单介绍</span>
                     </div>
@@ -696,7 +696,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/59.jpg" class="responsive-img" alt="AMQP协议">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/59.jpg" class="responsive-img" alt="AMQP协议">
                         
                         <span class="card-title">AMQP协议</span>
                     </div>

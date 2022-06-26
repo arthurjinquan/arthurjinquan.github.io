@@ -17,7 +17,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>OLTP vs OLAP | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -77,7 +77,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -161,7 +161,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -253,7 +253,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/17.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -439,11 +439,11 @@
 <h2 id="从应用上来看看OLTP与OLAP的区别"><a href="#从应用上来看看OLTP与OLAP的区别" class="headerlink" title="从应用上来看看OLTP与OLAP的区别"></a>从应用上来看看OLTP与OLAP的区别</h2><p>OLTP主要用来记录某类业务事件的发生，如购买行为，当行为产生后，系统会记录是谁在何时何地做了何事，这样的一行（或多行）数据会以增删改的方式在数据库中进行数据的更新处理操作，要求实时性高、稳定性强、确保数据及时更新成功，像公司常见的业务系统如ERP，CRM，OA等系统都属于OLTP。</p>
 <p>当数据积累到一定的程度，我们需要对过去发生的事情做一个总结分析时，就需要把过去一段时间内产生的数据拿出来进行统计分析，从中获取我们想要的信息，为公司做决策提供支持，这时候就是在做OLAP了。</p>
 <p>因为OLTP所产生的业务数据分散在不同的业务系统中，而OLAP往往需要将不同的业务数据集中到一起进行统一综合的分析，这时候就需要根据业务分析需求做对应的数据清洗后存储在数据仓库中，然后由数据仓库来统一提供OLAP分析。所以我们常说OLTP是数据库的应用，OLAP是数据仓库的应用，下面用一张图来简要对比。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/oltp-olap-1.jpg" alt></p>
-<h2 id="使用图示"><a href="#使用图示" class="headerlink" title="使用图示"></a>使用图示</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/oltp-olap-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/oltp-olap-1.jpg" alt></p>
+<h2 id="使用图示"><a href="#使用图示" class="headerlink" title="使用图示"></a>使用图示</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/oltp-olap-2.jpg" alt></p>
 <h3 id="操作型数据库（ODS）"><a href="#操作型数据库（ODS）" class="headerlink" title="操作型数据库（ODS）"></a>操作型数据库（ODS）</h3><p>操作型数据库（ODS），数据仓库（DW或EDW），数据集市（DM）是目前标准数仓结构的三个核心组件。</p>
 <p>他们在数仓架构中差异点大致如下（以标准理论为准，实际设计中都会有越界和妥协现象）</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/oltp-olap-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/oltp-olap-3.jpg" alt></p>
 <h3 id="ODS和贴源层（缓冲区）"><a href="#ODS和贴源层（缓冲区）" class="headerlink" title="ODS和贴源层（缓冲区）"></a>ODS和贴源层（缓冲区）</h3><p><strong>贴源层</strong>的数据结构和数据内容是和源系统一模一样的，包括里面的垃圾数据，唯一不同的是，贴源层加了“时间戳”。</p>
 <p><strong>ODS层</strong>，则要清洗掉垃圾数据，更改不能入库的格式为数仓支持的格式或优化后的格式，如nchar改为char或Varchar。</p>
 <p>贴源层数据存放一般为一周左右，几乎不会超过一个月；而ODS则永久存放。</p>
@@ -554,7 +554,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/104.jpg" class="responsive-img" alt="mysql的锁">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/104.jpg" class="responsive-img" alt="mysql的锁">
                         
                         <span class="card-title">mysql的锁</span>
                     </div>
@@ -607,7 +607,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/45.jpg" class="responsive-img" alt="Seata">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/45.jpg" class="responsive-img" alt="Seata">
                         
                         <span class="card-title">Seata</span>
                     </div>

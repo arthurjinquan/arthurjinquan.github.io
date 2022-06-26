@@ -20,7 +20,7 @@ PlatfromTransactionManager是spring事务管理的核心接口
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>事务的传播属性和声明式事务的配置方式 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@ PlatfromTransactionManager是spring事务管理的核心接口
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@ PlatfromTransactionManager是spring事务管理的核心接口
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@ PlatfromTransactionManager是spring事务管理的核心接口
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/45.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/45.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -435,7 +435,7 @@ PlatfromTransactionManager是spring事务管理的核心接口
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>Spring事务管理的实现有许多细节，如果对整个接口框架有个大体了解会非常有利于我们理解事务，Spring事务管理涉及的接口的联系如下：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-9.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/spring%20transaction-9.png" alt></p>
 <p><strong>PlatfromTransactionManager是spring事务管理的核心接口</strong></p>
 <h2 id="事务的传播性"><a href="#事务的传播性" class="headerlink" title="事务的传播性"></a>事务的传播性</h2><p>getPropagationBehavior（）返回事务的传播行为，由是否有一个活动的事务来决定一个事务调用。 在TransactionDefinition接口中定义了七个事务传播行为。</p>
 <p>配置方式：</p>
@@ -565,9 +565,9 @@ methodB<span class="token punctuation">{</span>
     userMapper<span class="token punctuation">.</span><span class="token function">insertSelective</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>运行之后，发现数据并没有插入数据库。查看日志内容。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/spring%20transaction-4.jpg" alt></p>
 <p>从日志内容可以看出，其实两个方法都是<strong>处于同一个事务</strong>中，method1 方法并没有创建一个新的事务。根据 Spring 官方文档：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-5.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/spring%20transaction-5.png" alt></p>
 <blockquote>
 <p>In proxy mode (which is the default), only external method calls coming in through the proxy are intercepted. This means that self-invocation, in effect, a method within the target object calling another method of the target object, will not lead to an actual transaction at runtime even if the invoked method is marked with @Transactional.</p>
 </blockquote>
@@ -603,7 +603,7 @@ methodB<span class="token punctuation">{</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这下，otherService.method1 方法的数据插入成功，save 方法的数据未插入，事务回滚。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/spring%20transaction-6.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/spring%20transaction-6.jpg" alt></p>
 <p>从日志可以看出，首先创建了 save 方法的事务，由于 otherService.method1 方法的 @Transactional 的 propagation 属性为 Propagation.REQUIRES_NEW ，所以接着暂停了 save 方法的事务，重新创建了 otherService.method1 方法的事务，接着 otherService.method1 方法的事务提交，接着 save 方法的事务回滚。这就印证了<strong>只有目标方法由外部调用，才能被 Spring 的事务拦截器拦截</strong>。</p>
 <h3 id="1-5-PROPAGATION-NOT-SUPPORTED"><a href="#1-5-PROPAGATION-NOT-SUPPORTED" class="headerlink" title="1.5 PROPAGATION_NOT_SUPPORTED"></a>1.5 PROPAGATION_NOT_SUPPORTED</h3><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//事务属性 PROPAGATION_REQUIRED</span>
 <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>propagation<span class="token operator">=</span>Propagation<span class="token punctuation">.</span>REQUIRED<span class="token punctuation">)</span>
@@ -1050,7 +1050,7 @@ methodB<span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/76.jpg" class="responsive-img" alt="编程式事务（programmatic transaction）">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/76.jpg" class="responsive-img" alt="编程式事务（programmatic transaction）">
                         
                         <span class="card-title">编程式事务（programmatic transaction）</span>
                     </div>
@@ -1099,7 +1099,7 @@ methodB<span class="token punctuation">{</span>
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/58.jpg" class="responsive-img" alt="消毒供应室项目业务流程图">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/58.jpg" class="responsive-img" alt="消毒供应室项目业务流程图">
                         
                         <span class="card-title">消毒供应室项目业务流程图</span>
                     </div>

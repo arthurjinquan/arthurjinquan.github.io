@@ -20,7 +20,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>操作系统 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -80,7 +80,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -164,7 +164,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -256,7 +256,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/76.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/76.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -436,7 +436,7 @@
             <div id="articleContent">
                 <h2 id="操作系统简介篇"><a href="#操作系统简介篇" class="headerlink" title="操作系统简介篇"></a>操作系统简介篇</h2><p>转载：<a href="https://www.zhihu.com/question/446980297/answer/1755892330" target="_blank" rel="noopener">https://www.zhihu.com/question/446980297/answer/1755892330</a></p>
 <p><strong>操作系统是管理硬件和软件的一种应用程序</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-1.jpg" alt></p>
 <h3 id="操作系统的主要功能"><a href="#操作系统的主要功能" class="headerlink" title="操作系统的主要功能"></a>操作系统的主要功能</h3><p><code>进程管理</code>: 进程管理的主要作用就是任务调度，在单核处理器下，操作系统会为每个进程分配一个任务，进程管理的工作十分简单；而在多核处理器下，操作系统除了要为进程分配任务外，还要解决处理器的调度、分配和回收等问题</p>
 <p><code>内存管理</code>：内存管理主要是操作系统负责管理内存的分配、回收，在进程需要时分配内存以及在进程完成时回收内存，协调内存资源，通过合理的页面置换算法进行页面的换入换出</p>
 <p><code>设备管理</code>：根据确定的设备分配原则对设备进行分配，使设备与主机能够并行工作，为用户提供良好的设备使用界面。</p>
@@ -478,11 +478,11 @@
 <p>如果要做，比如要访问磁盘，写文件，那就要通过执行系统调用（函数），执行系统调用的时候，CPU的运行级别会发生从ring3到ring0的切换，并跳转到系统调用对应的内核代码位置执行，这样内核就为你完成了设备访问，完成之后再从ring0返回ring3。</p>
 <p>这个过程也称作用户态和内核态的切换。</p>
 <h2 id="进程和线程篇"><a href="#进程和线程篇" class="headerlink" title="进程和线程篇"></a>进程和线程篇</h2><h3 id="什么是线程，线程和进程的区别"><a href="#什么是线程，线程和进程的区别" class="headerlink" title="什么是线程，线程和进程的区别"></a>什么是线程，线程和进程的区别</h3><p>我们上面说到进程是正在运行的程序的实例，而线程其实就是进程中的单条流向，因为线程具有进程中的某些属性，所以线程又被称为轻量级的进程。浏览器如果是一个进程的话，那么浏览器下面的每个 tab 页可以看作是一个个的线程。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-2.jpg" alt="线程和进程持有资源的区别"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-2.jpg" alt="线程和进程持有资源的区别"></p>
 <p>创建线程的开销要比进程小很多，因为创建线程仅仅需要<code>堆栈指针</code>和<code>程序计数器</code>就可以了，而创建进程需要操作系统分配新的地址空间，数据资源等，这个开销比较大。</p>
-<h3 id="多进程和多线程的区别"><a href="#多进程和多线程的区别" class="headerlink" title="多进程和多线程的区别"></a>多进程和多线程的区别</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-13.jpg" alt></p>
+<h3 id="多进程和多线程的区别"><a href="#多进程和多线程的区别" class="headerlink" title="多进程和多线程的区别"></a>多进程和多线程的区别</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-13.jpg" alt></p>
 <h3 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h3><p>对于单核单线程 CPU 而言，在某一时刻只能执行一条 CPU 指令。上下文切换（Context Switch） 是一种 <strong>将 CPU 资源从一个进程分配给另一个进程的机制</strong>。从用户角度看，计算机能够并行运行多个进程，这恰恰是操作系统通过快速上下文切换造成的结果。在切换的过程中，操作系统需要先存储当前进程的状态（包括内存空间的指针，当前执行完的指令等等），再读入下一个进程的状态，然后执行此进程。</p>
-<h3 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-3.jpg" alt></p>
+<h3 id="进程间的通信方式"><a href="#进程间的通信方式" class="headerlink" title="进程间的通信方式"></a>进程间的通信方式</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-3.jpg" alt></p>
 <p><strong>管道（pipe）</strong></p>
 <p>管道包括三种：</p>
 <ol>
@@ -503,14 +503,14 @@
 <p>消息队列：消息队列是消息的链表，包括Posix消息队列system V消息队列。有足够权限的进程可以向队列中添加消息，被赋予读权限的进程则可以读走队列中的消息。消息队列<strong>克服了信号承载信息量少</strong>，管道只能承载无格式字节流以及缓冲区大小受限等缺点。消息队列是随内核持续的。</p>
 <p>共享内存：两个不同进程A、B共享内存的意思是，同一块物理内存被映射到进程A、B各自的进程地址空间。进程A可以即时看到进程B对共享内存中数据的更新，反之亦然。由于多个进程共享同一块内存区域，必然需要某种同步机制，互斥锁和信号量都可以。</p>
 <p>套接字：两个基本概念：客户方和服务方。当两个应用之间需要采用SOCKET通信时，首先需要在两个应用之间（可能位于同一台机器，也可能位于不同的机器）建立SOCKET连接。</p>
-<h3 id="进程的三态模型"><a href="#进程的三态模型" class="headerlink" title="进程的三态模型"></a>进程的三态模型</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-4.jpg" alt></p>
+<h3 id="进程的三态模型"><a href="#进程的三态模型" class="headerlink" title="进程的三态模型"></a>进程的三态模型</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-4.jpg" alt></p>
 <ol>
 <li><code>运行态</code>：运行态指的就是进程实际占用 CPU 时间片运行时</li>
 <li><code>就绪态</code>：就绪态指的是可运行，但因为其他进程正在运行而处于就绪状态</li>
 <li><code>阻塞态</code>：阻塞态又被称为睡眠态，它指的是进程不具备运行条件，正在等待被 CPU 调度。</li>
 </ol>
 <h3 id="进程的五态模型"><a href="#进程的五态模型" class="headerlink" title="进程的五态模型"></a>进程的五态模型</h3><p>在三态模型的基础上，增加了两个状态，即 <code>新建</code> 和 <code>终止</code> 状态。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-5.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-5.jpg" alt></p>
 <ul>
 <li>新建态：进程的新建态就是进程刚创建出来的时候（分配所需要的资源和空间）</li>
 </ul>
@@ -554,9 +554,9 @@
 <p>线性地址可以看作是<code>虚拟地址</code>，虚拟地址不是真正的物理地址，但是虚拟地址会最终被映射为物理地址。下面是虚拟地址 -&gt; 物理地址的映射。</p>
 <h3 id="空闲内存管理的方式"><a href="#空闲内存管理的方式" class="headerlink" title="空闲内存管理的方式"></a>空闲内存管理的方式</h3><p>操作系统在动态分配内存时（malloc，new），需要对空间内存进行管理。一般采用了两种方式：位图和空闲链表。</p>
 <h4 id="位图进行管理"><a href="#位图进行管理" class="headerlink" title="位图进行管理"></a>位图进行管理</h4><p>使用位图方法时，内存可能被划分为小到几个字或大到几千字节的分配单元。每个分配单元对应于位图中的一位，0 表示空闲， 1 表示占用（或者相反）。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-8.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-8.jpg" alt></p>
 <h4 id="空闲链表"><a href="#空闲链表" class="headerlink" title="空闲链表"></a>空闲链表</h4><p>另一种记录内存使用情况的方法是，维护一个记录已分配内存段和空闲内存段的链表，段会包含进程或者是两个进程的空闲区域。链表中的每一项都可以代表一个 <code>空闲区(H)</code> 或者是<code>进程(P)</code>的起始标志，长度和下一个链表项的位置。</p>
-<h3 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-6.jpg" alt></p>
+<h3 id="页面置换算法"><a href="#页面置换算法" class="headerlink" title="页面置换算法"></a>页面置换算法</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-6.jpg" alt></p>
 <ul>
 <li><code>最优算法</code>在当前页面中置换最后要访问的页面。不幸的是，没有办法来判定哪个页面是最后一个要访问的，<code>因此实际上该算法不能使用</code>。然而，它可以作为衡量其他算法的标准。</li>
 <li><code>NRU</code> 算法根据 R 位和 M 位的状态将页面氛围四类。从编号最小的类别中随机选择一个页面。NRU 算法易于实现，但是性能不是很好。存在更好的算法。</li>
@@ -570,7 +570,7 @@
 </ul>
 <p><strong>最好的算法是老化算法和WSClock算法</strong>。他们分别是基于 LRU 和工作集算法。他们都具有良好的性能并且能够被有效的实现。还存在其他一些好的算法，但实际上这两个可能是最重要的。</p>
 <h2 id="文件系统篇"><a href="#文件系统篇" class="headerlink" title="文件系统篇"></a>文件系统篇</h2><h3 id="提高文件系统性能的方式"><a href="#提高文件系统性能的方式" class="headerlink" title="提高文件系统性能的方式"></a><strong>提高文件系统性能的方式</strong></h3><h3 id="高速缓存"><a href="#高速缓存" class="headerlink" title="高速缓存"></a>高速缓存</h3><p>管理高速缓存有不同的算法，常用的算法是：检查全部的读请求，查看在高速缓存中是否有所需要的块。如果存在，可执行读操作而无须访问磁盘。如果检查块不再高速缓存中，那么首先把它读入高速缓存，再复制到所需的地方。之后，对同一个块的请求都通过<code>高速缓存</code>来完成。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-7.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-7.jpg" alt></p>
 <p>由于在高速缓存中有许多块，所以需要某种方法快速确定所需的块是否存在。常用方法是将设备和磁盘地址进行散列操作。然后在散列表中查找结果。具有相同散列值的块在一个链表中连接在一起（这个数据结构是不是很像 HashMap?），这样就可以沿着冲突链查找其他块。</p>
 <p>如果高速缓存<code>已满</code>，此时需要调入新的块，则要把原来的某一块调出高速缓存，如果要调出的块在上次调入后已经被修改过，则需要把它写回磁盘。这种情况与分页非常相似。</p>
 <h3 id="块提前读"><a href="#块提前读" class="headerlink" title="块提前读"></a>块提前读</h3><p>只适用于实际顺序读取的文件。对随机访问的文件，提前读丝毫不起作用。</p>
@@ -598,7 +598,7 @@
 </ul>
 <h2 id="IO-篇"><a href="#IO-篇" class="headerlink" title="IO 篇"></a>IO 篇</h2><h3 id="操作系统中的时钟是什么"><a href="#操作系统中的时钟是什么" class="headerlink" title="操作系统中的时钟是什么"></a>操作系统中的时钟是什么</h3><p><code>时钟(Clocks)</code> 也被称为<code>定时器(timers)</code>，时钟/定时器对任何程序系统来说都是必不可少的。时钟负责维护时间、<strong>防止一个进程长期占用 CPU 时间</strong>等其他功能。<code>时钟软件(clock software)</code>也是一种设备驱动的方式。</p>
 <h3 id="时钟硬件"><a href="#时钟硬件" class="headerlink" title="时钟硬件"></a>时钟硬件</h3><p>由晶体振荡器、计数器和寄存器组成，示意图如下所示</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-9.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-9.jpg" alt></p>
 <p>这种时钟称为<code>可编程时钟</code> ，可编程时钟有两种模式，一种是 <code>一键式(one-shot mode)</code>，当时钟启动时，会把存储器中的值复制到计数器中，然后，每次晶体的振荡器的脉冲都会使计数器 -1。当计数器变为 0 时，会产生一个中断，并停止工作，直到软件再一次显示启动。还有一种模式时 <code>方波(square-wave mode)</code> 模式，在这种模式下，当计数器变为 0 并产生中断后，存储寄存器的值会自动复制到计数器中，这种周期性的中断称为一个时钟周期。</p>
 <h3 id="设备控制器的主要功能"><a href="#设备控制器的主要功能" class="headerlink" title="设备控制器的主要功能"></a>设备控制器的主要功能</h3><p>设备控制器是一个<code>可编址</code>的设备，当它仅控制一个设备时，它只有一个唯一的设备地址；如果设备控制器控制多个可连接设备时，则应含有多个设备地址，并使每一个设备地址对应一个设备。</p>
 <p>设备控制器主要分为两种：字符设备和块设备</p>
@@ -623,7 +623,7 @@
 <li>开始运行新的进程</li>
 </ul>
 <p>上面我们罗列了一些大致的中断步骤，不同性质的操作系统和中断处理程序能够处理的中断步骤和细节也不尽相同，下面是一个嵌套中断的具体运行步骤</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-10.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-10.jpg" alt></p>
 <h3 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a>DMA</h3><p>DMA 的中文名称是<code>直接内存访问</code>，它意味着 CPU 授予 I/O 模块权限在<strong>不涉及 CPU</strong> 的情况下读取或写入内存。也就是 DMA 可以不需要 CPU 的参与。这个过程由称为 DMA 控制器（DMAC）的芯片管理。由于 DMA 设备可以直接在内存之间传输数据，而不是使用 CPU 作为中介，因此可以<strong>缓解总线上的拥塞</strong>。DMA 通过允许 CPU 执行任务，同时 DMA 系统通过系统和内存总线传输数据来提高系统并发性。</p>
 <h3 id="直接内存访问的特点"><a href="#直接内存访问的特点" class="headerlink" title="直接内存访问的特点"></a>直接内存访问的特点</h3><p>DMA 方式有如下特点：</p>
 <ul>
@@ -652,7 +652,7 @@
 <p>该种方法实现起来比较复杂，且代价也比较大。释放已经保持的资源很有可能会导致进程之前的工作实效等，<strong>反复的申请和释放资源会导致进程的执行被无限的推迟</strong>，这不仅会延长进程的周转周期，还会影响系统的吞吐量。</p>
 <h4 id="破坏循环等待条件"><a href="#破坏循环等待条件" class="headerlink" title="破坏循环等待条件"></a>破坏循环等待条件</h4><p>制定一个标准，一个进程在任何时候只能使用一种资源。如果需要另外一种资源，必须释放当前资源。</p>
 <p>还可以通过定义资源类型的线性顺序来预防，可将每个资源编号，当一个进程占有编号为i的资源时，那么它下一次申请资源只能申请编号大于i的资源。如图所示：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-11.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-11.jpg" alt></p>
 <p>这样虽然避免了循环等待，但是这种方法是比较低效的，资源的执行速度回变慢，并且可能在没有必要的情况下拒绝资源的访问，比如说，进程c想要申请资源1，如果资源1并没有被其他进程占有，此时将它分配个进程c是没有问题的，但是为了避免产生循环等待，该申请会被拒绝，这样就降低了资源的利用率</p>
 <h3 id="避免死锁"><a href="#避免死锁" class="headerlink" title="避免死锁"></a>避免死锁</h3><p><strong>在使用前进行判断，只允许不会产生死锁的进程申请资源</strong></p>
 <h4 id="银行家算法"><a href="#银行家算法" class="headerlink" title="银行家算法"></a>银行家算法</h4><p>银行家算法的相关数据结构：</p>
@@ -678,7 +678,7 @@
 <p>通信死锁不能通过调度的方式来避免，但是可以使用通信中一个非常重要的概念来避免：<code>超时(timeout)</code>。在通信过程中，只要一个信息被发出后，发送者就会启动一个定时器，定时器会记录消息的超时时间，如果超时时间到了但是消息还没有返回，就会认为消息已经丢失并重新发送，通过这种方式，可以避免通信死锁。</p>
 <p>但是并非所有网络通信发生的死锁都是通信死锁，也存在资源死锁，下面就是一个典型的资源死锁。</p>
 <p>当一个数据包从主机进入路由器时，会被放入一个缓冲区，然后再传输到另外一个路由器，再到另一个，以此类推直到目的地。缓冲区都是资源并且数量有限。如下图所示，每个路由器都有 10 个缓冲区（实际上有很多）。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/os-12.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/os-12.jpg" alt></p>
 <p>假如路由器 A 的所有数据需要发送到 B ，B 的所有数据包需要发送到 D，然后 D 的所有数据包需要发送到 A 。没有数据包可以移动，因为在另一端没有缓冲区可用，这就是一个典型的资源死锁。</p>
 <h4 id="活锁"><a href="#活锁" class="headerlink" title="活锁"></a>活锁</h4><p>某些情况下，当进程意识到它不能获取所需要的下一个锁时，就会尝试礼貌的释放已经获得的锁，然后等待非常短的时间再次尝试获取。可以想像一下这个场景：当两个人在狭路相逢的时候，都想给对方让路，相同的步调会导致双方都无法前进。</p>
 <p>现在假想有一对并行的进程用到了两个资源。它们分别尝试获取另一个锁失败后，两个进程都会释放自己持有的锁，再次进行尝试，这个过程会一直进行重复。很明显，这个过程中没有进程阻塞，但是进程仍然不会向下执行，这种状况我们称之为 <code>活锁(livelock)</code>。</p>
@@ -795,7 +795,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/10.jpg" class="responsive-img" alt="ScheduledThreadPoolExecutor实现限流算法">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/10.jpg" class="responsive-img" alt="ScheduledThreadPoolExecutor实现限流算法">
                         
                         <span class="card-title">ScheduledThreadPoolExecutor实现限流算法</span>
                     </div>
@@ -844,7 +844,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/59.jpg" class="responsive-img" alt="泛型实现">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/59.jpg" class="responsive-img" alt="泛型实现">
                         
                         <span class="card-title">泛型实现</span>
                     </div>

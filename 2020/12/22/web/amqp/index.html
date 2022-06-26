@@ -19,7 +19,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>AMQP协议 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -79,7 +79,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -163,7 +163,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -255,7 +255,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/59.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/59.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -444,7 +444,7 @@
 </ol>
 <p>AMQP像是一个把东西连在一起的语言，而不是一个系统。其设计目标是：<strong>让服务端可通过协议编程</strong>。理解了AMQP的这个设计目标，也就能够理解其协议的设计思路了。</p>
 <p>AMQP协议是一个二进制协议，具有一些现代特性：多通道（multi-channel），可协商（negotiated），异步、安全、便携、语言中立、高效的。其协议主要分成两层：</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/AMQP%E5%8D%8F%E8%AE%AE.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/AMQP%E5%8D%8F%E8%AE%AE.jpg" alt></p>
 <p>功能层（Functional Layer）：定义了一系列的命令</p>
 <p>传输层（Transport Layer）：携带了从应用 → 服务端的方法，用于处理多路复用、分帧、编码、心跳、data-representation、错误处理</p>
 <p>这样分层之后，可以<strong>把传输层替换为其它传输协议，而不需要修改功能层</strong>。同样，也可以使用同样的传输层，基于此实现不同的上层协议。可能RabbitMQ也是因为类似的原因，能够比较容易的支持MQTT、STOMP等协议的吧。</p>
@@ -461,7 +461,7 @@
 <li><strong>Queue</strong>: 消息最终被送到这里等待consumer取走。一个message可以被同时拷贝到多个queue中。</li>
 <li><strong>Binding</strong>: exchange和queue之间的虚拟连接，binding中可以包含routing key。Binding信息被保存到exchange中的查询表中，用于message的分发依据。</li>
 </ol>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/AMQ%20Model.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/AMQ%20Model.png" alt></p>
 <p>生产者发送消息到broker server（RabbitMQ）。在Broker内部，用户创建Exchange／Queue，通过Binding规则将两者联系在一起。Exchange分发消息，根据类型／binding的不同分发策略有区别。消息最后来到Queue中，等待消费者取走。</p>
 <h3 id="一些细节"><a href="#一些细节" class="headerlink" title="一些细节"></a>一些细节</h3><ol>
 <li><p>发布者、交换机、队列、消费者都可以有多个。同时因为 AMQP 是一个网络协议，所以这个过程中的发布者，消费者，消息代理 可以分别存在于不同的设备上。</p>
@@ -477,24 +477,24 @@
 <p>1）将一个队列绑定到某个交换机上时，赋予该绑定一个绑定键（Binding Key），假设为KEY；</p>
 <p>2）当一个携带着路由键（Routing Key）为KEY的消息被发送给直连交换机时，交换机会把它路由给绑定键为KEY的队列。</p>
 <p><strong>需要routingKey，不需要Exchange与Queue绑定，直接根据routingKey发送</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/direct%E6%A8%A1%E5%BC%8F.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/direct%E6%A8%A1%E5%BC%8F.png" alt></p>
 <blockquote>
 <p>消息的负载均衡是发生在消费者之间（一般是轮询）的，而不是队列之间。</p>
 </blockquote>
 <h3 id="Fanout"><a href="#Fanout" class="headerlink" title="Fanout"></a>Fanout</h3><p>广播发送，<strong>不需要routingKey，需要Exchange与Queue绑定</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/Fanout.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/Fanout.png" alt></p>
 <h3 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h3><p>前面提到的 direct 规则是严格意义上的匹配，换言之 Routing Key 必须与 Binding Key 相匹配的时候才将消息传送给 Queue。</p>
 <p>而Topic 的路由规则是一种模糊匹配，可以通过通配符满足一部分规则就可以传送。</p>
 <p>它的约定是：</p>
 <p>1）binding key 中可以存在两种特殊字符 <code>*</code> 与 <code>#</code>，用于做模糊匹配，其中 <code>*</code> 用于匹配一个单词，<code>#</code> 用于匹配多个单词（可以是零个）</p>
 <p>2）routing key 为一个句点号 <code>.</code> 分隔的字符串（我们将被句点号 <code>.</code> 分隔开的每一段独立的字符串称为一个单词），如“stock.usd.nyse”、“nyse.vmw”、“quick.orange.rabbit”<br>binding key 与 routing key 一样也是句点号 <code>.</code> 分隔的字符串</p>
 <p><strong>需要routingKey，也需要绑定Queue，根据绑定的routingkey来发送</strong></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/topic%E6%A8%A1%E5%BC%8F.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/topic%E6%A8%A1%E5%BC%8F.png" alt></p>
 <h3 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h3><p>headers 类型的 Exchange 不依赖于 routing key 与 binding key 的匹配规则来路由消息，而是<strong>根据发送的消息内容中的 headers 属性</strong>进行匹配。</p>
 <p>头交换机可以视为直连交换机的另一种表现形式。但直连交换机的路由键必须是一个字符串，而头属性值则没有这个约束，它们甚至可以是整数或者哈希值（字典）等。灵活性更强（但实际上我们很少用到头交换机）。工作流程：</p>
 <p>1）绑定一个队列到头交换机上时，会同时绑定多个用于匹配的头（header）。<br>2）传来的消息会携带header，以及会有一个 “x-match” 参数。当 “x-match” 设置为 “any” 时，消息头的任意一个值被匹配就可以满足条件，而当 “x-match” 设置为 “all” 的时候，就需要消息头的所有值都匹配成功。</p>
-<h3 id="Exchange小结"><a href="#Exchange小结" class="headerlink" title="Exchange小结"></a>Exchange小结</h3><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B0%8F%E7%BB%93.png" alt></p>
-<h2 id="AMQP消息格式"><a href="#AMQP消息格式" class="headerlink" title="AMQP消息格式"></a>AMQP消息格式</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/AMQP%E6%B6%88%E6%81%AF%E6%A0%BC%E5%BC%8F.png" alt></p>
+<h3 id="Exchange小结"><a href="#Exchange小结" class="headerlink" title="Exchange小结"></a>Exchange小结</h3><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/%E4%BA%A4%E6%8D%A2%E6%9C%BA%E5%B0%8F%E7%BB%93.png" alt></p>
+<h2 id="AMQP消息格式"><a href="#AMQP消息格式" class="headerlink" title="AMQP消息格式"></a>AMQP消息格式</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/AMQP%E6%B6%88%E6%81%AF%E6%A0%BC%E5%BC%8F.png" alt></p>
 
             </div>
             <hr />
@@ -601,7 +601,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="https、ssl和ssh协议">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/96.jpg" class="responsive-img" alt="https、ssl和ssh协议">
                         
                         <span class="card-title">https、ssl和ssh协议</span>
                     </div>
@@ -658,7 +658,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/19.jpg" class="responsive-img" alt="REST和RESTful设计风格">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/19.jpg" class="responsive-img" alt="REST和RESTful设计风格">
                         
                         <span class="card-title">REST和RESTful设计风格</span>
                     </div>

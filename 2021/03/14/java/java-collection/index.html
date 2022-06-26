@@ -19,7 +19,7 @@ Mapjava.u">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Java中的集合类 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -79,7 +79,7 @@ Mapjava.u">
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -163,7 +163,7 @@ Mapjava.u">
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -255,7 +255,7 @@ Mapjava.u">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/41.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/41.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -436,7 +436,7 @@ Mapjava.u">
                 <p>Java中的集合主要分为以下集合类：<strong>Map、List、Set、Queue和concurrent</strong>包里面供多线程环境下使用的以上几种集合类。</p>
 <p>转载：<a href="https://zhuanlan.zhihu.com/p/112829710" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/112829710</a></p>
 <h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p><code>java.util</code>包中提供的常见Map类包括以下几种。这里乱入了个<code>ConcurrentHashMap</code>，放到下面和其他<code>concurrent</code>包的集合一起讲。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-collection-1.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-collection-1.jpg" alt></p>
 <h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>HashMap 是老生常谈的集合了，学习 HashMap 主要关注点是<strong>哈希算法、rehash、数据存储、扩容方式、性能区别</strong>和结合ConcurrentHashMap 了解为什么线程不安全，后者怎么解决线程安全问题。</p>
 <h4 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h4><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">//JDK8中 hashCode 的生成方式</span>
 <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> <span class="token function">hash</span><span class="token punctuation">(</span>Object key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -458,7 +458,7 @@ Mapjava.u">
       00000000 00000000 00000101    //高位全部归零，只保留末四位<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>但这时候问题就来了，这样就算我的散列值分布再松散，要是只取最后几位的话，碰撞也会很严重。</p>
 <p>这时候“<strong>扰动函数</strong>”的价值就体现出来了。看下面这个图:</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-collection-2.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-collection-2.jpg" alt></p>
 <p>右位移 16 位，正好是 32bit 的一半，<strong>自己的高半区和低半区做异或</strong>，就是为了混合原始哈希码的高位和低位，以此来<strong>加大低位的随机性</strong>。而且混合后的低位<strong>掺杂了高位的部分特征</strong>，这样高位的信息也被变相保留下来。</p>
 <h4 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h4><p>HashMap两个关键的初始化参数：</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> DEFAULT_INITIAL_CAPACITY <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// aka 16</span>
@@ -495,8 +495,8 @@ Mapjava.u">
 <p>HashMap在resize时候如果多个线程并发操作如何导致<strong>死锁</strong>的。</p>
 <h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><p>LinkedHashMap是继承自HashMap的，跟HashMap最大的区别是，他是基于Hash表和链表的实现，并且<strong>依靠着双向链表保证了迭代顺序是插入的顺序</strong>。</p>
 <p>LinkedHashMap 其实就是可以看成 HashMap 的基础上，多了一个双向链表来维持顺序。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-collection-3.jpg" alt></p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-collection-4.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-collection-3.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-collection-4.jpg" alt></p>
 <p>可以用 LinkedHashMap <strong>实现最近访问算法</strong>，即最近访问过的元素在最前面， LinkedHashMap 有这么一个构造方法。</p>
 <p><code>public LinkedHashMap(int initialCapacity, float loadFactor,boolean accessOrder)</code></p>
 <p><code>accessOrder</code>为<code>true</code>的时候按照元素最后访问时间排序（LRU算法：最近最久使用），为<code>false</code>则是按照插入顺序排序，默认为<code>false</code>.</p>
@@ -536,7 +536,7 @@ Mapjava.u">
 <h3 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h3><p>和 HashMap 一样，WeakHashMap 也是一个散列表，它存储的内容也是键值对（key-value）映射，而且键和值都可以是<code>null</code>。不过 WeakHashMap 的键是“弱键”。</p>
 <p>当弱引用指向的对象只能通过弱引用（没有强引用或弱引用）访问时，GC会清理掉该对象，之后，引用对象会被放到ReferenceQueue中。在 Entry 的构造函数中可以得知，通过<code>super(key, queue)</code>将 key 保存为弱引用，通过<code>this.value = value</code>将 value 保存为强引用。当 key 中的引用被 gc 掉之后，在下次访问 WeakHashMap（调用<code>expungeStaleEntries</code>函数）时相应的 entry 也会自动被移除。</p>
 <p>WeakHashMap 并不是你什么也不干它就能自动释放内部不用的对象的，而是在你<strong>访问它的内容的时候释放内部不用的对象</strong>。</p>
-<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-collection-5.jpg" alt></p>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-collection-5.jpg" alt></p>
 <p>LinkedList 和 ArrayList 有什么共同点和区别？</p>
 <p>共同点：</p>
 <ol>
@@ -558,13 +558,13 @@ Mapjava.u">
 </ol>
 <h3 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack</h3><p>Stack栈是Vector的一个子类，它实现了一个标准的后进先出的栈。</p>
 <p>他的方法很简单，只有<code>empty()</code>、<code>peek()</code>、<code>pop()</code>、<code>push(Object element)</code>、<code>search(object element)</code>这几个。其中 peek 和 pop 的返回值都是堆栈顶部的对象，但是前者只是查看，后者是移除。</p>
-<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-collection-6.jpg" alt></p>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-collection-6.jpg" alt></p>
 <p><strong>其实就是把 HashMap 封装了一层</strong>，从 HashSet 的构造方法可以看出，就是维护了一个 HashMap，数据的增删改查也是调用的 HashMap 的方法。</p>
 <p>TreeSet 也是一样，其实就是 TreeMap 套了个皮。</p>
 <p>EnumSet 就不一样了，跟 EnumMap 其实没有什么关系。EnumSet 是一个 Set 集合的抽象类，其有两个实现类 JumboEnumSet 和 RegularEnumSet，在使用的时候放入的必须是枚举类型，<strong>其特点是速度非常快。</strong></p>
 <p>EnumSet 的默认子类 RegularEnumSet 和 JumboEnumSet 实现原理都是基于位运算向量，位运算向量的原理就是用一个位表示一个元素的状态（元素的状态只有两种），用一组位表示一个集合的状态，每个位对应一个元素，譬如一个枚举类 DemoEnum 有6个枚举值，则 EnumSet 集合就可以通过一个 byte 字节从右到左（二进制低到高位）来表示，不用的位上用 0 填充，用的位上每个 bit 位代表一个枚举值，1 表示包含该枚举值，0 表示不含该枚举值。因此位向量能表示的枚举值个数与向量长度有关，上面例子中一个 byte 类型最多能表示 8 个枚举值，所以 EnumSet 抽象类的两个实现类 RegularEnumSet 和 JumboEnumSet 分别定义了不同的向量长度。RegularEnumSet 使用 64 位的 long 类型变量作为位向量，而 JumboEnumSet 使用一个 long 类型数组作为向量（数组内存连续），故当我们通过 EnumSet 的工厂方法创建 EnumSet 集合时 EnumSet 会通过判断枚举类的枚举值数量决定使用两个子类的哪一个，如果枚举值个数小于等于 64 就用 RegularEnumSet，大于 64 就用 JumboEnumSet。</p>
 <p>简单来说 EnumSet 就是一个高效的枚举类集合。</p>
-<h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-collection-7.jpg" alt></p>
+<h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-collection-7.jpg" alt></p>
 <p>队列（Queue）可以当做一种特殊的线性表，遵循先进先出原则。而双向队列（Deque）,是 Queue 的一个子接口，双向队列是指该队列两端的元素既能入队（offer）也能出队（poll）,如果将 Deque 限制为只能从一端入队和出队，则可实现栈的数据结构。</p>
 <p>PriorityQueue 有一种特殊的队列，叫做<strong>优先队列</strong>。优先队列的作用是能保证每次取出的元素都是队列中权值最小的<strong>（Java的优先队列每次取最小元素，C++的优先队列每次取最大元素）。这里牵涉到了大小关系，</strong>元素大小的评判可以通过元素本身的自然顺序（natural ordering），也可以通过构造时传入的比较器（Comparator，类似于C++的仿函数）。</p>
 <p>Java 中 PriorityQueue 实现了 Queue 接口，不允许放入<code>null</code>元素；其通过堆实现，具体说是通过完全二叉树（complete binary tree）实现的<strong>小顶堆</strong>（任意一个非叶子节点的权值，都不大于其左右子节点的权值），也就意味着可以通过数组来作为 PriorityQueue 的底层实现。</p>
@@ -614,7 +614,7 @@ Mapjava.u">
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>CopyOnWriteArrayList 的实现也不复杂，对有并发风险的操作加了锁。注意这里的内部数组是<code>volatile</code>修饰的，<strong>写线程对数组引用的修改对读线程是可见的</strong>。由于在写数据的时候，是在新的数组中插入数据的，从而保证读写实在两个不同的数据容器中进行操作。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/java-collection-8.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/java-collection-8.jpg" alt></p>
 
             </div>
             <hr />
@@ -721,7 +721,7 @@ Mapjava.u">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/3.jpg" class="responsive-img" alt="HashMap">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/3.jpg" class="responsive-img" alt="HashMap">
                         
                         <span class="card-title">HashMap</span>
                     </div>
@@ -770,7 +770,7 @@ Mapjava.u">
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/119.jpg" class="responsive-img" alt="Kafka">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/119.jpg" class="responsive-img" alt="Kafka">
                         
                         <span class="card-title">Kafka</span>
                     </div>

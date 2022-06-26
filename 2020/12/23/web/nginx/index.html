@@ -18,7 +18,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Nginx简单介绍 | 锦泉^-^</title>
-    <link rel="icon" type="image/png" href="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png">
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
@@ -78,7 +78,7 @@
             <div class="brand-logo">
                 <a href="/" class="waves-effect waves-light">
                     
-                    <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img" alt="LOGO">
+                    <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img" alt="LOGO">
                     
                     <span class="logo-span">锦泉^-^</span>
                 </a>
@@ -162,7 +162,7 @@
 
     <div class="mobile-head bg-color">
         
-        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/logo.png" class="logo-img circle responsive-img">
+        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png" class="logo-img circle responsive-img">
         
         <div class="logo-name">锦泉^-^</div>
         <div class="logo-desc">
@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/arthurjq/blogimage/raw/master/img/feature/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/16.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -519,12 +519,12 @@ http <span class="token punctuation">{</span>                                   
 </ol>
 <h3 id="正向代理：“翻墙”"><a href="#正向代理：“翻墙”" class="headerlink" title="正向代理：“翻墙”"></a>正向代理：“翻墙”</h3><p>翻墙的方式主要是找到一个可以访问国外网站的代理服务器，我们<strong>将请求发送给代理服务器，代理服务器去访问国外的网站，然后将访问到的数据传递给我们</strong>！</p>
 <p><strong>服务器只清楚请求来自哪个代理服务器，而不清楚来自哪个具体的客户端</strong>；正向代理模式屏蔽或者隐藏了真实客户端信息。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/nginx%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/nginx%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86.jpg" alt></p>
 <p>客户端必须设置正向代理服务器，当然前提是要知道正向代理服务器的 IP 地址，还有代理程序的端口。</p>
 <p>总结来说：正向代理，“它代理的是客户端”，是一个位于客户端和原始服务器（Origin Server）之间的服务器。</p>
 <h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>分布式部署：也就是通过部署多台服务器来解决访问人数限制的问题。</p>
 <p>某宝网站中大部分功能也是直接使用 Nginx 进行反向代理实现的，并且通过封装 Nginx 和其他的组件之后起了个高大上的名字：Tengine。</p>
-<p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86.jpg" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86.jpg" alt></p>
 <p><strong>多个客户端给服务器发送的请求，Nginx 服务器接收到之后，按照一定的规则分发给了后端的业务处理服务器进行处理了</strong>。</p>
 <p>此时请求的来源也就是客户端是明确的，但是<strong>请求具体由哪台服务器处理的并不明确</strong>了，Nginx 扮演的就是一个反向代理角色。</p>
 <p><strong>客户端是无感知代理的存在的，反向代理对外都是透明的，访问者并不知道自己访问的是一个代理</strong>。因为客户端不需要任何配置就可以访问。反向代理隐藏了服务器的信息。</p>
@@ -532,7 +532,7 @@ http <span class="token punctuation">{</span>                                   
 <li><strong>保证内网的安全</strong>，通常将反向代理作为公网访问地址，Web 服务器是内网。</li>
 <li>负载均衡，通过反向代理服务器来优化网站的负载。</li>
 </ol>
-<h2 id="正向代理和反向代理的区别"><a href="#正向代理和反向代理的区别" class="headerlink" title="正向代理和反向代理的区别"></a>正向代理和反向代理的区别</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/nginx%E4%B8%A4%E7%A7%8D%E4%BB%A3%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB.jpg" alt></p>
+<h2 id="正向代理和反向代理的区别"><a href="#正向代理和反向代理的区别" class="headerlink" title="正向代理和反向代理的区别"></a>正向代理和反向代理的区别</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/nginx%E4%B8%A4%E7%A7%8D%E4%BB%A3%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB.jpg" alt></p>
 <p>图解：</p>
 <ol>
 <li>在正向代理中，Proxy 和 Client 同属于一个 LAN（图中方框内），隐藏了客户端信息。</li>
@@ -607,7 +607,7 @@ http <span class="token punctuation">{</span>                                   
 <li>动静分离动态资源与静态资源分离，不会部署在同一台服务器上。</li>
 <li>前后分离：网站架构模式，微服务开发基于SOA面向于服务器开发，<strong>后台</strong>和<strong>前端</strong>都采用<strong>调用接口</strong>方式。将一个项目拆分成一个控制Web（前端）和接口（后端）,最终使用rpc远程调用技术。视图层和业务逻辑层拆分，中间采用RPC远程调用技术</li>
 </ol>
-<h2 id="Nginx实现动静分离"><a href="#Nginx实现动静分离" class="headerlink" title="Nginx实现动静分离"></a>Nginx实现动静分离</h2><p><img src="https://gitee.com/arthurjq/blogimage/raw/master/img/pic/nginx-%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB.jpg" alt></p>
+<h2 id="Nginx实现动静分离"><a href="#Nginx实现动静分离" class="headerlink" title="Nginx实现动静分离"></a>Nginx实现动静分离</h2><p><img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/pic/nginx-%E5%8A%A8%E9%9D%99%E5%88%86%E7%A6%BB.jpg" alt></p>
 <h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>动静分离的原理很简单，通过location对请求url进行匹配即可，在/Users/Hao/Desktop/Test（任意目录）下创建 /static/imgs 配置如下：</p>
 <pre class="line-numbers language-nginx"><code class="language-nginx"><span class="token comment" spellcheck="true">###静态资源访问</span>
 <span class="token keyword">server</span> <span class="token punctuation">{</span>
@@ -741,7 +741,7 @@ http <span class="token punctuation">{</span>                                   
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/86.jpg" class="responsive-img" alt="MQTT协议">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/86.jpg" class="responsive-img" alt="MQTT协议">
                         
                         <span class="card-title">MQTT协议</span>
                     </div>
@@ -794,7 +794,7 @@ http <span class="token punctuation">{</span>                                   
                     <div class="card-image">
                         
                         
-                        <img src="https://gitee.com/arthurjq/blogimage/raw/master/img/feature/96.jpg" class="responsive-img" alt="https、ssl和ssh协议">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/96.jpg" class="responsive-img" alt="https、ssl和ssh协议">
                         
                         <span class="card-title">https、ssl和ssh协议</span>
                     </div>
