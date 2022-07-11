@@ -272,9 +272,9 @@
       
         <tags>
             
-            <tag> java </tag>
-            
             <tag> 算法 </tag>
+            
+            <tag> java </tag>
             
         </tags>
       
@@ -1774,9 +1774,9 @@
       
         <tags>
             
-            <tag> kubernetes </tag>
-            
             <tag> 运维开发 </tag>
+            
+            <tag> kubernetes </tag>
             
         </tags>
       
@@ -1801,9 +1801,9 @@
       
         <tags>
             
-            <tag> kubernetes </tag>
-            
             <tag> 运维开发 </tag>
+            
+            <tag> kubernetes </tag>
             
             <tag> docker </tag>
             
@@ -1830,11 +1830,11 @@
       
         <tags>
             
+            <tag> sql </tag>
+            
             <tag> index </tag>
             
             <tag> 数据库优化 </tag>
-            
-            <tag> sql </tag>
             
         </tags>
       
@@ -2467,9 +2467,9 @@
       
         <tags>
             
-            <tag> kubernetes </tag>
-            
             <tag> 容器 </tag>
+            
+            <tag> kubernetes </tag>
             
         </tags>
       
@@ -2608,11 +2608,11 @@
       
         <tags>
             
-            <tag> kubernetes </tag>
+            <tag> 运维开发 </tag>
             
             <tag> 容器 </tag>
             
-            <tag> 运维开发 </tag>
+            <tag> kubernetes </tag>
             
             <tag> docker </tag>
             
@@ -2641,9 +2641,9 @@
             
             <tag> springcloud </tag>
             
-            <tag> interface </tag>
-            
             <tag> feign </tag>
+            
+            <tag> interface </tag>
             
         </tags>
       
@@ -2824,9 +2824,9 @@
       
         <tags>
             
-            <tag> mybatis </tag>
-            
             <tag> 事务 </tag>
+            
+            <tag> mybatis </tag>
             
             <tag> mysql </tag>
             
@@ -2853,11 +2853,11 @@
       
         <tags>
             
+            <tag> sql </tag>
+            
             <tag> mysql </tag>
             
             <tag> 数据库优化 </tag>
-            
-            <tag> sql </tag>
             
         </tags>
       
@@ -3098,13 +3098,13 @@
       
         <tags>
             
+            <tag> sql </tag>
+            
             <tag> index </tag>
             
             <tag> mysql </tag>
             
             <tag> 数据库优化 </tag>
-            
-            <tag> sql </tag>
             
         </tags>
       
@@ -3480,11 +3480,11 @@
       
         <tags>
             
+            <tag> sql </tag>
+            
             <tag> mybatis </tag>
             
             <tag> mysql </tag>
-            
-            <tag> sql </tag>
             
         </tags>
       
