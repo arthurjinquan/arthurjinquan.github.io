@@ -256,7 +256,7 @@ cd ~         ">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/69.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/71.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -373,6 +373,10 @@ cd ~         ">
                     
                     <div class="article-tag">
                         
+                        <a href="/tags/liunx/" target="_blank">
+                            <span class="chip bg-color">liunx</span>
+                        </a>
+                        
                         <a href="/tags/测试开发/" target="_blank">
                             <span class="chip bg-color">测试开发</span>
                         </a>
@@ -397,7 +401,7 @@ cd ~         ">
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-01
+                    2022-07-20
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -411,14 +415,14 @@ cd ~         ">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
                 
@@ -441,9 +445,9 @@ cd ~         ">
 <span class="token function">cd</span> ./                 <span class="token comment" spellcheck="true"># 在当前目录下逐级打开下级目录</span>
 <span class="token function">mkdir</span>                 <span class="token comment" spellcheck="true"># 创建文件夹（目录）</span>
 <span class="token function">rm</span>                    <span class="token comment" spellcheck="true"># 删除文件或目录</span>
-<span class="token function">cp</span> 文件名 目标路径     <span class="token comment" spellcheck="true"># 复制文件</span>
-<span class="token function">cp</span> -R 目录名 目标路径  <span class="token comment" spellcheck="true"># 复制文件夹 cp -r /test1/. /test2</span>
-<span class="token function">mv</span> 原文件名 目标文件名 <span class="token comment" spellcheck="true"># 移动文件或文件夹，可以用来重命名</span>
+<span class="token function">cp</span> 文件名 目标路径      <span class="token comment" spellcheck="true"># 复制文件</span>
+<span class="token function">cp</span> -R 目录名 目标路径   <span class="token comment" spellcheck="true"># 复制文件夹 cp -r /test1/. /test2</span>
+<span class="token function">mv</span> 原文件名 目标文件名  <span class="token comment" spellcheck="true"># 移动文件或文件夹，可以用来重命名</span>
 <span class="token function">touch</span> xxx.txt         <span class="token comment" spellcheck="true"># 更新文件的访问时间戳或者创建一个空文件</span>
 <span class="token function">cat</span>                   <span class="token comment" spellcheck="true"># 查看某个文件的内容</span>
 <span class="token function">more</span>                  <span class="token comment" spellcheck="true"># 查看内容，会分页</span>
@@ -507,6 +511,7 @@ cd ~         ">
 <p>%MEM — 进程使用的物理内存百分比</p>
 <p>TIME+ — 进程使用的CPU时间总计，单位1/100秒</p>
 <p>COMMAND — 进程名称（命令名/命令行）</p>
+<h2 id="常用SIG信号及其键值"><a href="#常用SIG信号及其键值" class="headerlink" title="常用SIG信号及其键值"></a>常用SIG信号及其键值</h2><p>01 SIGHUP 挂起（hangup）<br>02 SIGINT 中断，当用户从键盘按^c键或^break键时<br>03 SIGQUIT 退出，当用户从键盘按quit键时<br>04 SIGILL 非法指令<br>05 SIGTRAP 跟踪陷阱（trace trap），启动进程，跟踪代码的执行<br>06 SIGIOT IOT指令<br>07 SIGEMT EMT指令<br>08 SIGFPE 浮点运算溢出<br>09 SIGKILL 杀死、终止进程<br>10 SIGBUS 总线错误<br>11 SIGSEGV 段违例（segmentation violation），进程试图去访问其虚地址空间以外的位置<br>12 SIGSYS 系统调用中参数错，如系统调用号非法<br>13 SIGPIPE 向某个非读管道中写入数据<br>14 SIGALRM 闹钟。当某进程希望在某时间后接收信号时发此信号<br>15 SIGTERM 软件终止（software termination）<br>16 SIGUSR1 用户自定义信号1<br>17 SIGUSR2 用户自定义信号2<br>18 SIGCLD 某个子进程死<br>19 SIGPWR 电源故障</p>
 <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>统计一个文件中某一个字段的次数</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">grep</span> -c <span class="token string">'object'</span> fileName
 <span class="token function">grep</span> <span class="token string">'object'</span> fileName <span class="token operator">|</span> <span class="token function">wc</span> -l        <span class="token comment" spellcheck="true"># wc -l里-l显示行数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -589,7 +594,7 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
                   property="dct:title" rel="dct:type">
                     《Linux命令》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/07/01/linux/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/07/20/linux/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -630,7 +635,7 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2021/07/01/linux/',
+        id: '2022/07/20/linux/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -651,46 +656,52 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/07/05/database/sql-null/">
+                <a href="/2022/07/20/linux/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/89.jpg" class="responsive-img" alt="sql的三值逻辑">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/71.jpg" class="responsive-img" alt="Linux命令">
                         
-                        <span class="card-title">sql的三值逻辑</span>
+                        <span class="card-title">Linux命令</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            在SQL中，NULL是一种特有的数据类型，其等价于没知有任何值、是未知数。NULL与0、空道字符串、空格都不同。SQL默认情况下对WHERE XX！= Null的判断会永远返回0行，却不会提示语法错误。内容非ANSI SQL标准中data=
+                            liunx常用命令
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-07-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-07-20
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/数据库/" class="post-category" target="_blank">
-                                    数据库
+                            <a href="/categories/测试开发/" class="post-category" target="_blank">
+                                    测试开发
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/sql/" target="_blank">
-                        <span class="chip bg-color">sql</span>
+                    <a href="/tags/liunx/" target="_blank">
+                        <span class="chip bg-color">liunx</span>
+                    </a>
+                    
+                    <a href="/tags/测试开发/" target="_blank">
+                        <span class="chip bg-color">测试开发</span>
                     </a>
                     
                 </div>
@@ -704,31 +715,31 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/24/algorithm/gcd/">
+                <a href="/2022/07/19/awk/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/109.jpg" class="responsive-img" alt="最大公约数算法gcd">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/57.jpg" class="responsive-img" alt="awk">
                         
-                        <span class="card-title">最大公约数算法gcd</span>
+                        <span class="card-title">awk</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            求两个值的最大公约数
+                            awk命令
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-06-24
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-07-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/编程算法/" class="post-category" target="_blank">
-                                    编程算法
+                            <a href="/categories/测试开发/" class="post-category" target="_blank">
+                                    测试开发
                                 </a>
                             
                             
@@ -738,8 +749,8 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/liunx/" target="_blank">
+                        <span class="chip bg-color">liunx</span>
                     </a>
                     
                 </div>
@@ -913,7 +924,7 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">300.8k</span>
+            <span class="white-color">301.7k</span>
             
 
             <br>

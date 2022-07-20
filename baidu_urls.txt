@@ -1,10 +1,12 @@
+https://arthurjq.com/2022/07/20/linux/
+https://arthurjq.com/2022/07/19/awk/
 https://arthurjq.com/2022/07/11/hoisting/
 https://arthurjq.com/2022/07/08/child-process/
 https://arthurjq.com/2022/07/07/nodejs/
 https://arthurjq.com/2022/07/05/momentjs/
 https://arthurjq.com/2022/02/20/blog-huan-xin-huan-jing-pei-zhi-ming-ling/
-https://arthurjq.com/2021/11/15/mian-shi-zong-jie/
-https://arthurjq.com/2021/09/28/yi-xie-mian-shi-ti/
+https://arthurjq.com/2021/11/15/mian-shi/mian-shi-zong-jie/
+https://arthurjq.com/2021/09/28/mian-shi/yi-xie-mian-shi-ti/
 https://arthurjq.com/2021/09/16/algorithm/matrix-rotate/
 https://arthurjq.com/2021/09/12/database/sql-time/
 https://arthurjq.com/2021/09/10/project/springcloud-available/
@@ -12,17 +14,16 @@ https://arthurjq.com/2021/09/09/java/factorypattern/
 https://arthurjq.com/2021/09/07/algorithm/readbigfile/
 https://arthurjq.com/2021/09/07/algorithm/printabc/
 https://arthurjq.com/2021/08/31/algorithm/scheduledthreadpoolexecutor/
-https://arthurjq.com/2021/08/28/os/
+https://arthurjq.com/2021/08/28/mian-shi/os/
 https://arthurjq.com/2021/08/17/algorithm/bigo20210817/
 https://arthurjq.com/2021/08/17/algorithm/graph/
 https://arthurjq.com/2021/08/15/algorithm/dfs/
 https://arthurjq.com/2021/08/15/algorithm/meituan20210815/
 https://arthurjq.com/2021/08/14/algorithm/diff-array/
 https://arthurjq.com/2021/08/04/ce-shi-yong-li-she-ji-fang-fa/
-https://arthurjq.com/2021/07/30/leetcodenote/
+https://arthurjq.com/2021/07/30/algorithm/leetcodenote/
 https://arthurjq.com/2021/07/15/project/onekey/
 https://arthurjq.com/2021/07/05/database/sql-null/
-https://arthurjq.com/2021/07/01/linux/
 https://arthurjq.com/2021/06/24/algorithm/gcd/
 https://arthurjq.com/2021/06/22/java/applicationcontext/
 https://arthurjq.com/2021/06/18/project/shiro-filter/
@@ -45,7 +46,7 @@ https://arthurjq.com/2021/05/11/algorithm/heuristic-search/
 https://arthurjq.com/2021/05/11/web/webhook/
 https://arthurjq.com/2021/05/06/algorithm/xor/
 https://arthurjq.com/2021/04/25/algorithm/heapsort/
-https://arthurjq.com/2021/04/21/net/
+https://arthurjq.com/2021/04/21/mian-shi/net/
 https://arthurjq.com/2021/04/12/java/reentrantlock/
 https://arthurjq.com/2021/03/30/algorithm/nqueen/
 https://arthurjq.com/2021/03/30/algorithm/sumabc/
@@ -65,7 +66,7 @@ https://arthurjq.com/2021/03/13/project/kafka/
 https://arthurjq.com/2021/03/12/java/dubbo/
 https://arthurjq.com/2021/03/10/java/java-advance/
 https://arthurjq.com/2021/03/09/java/daemon-thread/
-https://arthurjq.com/2021/03/09/interview/
+https://arthurjq.com/2021/03/09/mian-shi/interview/
 https://arthurjq.com/2021/03/08/java/java-basis/
 https://arthurjq.com/2021/03/06/project/helm-ingress/
 https://arthurjq.com/2021/03/04/project/k8s-exp/
@@ -97,4 +98,3 @@ https://arthurjq.com/2021/01/14/project/skywalking/
 https://arthurjq.com/2021/01/13/project/elk/
 https://arthurjq.com/2021/01/12/project/zipkin/
 https://arthurjq.com/2021/01/12/project/cloud-interface-returnlist/
-https://arthurjq.com/2021/01/11/project/docker-k8s/
