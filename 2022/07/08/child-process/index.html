@@ -255,7 +255,7 @@ execchild_process.exec(command[, options][, callback])
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/106.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/104.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -410,14 +410,14 @@ execchild_process.exec(command[, options][, callback])
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    821
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    10 分
                 </div>
                 
                 
@@ -522,6 +522,158 @@ child2<span class="token punctuation">.</span><span class="token function">on</s
 <p>对于构建开发环境而言，一般至少会起两个进程，主进程起 devServer；还需一个进程起mock API 服务器，所以一般用 fork 较多</p>
 <h3 id="关于-ChildProcess-类"><a href="#关于-ChildProcess-类" class="headerlink" title="关于 ChildProcess 类"></a>关于 ChildProcess 类</h3><p>1、<code>ChildProcess</code> 类的实例都是 <code>EventEmitter</code>，表示衍生的子进程<br>2、每个实例都有 stdout, stdin, stderr 三个流对象<br>3、通过 fork 产生的子进程与父进程可以用 send 方法及监听 message 事件来相互通信<br>4、 几个事件： error , message , exit , close , disconnect</p>
 <h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><p><a href="https://zhuanlan.zhihu.com/p/64205442" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/64205442</a></p>
+<h2 id="teen-process"><a href="#teen-process" class="headerlink" title="teen_process"></a>teen_process</h2><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">//安装</span>
+npm i teen_process<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Node 的 child_process 的成熟版本。<code>exec</code>确实很有用，但它有很多限制。这是在后台使用的 es7 ( <code>async</code>/ <code>await</code>) 实现。它负责<strong>包装命令和参数</strong>，因此我们不必关心转义空格。即使命令失败或超时，它也可以返回 stdout/stderr。重要的是，它也不容易受到最大缓冲区问题的影响。</p>
+<h3 id="teen-process-exec"><a href="#teen-process-exec" class="headerlink" title="teen_process.exec"></a>teen_process.exec</h3><pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> exec <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'teen_process'</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// basic usage</span>
+<span class="token keyword">let</span> <span class="token punctuation">{</span>stdout<span class="token punctuation">,</span> stderr<span class="token punctuation">,</span> code<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'ls'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'/usr/local/bin'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>stdout<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// array of files</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>stderr<span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment" spellcheck="true">// ''</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment" spellcheck="true">// 0</span>
+
+<span class="token comment" spellcheck="true">// works with spaces</span>
+<span class="token keyword">await</span> <span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'/command/with spaces.sh'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'argument with spaces'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">// as though we had run: "/command/with spaces.sh" foo "argument with spaces"</span>
+
+<span class="token comment" spellcheck="true">// nice error handling that still includes stderr/stdout/code</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">await</span> <span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'echo_and_exit'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'10'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// "Exited with code 10"</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>stdout<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment" spellcheck="true">// "foo"</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>code<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment" spellcheck="true">// 10</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>该<code>exec</code>函数采用一些选项，具有以下默认值：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token punctuation">{</span>
+  cwd<span class="token punctuation">:</span> undefined<span class="token punctuation">,</span>
+  env<span class="token punctuation">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">,</span>
+  timeout<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  killSignal<span class="token punctuation">:</span> <span class="token string">'SIGTERM'</span><span class="token punctuation">,</span>
+  encoding<span class="token punctuation">:</span> <span class="token string">'utf8'</span><span class="token punctuation">,</span>
+  ignoreOutput<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  stdio<span class="token punctuation">:</span> <span class="token string">"inherit"</span><span class="token punctuation">,</span>
+  isBuffer<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  shell<span class="token punctuation">:</span> undefined<span class="token punctuation">,</span>
+  logger<span class="token punctuation">:</span> undefined<span class="token punctuation">,</span>
+  maxStdoutBufferSize<span class="token punctuation">:</span> <span class="token number">100</span> <span class="token operator">*</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 100 MB</span>
+  maxStderrBufferSize<span class="token punctuation">:</span> <span class="token number">100</span> <span class="token operator">*</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">,</span> <span class="token comment" spellcheck="true">// 100 MB</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中大部分是不言自明的。<code>ignoreOutput</code>如果您有一个非常健谈的进程，您不关心其输出并且不想将其添加到程序消耗的内存中，则此方法很有用。</p>
+<p>需要两个缓冲区大小限制以避免在收集进程输出时内存溢出。如果不同流类型的输出块的总大小超过给定的块，那么最旧的块将被拉出以将内存负载保持在可接受的范围内。</p>
+<p>如果您使用的是Windows，你想传递<code>shell: true</code>的，因为<code>exec</code><br>实际使用<code>spawn</code>引擎盖下的，因此受到有关Windows +提到的问题<code>spawn</code>中的<a href="https://nodejs.org/api/child_process.html" target="_blank" rel="noopener">节点文档</a>。</p>
+<p>如果<code>stdio</code>选项未设置为<code>inheirt</code>，您可能无法从流程中获得彩色输出。在这种情况下，您可以浏览子流程的文档以查看是否可以指定类似<code>--colors</code>或<code>FORCE_COLORS</code>可以指定的选项。您也可以尝试设置<code>env.FORCE_COLOR = true</code>并查看它是否有效。</p>
+<p>例子：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">await</span> <span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'sleep'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'10'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>timeout<span class="token punctuation">:</span> <span class="token number">500</span><span class="token punctuation">,</span> killSignal<span class="token punctuation">:</span> <span class="token string">'SIGINT'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// "'sleep 10' timed out after 500ms"</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>该<code>isBuffer</code>选项指定返回的标准 I/O 是Buffer 的一个实例。</p>
+<p>例子：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> <span class="token punctuation">{</span>stdout<span class="token punctuation">,</span> stderr<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">exec</span><span class="token punctuation">(</span><span class="token string">'cat'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>filename<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>isBuffer<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Buffer<span class="token punctuation">.</span><span class="token function">isBuffer</span><span class="token punctuation">(</span>stdout<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// true</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>该<code>logger</code>选项允许将 stdout 和 stderr 发送到接收到的特定记录器。这被<code>ignoreOutput</code>选项覆盖。</p>
+<h3 id="teen-process-SubProcess"><a href="#teen-process-SubProcess" class="headerlink" title="teen_process.SubProcess"></a>teen_process.SubProcess</h3><p><code>spawn</code>已经非常棒了，但对于某些用途，有相当多的样板文件，尤其是在<code>async/await</code>上下文中使用时。<code>teen_process</code>还公开了一个<code>SubProcess</code>类，可用于减少一些样板。它有两种方法，<code>start</code>以及<code>stop</code>：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> SubProcess <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'teen_process'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> tailFileForABit <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> proc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SubProcess</span><span class="token punctuation">(</span><span class="token string">'tail'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'-f'</span><span class="token punctuation">,</span> <span class="token string">'/var/log/foo.log'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在调用上下文中引发启动/停止错误。</p>
+<h4 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h4><p>您可以收听 8 个事件：</p>
+<ul>
+<li><code>exit</code></li>
+<li><code>stop</code></li>
+<li><code>end</code></li>
+<li><code>die</code></li>
+<li><code>output</code></li>
+<li><code>lines-stdout</code></li>
+<li><code>lines-stderr</code></li>
+<li><code>stream-line</code></li>
+</ul>
+<pre class="line-numbers language-javascript"><code class="language-javascript">proc<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'exit'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>code<span class="token punctuation">,</span> signal<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// if we get here, all we know is that the proc exited</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`exited with code </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>code<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> from signal </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>signal<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// exited with code 127 from signal SIGHUP</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+proc<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'stop'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>code<span class="token punctuation">,</span> signal<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// if we get here, we know that we intentionally stopped the proc</span>
+  <span class="token comment" spellcheck="true">// by calling proc.stop</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+proc<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'end'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>code<span class="token punctuation">,</span> signal<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// if we get here, we know that the process stopped outside of our control</span>
+  <span class="token comment" spellcheck="true">// but with a 0 exit code</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+proc<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'die'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>code<span class="token punctuation">,</span> signal<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// if we get here, we know that the process stopped outside of our control</span>
+  <span class="token comment" spellcheck="true">// with a non-zero exit code</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+proc<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'output'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>stdout<span class="token punctuation">,</span> stderr<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`stdout: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>stdout<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`stderr: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>stderr<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// lines-stderr is just the same</span>
+proc<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'lines-stdout'</span><span class="token punctuation">,</span> lines <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>lines<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// ['foo', 'bar', 'baz']</span>
+  <span class="token comment" spellcheck="true">// automatically handles rejoining lines across stream chunks</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">// stream-line gives you one line at a time, with [STDOUT] or [STDERR]</span>
+<span class="token comment" spellcheck="true">// prepended</span>
+proc<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'stream-line'</span><span class="token punctuation">,</span> line <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// [STDOUT] foo</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// so we could do: proc.on('stream-line', console.log.bind(console))</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="启动探测器"><a href="#启动探测器" class="headerlink" title="启动探测器"></a>启动探测器</h4><p>如何<code>SubProcess</code>知道何时从 返回控制权<code>start()</code>？嗯，默认是等到有一些输出。您还可以传入一个数字，这将导致它等待那个毫秒数，或者一个函数（我称之为 a <code>startDetector</code>），它接受 stdout 和 stderr 并在您想要控制时返回 true 。例子：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// will continue when stdout or stderr has received data</span>
+<span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// will continue immediately</span>
+
+<span class="token keyword">let</span> sd <span class="token operator">=</span> <span class="token punctuation">(</span>stdout<span class="token punctuation">,</span> stderr<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> stderr<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'blarg'</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span>sd<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// will continue when stderr receives 'blarg'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>startDetector</code>如果要声明启动失败，自定义也可以抛出错误。例如，如果我们知道第一个输出可能包含一个使进程无效的字符串（对我们来说），我们可以定义一个自定义<code>startDetector</code>如下：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">let</span> sd <span class="token operator">=</span> <span class="token punctuation">(</span>stdout<span class="token punctuation">,</span> stderr<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token regex">/fail/</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>stderr<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Encountered failure condition"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> stdout <span class="token operator">||</span> stderr<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span>sd<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// will continue when output is received that doesn't</span>
+                      <span class="token comment" spellcheck="true">// match 'fail'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最后，如果要指定等待进程启动的最长时间，可以通过将第二个参数（以毫秒为单位）传递给<code>start()</code>：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token comment" spellcheck="true">// use the default startDetector and throw an error if we wait for more than</span>
+<span class="token comment" spellcheck="true">// 1000ms for output</span>
+<span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="精加工工艺"><a href="#精加工工艺" class="headerlink" title="精加工工艺"></a>精加工工艺</h4><p>进程启动后，您可以使用<code>join()</code>等待它自行完成：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// will throw on exitcode not 0</span>
+<span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// will throw on exitcode not 0 or 1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>杀死进程怎么样？您可以提供自定义信号，而不是使用默认信号<code>SIGTERM</code>吗？为什么是：</p>
+<pre><code>await proc.stop(&#39;SIGHUP&#39;);</code></pre><p>如果您的进程可能无法杀死并且您并不真正关心，您还可以传递超时，它会在超时过后以错误的形式将控制权返回给您：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">await</span> proc<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token string">'SIGHUP'</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Proc failed to stop, ignoring cause YOLO"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>总而言之，这使得编写一个脚本将文件拖尾 X 秒然后停止，使用 async/await 和非常简单的错误处理变得非常简单。</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">async</span> <span class="token keyword">function</span> boredTail <span class="token punctuation">(</span>filePath<span class="token punctuation">,</span> boredAfter <span class="token operator">=</span> <span class="token number">10000</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SubProcess</span><span class="token punctuation">(</span><span class="token string">'tail'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'-f'</span><span class="token punctuation">,</span> filePath<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  p<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'stream-line'</span><span class="token punctuation">,</span> console<span class="token punctuation">.</span>log<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">await</span> p<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">await</span> Bluebird<span class="token punctuation">.</span><span class="token function">delay</span><span class="token punctuation">(</span>boredAfter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">await</span> p<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr />
@@ -628,7 +780,7 @@ child2<span class="token punctuation">.</span><span class="token function">on</s
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/42.jpg" class="responsive-img" alt="提升和作用域">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/44.jpg" class="responsive-img" alt="提升和作用域">
                         
                         <span class="card-title">提升和作用域</span>
                     </div>
@@ -677,7 +829,7 @@ child2<span class="token punctuation">.</span><span class="token function">on</s
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/33.jpg" class="responsive-img" alt="Node.js">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/31.jpg" class="responsive-img" alt="Node.js">
                         
                         <span class="card-title">Node.js</span>
                     </div>
@@ -882,7 +1034,7 @@ child2<span class="token punctuation">.</span><span class="token function">on</s
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">301.7k</span>
+            <span class="white-color">308.7k</span>
             
 
             <br>

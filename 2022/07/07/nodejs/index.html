@@ -254,7 +254,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/33.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/31.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,14 +409,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.3k
+                    5.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    16 分
+                    19 分
                 </div>
                 
                 
@@ -574,7 +574,7 @@ bar<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
   <span class="token comment" spellcheck="true">// 处理前面三个Promise产生的错误</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>如果 Promise 状态已经变成resolved，再抛出错误是无效的。</p>
-<p>为什么不建议在then()里面定义 Reject 状态的回调函数呢？</p>
+<p>为什么不建议在then（）里面定义 Reject 状态的回调函数呢？</p>
 <p>Promise 对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个<code>catch</code>语句捕获。如果是<code>then</code>的话要重复累赘。</p>
 <h3 id="链式操作"><a href="#链式操作" class="headerlink" title="链式操作"></a>链式操作</h3><p>当我们把回调嵌套变成多层，就能知道Promise的厉害之处了。Promise的正确用法如下：</p>
 <pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">runAsync1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -755,6 +755,46 @@ it<span class="token punctuation">.</span><span class="token function">next</spa
 <p>上面代码中，虽然<code>map()</code>的参数是async函数，但它是并发执行的。</p>
 <p><code>map()</code>中每次遍历形成的<code>{}</code>，该<code>{}</code>是一个独立执行环境，每个请求任务要花时间，交出<code>{}</code>的执行权，继续遍历下一个，形成新的<code>{}</code>，几个任务同时请求，任务都还在执行，此时这几个任务关系为并发</p>
 <p>因为只有async函数内部是继发（根据数组顺序）执行，外部不受影响。后面的<code>for..of</code>循环内部使用了await，因此实现了按顺序输出。</p>
+<h2 id="EventEmitter"><a href="#EventEmitter" class="headerlink" title="EventEmitter"></a>EventEmitter</h2><p>当 <code>emitters</code> 发送事件后，相应的响应函数（ <code>listeners</code> ）会被执行。例如：<code>net.Server</code> 会在每次收到连接时发出事件，<code>fs.ReadStram</code> 会在文件打开时发出事件，<code>stram</code>会在有数据可读时发出事件。 所有这些对象都是 <code>EventEmitter</code> 的实例，它们通过向外暴露的 <code>eventEmitter.on()</code> 接口从而让不同的事件响应函数得以执行。</p>
+<h3 id="on-和-emit-方法"><a href="#on-和-emit-方法" class="headerlink" title="on 和 emit 方法"></a>on 和 emit 方法</h3><p>events 模块有且只有一个对象 <code>events.EventEmitter</code>，它的核心功能就是事件的触发（<code>emit</code>）和事件的监听（<code>on</code>），一个简单的例子如下：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> EventEmitter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'events'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> emitter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventEmitter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+emitter<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'hi'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`hi, my name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">!`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+emitter<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'hi'</span><span class="token punctuation">,</span> <span class="token string">'elvin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在上述的例子中，我们通过 <code>emitter.on(&#39;hi&#39;, func)</code> 的方式注册了 hi 事件的监听函数，通过 <code>emitter.emit(&#39;hi&#39;, &#39;elvin&#39;)</code> 的方式触发了 hi 事件，且会向事件处理函数传递参数 ‘elvin’，所以最后的执行结果为 <code>hi, my name is elvin!</code>。 这里需要说明的时，EventEmitter 还有一个 <code>addeListener</code> 的方法，它只不过是 <code>on</code> 方法的别名，两者没有任何区别。</p>
+<h3 id="once-方法"><a href="#once-方法" class="headerlink" title="once 方法"></a>once 方法</h3><p>有些时候，我们希望某些事件响应函数只被执行一次，这个时候就可以使用 <code>once()</code> 方法，它会和 <code>on()</code> 一样注册事件的响应函数，不过当响应函数执行一次之后，就会将其移除。</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">const</span> EventEmitter <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'events'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> emitter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventEmitter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+emitter<span class="token punctuation">.</span><span class="token function">once</span><span class="token punctuation">(</span><span class="token string">'hi'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`hi, my name is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">!`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+emitter<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'hi'</span><span class="token punctuation">,</span> <span class="token string">'elvin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+emitter<span class="token punctuation">.</span><span class="token function">emit</span><span class="token punctuation">(</span><span class="token string">'hi'</span><span class="token punctuation">,</span> <span class="token string">'leonard'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面的例子中只会输出 <code>hi, my name is elvin!</code></p>
+<h3 id="prependListener-方法"><a href="#prependListener-方法" class="headerlink" title="prependListener 方法"></a>prependListener 方法</h3><p>当一个事件绑定了多个响应函数时，会按照函数绑定的顺序依次执行，除非响应函数是通过 <code>prependListener()</code> 方法绑定的，它使用的方式和 <code>on()</code> 类似，不过会将响应函数插到当前该事件处理函数队列的头部。</p>
+<p>因为绑定过多的响应函数会消耗大量的内存，所以为了避免内存泄漏，在 <code>Event.EventEmitter</code>中一个事件可以绑定的响应函数数量是存在限制的，相关的属性和方法如下：</p>
+<ul>
+<li><strong><code>EventEmitter.defaultMaxListeners</code></strong>： 默认值为10， 表示每个事件的最多可以绑定的响应函数数量。需要注意的是，当修改它时，会影响所有 <code>EventEmitter</code> 的实例。</li>
+<li><strong><code>emitter.listenerCount(eventName)</code></strong>：获取事件 <code>eventName</code> 已绑定的响应函数个数。</li>
+<li><strong><code>emitter.setMaxListeners(n)</code></strong>：修改 emitter 的每个事件最多可以绑定的响应函数数量，该方法会修改 <code>emitter._maxListeners</code> 的值，其优先级大于 <code>*EventEmitter.defaultMaxListeners</code> 。</li>
+<li><strong><code>emitter.getMaxListeners()</code></strong>：获取 emitter 每个事件最多可以绑定的响应函数数量。</li>
+</ul>
+<h3 id="其他相关方法"><a href="#其他相关方法" class="headerlink" title="其他相关方法"></a>其他相关方法</h3><p><code>EventEmitter</code> 还有一些其他的方法和属性，这里就不做具体介绍，简要地说一下。</p>
+<ul>
+<li><strong><code>emitter.eventNames()</code></strong>：返回当前已经绑定响应函数的事件名组成的数组。</li>
+<li><strong><code>emitter.listeners(eventName)</code></strong>：返回 <code>eventName</code> 事件的响应函数组成的数组。</li>
+<li><strong><code>emitter.prependOnceListener(eventName, listener)</code></strong>：类似于 <code>once()</code>，不过会将响应函数插到当前该事件处理函数队列的头部。</li>
+<li><strong><code>emitter.removeAllListeners([eventName])</code></strong>：移除 <code>eventName</code> 事件所有的响应函数。当未传入 <code>eventName</code> 参数时，所有事件的响应函数都会被移除。</li>
+<li><strong><code>emitter.removeListener(eventName, listener)</code></strong>：移除 <code>eventName</code> 事件的响应函数 <code>listener</code>。</li>
+</ul>
 <h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><p><a href="https://blog.csdn.net/wangfeijiu/article/details/111589574" target="_blank" rel="noopener">https://blog.csdn.net/wangfeijiu/article/details/111589574</a></p>
 <p><a href="https://blog.csdn.net/qq_39055970/article/details/119756714" target="_blank" rel="noopener">https://blog.csdn.net/qq_39055970/article/details/119756714</a></p>
 
@@ -863,7 +903,7 @@ it<span class="token punctuation">.</span><span class="token function">next</spa
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/106.jpg" class="responsive-img" alt="child_process">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/104.jpg" class="responsive-img" alt="child_process">
                         
                         <span class="card-title">child_process</span>
                     </div>
@@ -912,7 +952,7 @@ it<span class="token punctuation">.</span><span class="token function">next</spa
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/66.jpg" class="responsive-img" alt="设置日历中的快捷时间段范围">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/64.jpg" class="responsive-img" alt="设置日历中的快捷时间段范围">
                         
                         <span class="card-title">设置日历中的快捷时间段范围</span>
                     </div>
@@ -1117,7 +1157,7 @@ it<span class="token punctuation">.</span><span class="token function">next</spa
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">301.7k</span>
+            <span class="white-color">308.7k</span>
             
 
             <br>

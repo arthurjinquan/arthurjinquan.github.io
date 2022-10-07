@@ -1,4 +1,8 @@
+https://arthurjq.com/2022/09/23/bian-yi-an-zhuang-python/
+https://arthurjq.com/2022/08/13/crontab/
+https://arthurjq.com/2022/08/10/adb/
 https://arthurjq.com/2022/07/20/linux/
+https://arthurjq.com/2022/07/20/idb/
 https://arthurjq.com/2022/07/19/awk/
 https://arthurjq.com/2022/07/11/hoisting/
 https://arthurjq.com/2022/07/08/child-process/
@@ -94,7 +98,3 @@ https://arthurjq.com/2021/01/19/java/keep-learning/
 https://arthurjq.com/2021/01/19/database/redis/
 https://arthurjq.com/2021/01/19/project/ihis-bug/
 https://arthurjq.com/2021/01/15/project/kubernetes-kubectl/
-https://arthurjq.com/2021/01/14/project/skywalking/
-https://arthurjq.com/2021/01/13/project/elk/
-https://arthurjq.com/2021/01/12/project/zipkin/
-https://arthurjq.com/2021/01/12/project/cloud-interface-returnlist/

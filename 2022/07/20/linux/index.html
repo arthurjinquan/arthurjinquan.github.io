@@ -10,8 +10,7 @@
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="常用的文件操作指令ls --help             # 查看当前命令下的所有参数用法
 ls -l                 # 等于ll
-cd ..                 # 回到上一级
-cd ~         ">
+ls -al                # 显示的所有文件与文件夹的详细信息，包括">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -256,7 +255,7 @@ cd ~         ">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/71.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/73.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -373,12 +372,12 @@ cd ~         ">
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/liunx/" target="_blank">
-                            <span class="chip bg-color">liunx</span>
-                        </a>
-                        
                         <a href="/tags/测试开发/" target="_blank">
                             <span class="chip bg-color">测试开发</span>
+                        </a>
+                        
+                        <a href="/tags/liunx/" target="_blank">
+                            <span class="chip bg-color">liunx</span>
                         </a>
                         
                     </div>
@@ -415,14 +414,14 @@ cd ~         ">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    9 分
                 </div>
                 
                 
@@ -440,6 +439,7 @@ cd ~         ">
             <div id="articleContent">
                 <h2 id="常用的文件操作指令"><a href="#常用的文件操作指令" class="headerlink" title="常用的文件操作指令"></a>常用的文件操作指令</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ls</span> --help             <span class="token comment" spellcheck="true"># 查看当前命令下的所有参数用法</span>
 <span class="token function">ls</span> -l                 <span class="token comment" spellcheck="true"># 等于ll</span>
+<span class="token function">ls</span> -al                <span class="token comment" spellcheck="true"># 显示的所有文件与文件夹的详细信息，包括所有被隐藏的文件和文件夹</span>
 <span class="token function">cd</span> <span class="token punctuation">..</span>                 <span class="token comment" spellcheck="true"># 回到上一级</span>
 <span class="token function">cd</span> ~                  <span class="token comment" spellcheck="true"># 回到用户主目录</span>
 <span class="token function">cd</span> ./                 <span class="token comment" spellcheck="true"># 在当前目录下逐级打开下级目录</span>
@@ -450,22 +450,34 @@ cd ~         ">
 <span class="token function">mv</span> 原文件名 目标文件名  <span class="token comment" spellcheck="true"># 移动文件或文件夹，可以用来重命名</span>
 <span class="token function">touch</span> xxx.txt         <span class="token comment" spellcheck="true"># 更新文件的访问时间戳或者创建一个空文件</span>
 <span class="token function">cat</span>                   <span class="token comment" spellcheck="true"># 查看某个文件的内容</span>
+<span class="token function">nl</span>                    <span class="token comment" spellcheck="true"># 显示时输出行号</span>
 <span class="token function">more</span>                  <span class="token comment" spellcheck="true"># 查看内容，会分页</span>
+<span class="token function">less</span>                  <span class="token comment" spellcheck="true"># 比more好，[pageup] [pagedown]前后翻页</span>
 <span class="token function">chmod</span>                 <span class="token comment" spellcheck="true"># sudo chmod +x run.sh后./run.sh运行脚本</span>
 <span class="token function">chmod</span> u<span class="token operator">=</span>rwx,g<span class="token operator">=</span>rwx,o<span class="token operator">=</span>rwx <span class="token function">file</span> <span class="token operator">=</span> <span class="token function">chmod</span> 777 <span class="token function">file</span> <span class="token operator">=</span> <span class="token function">chmod</span> a<span class="token operator">=</span>rwx <span class="token function">file</span>
+
 <span class="token function">find</span> 目录 -name 文件名 <span class="token comment" spellcheck="true"># 查找文件</span>
+<span class="token function">which</span>                 <span class="token comment" spellcheck="true"># 寻找“可执行文件”</span>
+<span class="token function">whereis</span> 文件名         <span class="token comment" spellcheck="true"># 由一些特定的目录中寻找文件文件名，比find快</span>
+
 <span class="token function">vi</span>                    <span class="token comment" spellcheck="true"># 字母i进入编辑模式，esc退出编辑模式，wq是保存修改，q!是强制退出</span>
 <span class="token function">wc</span>                    <span class="token comment" spellcheck="true"># 计算指定文件的行数、字数，以及字节数</span>
 3 92 598 testfile     <span class="token comment" spellcheck="true"># testfile文件的行数为3、单词数92、字节数598</span>
 
+<span class="token function">df</span> -h                 <span class="token comment" spellcheck="true"># 列出文件系统的整体磁盘使用量</span>
 <span class="token function">du</span> -sh <span class="token keyword">.</span>              <span class="token comment" spellcheck="true"># 对当前目录下所有的目录和文件的大小进行汇总,-s表示汇总,-h人性化显示</span>
-<span class="token function">du</span> -sh *              <span class="token comment" spellcheck="true"># 对当前目录下每一个目录和文件的大小分别进行汇总</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">du</span> -sh *              <span class="token comment" spellcheck="true"># 对当前目录下每一个目录和文件的大小分别进行汇总</span>
+
+sz filename           <span class="token comment" spellcheck="true"># 利用ZModem协议来从Linux服务器传送文件到本地</span>
+
+<span class="token keyword">echo</span> 参数 <span class="token operator">></span> 输出文件    <span class="token comment" spellcheck="true"># 输出重定向，清空后新增内容</span>
+<span class="token keyword">echo</span> 参数 <span class="token operator">>></span> 输出文件   <span class="token comment" spellcheck="true"># 输出追加重定向，在文件末尾追加字符串</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="网络命令"><a href="#网络命令" class="headerlink" title="网络命令"></a>网络命令</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ifconfig</span>              <span class="token comment" spellcheck="true"># 查看网络接口的状态，ip地址，物理地址等等</span>
 <span class="token function">ping</span>  ip              <span class="token comment" spellcheck="true"># 网络试探</span>
 <span class="token function">netstat</span>               <span class="token comment" spellcheck="true"># 显示当前应用的网络使用情况</span>
 <span class="token function">netstat</span> -an <span class="token operator">|</span> <span class="token function">grep</span> 21 <span class="token comment" spellcheck="true"># 21端口是否已经被占用</span>
 <span class="token function">lsof</span>                  <span class="token comment" spellcheck="true"># 查看某个端口是否被占用 lsof -i:21</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="netstat-an"><a href="#netstat-an" class="headerlink" title="netstat -an"></a>netstat -an</h3><p>“-a”选项意在显示所有连接，当不附加”-n”选项时，它显示的是本地计算机的netbios名字+端口号。而加了”-n”选项后，它显示的是本地IP地址+端口号。</p>
+<h3 id="netstat-an"><a href="#netstat-an" class="headerlink" title="netstat -an"></a>netstat -an</h3><p>-a:将目前系统上所有的连接、监听、socket信息都列出来；<br>-t:列出tcp网络封包的信息；<br>-u:列出UDP网络封包的信息；<br>-n:不以进程的服务名，以端口号来显示；<br>-l:列出目前正在网络监听的服务；<br>-p:列出该网络服务的进程ID；</p>
 <p>grep -w（-w用于字符串精确匹配，默认匹配一个单词）例如我想匹配 “like”， 不加 -w 就会匹配到 “liker”， 加 -w 就不会匹配到</p>
 <h2 id="系统操作命令"><a href="#系统操作命令" class="headerlink" title="系统操作命令"></a>系统操作命令</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">shutdown</span>             <span class="token comment" spellcheck="true"># 关机</span>
 <span class="token function">uname</span>                <span class="token comment" spellcheck="true"># 获取当前系统信息</span>
@@ -489,16 +501,45 @@ cd ~         ">
 3.将所有的awk命令插入一个单独文件，然后调用：
 <span class="token function">awk</span> -f awk-script-file input-file<span class="token punctuation">(</span>s<span class="token punctuation">)</span>
 其中，-f选项加载awk-script-file中的awk脚本，input-file<span class="token punctuation">(</span>s<span class="token punctuation">)</span>跟上面的是一样的。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p>vim的全局替换</p>
-<pre class="line-numbers language-bash"><code class="language-bash">:s / old / new / g                    <span class="token comment" spellcheck="true"># 把当前行old的每次出现改为new，而不只是该行的第一个old</span>
+<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p> [Page Down]：向下翻页</p>
+<p> [Page Up]：向上翻页</p>
+<p>0或[Home]：移动到这一列的最前面字符处</p>
+<p>$ 或[End]：移动到这一列的最后面字符处</p>
+<p>G：移动到这个文件的最后一列</p>
+<p>/word：向光标之下寻找一个名称为 word 的字串，enter后按n会向下继续搜寻，按N向上搜寻</p>
+<p>dd：删除光标所在的那一整列</p>
+<p>ndd：n 为数字，删除光标所在的向下 n 列</p>
+<p>yy：复制光标所在的那一列</p>
+<p>nyy：n 为数字，复制光标所在的向下 n 列</p>
+<p>p, P：p 为将已复制的数据在光标下一列贴上，P 则 为贴在光标上一列</p>
+<h3 id="vim的全局替换"><a href="#vim的全局替换" class="headerlink" title="vim的全局替换"></a>vim的全局替换</h3><pre class="line-numbers language-bash"><code class="language-bash">:s / old / new / g                    <span class="token comment" spellcheck="true"># 把当前行old的每次出现改为new，而不只是该行的第一个old</span>
 :1, <span class="token variable">$s</span> / old / new / g                <span class="token comment" spellcheck="true"># 把整个文件中的old的每次出现都改为new</span>
 :% s / old / new / g                  <span class="token comment" spellcheck="true"># % 等价于1，$</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>! 是强制的意思</p>
-<p>按键 Esc 可编辑命令 ， Esc ：wq 之后回车就能强制保存修改内容</p>
 <h2 id="查看某个进程"><a href="#查看某个进程" class="headerlink" title="查看某个进程"></a>查看某个进程</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">top</span> -p 10997                          <span class="token comment" spellcheck="true"># 查看某个进程占用的CPU、内存</span>
 <span class="token function">ps</span> -a                                 <span class="token comment" spellcheck="true"># 列出所有运行中/激活进程</span>
 <span class="token function">ps</span> -ef<span class="token operator">|</span><span class="token function">grep</span>                           <span class="token comment" spellcheck="true"># 列出需要的进程</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="top参数"><a href="#top参数" class="headerlink" title="top参数"></a>top参数</h2><p>平均负载（Load Average）是一段时间内系统的平均负载，这个一段时间一般取1分钟、5分钟、15分钟。</p>
+<h2 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h2><p>将telnet客户端开启才能正常使用</p>
+<h3 id="测试网络连通性"><a href="#测试网络连通性" class="headerlink" title="测试网络连通性"></a>测试网络连通性</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># Telnet+空格+要访问的服务器或电脑ip地址+空格+端口号</span>
+telnet 172.21.15.199 9090
+<span class="token comment" spellcheck="true"># 按回车，出现黑色界面说明连接成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>telnet连通性只能测试tcp端口或服务，不能测试udp</p>
+<h3 id="登录远程主机"><a href="#登录远程主机" class="headerlink" title="登录远程主机"></a>登录远程主机</h3><p><code>-l</code>:指定用户名</p>
+<pre class="line-numbers language-bash"><code class="language-bash">telnet -l admin 192.168.31.105<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#非交互模式</span>
+<span class="token function">nslookup</span> baidu.com
+
+<span class="token comment" spellcheck="true">#交互模式</span>
+<span class="token function">nslookup</span>
+baidu.com
+
+<span class="token comment" spellcheck="true">#PTR 反向DNS解析</span>
+<span class="token function">nslookup</span> -ty<span class="token operator">=</span>ptr 8.8.8.8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="查看内存使用情况"><a href="#查看内存使用情况" class="headerlink" title="查看内存使用情况"></a>查看内存使用情况</h2><h3 id="proc-meminfo"><a href="#proc-meminfo" class="headerlink" title="/proc/meminfo"></a>/proc/meminfo</h3><p>查看RAM使用情况最简单的方法是通过 /proc/meminfo。/proc/meminfo列出了所有你想了解的内存的使用情况。进程的内存使用信息也可以通过 <code>/proc/&lt;pid&gt;/statm</code> 和 <code>/proc/&lt;pid&gt;/status</code> 来查看。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cat</span> /proc/meninfo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="free"><a href="#free" class="headerlink" title="free"></a>free</h3><p>free命令是一个快速查看内存使用情况的方法，它是对 /proc/meminfo 收集到的信息的一个概述。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">free</span> -h<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="htop"><a href="#htop" class="headerlink" title="htop"></a>htop</h3><p>htop命令显示了每个进程的内存实时使用率。它提供了所有进程的常驻内存大小、程序总内存大小、共享库大小等的报告。列表可以水平及垂直滚动。</p>
+<h3 id="top参数"><a href="#top参数" class="headerlink" title="top参数"></a>top参数</h3><p>平均负载（Load Average）是一段时间内系统的平均负载，这个一段时间一般取1分钟、5分钟、15分钟。</p>
 <p>第七行以下：各进程（任务）的状态监控<br>PID — 进程id</p>
 <p>USER — 进程所有者</p>
 <p>PR — 进程优先级</p>
@@ -558,6 +599,7 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
 <p>解包</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">tar</span> -xvf xxx.tar                     <span class="token comment" spellcheck="true"># 解包到当前目录</span>
 <span class="token function">tar</span> -xvf xxx.tar -C my-dir           <span class="token comment" spellcheck="true"># 解包到指定目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="todo"><a href="#todo" class="headerlink" title="todo"></a>todo</h2><p><a href="https://www.kancloud.cn/chunyu/php_basic_knowledge/2106515" target="_blank" rel="noopener">https://www.kancloud.cn/chunyu/php_basic_knowledge/2106515</a></p>
 
             </div>
             <hr />
@@ -656,24 +698,72 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/07/20/linux/">
+                <a href="/2022/08/10/adb/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/71.jpg" class="responsive-img" alt="Linux命令">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/61.jpg" class="responsive-img" alt="adb">
                         
-                        <span class="card-title">Linux命令</span>
+                        <span class="card-title">adb</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            liunx常用命令
+                            Android Debug Bridge，它是 Android 开发/测试人员不可替代的强大工具
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2022-08-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/测试开发/" class="post-category" target="_blank">
+                                    测试开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/测试开发/" target="_blank">
+                        <span class="chip bg-color">测试开发</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/07/20/idb/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/69.jpg" class="responsive-img" alt="idb">
+                        
+                        <span class="card-title">idb</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            idb命令
                         
                     </div>
                     <div class="publish-info">
@@ -692,65 +782,11 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/liunx/" target="_blank">
-                        <span class="chip bg-color">liunx</span>
-                    </a>
-                    
-                    <a href="/tags/测试开发/" target="_blank">
-                        <span class="chip bg-color">测试开发</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/07/19/awk/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/57.jpg" class="responsive-img" alt="awk">
-                        
-                        <span class="card-title">awk</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            awk命令
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-07-19
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/测试开发/" class="post-category" target="_blank">
-                                    测试开发
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/liunx/" target="_blank">
-                        <span class="chip bg-color">liunx</span>
+                    <a href="/tags/devicefarm/" target="_blank">
+                        <span class="chip bg-color">devicefarm</span>
                     </a>
                     
                 </div>
@@ -924,7 +960,7 @@ yum <span class="token function">install</span> package<span aria-hidden="true" 
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">301.7k</span>
+            <span class="white-color">308.7k</span>
             
 
             <br>
