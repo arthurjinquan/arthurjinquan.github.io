@@ -1,9 +1,13 @@
+https://arthurjq.com/2022/10/11/hei-ma-nodejs-xue-xi/
+https://arthurjq.com/2022/10/09/pc-biao-zhun-hua/
 https://arthurjq.com/2022/09/23/bian-yi-an-zhuang-python/
 https://arthurjq.com/2022/08/13/crontab/
 https://arthurjq.com/2022/08/10/adb/
+https://arthurjq.com/2022/08/08/an-zhuang-tidevice/
 https://arthurjq.com/2022/07/20/linux/
 https://arthurjq.com/2022/07/20/idb/
 https://arthurjq.com/2022/07/19/awk/
+https://arthurjq.com/2022/07/18/ios-mo-ni-qi-gou-jian-ji-huan-jing-da-jian/
 https://arthurjq.com/2022/07/11/hoisting/
 https://arthurjq.com/2022/07/08/child-process/
 https://arthurjq.com/2022/07/07/nodejs/
@@ -94,7 +98,3 @@ https://arthurjq.com/2021/02/01/java/design-pattern-structure-pattern/
 https://arthurjq.com/2021/01/23/java/autowired-resource/
 https://arthurjq.com/2021/01/22/project/cloud-gateway/
 https://arthurjq.com/2021/01/21/project/netty-pipeline/
-https://arthurjq.com/2021/01/19/java/keep-learning/
-https://arthurjq.com/2021/01/19/database/redis/
-https://arthurjq.com/2021/01/19/project/ihis-bug/
-https://arthurjq.com/2021/01/15/project/kubernetes-kubectl/
