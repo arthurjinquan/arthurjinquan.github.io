@@ -257,7 +257,7 @@ tar -zxvf Python-3.7.8.tgz
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/76.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/75.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -454,17 +454,11 @@ yum -y groupinstall <span class="token string">"Development tools"</span>
 yum -y <span class="token function">install</span> zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel
 yum <span class="token function">install</span> -y libffi-devel zlib1g-dev
 yum <span class="token function">install</span> zlib* -y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> Python-3.10.8/
+<h2 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> Python-3.7.8/
 <span class="token comment" spellcheck="true"># 使用系统库的ssl更便捷</span>
 <span class="token function">sudo</span> ./configure --prefix<span class="token operator">=</span>/usr/local/python3.7.8 --with-ssl --enable-shared
 <span class="token comment" spellcheck="true"># 编译安装</span>
 <span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="创建软连接"><a href="#创建软连接" class="headerlink" title="创建软连接"></a>创建软连接</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rm</span> -rf /usr/bin/python3 /usr/bin/python
-<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/python3.7.8/bin/python3 /usr/bin/python3
-<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/python3.7.8/bin/python3 /usr/bin/python
-<span class="token function">sudo</span> <span class="token function">rm</span> -rf /usr/bin/pip3 /usr/bin/pip
-<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/python3.7.8/bin/pip3 /usr/bin/pip3
-<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/python3.7.8/bin/pip3 /usr/bin/pip<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="添加-python-库配置信息"><a href="#添加-python-库配置信息" class="headerlink" title="添加 python 库配置信息"></a>添加 python 库配置信息</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> /etc/ld.so.conf.d
 <span class="token function">sudo</span> vim python3.conf
 
@@ -477,6 +471,12 @@ ldconfig
 <span class="token comment" spellcheck="true"># 切换源为国内</span>
 python3 -m pip config <span class="token keyword">set</span> global.index-url https://mirrors.aliyun.com/pypi/simple/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>linux下的共享库机制采用了类似于高速缓存的机制，将库信息保存在/etc/ld.so.cache里边，程序连接的时候首先从这个文件里边查找，然后再到ld.so.conf的路径里边去详细找，这就是为什么修改了conf文件要重新运行一下ldconfig的原因。</p>
+<h2 id="创建软连接"><a href="#创建软连接" class="headerlink" title="创建软连接"></a>创建软连接</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rm</span> -rf /usr/bin/python3 /usr/bin/python
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/python3.7.8/bin/python3 /usr/bin/python3
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/python3.7.8/bin/python3 /usr/bin/python
+<span class="token function">sudo</span> <span class="token function">rm</span> -rf /usr/bin/pip3 /usr/bin/pip
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/python3.7.8/bin/pip3 /usr/bin/pip3
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/python3.7.8/bin/pip3 /usr/bin/pip<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="找不到lsb-release模块"><a href="#找不到lsb-release模块" class="headerlink" title="找不到lsb_release模块"></a>找不到lsb_release模块</h2><p>报错如下：</p>
 <pre><code>subprocess.CalledProcessError: Command &#39;(&#39;lsb_release&#39;, &#39;-a&#39;)&#39; returned non-zero exit status 1.</code></pre><p>找到lsb_release.py文件和CommandNotFound目录，把它们拷贝到报的错误中subprocess.py所在文件夹</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">find</span> / -name <span class="token string">'lsb_release.py'</span>
@@ -587,7 +587,7 @@ python3 -m pip config <span class="token keyword">set</span> global.index-url ht
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/87.jpg" class="responsive-img" alt="PC环境标准化">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/86.jpg" class="responsive-img" alt="PC环境标准化">
                         
                         <span class="card-title">PC环境标准化</span>
                     </div>
@@ -636,7 +636,7 @@ python3 -m pip config <span class="token keyword">set</span> global.index-url ht
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/56.jpg" class="responsive-img" alt="liunx定时任务配置">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/57.jpg" class="responsive-img" alt="liunx定时任务配置">
                         
                         <span class="card-title">liunx定时任务配置</span>
                     </div>
@@ -841,7 +841,7 @@ python3 -m pip config <span class="token keyword">set</span> global.index-url ht
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">311.8k</span>
+            <span class="white-color">318.5k</span>
             
 
             <br>

@@ -261,7 +261,7 @@ sudo service cron status
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/56.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/57.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -416,14 +416,14 @@ sudo service cron status
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    148
+                    488
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
                 
@@ -460,7 +460,59 @@ CRON_TZ<span class="token operator">=</span>Asia/Shanghai
 */5 12,13 * * * /usr/bin/python3 /home/huya/devicefarm/ios_killall.py  <span class="token operator">></span> /dev/null 2<span class="token operator">></span><span class="token operator">&amp;</span>1
 
 <span class="token comment" spellcheck="true"># adr清后台脚本定时命令</span>
-*/5 12,13 * * * /usr/bin/python3 /home/huya/devicefarm/and_killall.py  <span class="token operator">></span> /dev/null 2<span class="token operator">></span><span class="token operator">&amp;</span>1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+*/5 12,13 * * * /usr/bin/python3 /home/huya/devicefarm/and_killall.py  <span class="token operator">></span> /dev/null 2<span class="token operator">></span><span class="token operator">&amp;</span>1
+
+<span class="token comment" spellcheck="true"># 竞品测试集群定时清后台</span>
+47 16 * * * /usr/bin/python3 /Users/huya/devicefarm/and_killall.py  <span class="token operator">></span> /dev/null 2<span class="token operator">></span><span class="token operator">&amp;</span>1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="mac-os"><a href="#mac-os" class="headerlink" title="mac os"></a>mac os</h2><p>计划：</p>
+<ol>
+<li>创建一个Python脚本，用于执行需要定时运行的任务。</li>
+<li>使用Mac OS的内置工具launchd来设置定时任务。</li>
+<li>在launchd配置文件中指定定时任务的时间和要运行的Python脚本。</li>
+</ol>
+<p>代码：</p>
+<ol>
+<li><p>创建Python脚本</p>
+</li>
+<li><p>创建launchd配置文件</p>
+</li>
+</ol>
+<p>在终端中输入以下命令：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">bash</span> Copy codenano ~/Library/LaunchAgents/com.matchkill.runpython.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后将以下内容复制到文件中：</p>
+<pre class="line-numbers language-xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+        "http://www.apple.com/DTDs/PropertyList-1.0.dtd"></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plist</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dict</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">></span></span>Label<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">></span></span>com.matchkill.runpython<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">></span></span>ProgramArguments<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>array</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">></span></span>/usr/bin/python3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">></span></span>/Users/huya/devicefarm/and_killall.py<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>array</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">></span></span>StartCalendarInterval<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dict</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">></span></span>Hour<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>integer</span><span class="token punctuation">></span></span>22<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>integer</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">></span></span>Minute<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>integer</span><span class="token punctuation">></span></span>30<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>integer</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dict</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dict</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plist</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>将<code>/Users/huya/devicefarm/and_killall.py</code>替换为你的Python脚本的实际路径。</p>
+<ol>
+<li>加载launchd配置文件</li>
+</ol>
+<p>在终端中输入以下命令：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">launchctl load ~/Library/LaunchAgents/com.matchkill.runpython.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>现在，你的Python脚本将在每晚10点半运行。</p>
+<p>注意：如果你想停止定时任务，可以使用以下命令：</p>
+<pre class="line-numbers language-bash"><code class="language-bash">launchctl unload ~/Library/LaunchAgents/com.matchkill.runpython.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2><p><a href="https://ubuntuqa.com/article/1640.html" target="_blank" rel="noopener">https://ubuntuqa.com/article/1640.html</a></p>
+<p><a href="https://www.cnblogs.com/T-Better/p/16135656.html" target="_blank" rel="noopener">https://www.cnblogs.com/T-Better/p/16135656.html</a></p>
 
             </div>
             <hr />
@@ -567,7 +619,7 @@ CRON_TZ<span class="token operator">=</span>Asia/Shanghai
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/76.jpg" class="responsive-img" alt="编译安装Python">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/75.jpg" class="responsive-img" alt="编译安装Python">
                         
                         <span class="card-title">编译安装Python</span>
                     </div>
@@ -616,7 +668,7 @@ CRON_TZ<span class="token operator">=</span>Asia/Shanghai
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/58.jpg" class="responsive-img" alt="adb">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/59.jpg" class="responsive-img" alt="adb">
                         
                         <span class="card-title">adb</span>
                     </div>
@@ -821,7 +873,7 @@ CRON_TZ<span class="token operator">=</span>Asia/Shanghai
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">311.8k</span>
+            <span class="white-color">318.5k</span>
             
 
             <br>

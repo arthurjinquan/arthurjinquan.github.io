@@ -4,7 +4,7 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="idb, SCUT JAVA SpringBoot 锦泉 arthurjinquan jinquan">
+    <meta name="keywords" content="idb学习, SCUT JAVA SpringBoot 锦泉 arthurjinquan jinquan">
     <meta name="baidu-site-verification" content="fmlEuI34ir">
     <meta name="google-site-verification" content="yCy2azpds5XSuGZvis6OuA-XIGF5GuGpYRAaGfD6o48">
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
@@ -16,7 +16,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>idb | 锦泉^-^</title>
+    <title>idb学习 | 锦泉^-^</title>
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -253,13 +253,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/66.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/29.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        idb
+                        idb学习
                     </div>
                 </div>
             </div>
@@ -394,7 +394,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-20
+                    2022-10-20
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -408,7 +408,7 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    461
+                    427
                 </div>
                 
 
@@ -432,18 +432,26 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="idb是什么"><a href="#idb是什么" class="headerlink" title="idb是什么"></a>idb是什么</h2><p>iOS Debug Bridge - iOS调试桥、安卓有一个很出名ADB（安卓调试桥）它可以很方便的利用PC对移动设备的连接调试、包括获取设备详情、安装｜卸载apk、重启、监控设备信息、同时给可以进行app开启、触发点击、滑动、放大等手势事件、它可以用来做app的自动化测试和手机群控！</p>
-<p>由于iOS系统的封闭性、一直没有像ADB这么强大、这么实用的工具、好在Facebook出了这个IDB工具、让我们iOS设备可以像安卓那样灵活的调试控制！</p>
-<h2 id="idb常用指令"><a href="#idb常用指令" class="headerlink" title="idb常用指令"></a>idb常用指令</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#查看当前pc上的所有移动设备包括模拟器信息</span>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre class="line-numbers language-bash"><code class="language-bash">brew tap facebook/fb
+brew <span class="token function">install</span> idb-companion
+pip3.6 <span class="token function">install</span> fb-idb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="idb指令"><a href="#idb指令" class="headerlink" title="idb指令"></a>idb指令</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#查看当前pc上的所有移动设备包括模拟器信息</span>
 idb list-targets
 
 <span class="token comment" spellcheck="true">#启动一台设备</span>
 idb boot UDID
 
+<span class="token comment" spellcheck="true">#连接</span>
+idb connect idb connect COMPANION_HOST COMPANION_PORT
+
+
+
+
 <span class="token comment" spellcheck="true">#打开某app</span>
 idb launch com.huya.hyatWIFIAssistant.cx
 
 <span class="token comment" spellcheck="true">#点击屏幕</span>
-idb ui botton tap x y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+idb ui botton tap x y<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="idb-companion"><a href="#idb-companion" class="headerlink" title="idb_companion"></a>idb_companion</h2><p>这idb_companion是一个gRPC在 macOS 上运行的 Objective-C++ 服务器。它与用于自动化模拟器和设备的本机 API 对话。它链接FBSimulatorControl和FBDeviceControl框架，它们是整个idb项目的一部分。</p>
 <p>当它idb_companion充当gRPC服务器时，它会为单个iOS 目标（设备或模拟器）执行此操作。</p>
 <p>此外，idb_companion还有一些命令是在 python CLI 中故意不可用的，这些操作与 iOS 设备管理或模拟器生命周期的操作有关。</p>
@@ -487,9 +495,9 @@ idb ui botton tap x y<span aria-hidden="true" class="line-numbers-rows"><span></
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《idb》
+                    《idb学习》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/07/20/idb/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2022/10/20/idb/" property="cc:attributionName"
                rel="cc:attributionURL">
                 锦泉
             </a> 采用
@@ -530,7 +538,7 @@ idb ui botton tap x y<span aria-hidden="true" class="line-numbers-rows"><span></
         repo: 'arthurjinquan.github.io',
         owner: 'arthurjinquan',
         admin: "arthurjinquan",
-        id: '2022/07/20/idb/',
+        id: '2022/10/20/idb/',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -555,24 +563,25 @@ idb ui botton tap x y<span aria-hidden="true" class="line-numbers-rows"><span></
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/07/20/linux/">
+                <a href="/2022/10/20/lsof/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/70.jpg" class="responsive-img" alt="Linux命令">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/50.jpg" class="responsive-img" alt="lsof">
                         
-                        <span class="card-title">Linux命令</span>
+                        <span class="card-title">lsof</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            liunx常用命令
+                            Newhttps://zhuanlan.zhihu.com/p/450234442
+获取网络信息使用-i显示所有连接有些人喜欢用netstat来获取网络连接，但是我更喜欢使用lsof来进行此项工作。结果以对我来说很直观的方式呈现，我仅仅只需
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2022-07-20
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2022-10-20
                         </span>
                         <span class="publish-author">
                             
@@ -588,10 +597,6 @@ idb ui botton tap x y<span aria-hidden="true" class="line-numbers-rows"><span></
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/测试开发/" target="_blank">
-                        <span class="chip bg-color">测试开发</span>
-                    </a>
                     
                     <a href="/tags/liunx/" target="_blank">
                         <span class="chip bg-color">liunx</span>
@@ -608,24 +613,26 @@ idb ui botton tap x y<span aria-hidden="true" class="line-numbers-rows"><span></
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/07/19/awk/">
+                <a href="/2022/10/19/docker/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/56.jpg" class="responsive-img" alt="awk">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/5.jpg" class="responsive-img" alt="docker使用">
                         
-                        <span class="card-title">awk</span>
+                        <span class="card-title">docker使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            awk命令
+                            查看容器日志sudo docker logs --tail 100 -f 2>&amp;1 provider|grep -a keyword
+# 查询关键字前后20行
+sudo docker logs --tail 100 -f 2>&am
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-07-19
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2022-10-19
                             </span>
                         <span class="publish-author">
                             
@@ -642,8 +649,12 @@ idb ui botton tap x y<span aria-hidden="true" class="line-numbers-rows"><span></
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/liunx/" target="_blank">
-                        <span class="chip bg-color">liunx</span>
+                    <a href="/tags/容器/" target="_blank">
+                        <span class="chip bg-color">容器</span>
+                    </a>
+                    
+                    <a href="/tags/docker/" target="_blank">
+                        <span class="chip bg-color">docker</span>
                     </a>
                     
                 </div>
@@ -817,7 +828,7 @@ idb ui botton tap x y<span aria-hidden="true" class="line-numbers-rows"><span></
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">311.8k</span>
+            <span class="white-color">318.5k</span>
             
 
             <br>

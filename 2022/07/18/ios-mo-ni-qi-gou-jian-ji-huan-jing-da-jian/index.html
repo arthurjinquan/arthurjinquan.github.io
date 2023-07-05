@@ -10,8 +10,9 @@
     <meta name="360-site-verification" content="b7c11a830ef90fd1464ad6206bb7b6e7">
     <meta name="description" content="映射打开git bash映射：
  ssh -L 16031:172.21.213.31:5900 huya@172.21.213.31 -N
-安装Xcode传输13GB的安装包：
-scp /Users/huya/Downloads/Xcod">
+查看设备idb list-targets |grep HY
+维护脚本会将没起起来的设备启动
+安装X">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -256,7 +257,7 @@ scp /Users/huya/Downloads/Xcod">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/59.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/60.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -411,14 +412,14 @@ scp /Users/huya/Downloads/Xcod">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
                 
@@ -436,6 +437,8 @@ scp /Users/huya/Downloads/Xcod">
             <div id="articleContent">
                 <h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><p>打开git bash映射：</p>
 <pre class="line-numbers language-bash"><code class="language-bash"> <span class="token function">ssh</span> -L 16031:172.21.213.31:5900 huya@172.21.213.31 -N<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="查看设备"><a href="#查看设备" class="headerlink" title="查看设备"></a>查看设备</h3><pre class="line-numbers language-bash"><code class="language-bash">idb list-targets <span class="token operator">|</span><span class="token function">grep</span> HY<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>维护脚本会将没起起来的设备启动</p>
 <h2 id="安装Xcode"><a href="#安装Xcode" class="headerlink" title="安装Xcode"></a>安装Xcode</h2><p>传输13GB的安装包：</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">scp</span> /Users/huya/Downloads/Xcode_13.4.xip huya@172.21.213.31:/Users/huya/Downloads/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>双击解压安装</p>
@@ -473,13 +476,16 @@ scp /Users/huya/Downloads/Xcod">
 <h2 id="安装brew"><a href="#安装brew" class="headerlink" title="安装brew"></a>安装brew</h2><h3 id="官网安装"><a href="#官网安装" class="headerlink" title="官网安装"></a>官网安装</h3><pre class="line-numbers language-bash"><code class="language-bash">/bin/bash -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>安装完后按提示添加homebrew到path：</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#将eval "$(opt/homebrew/bin/brew shellenv)"写入.zprofile文件</span>
-<span class="token keyword">echo</span> <span class="token string">'eval "<span class="token variable"><span class="token variable">$(</span>opt/homebrew/bin/brew shellenv<span class="token variable">)</span></span>"'</span> <span class="token operator">>></span> /Users/huya/.zprofile
+<span class="token keyword">echo</span> <span class="token string">'eval "<span class="token variable"><span class="token variable">$(</span>/opt/homebrew/bin/brew shellenv<span class="token variable">)</span></span>"'</span> <span class="token operator">>></span> /Users/huya/.zprofile
 
-<span class="token function">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>opt/homebrew/bin/brew shellenv<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token function">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span>/opt/homebrew/bin/brew shellenv<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>brew -v查看版本</p>
 <h3 id="第三方安装"><a href="#第三方安装" class="headerlink" title="第三方安装"></a>第三方安装</h3><pre class="line-numbers language-bash"><code class="language-bash">/bin/bash -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span>curl -fsSL https://gitee.com/ineo6/homebrew-install/raw/master/install.sh<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>brew装完自动帮我安装了python3</p>
-<h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><pre class="line-numbers language-bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span>
+<h2 id="安装adb"><a href="#安装adb" class="headerlink" title="安装adb"></a>安装adb</h2><pre><code>brew install android-platform-tools
+
+# 兼容问题
+softwareupdate --install-rosetta</code></pre><h2 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h2><pre class="line-numbers language-bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span>
 
 <span class="token function">git</span> config --global user.email <span class="token string">"你的信息"</span>
 <span class="token function">git</span> config --global user.name <span class="token string">"你的信息"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
@@ -594,11 +600,22 @@ serve dist                //然后启动服务<span aria-hidden="true" class="li
 <p>或者可以将dist文件拷贝到其他地方，比如使用hbuilder开启服务访问，或者复制到xampp的服务中访问。</p>
 <h3 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h3><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span>
 <span class="token function">npm</span> run ios-provider-sim<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="若npm报错"><a href="#若npm报错" class="headerlink" title="若npm报错"></a>若npm报错</h3><pre><code>npm install报错: npm WARN tar ENOENT: no such file or directory</code></pre><p>解决：</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> yarn -g
+yarn <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><p>复制其他构建机~/目录下的devicefarm文件夹过来，通过配置devicefarm.sh脚本运行，记得修改name</p>
 <pre class="line-numbers language-bash"><code class="language-bash">./devicefarm.sh
 <span class="token function">ps</span> -ef<span class="token operator">|</span><span class="token function">grep</span> provider <span class="token comment" spellcheck="true"># 查看运行起来没有</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h2 id="启动脚本"><a href="#启动脚本" class="headerlink" title="启动脚本"></a>启动脚本</h2><pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">cd</span> ~/Documents/devicefarm/script/sim
 sodu python3 monitor-devices.py start           <span class="token comment" spellcheck="true"># 必须sodu，否则运行不起来</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><h3 id="have-‘arm64’-need-‘x86-64’"><a href="#have-‘arm64’-need-‘x86-64’" class="headerlink" title="have ‘arm64’, need ‘x86_64’"></a>have ‘arm64’, need ‘x86_64’</h3><pre><code>mach-o file, but is an incompatible architecture (have &#39;arm64&#39;, need &#39;x86_64&#39;)</code></pre><p>解决：</p>
+<p>m2 cpu最好使用zsh安装tidevice和其他python包</p>
+<pre class="line-numbers language-bash"><code class="language-bash">arch -x86_64 pip3 <span class="token function">install</span> pillow<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="xcodebuild报错"><a href="#xcodebuild报错" class="headerlink" title="xcodebuild报错"></a>xcodebuild报错</h3><pre><code>tool &#39;xcodebuild&#39; requires Xcode, but active developer directory &#39;/Library/Developer/CommandLineTools&#39; is a command line tools instance</code></pre><p>解决：</p>
+<ol>
+<li>Install Xcode</li>
+<li>Run <code>sudo xcode-select -s /Applications/Xcode.app/Contents/Developer</code></li>
+</ol>
 <hr>
 
             </div>
@@ -702,19 +719,21 @@ sodu python3 monitor-devices.py start           <span class="token comment" spel
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/07/19/awk/">
+                <a href="/2022/07/19/devicefarm-xue-xi/">
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/56.jpg" class="responsive-img" alt="awk">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/120.jpg" class="responsive-img" alt="devicefarm学习">
                         
-                        <span class="card-title">awk</span>
+                        <span class="card-title">devicefarm学习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            awk命令
+                            methodpath.resolve作用：path.resolve() 该方法将一些的 路径/路径段 解析为绝对路径。
+语法：path.resolve( [from…],to )
+说明：将参数to位置的字符解析到一个绝对路径里，[from 
                         
                     </div>
                     <div class="publish-info">
@@ -736,8 +755,8 @@ sodu python3 monitor-devices.py start           <span class="token comment" spel
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/liunx/" target="_blank">
-                        <span class="chip bg-color">liunx</span>
+                    <a href="/tags/nodejs/" target="_blank">
+                        <span class="chip bg-color">nodejs</span>
                     </a>
                     
                 </div>
@@ -755,7 +774,7 @@ sodu python3 monitor-devices.py start           <span class="token comment" spel
                     <div class="card-image">
                         
                         
-                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/41.jpg" class="responsive-img" alt="提升和作用域">
+                        <img src="https://cdn.jsdelivr.net/gh/arthurjinquan/blogimage/img/feature/42.jpg" class="responsive-img" alt="提升和作用域">
                         
                         <span class="card-title">提升和作用域</span>
                     </div>
@@ -960,7 +979,7 @@ sodu python3 monitor-devices.py start           <span class="token comment" spel
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">311.8k</span>
+            <span class="white-color">318.5k</span>
             
 
             <br>
